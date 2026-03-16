@@ -13,12 +13,19 @@ extends Path2D
 ## Emit a signal when the walk is finished 
 signal walk_finished
 
+@export var speed := 5
+@export var strength := 5
+@export var luck := 5
+@export var defense := 5
+
 ## Use the grid to know the grid coordinates and know get access to it calculations
 @export var grid: Resource
 ## Distance units can move in tiles 
-@export var move_range := 6
+var move_range :int
 ## Speed of it visually moving, doesn't actually affect movement
-@export var move_speed := 600.0
+var move_speed :int
+
+@export var initiative_stat := 0
 
 ## Setting the texture and if it doesn't have a sprite it waits until it has one or have been created
 @export var skin: Texture:
@@ -63,6 +70,8 @@ var _is_walking := false:
 
 #When it loads into the scene tree
 func _ready() -> void:
+	move_range = speed
+	move_speed = speed * 100
 	#makes sure the object doesn't start the _process function
 	set_process(false)
 	#locks it so it doesn't rotate along the path

@@ -54,10 +54,10 @@ func _unhandled_input(event: InputEvent) -> void:
 		emit_signal("accept_pressed", cell)
 		get_viewport().set_input_as_handled()
 
+	#stops holding down the button repeat inputs with a delay of 'ui_cooldown'
 	var should_move := event.is_pressed() 
 	if event.is_echo():
 		should_move = should_move and _timer.is_stopped()
-
 	if not should_move:
 		return
 
@@ -71,6 +71,6 @@ func _unhandled_input(event: InputEvent) -> void:
 	elif event.is_action("ui_down"):
 		cell += Vector2.DOWN
 
-
+#Draws the bounding box surrounding the cell that the cursor is hovering over
 func _draw() -> void:
-	draw_rect(Rect2(-grid.cell_size / 2, grid.cell_size), Color.ALICE_BLUE, false, 2.0)
+	draw_rect(Rect2(-grid.cell_size/2, grid.cell_size), Color.ALICE_BLUE, false, 2.0)

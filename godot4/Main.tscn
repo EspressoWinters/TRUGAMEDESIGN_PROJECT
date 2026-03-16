@@ -14,10 +14,10 @@
 [sub_resource type="Curve2D" id="Curve2D_wkp8b"]
 resource_local_to_scene = true
 
-[sub_resource type="Curve2D" id="Curve2D_20pc6"]
+[sub_resource type="Curve2D" id="Curve2D_5vvyt"]
 resource_local_to_scene = true
 
-[sub_resource type="Curve2D" id="Curve2D_5vvyt"]
+[sub_resource type="Curve2D" id="Curve2D_20pc6"]
 resource_local_to_scene = true
 
 [node name="Main" type="Node2D" unique_id=1683826690]
@@ -38,27 +38,27 @@ ui_cooldown = 0.1
 [node name="Bear" parent="GameBoard" unique_id=2068118955 instance=ExtResource("2")]
 position = Vector2(600, 480)
 curve = SubResource("Curve2D_wkp8b")
-move_range = 3
+speed = 1
 skin = ExtResource("8")
 skin_offset = Vector2(2, 9)
-
-[node name="Cat" parent="GameBoard" unique_id=619028454 instance=ExtResource("2")]
-position = Vector2(850.293, 412.465)
-curve = SubResource("Curve2D_20pc6")
-move_range = 8
-skin = ExtResource("9")
-skin_offset = Vector2(5, 12)
 
 [node name="Squirrel" parent="GameBoard" unique_id=967058081 instance=ExtResource("2")]
 position = Vector2(355.298, 298.556)
 curve = SubResource("Curve2D_5vvyt")
-move_range = 5
+speed = 100
+strength = null
+luck = null
+defense = null
+initiative_stat = null
 skin = ExtResource("7")
 skin_offset = Vector2(10, 17)
 
-[node name="Camera2D" type="Camera2D" parent="." unique_id=2128542884]
-position = Vector2(623, 346)
-zoom = Vector2(0.2, 0.2)
+[node name="Cat" parent="GameBoard" unique_id=619028454 instance=ExtResource("2")]
+position = Vector2(850.293, 412.465)
+curve = SubResource("Curve2D_20pc6")
+speed = 1
+skin = ExtResource("9")
+skin_offset = Vector2(5, 12)
 
 [connection signal="accept_pressed" from="GameBoard/Cursor" to="GameBoard" method="_on_Cursor_accept_pressed"]
 [connection signal="moved" from="GameBoard/Cursor" to="GameBoard" method="_on_Cursor_moved"]
