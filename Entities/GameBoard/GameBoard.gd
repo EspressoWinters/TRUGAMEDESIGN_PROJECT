@@ -19,6 +19,7 @@ var _units := {}
 var _active_unit: Unit
 var _walkable_cells := []
 
+@onready var tile_map = $"../Map"
 @onready var _unit_overlay: UnitOverlay = $UnitOverlay
 @onready var _unit_path: UnitPath = $UnitPath
 
@@ -102,7 +103,17 @@ func _get_configuration_warning() -> String:
 ## Returns `true` if the cell is occupied by a unit.
 func is_occupied(cell: Vector2) -> bool:
 	#has checks if a key matches the given cell in the dictionary
-	return _units.has(cell)
+	if _units.has(cell):
+		return true
+	#Looks at layer 0 at these specific coordinates (cell)
+	#takes the id of the cell in the tilemap(rock,grass,water)
+	var tile_data: TileData = tile_map.get_cell_tile_data(0,cell)
+	if tile_data: #if tile is found
+		#Returns the ooposite of "walkable"
+		#if  walkable is false, we return true, meaning yes, it is blocked
+		return not tile_data.get_custom_data("walkable")
+	
+	return true
 
 
 ## Returns an array of cells a given unit can walk using the flood fill algorithm.
