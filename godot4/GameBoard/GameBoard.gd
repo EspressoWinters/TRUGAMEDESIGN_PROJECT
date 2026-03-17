@@ -33,7 +33,7 @@ func _ready() -> void:
 	roll_initiative()
 	start_turn()
 
-
+##This function will roll the initiative rolls to start the combat
 func roll_initiative():
 	initiative_order.clear()
 	
@@ -46,7 +46,7 @@ func roll_initiative():
 		initiative_order.append(unit)
 	initiative_bubble_sort(initiative_order)
 
-
+##This will start the turn of the individual unit
 func start_turn():
 	_active_unit = initiative_order[turn_count]
 	
@@ -55,6 +55,7 @@ func start_turn():
 	_unit_overlay.draw(_walkable_cells)
 	_unit_path.initialize(_walkable_cells)
 
+##This will end the turn of the individual unit, it will also check at the end whether to start a new round or not
 func end_turn():
 	turn_count += 1
 	
@@ -62,6 +63,8 @@ func end_turn():
 		turn_count = 0
 		round_count += 1
 
+##This is a simple bubble sort becuase we need to sort initiative
+#If you don't know bubble sort here is the algorithm: https://www.geeksforgeeks.org/dsa/bubble-sort-algorithm/
 func initiative_bubble_sort(initiative_array: Array):
 	for i in range(len(initiative_array)):
 		for j in range(len(initiative_array)-1-i):
@@ -69,6 +72,8 @@ func initiative_bubble_sort(initiative_array: Array):
 				swap(initiative_array, j, j+1)
 			
 	print(initiative_array)
+
+##Godot doesn't have a swap function so we decided to create our own just in case we ever need to swap again,
 func swap(initiative_array: Array, i : int, j : int):
 	var a = initiative_array[i]
 	var b = initiative_array[j]
@@ -77,6 +82,7 @@ func swap(initiative_array: Array, i : int, j : int):
 	b = tempValue
 	initiative_array[i]=a
 	initiative_array[j]=b
+	#Just debugging
 	print ("A:",a, "\nB:",b)
 #General input handler, only for deselecting here
 func _unhandled_input(event: InputEvent) -> void:
