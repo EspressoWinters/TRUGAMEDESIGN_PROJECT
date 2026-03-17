@@ -89,7 +89,7 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	#moves the unit along the path by delta
 	_path_follow.progress += move_speed * delta
-#When the walking is finished resetes path progress and emits walk signal for gameboard managment
+	#When the walking is finished resetes path progress and emits walk signal for gameboard managment
 	if _path_follow.progress_ratio >= 1.0:
 		_is_walking = false
 		_path_follow.progress = 0.00001

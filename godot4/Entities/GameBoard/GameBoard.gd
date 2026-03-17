@@ -18,7 +18,7 @@ const DIRECTIONS = [Vector2.LEFT, Vector2.RIGHT, Vector2.UP, Vector2.DOWN]
 var _units := {}
 var _active_unit: Unit
 var _walkable_cells := []
-
+var _cell_of_active_unit : Vector2
 @onready var tile_map = $"../Map"
 @onready var _unit_overlay: UnitOverlay = $UnitOverlay
 @onready var _unit_path: UnitPath = $UnitPath
@@ -31,8 +31,14 @@ var round_count := 0
 #when the gameboard is called into the scene it will clear its dicitonary of units then fill it up again with the units in tjhe active scenee
 func _ready() -> void:
 	_reinitialize()
+	turn_manager()
+
+func turn_manager():
 	roll_initiative()
-	start_turn()
+	while len(_units) > 0:
+		start_turn()
+		await _active_unit.walk_finished
+		end_turn()
 
 ##This function will roll the initiative rolls to start the combat
 func roll_initiative():
@@ -42,25 +48,21 @@ func roll_initiative():
 		# this is a dnd style initiative roll with a d20 equivalent
 		var initiative_unit_roll :int = (randi_range(0,20)) + unit.speed
 		unit.initiative_stat = initiative_unit_roll
-		print(initiative_unit_roll)
-		print(unit)
 		initiative_order.append(unit)
 	initiative_bubble_sort(initiative_order)
 
 ##This will start the turn of the individual unit
 func start_turn():
-	_active_unit = initiative_order[turn_count]
-	
-	_active_unit.is_selected = true
-	_walkable_cells = get_walkable_cells(_active_unit)
-	_unit_overlay.draw(_walkable_cells)
-	_unit_path.initialize(_walkable_cells)
+	_cell_of_active_unit = _units.find_key(initiative_order[turn_count])
+	#print(_cell_of_active_unit, "\n", _units.get(_cell_of_active_unit))
+	_select_unit(_cell_of_active_unit)
+	print(_active_unit)
 
 ##This will end the turn of the individual unit, it will also check at the end whether to start a new round or not
 func end_turn():
 	turn_count += 1
-	
-	if turn_count > len(initiative_order):
+	_deselect_active_unit()
+	if turn_count > len(initiative_order)-1:
 		turn_count = 0
 		round_count += 1
 
@@ -86,11 +88,11 @@ func swap(initiative_array: Array, i : int, j : int):
 	#Just debugging
 	print ("A:",a, "\nB:",b)
 #General input handler, only for deselecting here
-func _unhandled_input(event: InputEvent) -> void:
+#func _unhandled_input(event: InputEvent) -> void:
 	#deselects the current unit when 'ui_cancel' hit if one is selected
-	if _active_unit and event.is_action_pressed("ui_cancel"):
-		_deselect_active_unit()
-		_clear_active_unit()
+	#if _active_unit and event.is_action_pressed("ui_cancel"):
+	#	_deselect_active_unit()
+	#	_clear_active_unit()
 
 
 func _get_configuration_warning() -> String:
@@ -184,7 +186,7 @@ func _move_active_unit(new_cell: Vector2) -> void:
 	_deselect_active_unit()
 	_active_unit.walk_along(_unit_path.current_path)
 	await _active_unit.walk_finished
-	_clear_active_unit()
+	#_clear_active_unit()
 
 
 ## Selects the unit in the `cell` if there's one there.
@@ -215,13 +217,12 @@ func _clear_active_unit() -> void:
 
 ## Selects or moves a unit based on where the cursor is.
 func _on_Cursor_accept_pressed(cell: Vector2) -> void:
-	if not _active_unit:
-		_select_unit(cell)
-	elif _active_unit.is_selected:
-		_move_active_unit(cell)
+	_move_active_unit(cell)
 
 
 ## Updates the interactive path's drawing if there's an active and selected unit.
 func _on_Cursor_moved(new_cell: Vector2) -> void:
+	#print(_active_unit)
 	if _active_unit and _active_unit.is_selected:
+		#print(_active_unit.cell, "\n", new_cell)
 		_unit_path.draw(_active_unit.cell, new_cell)
