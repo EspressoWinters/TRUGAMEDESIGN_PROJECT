@@ -1,0 +1,97 @@
+[gd_scene format=3 uid="uid://bnhj47p63ostv"]
+
+[ext_resource type="Script" uid="uid://dyki588u1icp1" path="res://Entities/UI/ui.gd" id="1_ibh87"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_lt7ac"]
+bg_color = Color(0, 0, 0, 1)
+
+[sub_resource type="GDScript" id="GDScript_y2hlo"]
+script/source = "extends Panel
+
+signal move_requested
+signal attack_requested
+signal end_turn_requested
+
+func _on_move_button_pressed() -> void:
+	move_requested.emit()
+
+func _on_ability_button_pressed() -> void:
+	pass
+
+func _on_attack_button_pressed() -> void:
+	attack_requested.emit()
+
+func _on_end_turn_button_pressed() -> void:
+	end_turn_requested.emit()
+"
+
+[node name="Ui" type="Control" unique_id=1993505447]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_ibh87")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=273067531]
+
+[node name="BattleUI" type="Panel" parent="CanvasLayer" unique_id=1999099371]
+custom_minimum_size = Vector2(0, 32)
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -32.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_styles/panel = SubResource("StyleBoxFlat_lt7ac")
+script = SubResource("GDScript_y2hlo")
+
+[node name="HBoxCharacterMoves" type="HBoxContainer" parent="CanvasLayer/BattleUI" unique_id=1396476242]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_top = -15.5
+offset_right = 197.0
+offset_bottom = 15.5
+grow_vertical = 2
+
+[node name="MoveButton" type="Button" parent="CanvasLayer/BattleUI/HBoxCharacterMoves" unique_id=1936514977]
+layout_mode = 2
+theme_override_font_sizes/font_size = 16
+text = "MOVE"
+
+[node name="AbilityButton" type="Button" parent="CanvasLayer/BattleUI/HBoxCharacterMoves" unique_id=988469756]
+layout_mode = 2
+theme_override_font_sizes/font_size = 16
+text = "Ability1"
+
+[node name="AttackButton" type="Button" parent="CanvasLayer/BattleUI/HBoxCharacterMoves" unique_id=818119920]
+layout_mode = 2
+theme_override_font_sizes/font_size = 16
+text = "ATTACK"
+
+[node name="HBoxEndTurn" type="HBoxContainer" parent="CanvasLayer/BattleUI" unique_id=200428644]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -78.0
+offset_top = -15.5
+offset_bottom = 15.5
+grow_horizontal = 0
+grow_vertical = 2
+alignment = 2
+
+[node name="EndTurnButton" type="Button" parent="CanvasLayer/BattleUI/HBoxEndTurn" unique_id=746316526]
+layout_mode = 2
+text = "End Turn"
+
+[connection signal="pressed" from="CanvasLayer/BattleUI/HBoxCharacterMoves/MoveButton" to="." method="_on_move_button_pressed"]
+[connection signal="pressed" from="CanvasLayer/BattleUI/HBoxCharacterMoves/AbilityButton" to="." method="_on_ability_button_pressed"]
+[connection signal="pressed" from="CanvasLayer/BattleUI/HBoxCharacterMoves/AttackButton" to="." method="_on_attack_button_pressed"]
+[connection signal="pressed" from="CanvasLayer/BattleUI/HBoxEndTurn/EndTurnButton" to="." method="_on_end_turn_button_pressed"]
