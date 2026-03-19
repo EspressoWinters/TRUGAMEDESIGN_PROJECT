@@ -22,23 +22,31 @@ var _cell_of_active_unit : Vector2
 @onready var tile_map = $"../Map"
 @onready var _unit_overlay: UnitOverlay = $UnitOverlay
 @onready var _unit_path: UnitPath = $UnitPath
+@onready var ui = $"../Ui"
 
 var initiative_order := []
 
 var turn_count := 0
 var round_count := 0
 
+var _has_moved_this_turn := false
+
 #when the gameboard is called into the scene it will clear its dicitonary of units then fill it up again with the units in tjhe active scenee
 func _ready() -> void:
 	_reinitialize()
+	
+	if ui:
+		ui.move_requested.connect(display_move_overlay)
+		ui.attack_requested.connect(clear_overlay)
+		ui.end_turn_requested.connect(end_turn)
+	else:
+		push_error("GameBoard: UI node not found at path!")
+	
 	turn_manager()
 
 func turn_manager():
 	roll_initiative()
-	while len(_units) > 0:
-		start_turn()
-		await _active_unit.walk_finished
-		end_turn()
+	start_turn()
 
 ##This function will roll the initiative rolls to start the combat
 func roll_initiative():
@@ -53,18 +61,26 @@ func roll_initiative():
 
 ##This will start the turn of the individual unit
 func start_turn():
+	_has_moved_this_turn = false #Reset the flag for the new unit
 	_cell_of_active_unit = _units.find_key(initiative_order[turn_count])
 	#print(_cell_of_active_unit, "\n", _units.get(_cell_of_active_unit))
 	_select_unit(_cell_of_active_unit)
-	print(_active_unit)
+	print("It is now " + _active_unit.name + "'s turn.")
 
 ##This will end the turn of the individual unit, it will also check at the end whether to start a new round or not
 func end_turn():
-	turn_count += 1
 	_deselect_active_unit()
-	if turn_count > len(initiative_order)-1:
+	clear_overlay()
+	
+	turn_count += 1
+	
+	# Reset if we hit the end of the list
+	if turn_count >= initiative_order.size():
 		turn_count = 0
 		round_count += 1
+		print("--- Round " + str(round_count) + " Over ---")
+
+	start_turn()
 
 ##This is a simple bubble sort becuase we need to sort initiative
 #If you don't know bubble sort here is the algorithm: https://www.geeksforgeeks.org/dsa/bubble-sort-algorithm/
@@ -178,14 +194,16 @@ func _flood_fill(cell: Vector2, max_distance: int) -> Array:
 
 ## Updates the _units dictionary with the target position for the unit and asks the _active_unit to walk to it.
 func _move_active_unit(new_cell: Vector2) -> void:
+	if _has_moved_this_turn: return
+	
 	if is_occupied(new_cell) or not new_cell in _walkable_cells:
 		return
 	# warning-ignore:return_value_discarded
 	_units.erase(_active_unit.cell)
 	_units[new_cell] = _active_unit
-	_deselect_active_unit()
 	_active_unit.walk_along(_unit_path.current_path)
 	await _active_unit.walk_finished
+	_has_moved_this_turn = true #Lock movement for the rest of this turn
 	#_clear_active_unit()
 
 
@@ -194,13 +212,28 @@ func _move_active_unit(new_cell: Vector2) -> void:
 func _select_unit(cell: Vector2) -> void:
 	if not _units.has(cell):
 		return
-
+	
 	_active_unit = _units[cell]
 	_active_unit.is_selected = true
+	#pre-calulate walkable cells but don't draw them yet
 	_walkable_cells = get_walkable_cells(_active_unit)
-	_unit_overlay.draw(_walkable_cells)
 	_unit_path.initialize(_walkable_cells)
 
+func display_move_overlay() -> void:
+	if _has_moved_this_turn:
+		print("Unit has already moved!")
+		return
+	
+	if _active_unit:
+		# Clear any existing overlay first to prevent stacking
+		_unit_overlay.clear() 
+		_unit_overlay.draw(_walkable_cells)
+		# Note: You might want to make the unit_path visible here too
+		_unit_path.initialize(_walkable_cells)
+
+func clear_overlay() -> void:
+	_unit_overlay.clear()
+	_unit_path.stop()
 
 ## Deselects the active unit, clearing the cells overlay and interactive path drawing.
 func _deselect_active_unit() -> void:
@@ -217,12 +250,13 @@ func _clear_active_unit() -> void:
 
 ## Selects or moves a unit based on where the cursor is.
 func _on_Cursor_accept_pressed(cell: Vector2) -> void:
-	_move_active_unit(cell)
-
+# Only allow movement if the blue tiles are actually showing
+	if _unit_overlay.get_used_cells(0).size() > 0:
+		_move_active_unit(cell)
+		clear_overlay() # Hide tiles after moving
 
 ## Updates the interactive path's drawing if there's an active and selected unit.
 func _on_Cursor_moved(new_cell: Vector2) -> void:
-	#print(_active_unit)
-	if _active_unit and _active_unit.is_selected:
-		#print(_active_unit.cell, "\n", new_cell)
+	# Only draw the path line if the move overlay is active
+	if _active_unit and _active_unit.is_selected and _unit_overlay.get_used_cells(0).size() > 0:
 		_unit_path.draw(_active_unit.cell, new_cell)

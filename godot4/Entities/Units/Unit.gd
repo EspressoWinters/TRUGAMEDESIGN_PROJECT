@@ -52,9 +52,14 @@ var cell := Vector2.ZERO:
 var is_selected := false:
 	set(value):
 		is_selected = value
+		if not _anim_player:
+			await ready
+			
 		if is_selected:
-			_anim_player.play("selected")
+		# Loops animation
+			_anim_player.play("selected") 
 		else:
+			#Stops Animation
 			_anim_player.play("idle")
 ##This is where starts the process of it moving along
 var _is_walking := false:
