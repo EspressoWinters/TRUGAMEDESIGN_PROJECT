@@ -55,9 +55,9 @@ func find_closet_human_character():
 		temp_distance = abs(unit.cell.x - self.cell.x) + abs(unit.cell.y - self.cell.y)
 		if temp_distance < least_distance:
 			least_distance_unit = unit 
-			least_distance = temp_distance
-	
-	print("-----------------------")
-	print(least_distance_unit)
-	print("-----------------------")
+			#least_distance = temp_distance
+	#
+	#print("-----------------------")
+	#print(least_distance_unit)
+	#print("-----------------------")
 	return least_distance_unit

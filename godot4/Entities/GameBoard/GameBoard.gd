@@ -96,7 +96,7 @@ func end_turn():
 		turn_count = 0
 		round_count += 1
 		print("--- Round " + str(round_count) + " Over ---")
-
+	_has_moved_this_turn = false
 	start_turn()
 
 ##This is a simple bubble sort becuase we need to sort initiative
@@ -218,7 +218,6 @@ func _move_active_unit(new_cell: Vector2) -> void:
 	var near_tile
 	
 	var old_cell
-	
 	#terrible coding standards but we ball
 	
 	var ai_path
@@ -232,12 +231,15 @@ func _move_active_unit(new_cell: Vector2) -> void:
 		_units.erase(_active_unit.cell)
 		_units[new_cell] = _active_unit
 		_active_unit.walk_along(_unit_path.current_path)
-		await _active_unit.walk_finished
+		#await _active_unit.walk_finished
 		_has_moved_this_turn = true #Lock movement for the rest of this turn
 		#_clear_active_unit()
 	#the AI logic
 	else: 
+		print("units pre:", _units)
+		print("prior: ",_active_unit.cell)
 		_units.erase(_active_unit.cell)
+		print("post erase: ",_units.values())
 		_units[new_cell] = _active_unit
 		near_tile = closest_tile_to_human_unit(_active_unit)
 		ai_path = _unit_path._pathfinder.calculate_point_path(_active_unit.cell, near_tile)
@@ -246,9 +248,10 @@ func _move_active_unit(new_cell: Vector2) -> void:
 		_active_unit.cell = near_tile 
 		_units[near_tile] = _active_unit
 		_has_moved_this_turn = true
-		
-		
-		
+		print("post: ",_active_unit.cell)
+		print("units post:", _units)
+
+			
 
 ## Selects the unit in the `cell` if there's one there.
 ## Sets it as the `_active_unit` and draws its walkable cells and interactive move path. 
