@@ -1,0 +1,20 @@
+[gd_scene format=3 uid="uid://civ2clvctpumk"]
+
+[ext_resource type="Script" uid="uid://db3sb1c5wllxp" path="res://Entities/Enemies/BasicEnemy.gd" id="1_ok2tl"]
+[ext_resource type="Texture2D" uid="uid://b5ghlcxjxmmgw" path="res://Entities/Units/unit_shadow.svg" id="2_08waf"]
+
+[sub_resource type="Curve2D" id="Curve2D_mu52m"]
+
+[node name="BasicEnemy" type="Path2D" unique_id=393416970]
+curve = SubResource("Curve2D_mu52m")
+script = ExtResource("1_ok2tl")
+
+[node name="PathFollow2D" type="PathFollow2D" parent="." unique_id=1680380729]
+rotates = false
+
+[node name="Shadow" type="Sprite2D" parent="PathFollow2D" unique_id=1316727778]
+modulate = Color(1, 1, 1, 0)
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("2_08waf")
+
+[node name="Sprite" type="Sprite2D" parent="PathFollow2D" unique_id=1974049774]

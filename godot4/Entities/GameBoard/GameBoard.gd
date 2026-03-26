@@ -242,7 +242,7 @@ func _move_active_unit(new_cell: Vector2) -> void:
 		near_tile = closest_tile_to_human_unit(_active_unit)
 		ai_path = _unit_path._pathfinder.calculate_point_path(_active_unit.cell, near_tile)
 		_active_unit.walk_along(ai_path)
-		#await _active_unit.walk_finished
+		await _active_unit.walk_finished
 		_active_unit.cell = near_tile 
 		_units[near_tile] = _active_unit
 		_has_moved_this_turn = true
