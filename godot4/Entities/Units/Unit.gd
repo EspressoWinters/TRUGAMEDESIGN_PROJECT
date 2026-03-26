@@ -27,6 +27,10 @@ var move_speed :int
 
 @export var initiative_stat := 0
 
+#I am going to hold the gameboard here, for potential logic and so the enemy unit can also use it for its logic
+var gameboard : GameBoard
+
+
 ## Setting the texture and if it doesn't have a sprite it waits until it has one or have been created
 @export var skin: Texture:
 	set(value):

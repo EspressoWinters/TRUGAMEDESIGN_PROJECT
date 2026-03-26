@@ -10,11 +10,12 @@
 [ext_resource type="Texture2D" uid="uid://dx34ow1am5ih6" path="res://Assets/Units/guywithknife.png" id="9_wkp8b"]
 [ext_resource type="PackedScene" uid="uid://de53ukdqyusan" path="res://Entities/Background/Map.tscn" id="10"]
 [ext_resource type="PackedScene" uid="uid://bnhj47p63ostv" path="res://Entities/UI/UI.tscn" id="10_wkp8b"]
-
-[sub_resource type="Curve2D" id="Curve2D_wkp8b"]
-resource_local_to_scene = true
+[ext_resource type="PackedScene" uid="uid://civ2clvctpumk" path="res://Entities/Enemies/basic_enemy.tscn" id="11_5vvyt"]
 
 [sub_resource type="Curve2D" id="Curve2D_20pc6"]
+resource_local_to_scene = true
+
+[sub_resource type="Curve2D" id="Curve2D_5vvyt"]
 resource_local_to_scene = true
 
 [node name="Main" type="Node2D" unique_id=1683826690]
@@ -38,13 +39,18 @@ ui_cooldown = 0.1
 
 [node name="Bear" parent="GameBoard" unique_id=2068118955 instance=ExtResource("2")]
 position = Vector2(192, 192)
-curve = SubResource("Curve2D_wkp8b")
+curve = SubResource("Curve2D_20pc6")
 speed = 10
 skin = ExtResource("8_wkp8b")
 
 [node name="Squirrel" parent="GameBoard" unique_id=967058081 instance=ExtResource("2")]
 position = Vector2(224, 192)
-curve = SubResource("Curve2D_20pc6")
+curve = SubResource("Curve2D_5vvyt")
+skin = ExtResource("9_wkp8b")
+
+[node name="BasicEnemy" parent="GameBoard" unique_id=393416970 instance=ExtResource("11_5vvyt")]
+position = Vector2(223, 306)
+grid = ExtResource("4")
 skin = ExtResource("9_wkp8b")
 
 [connection signal="accept_pressed" from="GameBoard/Cursor" to="GameBoard" method="_on_Cursor_accept_pressed"]
