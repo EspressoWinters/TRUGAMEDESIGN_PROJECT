@@ -41,7 +41,7 @@ ui_cooldown = 0.1
 position = Vector2(192, 192)
 curve = SubResource("Curve2D_20pc6")
 speed = 10
-skin = ExtResource("8_wkp8b")
+skin = ExtResource("9_wkp8b")
 
 [node name="Squirrel" parent="GameBoard" unique_id=967058081 instance=ExtResource("2")]
 position = Vector2(224, 192)
@@ -51,7 +51,7 @@ skin = ExtResource("9_wkp8b")
 [node name="BasicEnemy" parent="GameBoard" unique_id=393416970 instance=ExtResource("11_5vvyt")]
 position = Vector2(223, 224)
 grid = ExtResource("4")
-skin = ExtResource("9_wkp8b")
+skin = ExtResource("8_wkp8b")
 
 [connection signal="accept_pressed" from="GameBoard/Cursor" to="GameBoard" method="_on_Cursor_accept_pressed"]
 [connection signal="moved" from="GameBoard/Cursor" to="GameBoard" method="_on_Cursor_moved"]

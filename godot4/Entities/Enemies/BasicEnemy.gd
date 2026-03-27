@@ -53,7 +53,9 @@ func find_closet_human_character():
 	for unit in human_units:
 		#doing the manhattan distance calculation
 		temp_distance = abs(unit.cell.x - self.cell.x) + abs(unit.cell.y - self.cell.y)
-		if temp_distance < least_distance:
+		if temp_distance <2:
+			return
+		else:
 			least_distance_unit = unit 
 			#least_distance = temp_distance
 	#

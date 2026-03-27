@@ -82,7 +82,8 @@ func start_turn():
 			_move_active_unit(near_tile)
 			end_turn()
 		else: 
-			print("There's an error here, the nearest tile doesn't exist!")
+			end_turn()
+			print("I'm already as close as can be!")
 
 ##This will end the turn of the individual unit, it will also check at the end whether to start a new round or not
 func end_turn():
@@ -237,7 +238,6 @@ func _move_active_unit(new_cell: Vector2) -> void:
 		#_clear_active_unit()
 	#the AI logic
 	else: 
-		print("Test:",_units)
 		old_cell = _active_unit.cell
 		_units.erase(old_cell)
 		_units[new_cell] = _active_unit
@@ -301,7 +301,7 @@ func display_move_overlay() -> void:
 		print("Unit has already moved!")
 		return
 	
-	if _active_unit:
+	if _active_unit and _active_unit is not BasicEnemy:
 		# Clear any existing overlay first to prevent stacking
 		_unit_overlay.clear() 
 		_unit_overlay.draw(_walkable_cells)
@@ -328,12 +328,12 @@ func _clear_active_unit() -> void:
 ## Selects or moves a unit based on where the cursor is.
 func _on_Cursor_accept_pressed(cell: Vector2) -> void:
 # Only allow movement if the blue tiles are actually showing
-	if _unit_overlay.get_used_cells(0).size() > 0:
+	if _unit_overlay.get_used_cells(0).size() > 0 and _active_unit is not BasicEnemy:
 		_move_active_unit(cell)
 		clear_overlay() # Hide tiles after moving
 
 ## Updates the interactive path's drawing if there's an active and selected unit.
 func _on_Cursor_moved(new_cell: Vector2) -> void:
 	# Only draw the path line if the move overlay is active
-	if _active_unit and _active_unit.is_selected and _unit_overlay.get_used_cells(0).size() > 0:
+	if _active_unit and _active_unit.is_selected and _unit_overlay.get_used_cells(0).size() > 0 and _active_unit is not BasicEnemy:
 		_unit_path.draw(_active_unit.cell, new_cell)
