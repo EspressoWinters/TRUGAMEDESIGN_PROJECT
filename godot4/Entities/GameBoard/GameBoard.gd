@@ -76,7 +76,7 @@ func start_turn():
 		near_tile = closest_tile_to_human_unit(_active_unit)
 		#just making another check to ensure that near_tile exists
 		#just printing it to see the tile
-		print(near_tile)
+		#print(near_tile)
 		if near_tile:
 			#moving the unit near the tile 
 			_move_active_unit(near_tile)
@@ -218,10 +218,12 @@ func _move_active_unit(new_cell: Vector2) -> void:
 	var near_tile
 	
 	var old_cell
+	
 	#terrible coding standards but we ball
 	
 	var ai_path
-	if _has_moved_this_turn: return
+	if _has_moved_this_turn: 
+		return
 	
 	if is_occupied(new_cell) or not new_cell in _walkable_cells:
 		return
@@ -232,26 +234,26 @@ func _move_active_unit(new_cell: Vector2) -> void:
 		_units[new_cell] = _active_unit
 		_active_unit.walk_along(_unit_path.current_path)
 		#await _active_unit.walk_finished
-		_has_moved_this_turn = true #Lock movement for the rest of this turn
 		#_clear_active_unit()
 	#the AI logic
 	else: 
-		print("units pre:", _units)
-		print("prior: ",_active_unit.cell)
-		_units.erase(_active_unit.cell)
-		print("post erase: ",_units.values())
+		print("Test:",_units)
+		old_cell = _active_unit.cell
+		_units.erase(old_cell)
 		_units[new_cell] = _active_unit
 		near_tile = closest_tile_to_human_unit(_active_unit)
 		ai_path = _unit_path._pathfinder.calculate_point_path(_active_unit.cell, near_tile)
 		_active_unit.walk_along(ai_path)
-		await _active_unit.walk_finished
-		_active_unit.cell = near_tile 
-		_units[near_tile] = _active_unit
-		_has_moved_this_turn = true
-		print("post: ",_active_unit.cell)
-		print("units post:", _units)
+		#await _active_unit.walk_finished
+		_active_unit.cell = new_cell 
+		#_units[near_tile] = _active_unit
+	
+	#locks players and AI to only move once per turn
+	_has_moved_this_turn = true
 
-			
+
+
+
 
 ## Selects the unit in the `cell` if there's one there.
 ## Sets it as the `_active_unit` and draws its walkable cells and interactive move path. 
