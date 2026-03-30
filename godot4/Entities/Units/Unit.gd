@@ -13,8 +13,11 @@ extends Path2D
 ## Emit a signal when the walk is finished 
 signal walk_finished
 
-@export var unit_info: unit_info
-@export var unit_role: Resource
+@export var speed := 5
+@export var strength := 5
+@export var luck := 5
+@export var defense := 5
+
 ## Use the grid to know the grid coordinates and know get access to it calculations
 @export var grid: Resource
 ## Distance units can move in tiles 
@@ -22,10 +25,11 @@ var move_range :int
 ## Speed of it visually moving, doesn't actually affect movement
 var move_speed :int
 
-var current_health: int
-var max_health: int
-
 @export var initiative_stat := 0
+
+#I am going to hold the gameboard here, for potential logic and so the enemy unit can also use it for its logic
+var gameboard : GameBoard
+
 
 ## Setting the texture and if it doesn't have a sprite it waits until it has one or have been created
 @export var skin: Texture:
@@ -75,8 +79,8 @@ var _is_walking := false:
 
 #When it loads into the scene tree
 func _ready() -> void:
-	move_range = unit_info.speed
-	move_speed = unit_info.speed * 100
+	move_range = speed
+	move_speed = speed * 100
 	#makes sure the object doesn't start the _process function
 	set_process(false)
 	#locks it so it doesn't rotate along the path
@@ -85,8 +89,6 @@ func _ready() -> void:
 	#just getting the pixel and the grid values so that we can use them later
 	cell = grid.calculate_grid_coordinates(position)
 	position = grid.calculate_map_position(cell)
-	
-	max_health = unit_info.max_hp
 
 	# this is just for the @tool working with the editor
 	if not Engine.is_editor_hint():
