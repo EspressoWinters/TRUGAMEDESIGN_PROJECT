@@ -147,7 +147,8 @@ func get_walkable_cells(unit: Unit) -> Array:
 	return _flood_fill(unit.cell, unit.move_range)
 
 func get_attack_range(unit: Unit) -> Array:
-	return _flood_fill(unit.cell, unit.unit_role.attack_range)
+	#passes 'true' so flood_fill knows to ignore units for this calculation
+	return _flood_fill(unit.cell, unit.unit_role.attack_range, true)
 
 ## Clears, and refills the `_units` dictionary with game objects that are on the board.
 func _reinitialize() -> void:
@@ -162,7 +163,7 @@ func _reinitialize() -> void:
 
 
 ## Returns an array with all the coordinates of walkable cells based on the `max_distance`.
-func _flood_fill(cell: Vector2, max_distance: int) -> Array:
+func _flood_fill(cell: Vector2, max_distance: int, ignore_units: bool = false) -> Array:
 	#creates an empty array that will get filled with the cells that are valid
 	var array := []
 	#Creates the cells to check from and starts with the cell it is given
@@ -188,9 +189,17 @@ func _flood_fill(cell: Vector2, max_distance: int) -> Array:
 		#Adds all the cells around the current cell to the stack to check
 		for direction in DIRECTIONS:
 			var coordinates: Vector2 = current + direction
-			#checks to see if these cells have already been checked or are quede for checking
-			if is_occupied(coordinates):
-				continue
+			if ignore_units:
+				#ignores if a unit is standing there so we can "see" them for attacking
+				var tile_data: TileData = tile_map.get_cell_tile_data(0, coordinates)
+				if tile_data and not tile_data.get_custom_data("walkable"):
+					continue
+			else:
+				# MOVE MODE: Your original strict check. 
+				# Blocks if there is a unit OR a wall.
+				if is_occupied(coordinates):
+					continue
+
 			if coordinates in array:
 				continue
 			# Minor optimization: If this neighbor is already queued
@@ -279,7 +288,14 @@ func _on_Cursor_accept_pressed(cell: Vector2) -> void:
 		_move_active_unit(cell)
 		clear_overlay() # Hide tiles after moving
 		_attackable_cells = get_attack_range(_active_unit)
-		
+	if _attack_overlay_visable:
+		if cell in _attackable_cells and _units.has(cell):
+			# CALL THE RESOURCE LOGIC HERE
+			#passes 'self' so the Resource can call our 'apply_damage' function
+			_active_unit.unit_role.attack(_active_unit, cell, self)
+			
+			_has_attacked_this_turn = true
+			clear_overlay()
 	
 ## Updates the interactive path's drawing if there's an active and selected unit.
 func _on_Cursor_moved(new_cell: Vector2) -> void:
@@ -290,9 +306,9 @@ func _on_Cursor_moved(new_cell: Vector2) -> void:
 func unit_attack():
 	#Check if the variable actually holds an object
 	if _active_unit != null:
-		_active_unit.unit_role.attack()
+		display_attack_overlay() 
 	else:
-		push_warning("Attempted to attack, but _active_unit is null!")
+		push_warning("No active unit to attack!")
 
 func unit_ability():
 	if _active_unit != null:
@@ -305,3 +321,17 @@ func unit_passive():
 		_active_unit.unit_role.passive()
 	else:
 		push_warning("Attempted to passive, but _active_unit is null!")
+
+func apply_damage(target_cell: Vector2, amount: int) -> void:
+	var victim = _units[target_cell]
+	victim.current_health -= amount
+	print("%s took %d damage!" % [victim.name, amount])
+	
+	if victim.current_health <= 0:
+		_handle_unit_death(target_cell)
+
+func _handle_unit_death(cell: Vector2) -> void:
+	var unit_to_remove = _units[cell]
+	_units.erase(cell)
+	initiative_order.erase(unit_to_remove)
+	unit_to_remove.queue_free()

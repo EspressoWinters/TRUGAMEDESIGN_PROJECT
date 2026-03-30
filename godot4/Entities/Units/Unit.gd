@@ -22,6 +22,9 @@ var move_range :int
 ## Speed of it visually moving, doesn't actually affect movement
 var move_speed :int
 
+var current_health: int
+var max_health: int
+
 @export var initiative_stat := 0
 
 ## Setting the texture and if it doesn't have a sprite it waits until it has one or have been created
@@ -82,6 +85,8 @@ func _ready() -> void:
 	#just getting the pixel and the grid values so that we can use them later
 	cell = grid.calculate_grid_coordinates(position)
 	position = grid.calculate_map_position(cell)
+	
+	max_health = unit_info.max_hp
 
 	# this is just for the @tool working with the editor
 	if not Engine.is_editor_hint():

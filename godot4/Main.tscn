@@ -10,8 +10,8 @@
 [ext_resource type="Script" uid="uid://gkgnflxw2vmf" path="res://Resources/Classes/Unit_Info.gd" id="9_20pc6"]
 [ext_resource type="Texture2D" uid="uid://dx34ow1am5ih6" path="res://Assets/Units/guywithknife.png" id="9_wkp8b"]
 [ext_resource type="PackedScene" uid="uid://de53ukdqyusan" path="res://Entities/Background/Map.tscn" id="10"]
+[ext_resource type="Resource" uid="uid://dhyalatumlvik" path="res://Resources/Classes/Tank/Class_Tank.tres" id="10_5vvyt"]
 [ext_resource type="PackedScene" uid="uid://bnhj47p63ostv" path="res://Entities/UI/UI.tscn" id="10_wkp8b"]
-[ext_resource type="Script" uid="uid://bgo0x1eahd2wf" path="res://Resources/Classes/Tank/Tank.gd" id="11_5vvyt"]
 
 [sub_resource type="Curve2D" id="Curve2D_5vvyt"]
 resource_local_to_scene = true
@@ -50,14 +50,14 @@ ui_cooldown = 0.1
 position = Vector2(192, 192)
 curve = SubResource("Curve2D_5vvyt")
 unit_info = SubResource("Resource_5vvyt")
-unit_role = ExtResource("11_5vvyt")
+unit_role = ExtResource("10_5vvyt")
 skin = ExtResource("8_wkp8b")
 
 [node name="Squirrel" parent="GameBoard" unique_id=967058081 instance=ExtResource("2")]
 position = Vector2(224, 192)
 curve = SubResource("Curve2D_c6i3y")
 unit_info = SubResource("Resource_c6i3y")
-unit_role = ExtResource("11_5vvyt")
+unit_role = ExtResource("10_5vvyt")
 skin = ExtResource("9_wkp8b")
 
 [connection signal="accept_pressed" from="GameBoard/Cursor" to="GameBoard" method="_on_Cursor_accept_pressed"]
