@@ -1,9 +1,0 @@
-[gd_resource type="Resource" script_class="tank" format=3 uid="uid://dhyalatumlvik"]
-
-[ext_resource type="Script" uid="uid://bgo0x1eahd2wf" path="res://Resources/Classes/Tank/Tank.gd" id="1_eha2t"]
-[ext_resource type="Texture2D" uid="uid://iljdxgodmq5n" path="res://Assets/Units/Tank.png" id="2_411me"]
-
-[resource]
-script = ExtResource("1_eha2t")
-skin = ExtResource("2_411me")
-metadata/_custom_type_script = "uid://bgo0x1eahd2wf"
