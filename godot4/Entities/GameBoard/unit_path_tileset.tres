@@ -1,4 +1,4 @@
-[gd_resource type="TileSet" load_steps=3 format=3 uid="uid://dqg14aj86so4a"]
+[gd_resource type="TileSet" format=3 uid="uid://dqg14aj86so4a"]
 
 [ext_resource type="Texture2D" uid="uid://b82ermd4qywbt" path="res://arrows.svg" id="1"]
 
