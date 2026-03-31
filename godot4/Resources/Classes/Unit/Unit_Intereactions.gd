@@ -4,22 +4,22 @@ extends Resource
 
 @export var skin = Texture2D
 
-static var attack_range: int = 1
+var attack_range: int = 1
 
 #holding the cells that are possibly attackable for the overlay
-static var attackable_cells : Array = []
+var attackable_cells : Array = []
 
 #holding the cells in the direction of the attack 
-static var direction_attack_cells : Array = []
+var direction_attack_cells : Array = []
 
 
 #this is just going to be for the attack overlay
-static func get_attackable_cells(origin_cell : Vector2):
+func get_attackable_cells(origin_cell : Vector2):
 	print("Getting the attack cells")
 	return attackable_cells
 
 #this will find just the attackable cells in the direciton that the player is picking g
-static func get_attackable_cells_direction(origin_cell : Vector2, target_cell : Vector2):
+func get_attackable_cells_direction(origin_cell : Vector2, target_cell : Vector2):
 	
 	if attackable_cells.is_empty():
 		print("Error, the attackable cells are empty!!!!")
@@ -48,6 +48,8 @@ static func get_attackable_cells_direction(origin_cell : Vector2, target_cell : 
 			if ((tempDifference.y) == 1): 
 				#this cell must be above it
 				direction_attack_cells.append(cell)
+				
+			
 				
 		return direction_attack_cells
 	#below case 
@@ -86,17 +88,21 @@ static func get_attackable_cells_direction(origin_cell : Vector2, target_cell : 
 		pass 
 	
 
-static func attack():
+func attack():
 	print("Unit is attacking")
 	print("This is a debugging print statement, if see in game then error")
 
-static func ability():
+func ability():
 	print("Unit is abiltying")
 	print("This is a debugging print statement, if see in game then error")
 
 
-static func passive():
+func passive():
 	pass
 
+
+func attack_roll(attacker : Unit) -> int:
+	print("AATKATKAKKDSVKzs!!")
+	return 0
 
  

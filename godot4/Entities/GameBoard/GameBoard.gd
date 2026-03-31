@@ -19,6 +19,7 @@ var _units := {}
 var _active_unit: Unit
 var _walkable_cells := []
 var _attackable_cells := []
+var _directional_attack_cells := []
 var _cell_of_active_unit : Vector2
 @onready var tile_map = $"../Map"
 @onready var _unit_overlay: UnitOverlay = $UnitOverlay
@@ -296,6 +297,9 @@ func _clear_active_unit() -> void:
 
 ## Selects or moves a unit based on where the cursor is.
 func _on_Cursor_accept_pressed(cell: Vector2) -> void:
+	var direction_attack
+	
+	var damage
 	
 	#okay so this is if it is visible then do the move overlay here
 	if _move_overlay_visable:
@@ -307,7 +311,16 @@ func _on_Cursor_accept_pressed(cell: Vector2) -> void:
 	#okay if we have the cell which the player has clicked, then we could get the direction through the sign. 
 	#that way we could do direction
 	elif _attack_overlay_visable:
-		pass 
+		if _has_attacked_this_turn: 
+			print("You have already attacked")
+	
+		#getting all of what we should attack
+		direction_attack = _active_unit.unit_role.get_attackable_cells_direction(_active_unit.cell, cell)
+		
+		for direction_cell in direction_attack:
+			if _units.has(direction_cell):
+				apply_damage(direction_cell, _active_unit.unit_role.attack_roll(_active_unit))
+		_has_attacked_this_turn = true
 	 
 	
 	#old block of previous implementation
