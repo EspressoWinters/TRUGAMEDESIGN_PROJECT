@@ -265,6 +265,12 @@ func _select_unit(cell: Vector2) -> void:
 	_active_unit.is_selected = true
 	#pre-calulate walkable cells but don't draw them yet
 	_walkable_cells = get_walkable_cells(_active_unit)
+<<<<<<< Updated upstream
+=======
+	#change this line
+	#_attackable_cells = get_attack_range(_active_unit)
+	_attackable_cells = _active_unit.unit_role.get_attackable_cells(_active_unit.cell)
+>>>>>>> Stashed changes
 	_unit_path.initialize(_walkable_cells)
 
 #this is the bot/computer movement section 
@@ -327,13 +333,111 @@ func _clear_active_unit() -> void:
 
 ## Selects or moves a unit based on where the cursor is.
 func _on_Cursor_accept_pressed(cell: Vector2) -> void:
+	
+	#let's try just saving the var for now and then maybe we should make it a class variable 
+	var directional_attack_cells
+	
 # Only allow movement if the blue tiles are actually showing
 	if _unit_overlay.get_used_cells(0).size() > 0 and _active_unit is not BasicEnemy:
 		_move_active_unit(cell)
 		clear_overlay() # Hide tiles after moving
+<<<<<<< Updated upstream
 
+=======
+		#_attackable_cells = get_attack_range(_active_unit)
+		_attackable_cells = _active_unit.unit_role.get_attackable_cells(_active_unit.cell)
+	if _attack_overlay_visable:
+		
+		#NOVEAu IMPLEMENTATION 
+		#getting the cells in the direction that we are attacking 
+		directional_attack_cells = _active_unit.unit_role.get_attackable_cells_direction(_active_unit.cell, cell)
+		
+		#now we attack the cells are 
+		attack_cell(directional_attack_cells)
+		
+		#now the rest of the old overlay 
+		_has_attacked_this_turn = true 
+		
+		#clear thy overlay 
+		clear_overlay()
+		
+		
+		
+		#OLD IMPLEMENTATION 
+		#if cell in _attackable_cells and _units.has(cell):
+			## CALL THE RESOURCE LOGIC HERE
+			##OLD Implementation
+			##passes 'self' so the Resource can call our 'apply_damage' function
+			##_active_unit.unit_role.attack(_active_unit, cell, self)
+			#
+			##New Implementation 
+			#
+			#
+			#_has_attacked_this_turn = true
+			#clear_overlay()
+	
+>>>>>>> Stashed changes
 ## Updates the interactive path's drawing if there's an active and selected unit.
 func _on_Cursor_moved(new_cell: Vector2) -> void:
 	# Only draw the path line if the move overlay is active
 	if _active_unit and _active_unit.is_selected and _unit_overlay.get_used_cells(0).size() > 0 and _active_unit is not BasicEnemy:
 		_unit_path.draw(_active_unit.cell, new_cell)
+<<<<<<< Updated upstream
+=======
+
+func unit_attack():
+	#Check if the variable actually holds an object
+	if _active_unit != null:
+		display_attack_overlay() 
+	else:
+		push_warning("No active unit to attack!")
+
+#just going to define my own attack here
+#the gameboard will loop through the cell arrays and then look through the unit dictionary 
+func attack_cell(cell_attacked: Array):
+	var victim
+	var damage 
+	for cell in cell_attacked:
+		#Don't kill yourself please
+		if cell == _active_unit.cell:
+			continue
+			
+		if cell in _units and cell != _active_unit.cell:
+			#the poor victim of the attack
+			victim = _units[cell]
+			
+			#okay doing the damage now 
+			#notation is horrible here 
+			if victim != _active_unit:
+				damage = _active_unit.unit_role.attack_roll(_active_unit)
+				apply_damage(victim, damage)
+				print("Crushing blow!")
+				print(victim)
+				print("They have taken " + str(damage) + " damage!")
+			
+
+func unit_ability():
+	if _active_unit != null:
+		_active_unit.unit_role.ability()
+	else:
+		push_warning("Attempted to ability, but _active_unit is null!")
+
+func unit_passive():
+	if _active_unit != null:
+		_active_unit.unit_role.passive()
+	else:
+		push_warning("Attempted to passive, but _active_unit is null!")
+
+func apply_damage(victim: Unit, amount: int) -> void:
+	victim.current_health -= amount
+	print("%s took %d damage!" % [victim.name, amount])
+	
+	if victim.current_health <= 0:
+		_handle_unit_death(victim)
+	
+	
+func _handle_unit_death(unit_to_remove: Unit) -> void:
+	_units.erase(unit_to_remove.cell)
+	initiative_order.erase(unit_to_remove)
+	unit_to_remove.queue_free()
+>>>>>>> Stashed changes
