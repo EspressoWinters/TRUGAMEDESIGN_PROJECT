@@ -18,21 +18,36 @@ const DIRECTIONS = [Vector2.LEFT, Vector2.RIGHT, Vector2.UP, Vector2.DOWN]
 var _units := {}
 var _active_unit: Unit
 var _walkable_cells := []
-
+var _cell_of_active_unit : Vector2
 @onready var tile_map = $"../Map"
 @onready var _unit_overlay: UnitOverlay = $UnitOverlay
 @onready var _unit_path: UnitPath = $UnitPath
+@onready var ui = $"../Ui"
 
 var initiative_order := []
 
 var turn_count := 0
 var round_count := 0
 
+var _has_moved_this_turn := false
+
+
+
 #when the gameboard is called into the scene it will clear its dicitonary of units then fill it up again with the units in tjhe active scenee
 func _ready() -> void:
 	_reinitialize()
+	if ui:
+		ui.move_requested.connect(display_move_overlay)
+		ui.attack_requested.connect(clear_overlay)
+		ui.end_turn_requested.connect(end_turn)
+	else:
+		push_error("GameBoard: UI node not found at path!")
+	
+	turn_manager()
+
+func turn_manager():
 	roll_initiative()
-	#start_turn()
+	start_turn()
 
 ##This function will roll the initiative rolls to start the combat
 func roll_initiative():
@@ -42,27 +57,48 @@ func roll_initiative():
 		# this is a dnd style initiative roll with a d20 equivalent
 		var initiative_unit_roll :int = (randi_range(0,20)) + unit.speed
 		unit.initiative_stat = initiative_unit_roll
-		print(initiative_unit_roll)
-		print(unit)
 		initiative_order.append(unit)
 	initiative_bubble_sort(initiative_order)
 
 ##This will start the turn of the individual unit
 func start_turn():
-	_active_unit = initiative_order[turn_count]
+	_has_moved_this_turn = false #Reset the flag for the new unit
+	_cell_of_active_unit = _units.find_key(initiative_order[turn_count])
+	#print(_cell_of_active_unit, "\n", _units.get(_cell_of_active_unit))
+	_select_unit(_cell_of_active_unit)
+	print("It is now " + _active_unit.name + "'s turn.")
+	print(_active_unit.cell)
 	
-	_active_unit.is_selected = true
-	_walkable_cells = get_walkable_cells(_active_unit)
-	_unit_overlay.draw(_walkable_cells)
-	_unit_path.initialize(_walkable_cells)
+	#doing AI Logic here
+	if _active_unit is BasicEnemy:
+		var near_tile
+		#get the closest tile from the human
+		near_tile = closest_tile_to_human_unit(_active_unit)
+		#just making another check to ensure that near_tile exists
+		#just printing it to see the tile
+		#print(near_tile)
+		if near_tile:
+			#moving the unit near the tile 
+			_move_active_unit(near_tile)
+			end_turn()
+		else: 
+			end_turn()
+			print("I'm already as close as can be!")
 
 ##This will end the turn of the individual unit, it will also check at the end whether to start a new round or not
 func end_turn():
+	_deselect_active_unit()
+	clear_overlay()
+	
 	turn_count += 1
 	
-	if turn_count > len(initiative_order):
+	# Reset if we hit the end of the list
+	if turn_count >= initiative_order.size():
 		turn_count = 0
 		round_count += 1
+		print("--- Round " + str(round_count) + " Over ---")
+	_has_moved_this_turn = false
+	start_turn()
 
 ##This is a simple bubble sort becuase we need to sort initiative
 #If you don't know bubble sort here is the algorithm: https://www.geeksforgeeks.org/dsa/bubble-sort-algorithm/
@@ -86,11 +122,11 @@ func swap(initiative_array: Array, i : int, j : int):
 	#Just debugging
 	print ("A:",a, "\nB:",b)
 #General input handler, only for deselecting here
-func _unhandled_input(event: InputEvent) -> void:
+#func _unhandled_input(event: InputEvent) -> void:
 	#deselects the current unit when 'ui_cancel' hit if one is selected
-	if _active_unit and event.is_action_pressed("deselect"):
-		_deselect_active_unit()
-		_clear_active_unit()
+	#if _active_unit and event.is_action_pressed("ui_cancel"):
+	#	_deselect_active_unit()
+	#	_clear_active_unit()
 
 
 func _get_configuration_warning() -> String:
@@ -124,6 +160,8 @@ func get_walkable_cells(unit: Unit) -> Array:
 ## Clears, and refills the `_units` dictionary with game objects that are on the board.
 func _reinitialize() -> void:
 	_units.clear()
+	
+	#okay passes a reference to the gameboard here so the enemy unit can use it, maybe I could just pass it to just enemies but for ease of use I am just giving it to all units 
 
 	for child in get_children():
 		#Checks all children of the gameboard and puts them into the dictionary with their cell as the key if they are a unit and skips it igf its not
@@ -131,6 +169,8 @@ func _reinitialize() -> void:
 		if not unit:
 			continue
 		_units[unit.cell] = unit
+		#passing the gameboard onto the unit
+		unit.gameboard = self 
 
 
 ## Returns an array with all the coordinates of walkable cells based on the `max_distance`.
@@ -156,7 +196,6 @@ func _flood_fill(cell: Vector2, max_distance: int) -> Array:
 			continue
 		#adds the validated cell to the array of valid cells
 		array.append(current)
-		
 		#Adds all the cells around the current cell to the stack to check
 		for direction in DIRECTIONS:
 			var coordinates: Vector2 = current + direction
@@ -173,18 +212,47 @@ func _flood_fill(cell: Vector2, max_distance: int) -> Array:
 			stack.append(coordinates)
 	return array
 
-
+#this is the HUMAN/PLAYER Unit movement section
 ## Updates the _units dictionary with the target position for the unit and asks the _active_unit to walk to it.
 func _move_active_unit(new_cell: Vector2) -> void:
+	
+	var near_tile
+	
+	var old_cell
+	
+	#terrible coding standards but we ball
+	
+	var ai_path
+	if _has_moved_this_turn: 
+		return
+	
 	if is_occupied(new_cell) or not new_cell in _walkable_cells:
 		return
-	# warning-ignore:return_value_discarded
-	_units.erase(_active_unit.cell)
-	_units[new_cell] = _active_unit
-	_deselect_active_unit()
-	_active_unit.walk_along(_unit_path.current_path)
-	await _active_unit.walk_finished
-	_clear_active_unit()
+	#okay I am going to add human logic and ai logic, since the AI needs to not get the current path from the cursor and instead calculate itself
+	if _active_unit is not BasicEnemy: 
+		# warning-ignore:return_value_discarded
+		_units.erase(_active_unit.cell)
+		_units[new_cell] = _active_unit
+		_active_unit.walk_along(_unit_path.current_path)
+		#await _active_unit.walk_finished
+		#_clear_active_unit()
+	#the AI logic
+	else: 
+		old_cell = _active_unit.cell
+		_units.erase(old_cell)
+		_units[new_cell] = _active_unit
+		near_tile = closest_tile_to_human_unit(_active_unit)
+		ai_path = _unit_path._pathfinder.calculate_point_path(_active_unit.cell, near_tile)
+		_active_unit.walk_along(ai_path)
+		#await _active_unit.walk_finished
+		_active_unit.cell = new_cell 
+		#_units[near_tile] = _active_unit
+	
+	#locks players and AI to only move once per turn
+	_has_moved_this_turn = true
+
+
+
 
 
 ## Selects the unit in the `cell` if there's one there.
@@ -192,13 +260,57 @@ func _move_active_unit(new_cell: Vector2) -> void:
 func _select_unit(cell: Vector2) -> void:
 	if not _units.has(cell):
 		return
-
+	
 	_active_unit = _units[cell]
 	_active_unit.is_selected = true
+	#pre-calulate walkable cells but don't draw them yet
 	_walkable_cells = get_walkable_cells(_active_unit)
-	_unit_overlay.draw(_walkable_cells)
 	_unit_path.initialize(_walkable_cells)
 
+#this is the bot/computer movement section 
+func closest_tile_to_human_unit(enemy_unit : BasicEnemy):
+	var closet_human_unit = enemy_unit.find_closet_human_character()
+	if closet_human_unit == null:
+		print("There isn't any humans roger roger!")
+		return
+	
+	#now we get all the walkable cells from our trusted flood fill function
+	var reachable_cells = _flood_fill(enemy_unit.cell, enemy_unit.move_range)
+	
+	var closest_tile : Vector2
+	#again just a big value for the comparison 
+	var least_distance := 1000
+	for cell in reachable_cells:
+		
+		#just adding a check 
+		if cell == closet_human_unit.cell:
+			continue 
+		#adding another check
+		if !is_occupied(cell):
+			var distance_to_target = abs(cell.x - closet_human_unit.cell.x) + abs(cell.y - closet_human_unit.cell.y)
+			if distance_to_target < least_distance:
+				least_distance = distance_to_target
+				closest_tile = cell 
+	#now we should know the closet tile and what it coordinates are, granted with the simple implementation it probably ranadomly picks the tile now but that is fine for the current implementaion 
+	return closest_tile
+	
+	 
+
+func display_move_overlay() -> void:
+	if _has_moved_this_turn:
+		print("Unit has already moved!")
+		return
+	
+	if _active_unit and _active_unit is not BasicEnemy:
+		# Clear any existing overlay first to prevent stacking
+		_unit_overlay.clear() 
+		_unit_overlay.draw(_walkable_cells)
+		# Note: You might want to make the unit_path visible here too
+		_unit_path.initialize(_walkable_cells)
+
+func clear_overlay() -> void:
+	_unit_overlay.clear()
+	_unit_path.stop()
 
 ## Deselects the active unit, clearing the cells overlay and interactive path drawing.
 func _deselect_active_unit() -> void:
@@ -215,16 +327,13 @@ func _clear_active_unit() -> void:
 
 ## Selects or moves a unit based on where the cursor is.
 func _on_Cursor_accept_pressed(cell: Vector2) -> void:
-	if not _active_unit:
-		_select_unit(cell)
-	elif _active_unit.is_selected:
+# Only allow movement if the blue tiles are actually showing
+	if _unit_overlay.get_used_cells(0).size() > 0 and _active_unit is not BasicEnemy:
 		_move_active_unit(cell)
-
+		clear_overlay() # Hide tiles after moving
 
 ## Updates the interactive path's drawing if there's an active and selected unit.
 func _on_Cursor_moved(new_cell: Vector2) -> void:
-	if _active_unit and _active_unit.is_selected:
+	# Only draw the path line if the move overlay is active
+	if _active_unit and _active_unit.is_selected and _unit_overlay.get_used_cells(0).size() > 0 and _active_unit is not BasicEnemy:
 		_unit_path.draw(_active_unit.cell, new_cell)
-		
-		
-

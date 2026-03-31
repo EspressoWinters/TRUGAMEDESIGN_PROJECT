@@ -27,6 +27,10 @@ var move_speed :int
 
 @export var initiative_stat := 0
 
+#I am going to hold the gameboard here, for potential logic and so the enemy unit can also use it for its logic
+var gameboard : GameBoard
+
+
 ## Setting the texture and if it doesn't have a sprite it waits until it has one or have been created
 @export var skin: Texture:
 	set(value):
@@ -52,9 +56,14 @@ var cell := Vector2.ZERO:
 var is_selected := false:
 	set(value):
 		is_selected = value
+		if not _anim_player:
+			await ready
+			
 		if is_selected:
-			_anim_player.play("selected")
+		# Loops animation
+			_anim_player.play("selected") 
 		else:
+			#Stops Animation
 			_anim_player.play("idle")
 ##This is where starts the process of it moving along
 var _is_walking := false:
@@ -89,7 +98,7 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	#moves the unit along the path by delta
 	_path_follow.progress += move_speed * delta
-#When the walking is finished resetes path progress and emits walk signal for gameboard managment
+	#When the walking is finished resetes path progress and emits walk signal for gameboard managment
 	if _path_follow.progress_ratio >= 1.0:
 		_is_walking = false
 		_path_follow.progress = 0.00001
