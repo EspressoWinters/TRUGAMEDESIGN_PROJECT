@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://ppf161cit0s"]
+
+[ext_resource type="PackedScene" uid="uid://d4mhjq651egt" path="res://Entities/Units/Unit.tscn" id="1_neqh0"]
+[ext_resource type="Texture2D" uid="uid://iljdxgodmq5n" path="res://Assets/Units/Tank.png" id="2_p60gx"]
+
+[node name="Tank" instance=ExtResource("1_neqh0")]
+skin = ExtResource("2_p60gx")
+
+[node name="Sprite" parent="PathFollow2D" index="1"]
+texture = ExtResource("2_p60gx")
+
+[node name="AnimationPlayer" parent="." index="1"]
+autoplay = "idle"

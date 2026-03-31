@@ -1,0 +1,18 @@
+[gd_scene load_steps=4 format=3 uid="uid://sowig2044qex"]
+
+[ext_resource type="Script" path="res://spawn.gd" id="1_820mq"]
+[ext_resource type="PackedScene" uid="uid://ppf161cit0s" path="res://tank.tscn" id="2_fm26q"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_cl3yd"]
+
+[node name="Spawn" type="Area2D"]
+script = ExtResource("1_820mq")
+unit = ExtResource("2_fm26q")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+scale = Vector2(10, 10)
+shape = SubResource("RectangleShape2D_cl3yd")
+debug_color = Color(0.977244, 0, 0.405628, 0.42)
+
+[connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="." to="." method="_on_mouse_exited"]
