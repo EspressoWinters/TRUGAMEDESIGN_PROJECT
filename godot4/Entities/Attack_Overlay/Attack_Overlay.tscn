@@ -1,0 +1,14 @@
+[gd_scene format=3 uid="uid://cbid3yyxh2mey"]
+
+[ext_resource type="Texture2D" uid="uid://bts4iqla5wvwd" path="res://Entities/Attack_Overlay/Red.png" id="1_8d8xi"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_uq328"]
+texture = ExtResource("1_8d8xi")
+0:0/0 = 0
+
+[sub_resource type="TileSet" id="TileSet_dfl3y"]
+sources/0 = SubResource("TileSetAtlasSource_uq328")
+
+[node name="AttackOverlay" type="TileMap" unique_id=2086890748]
+tile_set = SubResource("TileSet_dfl3y")
+format = 2
