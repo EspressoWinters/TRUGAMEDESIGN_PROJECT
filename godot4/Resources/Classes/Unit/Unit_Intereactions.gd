@@ -20,7 +20,7 @@ func get_attackable_cells(origin_cell : Vector2):
 
 #this will find just the attackable cells in the direciton that the player is picking g
 func get_attackable_cells_direction(origin_cell : Vector2, target_cell : Vector2):
-	
+	direction_attack_cells.clear()
 	if attackable_cells.is_empty():
 		print("Error, the attackable cells are empty!!!!")
 		return direction_attack_cells
@@ -48,6 +48,9 @@ func get_attackable_cells_direction(origin_cell : Vector2, target_cell : Vector2
 			if ((tempDifference.y) == 1): 
 				#this cell must be above it
 				direction_attack_cells.append(cell)
+		
+		for cell in direction_attack_cells:
+			print(cell)
 				
 			
 				
@@ -61,6 +64,9 @@ func get_attackable_cells_direction(origin_cell : Vector2, target_cell : Vector2
 			#this means it must be below it
 			if ((tempDifference.y) == (-1)):
 				direction_attack_cells.append(cell)
+				
+		for cell in direction_attack_cells:
+			print(cell)
 		return direction_attack_cells
 	#right case 
 	elif difference.x == 1 and difference.y == 0:
@@ -70,6 +76,10 @@ func get_attackable_cells_direction(origin_cell : Vector2, target_cell : Vector2
 			#slide to the right cha cha real smooth 
 			if (tempDifference.x == 1):
 				direction_attack_cells.append(cell)
+				
+		for cell in direction_attack_cells:
+			print(cell)
+			
 		return direction_attack_cells
 	elif difference.x == -1 and difference.y == 0:
 		for cell in attackable_cells:
@@ -77,6 +87,10 @@ func get_attackable_cells_direction(origin_cell : Vector2, target_cell : Vector2
 			tempDifference.sign()
 			if (tempDifference.x == -1):
 				direction_attack_cells.append(cell)
+				
+		for cell in direction_attack_cells:
+			print(cell)
+			
 		return direction_attack_cells
 	#okay now the more complicated and probably more common diagonal cases 
 	#upper right corner case 
@@ -85,6 +99,8 @@ func get_attackable_cells_direction(origin_cell : Vector2, target_cell : Vector2
 			tempDifference = cell - origin_cell
 			tempDifference.sign()
 			
+		for cell in direction_attack_cells:
+			print(cell)
 		pass 
 	
 
