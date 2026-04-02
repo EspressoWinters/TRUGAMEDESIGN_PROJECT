@@ -30,7 +30,9 @@ func find_closet_human_character():
 		print("Roger roger, there are no humans on the board!")
 		#exit the function to prevent crash
 		return 
-		
+	
+	human_units.clear() #needed to prevent the array from keeping duplicate units
+	
 	#let's get all the units that are human in the array
 	for unit in gameboard._units.values():
 		if unit is not BasicEnemy:
@@ -52,11 +54,12 @@ func find_closet_human_character():
 	for unit in human_units:
 		#doing the manhattan distance calculation
 		temp_distance = abs(unit.cell.x - self.cell.x) + abs(unit.cell.y - self.cell.y)
-		if temp_distance <2:
-			return
-		else:
-			least_distance_unit = unit 
-			#least_distance = temp_distance
+		#'closest' one we found so far in previous loops.
+		if temp_distance < least_distance:
+			#since it IS closer, update our record of the shortest distance.
+			least_distance = temp_distance
+			#this is the unit the AI will eventually move toward or attack.
+			least_distance_unit = unit
 	#
 	#print("-----------------------")
 	#print(least_distance_unit)

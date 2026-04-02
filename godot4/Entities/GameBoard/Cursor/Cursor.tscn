@@ -4,16 +4,16 @@
 [ext_resource type="Texture2D" uid="uid://dsmh2fn7kpkri" path="res://Entities/GameBoard/Cursor/menu_selection_arrow.png" id="2"]
 [ext_resource type="Resource" uid="uid://bj7vassh2i26e" path="res://Entities/GameBoard/Grid.tres" id="3"]
 
-[node name="Cursor" type="Node2D"]
+[node name="Cursor" type="Node2D" unique_id=33920925]
 script = ExtResource("1")
 grid = ExtResource("3")
 
-[node name="Sprite" type="Sprite2D" parent="."]
+[node name="Sprite" type="Sprite2D" parent="." unique_id=1987697626]
 position = Vector2(0.193848, 0)
 rotation = 2.35619
 texture = ExtResource("2")
 offset = Vector2(-67, 0)
 
-[node name="Timer" type="Timer" parent="."]
-wait_time = 0.1
+[node name="Timer" type="Timer" parent="." unique_id=722892625]
+wait_time = 0.01
 one_shot = true

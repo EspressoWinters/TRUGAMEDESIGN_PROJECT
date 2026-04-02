@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://cbid3yyxh2mey"]
 
 [ext_resource type="Texture2D" uid="uid://bts4iqla5wvwd" path="res://Entities/Attack_Overlay/Red.png" id="1_8d8xi"]
+[ext_resource type="Script" uid="uid://1a4y2fwy0cpc" path="res://Entities/Attack_Overlay/attack_overlay.gd" id="2_uq328"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_uq328"]
 texture = ExtResource("1_8d8xi")
@@ -12,3 +13,5 @@ sources/0 = SubResource("TileSetAtlasSource_uq328")
 [node name="AttackOverlay" type="TileMap" unique_id=2086890748]
 tile_set = SubResource("TileSet_dfl3y")
 format = 2
+layer_0/modulate = Color(1, 1, 1, 0.7764706)
+script = ExtResource("2_uq328")
