@@ -101,8 +101,8 @@ func get_attackable_cells_direction(origin_cell : Vector2, target_cell : Vector2
 			
 		for cell in direction_attack_cells:
 			print(cell)
-		pass 
-	
+		pass
+	return direction_attack_cells
 
 func attack():
 	print("Unit is attacking")

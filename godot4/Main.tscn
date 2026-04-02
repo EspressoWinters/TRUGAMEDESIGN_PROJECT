@@ -14,6 +14,7 @@
 [ext_resource type="PackedScene" uid="uid://bnhj47p63ostv" path="res://Entities/UI/UI.tscn" id="10_wkp8b"]
 [ext_resource type="Script" uid="uid://cp40yuagy8qny" path="res://Resources/Unit/Unit_Info.gd" id="13_c2ibq"]
 [ext_resource type="PackedScene" uid="uid://civ2clvctpumk" path="res://Entities/Enemies/basic_enemy.tscn" id="13_c6i3y"]
+[ext_resource type="PackedScene" uid="uid://cbid3yyxh2mey" path="res://Entities/Attack_Overlay/Attack_Overlay.tscn" id="15_j4qnp"]
 
 [sub_resource type="Curve2D" id="Curve2D_trn2v"]
 
@@ -27,18 +28,18 @@ metadata/_custom_type_script = "uid://cp40yuagy8qny"
 script = ExtResource("3")
 grid = ExtResource("4")
 
-[node name="Ui" parent="." unique_id=1993505447 instance=ExtResource("10_wkp8b")]
+[node name="Map" parent="." unique_id=1615484314 instance=ExtResource("10")]
 unique_name_in_owner = true
 
-[node name="Map" parent="." unique_id=1615484314 instance=ExtResource("10")]
+[node name="AttackOverlay" parent="." unique_id=2086890748 instance=ExtResource("15_j4qnp")]
+unique_name_in_owner = true
+
+[node name="UnitOverlay" parent="." unique_id=1982980651 instance=ExtResource("5")]
 unique_name_in_owner = true
 
 [node name="Cursor" parent="." unique_id=1216491812 instance=ExtResource("1")]
 position = Vector2(794.2046, 238.50526)
 scale = Vector2(0.2, 0.2)
-
-[node name="UnitOverlay" parent="." unique_id=1982980651 instance=ExtResource("5")]
-unique_name_in_owner = true
 
 [node name="UnitPath" parent="." unique_id=1709809203 instance=ExtResource("6")]
 unique_name_in_owner = true
@@ -63,6 +64,9 @@ unit_info = SubResource("Resource_j4qnp")
 unit_role = ExtResource("8_20pc6")
 grid = ExtResource("4")
 skin = ExtResource("9_wkp8b")
+
+[node name="Ui" parent="." unique_id=1993505447 instance=ExtResource("10_wkp8b")]
+unique_name_in_owner = true
 
 [connection signal="accept_pressed" from="Cursor" to="." method="_on_Cursor_accept_pressed"]
 [connection signal="moved" from="Cursor" to="." method="_on_Cursor_moved"]

@@ -22,14 +22,14 @@ func get_attackable_cells(origin_cell : Vector2):
 	attackable_cells.append(origin_cell + Vector2(0,-1)) 
 	
 	#Getting rid of the corners
-	##diagonally to the top left of the unit
-	#attackable_cells.append(origin_cell + Vector2(-1,1))
-	##diagonally to the bottom left of the unit 
-	#attackable_cells.append(origin_cell + Vector2(-1,-1))
-	##digonally to the top right of the unit 
-	#attackable_cells.append(origin_cell + Vector2(1,1))
-	##digonally to the bottom left of the unit
-	#attackable_cells.append(origin_cell + Vector2(1,-1))
+	#diagonally to the top left of the unit
+	attackable_cells.append(origin_cell + Vector2(-1,1))
+	#diagonally to the bottom left of the unit 
+	attackable_cells.append(origin_cell + Vector2(-1,-1))
+	#digonally to the top right of the unit 
+	attackable_cells.append(origin_cell + Vector2(1,1))
+	#digonally to the bottom left of the unit
+	attackable_cells.append(origin_cell + Vector2(1,-1))
 	
 	return attackable_cells
 

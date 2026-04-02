@@ -23,6 +23,7 @@ var _directional_attack_cells := []
 var _cell_of_active_unit : Vector2
 @onready var tile_map = %Map
 @onready var _unit_overlay: UnitOverlay = %UnitOverlay
+@onready var _attack_overlay: AttackOverlay = %AttackOverlay
 @onready var _unit_path: UnitPath = %UnitPath
 @onready var ui = %Ui
 
@@ -72,6 +73,7 @@ func roll_initiative():
 func start_turn():
 	#set the boolean value to false so it hasn't attacked
 	_has_attacked_this_turn = false
+	_move_overlay_visable = false
 	_has_moved_this_turn = false #Reset the flag for the new unit
 	_cell_of_active_unit = _units.find_key(initiative_order[turn_count])
 	#print(_cell_of_active_unit, "\n", _units.get(_cell_of_active_unit))
@@ -334,19 +336,49 @@ func display_move_overlay() -> void:
 
 #using the attack overlay here 
 func display_attack_overlay() -> void:
-	if _has_attacked_this_turn:
-		print("unit has already attacked!")
-		return
-	
-	if _active_unit:
-		_unit_overlay.clear()
-		_unit_overlay.draw(_attackable_cells)
-		_move_overlay_visable = false
-		_attack_overlay_visable = true
+	if not _has_attacked_this_turn:
+		if not _active_unit:
+			return
+
+		#cells we want
+		var filtered_cells : Array = []
+		
+		#Defines the bad coordinates (the corners)
+		var corners = [
+			_active_unit.cell + Vector2(-1, 1),  # Top Left
+			_active_unit.cell + Vector2(1, 1),   # Top Right
+			_active_unit.cell + Vector2(-1, -1), # Bottom Left
+			_active_unit.cell + Vector2(1, -1)   # Bottom Right
+		]
+		
+		#goes through the attackable_cells array and filters the cells to get rid of the corners
+		for cell in _attackable_cells:
+			#only skips the corners if the unit_role is a tank
+			if _active_unit.unit_role is tank:
+				if cell in corners:
+					continue # Skip this cell, don't add it to filtered_cells
+					
+			# If we got here, it's a valid cell to draw!
+			filtered_cells.append(cell)
+
+		# 4. Draw the filtered list
+		if _active_unit:
+			_unit_overlay.clear()
+			_unit_overlay.draw(filtered_cells)
+			_move_overlay_visable = false
+			_attack_overlay_visable = true
+	else:
+		print("Unit has already attacked!")
 
 func clear_overlay() -> void:
-	_unit_overlay.clear()
-	_unit_path.stop()
+	_unit_overlay.clear()    #clears the movement (blue) tiles
+	_unit_path.stop()        #clears the movement path line
+	
+	if _attack_overlay:
+		_attack_overlay.clear() #clears the attack (red) tiles
+	#resets the bools
+	_move_overlay_visable = false
+	_attack_overlay_visable = false
 
 ## Deselects the active unit, clearing the cells overlay and interactive path drawing.
 func _deselect_active_unit() -> void:
@@ -382,11 +414,12 @@ func _on_Cursor_accept_pressed(cell: Vector2) -> void:
 	
 		#getting all of what we should attack
 		direction_attack = _active_unit.unit_role.get_attackable_cells_direction(_active_unit.cell, cell)
-		if direction_attack:	
+		if direction_attack and _has_attacked_this_turn == false:	
 			for direction_cell in direction_attack:
 				if _units.has(direction_cell):
 					apply_damage(direction_cell, _active_unit.unit_role.attack_roll(_active_unit))
 			_has_attacked_this_turn = true
+			clear_overlay()
 	 
 	
 	#old block of previous implementation
@@ -399,9 +432,21 @@ func _on_Cursor_accept_pressed(cell: Vector2) -> void:
 	
 ## Updates the interactive path's drawing if there's an active and selected unit.
 func _on_Cursor_moved(new_cell: Vector2) -> void:
-	# Only draw the path line if the move overlay is active
-	if _active_unit and _active_unit.is_selected and _move_overlay_visable == true and _unit_overlay.get_used_cells(0).size() > 0 and _active_unit is not BasicEnemy:
-		_unit_path.draw(_active_unit.cell, new_cell)
+	## Only draw the path line if the move overlay is active
+	#if _active_unit and _active_unit.is_selected and _move_overlay_visable == true and _unit_overlay.get_used_cells(0).size() > 0 and _active_unit is not BasicEnemy:
+		#_unit_path.draw(_active_unit.cell, new_cell)
+	
+		if _move_overlay_visable:
+			_unit_path.draw(_active_unit.cell, new_cell)
+			
+		if _attack_overlay_visable == true and _has_attacked_this_turn == false:
+			#Ask the unit role for the specific directional cells
+			var highlighted_attack_cells = _active_unit.unit_role.get_attackable_cells_direction(_active_unit.cell, new_cell)
+			
+		#Draw the result on the specific AttackOverlay
+		#If cleave_cells is empty (diagonal), .draw() will clear the tiles
+			if _attack_overlay:
+				_attack_overlay.draw(highlighted_attack_cells)
 
 ##This is the function where the unit will take damage 
 func damage_unit(unit : Unit, damage : int):
