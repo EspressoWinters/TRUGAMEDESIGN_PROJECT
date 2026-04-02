@@ -7,10 +7,8 @@
 [ext_resource type="PackedScene" uid="uid://n825j345khoi" path="res://Entities/UnitOverlay/UnitOverlay.tscn" id="5"]
 [ext_resource type="PackedScene" uid="uid://dxyfefsgkgc4l" path="res://Entities/GameBoard/UnitPath.tscn" id="6"]
 [ext_resource type="Texture2D" uid="uid://iljdxgodmq5n" path="res://Assets/Units/Tank.png" id="8_wkp8b"]
-[ext_resource type="Script" uid="uid://gkgnflxw2vmf" path="res://Resources/Classes/Unit_Info.gd" id="9_20pc6"]
 [ext_resource type="Texture2D" uid="uid://dx34ow1am5ih6" path="res://Assets/Units/guywithknife.png" id="9_wkp8b"]
 [ext_resource type="PackedScene" uid="uid://de53ukdqyusan" path="res://Entities/Background/Map.tscn" id="10"]
-[ext_resource type="Resource" uid="uid://dhyalatumlvik" path="res://Resources/Classes/Tank/Class_Tank.tres" id="10_5vvyt"]
 [ext_resource type="PackedScene" uid="uid://bnhj47p63ostv" path="res://Entities/UI/UI.tscn" id="10_wkp8b"]
 [ext_resource type="PackedScene" uid="uid://civ2clvctpumk" path="res://Entities/Enemies/basic_enemy.tscn" id="13_c6i3y"]
 
@@ -24,9 +22,8 @@ metadata/_custom_type_script = "uid://gkgnflxw2vmf"
 [sub_resource type="Curve2D" id="Curve2D_c2ibq"]
 resource_local_to_scene = true
 
-[sub_resource type="Resource" id="Resource_c6i3y"]
-script = ExtResource("9_20pc6")
-metadata/_custom_type_script = "uid://gkgnflxw2vmf"
+[sub_resource type="Curve2D" id="Curve2D_c2ibq"]
+resource_local_to_scene = true
 
 [sub_resource type="Resource" id="Resource_j4qnp"]
 script = ExtResource("9_20pc6")
