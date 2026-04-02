@@ -24,7 +24,7 @@ var move_speed :int
 
 var current_health: int
 var max_health: int
-
+var gameboard: GameBoard
 @export var initiative_stat := 0
 
 ## Setting the texture and if it doesn't have a sprite it waits until it has one or have been created

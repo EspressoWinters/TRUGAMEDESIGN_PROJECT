@@ -316,8 +316,6 @@ func _on_Cursor_accept_pressed(cell: Vector2) -> void:
 	
 		#getting all of what we should attack
 		direction_attack = _active_unit.unit_role.get_attackable_cells_direction(_active_unit.cell, cell)
-		#for tempp in direction_attack:
-			#print(tempp)
 		if direction_attack:	
 			for direction_cell in direction_attack:
 				if _units.has(direction_cell):

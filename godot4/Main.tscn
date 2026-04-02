@@ -12,18 +12,23 @@
 [ext_resource type="PackedScene" uid="uid://de53ukdqyusan" path="res://Entities/Background/Map.tscn" id="10"]
 [ext_resource type="Resource" uid="uid://dhyalatumlvik" path="res://Resources/Classes/Tank/Class_Tank.tres" id="10_5vvyt"]
 [ext_resource type="PackedScene" uid="uid://bnhj47p63ostv" path="res://Entities/UI/UI.tscn" id="10_wkp8b"]
+[ext_resource type="PackedScene" uid="uid://civ2clvctpumk" path="res://Entities/Enemies/basic_enemy.tscn" id="13_c6i3y"]
 
-[sub_resource type="Curve2D" id="Curve2D_5vvyt"]
+[sub_resource type="Curve2D" id="Curve2D_c6i3y"]
 resource_local_to_scene = true
 
 [sub_resource type="Resource" id="Resource_5vvyt"]
 script = ExtResource("9_20pc6")
 metadata/_custom_type_script = "uid://gkgnflxw2vmf"
 
-[sub_resource type="Curve2D" id="Curve2D_c6i3y"]
+[sub_resource type="Curve2D" id="Curve2D_c2ibq"]
 resource_local_to_scene = true
 
 [sub_resource type="Resource" id="Resource_c6i3y"]
+script = ExtResource("9_20pc6")
+metadata/_custom_type_script = "uid://gkgnflxw2vmf"
+
+[sub_resource type="Resource" id="Resource_j4qnp"]
 script = ExtResource("9_20pc6")
 metadata/_custom_type_script = "uid://gkgnflxw2vmf"
 
@@ -48,17 +53,24 @@ ui_cooldown = 0.1
 
 [node name="Bear" parent="GameBoard" unique_id=2068118955 instance=ExtResource("2")]
 position = Vector2(192, 192)
-curve = SubResource("Curve2D_5vvyt")
+curve = SubResource("Curve2D_c6i3y")
 unit_info = SubResource("Resource_5vvyt")
 unit_role = ExtResource("10_5vvyt")
 skin = ExtResource("8_wkp8b")
 
 [node name="Squirrel" parent="GameBoard" unique_id=967058081 instance=ExtResource("2")]
 position = Vector2(224, 192)
-curve = SubResource("Curve2D_c6i3y")
+curve = SubResource("Curve2D_c2ibq")
 unit_info = SubResource("Resource_c6i3y")
 unit_role = ExtResource("10_5vvyt")
 skin = ExtResource("9_wkp8b")
+
+[node name="BasicEnemy" parent="GameBoard" unique_id=393416970 instance=ExtResource("13_c6i3y")]
+position = Vector2(50, 50)
+unit_info = SubResource("Resource_j4qnp")
+unit_role = ExtResource("10_5vvyt")
+grid = ExtResource("4")
+skin = ExtResource("8_wkp8b")
 
 [connection signal="accept_pressed" from="GameBoard/Cursor" to="GameBoard" method="_on_Cursor_accept_pressed"]
 [connection signal="moved" from="GameBoard/Cursor" to="GameBoard" method="_on_Cursor_moved"]
