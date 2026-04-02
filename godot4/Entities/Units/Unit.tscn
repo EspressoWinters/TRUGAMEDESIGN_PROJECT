@@ -2,8 +2,9 @@
 
 [ext_resource type="Script" uid="uid://bj2oso2ug885f" path="res://Entities/Units/Unit.gd" id="1"]
 [ext_resource type="Resource" uid="uid://bj7vassh2i26e" path="res://Entities/GameBoard/Grid.tres" id="2"]
-[ext_resource type="Script" uid="uid://gkgnflxw2vmf" path="res://Resources/Classes/Unit_Info.gd" id="2_nuw8c"]
+[ext_resource type="Script" uid="uid://bdt78xqxavxa8" path="res://Resources/Classes/Unit/Unit_Intereactions.gd" id="2_nuw8c"]
 [ext_resource type="Texture2D" uid="uid://b5ghlcxjxmmgw" path="res://Entities/Units/unit_shadow.svg" id="3"]
+
 
 [sub_resource type="Resource" id="Resource_ydal0"]
 script = ExtResource("2_nuw8c")

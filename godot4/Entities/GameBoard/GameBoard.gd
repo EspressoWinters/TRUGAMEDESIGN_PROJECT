@@ -21,10 +21,10 @@ var _walkable_cells := []
 var _attackable_cells := []
 var _directional_attack_cells := []
 var _cell_of_active_unit : Vector2
-@onready var tile_map = $"../Map"
-@onready var _unit_overlay: UnitOverlay = $UnitOverlay
-@onready var _unit_path: UnitPath = $UnitPath
-@onready var ui = $"../Ui"
+@onready var tile_map = %Map
+@onready var _unit_overlay: UnitOverlay = %UnitOverlay
+@onready var _unit_path: UnitPath = %UnitPath
+@onready var ui = %Ui
 
 var initiative_order := []
 
@@ -46,6 +46,7 @@ func _ready() -> void:
 	if ui:
 		ui.move_requested.connect(display_move_overlay)
 		ui.attack_requested.connect(clear_overlay)
+		ui.attack_requested.connect(display_attack_overlay)
 		ui.end_turn_requested.connect(end_turn)
 	else:
 		push_error("GameBoard: UI node not found at path!")
@@ -62,7 +63,7 @@ func roll_initiative():
 	
 	for unit in _units.values():
 		# this is a dnd style initiative roll with a d20 equivalent
-		var initiative_unit_roll :int = (randi_range(0,20)) + unit.speed
+		var initiative_unit_roll :int = (randi_range(0,20)) + unit.unit_info.speed
 		unit.initiative_stat = initiative_unit_roll
 		initiative_order.append(unit)
 	initiative_bubble_sort(initiative_order)
@@ -399,7 +400,7 @@ func _on_Cursor_accept_pressed(cell: Vector2) -> void:
 ## Updates the interactive path's drawing if there's an active and selected unit.
 func _on_Cursor_moved(new_cell: Vector2) -> void:
 	# Only draw the path line if the move overlay is active
-	if _active_unit and _active_unit.is_selected and _unit_overlay.get_used_cells(0).size() > 0 and _active_unit is not BasicEnemy:
+	if _active_unit and _active_unit.is_selected and _move_overlay_visable == true and _unit_overlay.get_used_cells(0).size() > 0 and _active_unit is not BasicEnemy:
 		_unit_path.draw(_active_unit.cell, new_cell)
 
 ##This is the function where the unit will take damage 

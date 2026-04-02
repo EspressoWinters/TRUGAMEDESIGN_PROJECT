@@ -13,10 +13,8 @@ extends Path2D
 ## Emit a signal when the walk is finished 
 signal walk_finished
 
-@export var speed := 5
-@export var strength := 5
-@export var luck := 5
-@export var defense := 5
+@export var unit_info: unit_info
+@export var unit_role: Resource
 
 ## Use the grid to know the grid coordinates and know get access to it calculations
 @export var grid: Resource
@@ -29,9 +27,6 @@ var current_health: int
 var max_health: int
 var gameboard: GameBoard
 @export var initiative_stat := 0
-
-#I am going to hold the gameboard here, for potential logic and so the enemy unit can also use it for its logic
-var gameboard : GameBoard
 
 
 ## Setting the texture and if it doesn't have a sprite it waits until it has one or have been created
@@ -82,8 +77,8 @@ var _is_walking := false:
 
 #When it loads into the scene tree
 func _ready() -> void:
-	move_range = speed
-	move_speed = speed * 100
+	move_range = unit_info.speed
+	move_speed = unit_info.speed * 100
 	#makes sure the object doesn't start the _process function
 	set_process(false)
 	#locks it so it doesn't rotate along the path
