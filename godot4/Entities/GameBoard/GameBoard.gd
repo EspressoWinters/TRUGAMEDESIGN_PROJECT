@@ -18,11 +18,13 @@ const DIRECTIONS = [Vector2.LEFT, Vector2.RIGHT, Vector2.UP, Vector2.DOWN]
 var _units := {}
 var _active_unit: Unit
 var _walkable_cells := []
+var _attackable_cells := []
+var _directional_attack_cells := []
 var _cell_of_active_unit : Vector2
-@onready var tile_map = $"../Map"
-@onready var _unit_overlay: UnitOverlay = $UnitOverlay
-@onready var _unit_path: UnitPath = $UnitPath
-@onready var ui = $"../Ui"
+@onready var tile_map = %Map
+@onready var _unit_overlay: UnitOverlay = %UnitOverlay
+@onready var _unit_path: UnitPath = %UnitPath
+@onready var ui = %Ui
 
 var initiative_order := []
 
@@ -30,15 +32,21 @@ var turn_count := 0
 var round_count := 0
 
 var _has_moved_this_turn := false
-
-
+#boolean value on whether it has been attacked
+var _has_attacked_this_turn := false
+var _move_overlay_visable := false
+#having the attack overlay
+var _attack_overlay_visable := false
 
 #when the gameboard is called into the scene it will clear its dicitonary of units then fill it up again with the units in tjhe active scenee
 func _ready() -> void:
 	_reinitialize()
+	
+	#gatherin the UI attack and such
 	if ui:
 		ui.move_requested.connect(display_move_overlay)
 		ui.attack_requested.connect(clear_overlay)
+		ui.attack_requested.connect(display_attack_overlay)
 		ui.end_turn_requested.connect(end_turn)
 	else:
 		push_error("GameBoard: UI node not found at path!")
@@ -55,13 +63,15 @@ func roll_initiative():
 	
 	for unit in _units.values():
 		# this is a dnd style initiative roll with a d20 equivalent
-		var initiative_unit_roll :int = (randi_range(0,20)) + unit.speed
+		var initiative_unit_roll :int = (randi_range(0,20)) + unit.unit_info.speed
 		unit.initiative_stat = initiative_unit_roll
 		initiative_order.append(unit)
 	initiative_bubble_sort(initiative_order)
 
 ##This will start the turn of the individual unit
 func start_turn():
+	#set the boolean value to false so it hasn't attacked
+	_has_attacked_this_turn = false
 	_has_moved_this_turn = false #Reset the flag for the new unit
 	_cell_of_active_unit = _units.find_key(initiative_order[turn_count])
 	#print(_cell_of_active_unit, "\n", _units.get(_cell_of_active_unit))
@@ -156,6 +166,10 @@ func is_occupied(cell: Vector2) -> bool:
 func get_walkable_cells(unit: Unit) -> Array:
 	return _flood_fill(unit.cell, unit.move_range)
 
+#use the flood_fill to get the attack range
+#instead of flood fill just get the unit.unit_role
+func get_attack_range(unit: Unit) -> Array:
+	return unit.unit_role.get_attackable_cells(unit.cell)
 
 ## Clears, and refills the `_units` dictionary with game objects that are on the board.
 func _reinitialize() -> void:
@@ -255,6 +269,11 @@ func _move_active_unit(new_cell: Vector2) -> void:
 
 
 
+#this block is going to be where we attack the cells
+#just basically see if any of the units get looked up in the unit dictionary and then any unit it can find they will then take damage from i 
+func attack_cell(attacked_cells : Array):
+	pass
+
 ## Selects the unit in the `cell` if there's one there.
 ## Sets it as the `_active_unit` and draws its walkable cells and interactive move path. 
 func _select_unit(cell: Vector2) -> void:
@@ -265,6 +284,8 @@ func _select_unit(cell: Vector2) -> void:
 	_active_unit.is_selected = true
 	#pre-calulate walkable cells but don't draw them yet
 	_walkable_cells = get_walkable_cells(_active_unit)
+	#getting the attack range
+	_attackable_cells = get_attack_range(_active_unit)
 	_unit_path.initialize(_walkable_cells)
 
 #this is the bot/computer movement section 
@@ -307,6 +328,21 @@ func display_move_overlay() -> void:
 		_unit_overlay.draw(_walkable_cells)
 		# Note: You might want to make the unit_path visible here too
 		_unit_path.initialize(_walkable_cells)
+		_move_overlay_visable = true
+		#get rid of the attack overlay if the movement overlay 
+		_attack_overlay_visable = false
+
+#using the attack overlay here 
+func display_attack_overlay() -> void:
+	if _has_attacked_this_turn:
+		print("unit has already attacked!")
+		return
+	
+	if _active_unit:
+		_unit_overlay.clear()
+		_unit_overlay.draw(_attackable_cells)
+		_move_overlay_visable = false
+		_attack_overlay_visable = true
 
 func clear_overlay() -> void:
 	_unit_overlay.clear()
@@ -327,13 +363,80 @@ func _clear_active_unit() -> void:
 
 ## Selects or moves a unit based on where the cursor is.
 func _on_Cursor_accept_pressed(cell: Vector2) -> void:
-# Only allow movement if the blue tiles are actually showing
-	if _unit_overlay.get_used_cells(0).size() > 0 and _active_unit is not BasicEnemy:
+	var direction_attack
+	
+	var damage
+	
+	#okay so this is if it is visible then do the move overlay here
+	if _move_overlay_visable:
 		_move_active_unit(cell)
-		clear_overlay() # Hide tiles after moving
-
+		clear_overlay()
+		_attackable_cells = get_attack_range(_active_unit)
+	#now we are going to do the attack block
+	#NOTES FOR SELF 
+	#okay if we have the cell which the player has clicked, then we could get the direction through the sign. 
+	#that way we could do direction
+	elif _attack_overlay_visable:
+		if _has_attacked_this_turn: 
+			print("You have already attacked")
+	
+		#getting all of what we should attack
+		direction_attack = _active_unit.unit_role.get_attackable_cells_direction(_active_unit.cell, cell)
+		if direction_attack:	
+			for direction_cell in direction_attack:
+				if _units.has(direction_cell):
+					apply_damage(direction_cell, _active_unit.unit_role.attack_roll(_active_unit))
+			_has_attacked_this_turn = true
+	 
+	
+	#old block of previous implementation
+# Only allow movement if the blue tiles are actually showing
+	#if _unit_overlay.get_used_cells(0).size() > 0:
+		#_move_active_unit(cell)
+		#clear_overlay() # Hide tiles after moving
+		#_attackable_cells = get_attack_range(_active_unit)
+		
+	
 ## Updates the interactive path's drawing if there's an active and selected unit.
 func _on_Cursor_moved(new_cell: Vector2) -> void:
 	# Only draw the path line if the move overlay is active
-	if _active_unit and _active_unit.is_selected and _unit_overlay.get_used_cells(0).size() > 0 and _active_unit is not BasicEnemy:
+	if _active_unit and _active_unit.is_selected and _move_overlay_visable == true and _unit_overlay.get_used_cells(0).size() > 0 and _active_unit is not BasicEnemy:
 		_unit_path.draw(_active_unit.cell, new_cell)
+
+##This is the function where the unit will take damage 
+func damage_unit(unit : Unit, damage : int):
+	unit.unit_info.health - damage
+
+#a block here for calling the unit attack, ability, and passive ability, unit attack and ability that she doesn't 
+func unit_attack():
+	#Check if the variable actually holds an object
+	if _active_unit != null:
+		display_attack_overlay() 
+	else:
+		push_warning("No active unit to attack!")
+
+func unit_ability():
+	if _active_unit != null:
+		_active_unit.unit_role.ability()
+	else:
+		push_warning("Attempted to ability, but _active_unit is null!")
+
+func unit_passive():
+	if _active_unit != null:
+		_active_unit.unit_role.passive()
+	else:
+		push_warning("Attempted to passive, but _active_unit is null!")
+
+func apply_damage(target_cell: Vector2, amount: int) -> void:
+	var victim = _units[target_cell]
+	victim.current_health -= amount
+	print("%s took %d damage!" % [victim.name, amount])
+	
+	if victim.current_health <= 0:
+		_handle_unit_death(target_cell)
+
+func _handle_unit_death(cell: Vector2) -> void:
+	var unit_to_remove = _units[cell]
+	_units.erase(cell)
+	initiative_order.erase(unit_to_remove)
+	unit_to_remove.queue_free()

@@ -9,7 +9,6 @@ class_name BasicEnemy
 #https://docs.godotengine.org/en/stable/tutorials/scripting/gdscript/gdscript_basics.html if you need a reference on inheritance 
 extends Unit 
 
-
 #going to keep an array of all human players, so that we can keep track of those pesky humans 
 var human_units := []
 
