@@ -55,10 +55,15 @@ func find_closet_human_character():
 		#doing the manhattan distance calculation
 		temp_distance = abs(unit.cell.x - self.cell.x) + abs(unit.cell.y - self.cell.y)
 		#'closest' one we found so far in previous loops.
-		if temp_distance < least_distance:
+		if temp_distance <= 1:
 			#since it IS closer, update our record of the shortest distance.
-			least_distance = temp_distance
+			#least_distance = temp_distance
 			#this is the unit the AI will eventually move toward or attack.
+			#least_distance_unit = unit
+			#by returning null here the gameboard's if near_tile check will faill and ai will stand still when next to a unit
+			return null
+		elif temp_distance < least_distance:
+			least_distance = temp_distance
 			least_distance_unit = unit
 	#
 	#print("-----------------------")

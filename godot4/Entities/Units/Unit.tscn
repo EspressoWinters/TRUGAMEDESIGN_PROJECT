@@ -2,13 +2,7 @@
 
 [ext_resource type="Script" uid="uid://bj2oso2ug885f" path="res://Entities/Units/Unit.gd" id="1"]
 [ext_resource type="Resource" uid="uid://bj7vassh2i26e" path="res://Entities/GameBoard/Grid.tres" id="2"]
-[ext_resource type="Script" uid="uid://bdt78xqxavxa8" path="res://Resources/Classes/Unit/Unit_Intereactions.gd" id="2_nuw8c"]
 [ext_resource type="Texture2D" uid="uid://b5ghlcxjxmmgw" path="res://Entities/Units/unit_shadow.svg" id="3"]
-
-
-[sub_resource type="Resource" id="Resource_ydal0"]
-script = ExtResource("2_nuw8c")
-metadata/_custom_type_script = "uid://gkgnflxw2vmf"
 
 [sub_resource type="Animation" id="1"]
 length = 0.001
@@ -46,9 +40,11 @@ _data = {
 &"selected": SubResource("2")
 }
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ybgvn"]
+bg_color = Color(1, 0, 0, 1)
+
 [node name="Unit" type="Path2D" unique_id=2135963956]
 script = ExtResource("1")
-unit_info = SubResource("Resource_ydal0")
 grid = ExtResource("2")
 
 [node name="PathFollow2D" type="PathFollow2D" parent="." unique_id=1992455458]
@@ -66,3 +62,13 @@ texture = ExtResource("3")
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=458609128]
 libraries/ = SubResource("AnimationLibrary_5dan3")
 autoplay = &"idle"
+
+[node name="Healthbar" type="ProgressBar" parent="." unique_id=2019113874]
+offset_left = -8.0
+offset_top = -12.0
+offset_right = 8.0
+offset_bottom = -8.0
+theme_override_styles/fill = SubResource("StyleBoxFlat_ybgvn")
+max_value = 5.0
+step = 1.0
+show_percentage = false

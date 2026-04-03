@@ -44,7 +44,8 @@ func attack_roll(attacker : Unit) -> int:
 	
 	#accesses the modifier from the attacker's unit_info
 	var modifier = attacker.unit_info.attack
-	var total_damage = die1 + die2 + modifier
+	#var total_damage = die1 + die2 + modifier
+	var total_damage = 1
 	
 	print(total_damage)
 	
