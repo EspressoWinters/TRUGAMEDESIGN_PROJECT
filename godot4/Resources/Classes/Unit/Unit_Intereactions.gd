@@ -117,6 +117,6 @@ func passive():
 
 func attack_roll(attacker : Unit) -> int:
 	print("AATKATKAKKDSVKzs!!")
-	return 0
+	return 1
 
  

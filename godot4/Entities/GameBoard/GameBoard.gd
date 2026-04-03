@@ -166,6 +166,17 @@ func is_occupied(cell: Vector2) -> bool:
 	
 	return true
 
+func is_wall(cell: Vector2) -> bool:
+	#has checks if a key matches the given cell in the dictionary
+	#Looks at layer 0 at these specific coordinates (cell)
+	#takes the id of the cell in the tilemap(rock,grass,water)
+	var tile_data: TileData = tile_map.get_cell_tile_data(0,cell)
+	if tile_data: #if tile is found
+		#Returns the ooposite of "walkable"
+		#if  walkable is false, we return true, meaning yes, it is blocked
+		return not tile_data.get_custom_data("walkable")
+	
+	return true
 
 ## Returns an array of cells a given unit can walk using the flood fill algorithm.
 func get_walkable_cells(unit: Unit) -> Array:
@@ -176,7 +187,10 @@ func get_walkable_cells(unit: Unit) -> Array:
 func get_targetable_cells(unit: Unit) -> Array:
 	var relative_directions := []
 	for directions in DIRECTIONS:
-		relative_directions.append(unit.cell + directions)
+		if not is_wall(unit.cell + directions):
+			relative_directions.append(unit.cell + directions)
+		else:
+			continue
 
 	return relative_directions
 
@@ -420,7 +434,7 @@ func _on_Cursor_accept_pressed(cell: Vector2) -> void:
 	
 		#getting all of what we should attack
 		attack_direction = _active_unit.unit_role.get_attackable_cells_direction(_active_unit.cell, cell)
-		if _has_attacked_this_turn == false:	
+		if _has_attacked_this_turn == false and cell in _targetable_cells:
 			_attackable_cells.append_array(_active_unit.unit_role.get_attackable_cells(_active_unit.cell,attack_direction))
 			for attacking_cell in _attackable_cells:
 				if _units.has(attacking_cell):
@@ -443,19 +457,21 @@ func _on_Cursor_moved(new_cell: Vector2) -> void:
 	## Only draw the path line if the move overlay is active
 	#if _active_unit and _active_unit.is_selected and _move_overlay_visable == true and _unit_overlay.get_used_cells(0).size() > 0 and _active_unit is not BasicEnemy:
 		#_unit_path.draw(_active_unit.cell, new_cell)
-	
-		if _move_overlay_visable:
-			_unit_path.draw(_active_unit.cell, new_cell)
-			
-		if _attack_overlay_visable == true and _has_attacked_this_turn == false:
-			#Ask the unit role for the specific directional cells
+	var highlighted_attack_cells : Array
+	if _move_overlay_visable:
+		_unit_path.draw(_active_unit.cell, new_cell)
+		
+	if _attack_overlay_visable == true and _has_attacked_this_turn == false:
+		#Ask the unit role for the specific directional cells
+		if new_cell in _targetable_cells:
 			attack_direction = ( _active_unit.unit_role.get_attackable_cells_direction(_active_unit.cell, new_cell))
-			var highlighted_attack_cells = _active_unit.unit_role.get_attackable_cells(_active_unit.cell, attack_direction)
+			highlighted_attack_cells = _active_unit.unit_role.get_attackable_cells(_active_unit.cell, attack_direction)
 			
 		#Draw the result on the specific AttackOverlay
 		#If cleave_cells is empty (diagonal), .draw() will clear the tiles
-			if _attack_overlay:
-				_attack_overlay.draw(highlighted_attack_cells)
+		if _attack_overlay:
+			_attack_overlay.draw(highlighted_attack_cells)
+
 
 ##This is the function where the unit will take damage 
 func damage_unit(unit : Unit, damage : int):
