@@ -23,8 +23,8 @@ var move_range :int
 ## Speed of it visually moving, doesn't actually affect movement
 var move_speed :int
 
-@export var current_health: int
-@export var max_health: int
+var current_health: int
+var max_health: int
 var gameboard: GameBoard
 @export var initiative_stat := 0
 
@@ -79,8 +79,6 @@ var _is_walking := false:
 func _ready() -> void:
 	move_range = unit_info.speed
 	move_speed = unit_info.speed * 100
-	max_health = unit_info.max_hp
-	current_health = max_health
 	#makes sure the object doesn't start the _process function
 	set_process(false)
 	#locks it so it doesn't rotate along the path
@@ -90,12 +88,9 @@ func _ready() -> void:
 	cell = grid.calculate_grid_coordinates(position)
 	position = grid.calculate_map_position(cell)
 
-	var _health_bar = get_node_or_null("Healthbar")
-	
-	_health_bar.max_value = max_health
-	_health_bar.value = current_health
-	await get_tree().process_frame
-	gameboard._update_health_bar.connect(set_health_bar)
+	# this is just for the @tool working with the editor
+	if not Engine.is_editor_hint():
+		curve = Curve2D.new()
 
 
 func _process(delta: float) -> void:
@@ -121,6 +116,3 @@ func walk_along(path: PackedVector2Array) -> void:
 		curve.add_point(grid.calculate_map_position(point) - position)
 	cell = path[-1]
 	_is_walking = true
-
-func set_health_bar() -> void:
-	$Healthbar.value = current_health

@@ -1,0 +1,6 @@
+[gd_resource type="Resource" script_class="Musketeer" format=3 uid="uid://bxlihyh6h2ggd"]
+
+[ext_resource type="Script" uid="uid://dqpu2seyrj8dw" path="res://Resources/Classes/Musketeer/Musketeer.gd" id="1_pwtky"]
+
+[resource]
+script = ExtResource("1_pwtky")
