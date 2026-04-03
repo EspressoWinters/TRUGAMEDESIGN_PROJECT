@@ -9,6 +9,8 @@
 class_name GameBoard
 extends Node2D
 
+signal _update_health_bar
+
 const DIRECTIONS = [Vector2.LEFT, Vector2.RIGHT, Vector2.UP, Vector2.DOWN]
 
 ## Resource of type Grid.
@@ -476,6 +478,7 @@ func apply_damage(target_cell: Vector2, amount: int) -> void:
 	var victim = _units[target_cell]
 	victim.current_health -= amount
 	print("%s took %d damage!" % [victim.name, amount])
+	_update_health_bar.emit()
 	
 	if victim.current_health <= 0:
 		_handle_unit_death(target_cell)

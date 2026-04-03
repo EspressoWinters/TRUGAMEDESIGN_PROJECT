@@ -5,6 +5,9 @@
 
 [sub_resource type="Curve2D" id="Curve2D_mu52m"]
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_08waf"]
+bg_color = Color(1, 0, 0, 1)
+
 [node name="BasicEnemy" type="Path2D" unique_id=393416970]
 curve = SubResource("Curve2D_mu52m")
 script = ExtResource("1_ok2tl")
@@ -19,3 +22,13 @@ scale = Vector2(0.2, 0.2)
 texture = ExtResource("2_08waf")
 
 [node name="Sprite" type="Sprite2D" parent="PathFollow2D" unique_id=1974049774]
+
+[node name="Healthbar" type="ProgressBar" parent="." unique_id=1884163062]
+offset_left = -8.0
+offset_top = -12.0
+offset_right = 8.0
+offset_bottom = -8.0
+theme_override_styles/fill = SubResource("StyleBoxFlat_08waf")
+max_value = 5.0
+step = 1.0
+show_percentage = false
