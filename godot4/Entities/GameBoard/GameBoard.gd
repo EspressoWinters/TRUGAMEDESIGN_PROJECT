@@ -9,6 +9,8 @@
 class_name GameBoard
 extends Node2D
 
+signal _update_health_bar
+
 const DIRECTIONS = [Vector2.LEFT, Vector2.RIGHT, Vector2.UP, Vector2.DOWN]
 
 ## Resource of type Grid.
@@ -19,9 +21,8 @@ var _units := {}
 var _active_unit: Unit
 var _walkable_cells := []
 var _attackable_cells := []
-var _targetable_cells := []
+var _directional_attack_cells := []
 var _cell_of_active_unit : Vector2
-var  attack_direction : Vector2
 @onready var tile_map = %Map
 @onready var _unit_overlay: UnitOverlay = %UnitOverlay
 @onready var _attack_overlay: AttackOverlay = %AttackOverlay
@@ -171,12 +172,8 @@ func get_walkable_cells(unit: Unit) -> Array:
 
 #use the flood_fill to get the attack range
 #instead of flood fill just get the unit.unit_role
-func get_targetable_cells(unit: Unit) -> Array:
-	var relative_directions := []
-	for directions in DIRECTIONS:
-		relative_directions.append(unit.cell + directions)
-
-	return relative_directions
+func get_attack_range(unit: Unit) -> Array:
+	return unit.unit_role.get_attackable_cells(unit.cell)
 
 ## Clears, and refills the `_units` dictionary with game objects that are on the board.
 func _reinitialize() -> void:
@@ -292,7 +289,7 @@ func _select_unit(cell: Vector2) -> void:
 	#pre-calulate walkable cells but don't draw them yet
 	_walkable_cells = get_walkable_cells(_active_unit)
 	#getting the attack range
-	_targetable_cells = get_targetable_cells(_active_unit)
+	_attackable_cells = get_attack_range(_active_unit)
 	_unit_path.initialize(_walkable_cells)
 
 #this is the bot/computer movement section 
@@ -349,20 +346,20 @@ func display_attack_overlay() -> void:
 		var filtered_cells : Array = []
 		
 		#Defines the bad coordinates (the corners)
-		#var corners = [
-			#_active_unit.cell + Vector2(-1, 1),  # Top Left
-			#_active_unit.cell + Vector2(1, 1),   # Top Right
-			#_active_unit.cell + Vector2(-1, -1), # Bottom Left
-			#_active_unit.cell + Vector2(1, -1)   # Bottom Right
-		#]
+		var corners = [
+			_active_unit.cell + Vector2(-1, 1),  # Top Left
+			_active_unit.cell + Vector2(1, 1),   # Top Right
+			_active_unit.cell + Vector2(-1, -1), # Bottom Left
+			_active_unit.cell + Vector2(1, -1)   # Bottom Right
+		]
 		
 		#goes through the attackable_cells array and filters the cells to get rid of the corners
-		for cell in _targetable_cells:
+		for cell in _attackable_cells:
 			#only skips the corners if the unit_role is a tank
-			#if _active_unit.unit_role is tank:
-				#if cell in corners:
-					#continue # Skip this cell, don't add it to filtered_cells
-					#
+			if _active_unit.unit_role is tank:
+				if cell in corners:
+					continue # Skip this cell, don't add it to filtered_cells
+					
 			# If we got here, it's a valid cell to draw!
 			filtered_cells.append(cell)
 
@@ -400,14 +397,15 @@ func _clear_active_unit() -> void:
 
 ## Selects or moves a unit based on where the cursor is.
 func _on_Cursor_accept_pressed(cell: Vector2) -> void:
-
+	var direction_attack
+	
 	var damage
 	
 	#okay so this is if it is visible then do the move overlay here
 	if _move_overlay_visable:
 		_move_active_unit(cell)
 		clear_overlay()
-		_targetable_cells = get_targetable_cells(_active_unit)
+		_attackable_cells = get_attack_range(_active_unit)
 	#now we are going to do the attack block
 	#NOTES FOR SELF 
 	#okay if we have the cell which the player has clicked, then we could get the direction through the sign. 
@@ -417,13 +415,11 @@ func _on_Cursor_accept_pressed(cell: Vector2) -> void:
 			print("You have already attacked")
 	
 		#getting all of what we should attack
-		attack_direction = _active_unit.unit_role.get_attackable_cells_direction(_active_unit.cell, cell)
-		if _has_attacked_this_turn == false:	
-			_attackable_cells.append_array(_active_unit.unit_role.get_attackable_cells(_active_unit.cell,attack_direction))
-			for attacking_cell in _attackable_cells:
-				if _units.has(attacking_cell):
-					apply_damage(attacking_cell, _active_unit.unit_role.attack_roll(_active_unit))
-					print(attacking_cell)
+		direction_attack = _active_unit.unit_role.get_attackable_cells_direction(_active_unit.cell, cell)
+		if direction_attack and _has_attacked_this_turn == false:	
+			for direction_cell in direction_attack:
+				if _units.has(direction_cell):
+					apply_damage(direction_cell, _active_unit.unit_role.attack_roll(_active_unit))
 			_has_attacked_this_turn = true
 			clear_overlay()
 	 
@@ -433,7 +429,7 @@ func _on_Cursor_accept_pressed(cell: Vector2) -> void:
 	#if _unit_overlay.get_used_cells(0).size() > 0:
 		#_move_active_unit(cell)
 		#clear_overlay() # Hide tiles after moving
-		#_attackable_cells = get_targetable_cells(_active_unit)
+		#_attackable_cells = get_attack_range(_active_unit)
 		
 	
 ## Updates the interactive path's drawing if there's an active and selected unit.
@@ -447,8 +443,7 @@ func _on_Cursor_moved(new_cell: Vector2) -> void:
 			
 		if _attack_overlay_visable == true and _has_attacked_this_turn == false:
 			#Ask the unit role for the specific directional cells
-			attack_direction = ( _active_unit.unit_role.get_attackable_cells_direction(_active_unit.cell, new_cell))
-			var highlighted_attack_cells = _active_unit.unit_role.get_attackable_cells(_active_unit.cell, attack_direction)
+			var highlighted_attack_cells = _active_unit.unit_role.get_attackable_cells_direction(_active_unit.cell, new_cell)
 			
 		#Draw the result on the specific AttackOverlay
 		#If cleave_cells is empty (diagonal), .draw() will clear the tiles
@@ -481,9 +476,9 @@ func unit_passive():
 
 func apply_damage(target_cell: Vector2, amount: int) -> void:
 	var victim = _units[target_cell]
-	print(victim.current_health)
 	victim.current_health -= amount
 	print("%s took %d damage!" % [victim.name, amount])
+	_update_health_bar.emit()
 	
 	if victim.current_health <= 0:
 		_handle_unit_death(target_cell)
