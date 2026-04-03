@@ -51,13 +51,13 @@ func attack_roll(attacker : Unit) -> int:
 	var die1 = randi_range(1, 6)
 	var die2 = randi_range(1, 6)
 	
-	#accesses the modifier from the attacker's unit_info
-	var modifier = attacker.unit_info.attack
+	#accesses the modifier from the attacker's unit_role
+	var modifier = attacker.unit_role.attack_stat
 	var total_damage = die1 + die2 + modifier
 	
 	print(total_damage)
 	
-	return total_damage
+	return 1
 	
 #block here for each ability 
 func attack():

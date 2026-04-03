@@ -67,7 +67,7 @@ func roll_initiative():
 	
 	for unit in _units.values():
 		# this is a dnd style initiative roll with a d20 equivalent
-		var initiative_unit_roll :int = (randi_range(0,20)) + unit.unit_info.speed
+		var initiative_unit_roll :int = (randi_range(0,20)) + unit.unit_role.speed
 		unit.initiative_stat = initiative_unit_roll
 		initiative_order.append(unit)
 	initiative_bubble_sort(initiative_order)
@@ -416,7 +416,7 @@ func _clear_active_unit() -> void:
 
 ## Selects or moves a unit based on where the cursor is.
 func _on_Cursor_accept_pressed(cell: Vector2) -> void:
-
+	_attackable_cells.clear()
 	var damage
 	
 	#okay so this is if it is visible then do the move overlay here
@@ -475,7 +475,7 @@ func _on_Cursor_moved(new_cell: Vector2) -> void:
 
 ##This is the function where the unit will take damage 
 func damage_unit(unit : Unit, damage : int):
-	unit.unit_info.health - damage
+	unit.unit_role.health - damage
 
 #a block here for calling the unit attack, ability, and passive ability, unit attack and ability that she doesn't 
 func unit_attack():
@@ -499,7 +499,7 @@ func unit_passive():
 
 func apply_damage(target_cell: Vector2, amount: int) -> void:
 	var victim = _units[target_cell]
-	print(victim.current_health)
+	print(victim)
 	victim.current_health -= amount
 	_update_health_bar.emit()
 	print("%s took %d damage!" % [victim.name, amount])

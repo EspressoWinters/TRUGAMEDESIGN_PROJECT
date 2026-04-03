@@ -13,7 +13,6 @@ extends Path2D
 ## Emit a signal when the walk is finished 
 signal walk_finished
 
-@export var unit_info: unit_info
 @export var unit_role: Resource
 
 ## Use the grid to know the grid coordinates and know get access to it calculations
@@ -77,9 +76,9 @@ var _is_walking := false:
 
 #When it loads into the scene tree
 func _ready() -> void:
-	move_range = unit_info.speed
-	move_speed = unit_info.speed * 100
-	max_health = unit_info.max_hp
+	move_range = unit_role.speed
+	move_speed = unit_role.speed * 100
+	max_health = unit_role.max_hp
 	current_health = max_health
 	#makes sure the object doesn't start the _process function
 	set_process(false)

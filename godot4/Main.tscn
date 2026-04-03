@@ -6,13 +6,11 @@
 [ext_resource type="Resource" uid="uid://bj7vassh2i26e" path="res://Entities/GameBoard/Grid.tres" id="4"]
 [ext_resource type="PackedScene" uid="uid://n825j345khoi" path="res://Entities/UnitOverlay/UnitOverlay.tscn" id="5"]
 [ext_resource type="PackedScene" uid="uid://dxyfefsgkgc4l" path="res://Entities/GameBoard/UnitPath.tscn" id="6"]
-[ext_resource type="Resource" uid="uid://b1rxqdwg28psi" path="res://Resources/Unit/Unit_Info.tres" id="8_5vvyt"]
 [ext_resource type="Resource" uid="uid://dhyalatumlvik" path="res://Resources/Classes/Tank/Class_Tank.tres" id="8_20pc6"]
 [ext_resource type="Texture2D" uid="uid://iljdxgodmq5n" path="res://Assets/Units/Tank.png" id="8_wkp8b"]
 [ext_resource type="PackedScene" uid="uid://de53ukdqyusan" path="res://Entities/Background/Map.tscn" id="10"]
 [ext_resource type="PackedScene" uid="uid://bnhj47p63ostv" path="res://Entities/UI/UI.tscn" id="10_wkp8b"]
 [ext_resource type="Resource" uid="uid://bxlihyh6h2ggd" path="res://Resources/Classes/Musketeer/Musketeer.tres" id="12_fpfj3"]
-[ext_resource type="Script" uid="uid://cp40yuagy8qny" path="res://Resources/Unit/Unit_Info.gd" id="13_c2ibq"]
 [ext_resource type="PackedScene" uid="uid://civ2clvctpumk" path="res://Entities/Enemies/basic_enemy.tscn" id="13_c6i3y"]
 [ext_resource type="Texture2D" uid="uid://dx34ow1am5ih6" path="res://Assets/Units/guywithknife.png" id="14_j4qnp"]
 [ext_resource type="PackedScene" uid="uid://cbid3yyxh2mey" path="res://Entities/Attack_Overlay/Attack_Overlay.tscn" id="15_j4qnp"]
@@ -20,10 +18,6 @@
 [sub_resource type="Curve2D" id="Curve2D_trn2v"]
 
 [sub_resource type="Curve2D" id="Curve2D_03owx"]
-
-[sub_resource type="Resource" id="Resource_j4qnp"]
-script = ExtResource("13_c2ibq")
-metadata/_custom_type_script = "uid://cp40yuagy8qny"
 
 [node name="Main" type="Node2D" unique_id=1057318780]
 script = ExtResource("3")
@@ -48,7 +42,6 @@ unique_name_in_owner = true
 [node name="Tank1" parent="." unique_id=2135963956 instance=ExtResource("2")]
 position = Vector2(240, 240)
 curve = SubResource("Curve2D_trn2v")
-unit_info = ExtResource("8_5vvyt")
 unit_role = ExtResource("8_20pc6")
 current_health = 5
 max_health = 5
@@ -57,7 +50,6 @@ skin = ExtResource("8_wkp8b")
 [node name="Tank2" parent="." unique_id=1365851675 instance=ExtResource("2")]
 position = Vector2(200, 200)
 curve = SubResource("Curve2D_03owx")
-unit_info = ExtResource("8_5vvyt")
 unit_role = ExtResource("12_fpfj3")
 current_health = 5
 max_health = 5
@@ -65,7 +57,6 @@ skin = ExtResource("8_wkp8b")
 
 [node name="BasicEnemy" parent="." unique_id=393416970 instance=ExtResource("13_c6i3y")]
 position = Vector2(300, 300)
-unit_info = SubResource("Resource_j4qnp")
 unit_role = ExtResource("8_20pc6")
 grid = ExtResource("4")
 current_health = 5

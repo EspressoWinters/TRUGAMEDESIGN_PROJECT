@@ -4,6 +4,14 @@ extends Resource
 
 @export var skin = Texture2D
 
+@export var ID: int
+@export var Role: String = ""
+@export var max_hp: int = 5
+@export var attack_stat: int = 5
+@export var speed: int = 5
+@export var defense: int = 5
+@export var luck: int = 5
+
 var attack_range: int = 1
 
 #holding the cells that are possibly attackable for the overlay
