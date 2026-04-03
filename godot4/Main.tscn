@@ -11,6 +11,7 @@
 [ext_resource type="Texture2D" uid="uid://iljdxgodmq5n" path="res://Assets/Units/Tank.png" id="8_wkp8b"]
 [ext_resource type="PackedScene" uid="uid://de53ukdqyusan" path="res://Entities/Background/Map.tscn" id="10"]
 [ext_resource type="PackedScene" uid="uid://bnhj47p63ostv" path="res://Entities/UI/UI.tscn" id="10_wkp8b"]
+[ext_resource type="Resource" uid="uid://bxlihyh6h2ggd" path="res://Resources/Classes/Musketeer/Musketeer.tres" id="12_fpfj3"]
 [ext_resource type="Script" uid="uid://cp40yuagy8qny" path="res://Resources/Unit/Unit_Info.gd" id="13_c2ibq"]
 [ext_resource type="PackedScene" uid="uid://civ2clvctpumk" path="res://Entities/Enemies/basic_enemy.tscn" id="13_c6i3y"]
 [ext_resource type="Texture2D" uid="uid://dx34ow1am5ih6" path="res://Assets/Units/guywithknife.png" id="14_j4qnp"]
@@ -57,7 +58,7 @@ skin = ExtResource("8_wkp8b")
 position = Vector2(200, 200)
 curve = SubResource("Curve2D_03owx")
 unit_info = ExtResource("8_5vvyt")
-unit_role = ExtResource("8_20pc6")
+unit_role = ExtResource("12_fpfj3")
 current_health = 5
 max_health = 5
 skin = ExtResource("8_wkp8b")
