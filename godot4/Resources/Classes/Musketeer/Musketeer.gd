@@ -48,5 +48,5 @@ func attack():
 func ability():
 	print("Musketeer is abiltying")
 
-func passive():
+func passive(unit: Unit):
 	pass

@@ -52,6 +52,7 @@ func _ready() -> void:
 		ui.attack_requested.connect(clear_overlay)
 		ui.attack_requested.connect(display_attack_overlay)
 		ui.end_turn_requested.connect(end_turn)
+		ui.ability_requested.connect(unit_ability)
 	else:
 		push_error("GameBoard: UI node not found at path!")
 	
@@ -81,8 +82,11 @@ func start_turn():
 	_cell_of_active_unit = _units.find_key(initiative_order[turn_count])
 	#print(_cell_of_active_unit, "\n", _units.get(_cell_of_active_unit))
 	_select_unit(_cell_of_active_unit)
+	_active_unit.is_taunting = false
 	print("It is now " + _active_unit.name + "'s turn.")
 	print(_active_unit.cell)
+	#activates passive at start of turn
+	_active_unit.unit_role.passive(_active_unit)
 	
 	#doing AI Logic here
 	if _active_unit is BasicEnemy:
@@ -197,6 +201,23 @@ func get_targetable_cells(unit: Unit) -> Array:
 ## Clears, and refills the `_units` dictionary with game objects that are on the board.
 func _reinitialize() -> void:
 	_units.clear()
+	var tank_list = []
+
+	for child in get_children():
+		var unit := child as Unit
+		if not unit: continue
+		
+		_units[unit.cell] = unit
+		unit.gameboard = self 
+		# Check if the unit's role is a Tank
+		if unit.unit_role is tank:
+			tank_list.append(unit)
+	# Now assign charges based on the total count found
+	var total_tanks = tank_list.size()
+	for t in tank_list:
+		# Example: Each tank gets 1 charge for every tank present
+		t.unit_role.taunt_charges = total_tanks
+		print("Tank %s initialized with %d charges." % [t.name, total_tanks])
 	
 	#okay passes a reference to the gameboard here so the enemy unit can use it, maybe I could just pass it to just enemies but for ease of use I am just giving it to all units 
 
@@ -487,7 +508,7 @@ func unit_attack():
 
 func unit_ability():
 	if _active_unit != null:
-		_active_unit.unit_role.ability()
+		_active_unit.unit_role.ability(_active_unit)
 	else:
 		push_warning("Attempted to ability, but _active_unit is null!")
 

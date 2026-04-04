@@ -112,16 +112,16 @@ func get_attackable_cells_direction(origin_cell : Vector2, target_cell : Vector2
 		#pass
 	#return direction_attack_cells
 
-func attack():
-	print("Unit is attacking")
-	print("This is a debugging print statement, if see in game then error")
-
-func ability():
-	print("Unit is abiltying")
-	print("This is a debugging print statement, if see in game then error")
-
-func passive():
-	pass
+#func attack():
+	#print("Unit is attacking")
+	#print("This is a debugging print statement, if see in game then error")
+#
+#func ability():
+	#print("Unit is abiltying")
+	#print("This is a debugging print statement, if see in game then error")
+#
+#func passive():
+	#print("")
 
 func attack_roll(attacker : Unit) -> int:
 	print("AATKATKAKKDSVKzs!!")
