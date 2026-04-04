@@ -21,6 +21,7 @@ signal walk_finished
 var move_range :int
 ## Speed of it visually moving, doesn't actually affect movement
 var move_speed :int
+var is_taunting: bool = false
 
 @export var current_health: int
 @export var max_health: int

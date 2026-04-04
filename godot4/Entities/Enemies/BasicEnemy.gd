@@ -11,9 +11,10 @@ extends Unit
 
 #going to keep an array of all human players, so that we can keep track of those pesky humans 
 var human_units := []
-
+var tank_units := []
 #hold the value of the closest unit 
 var closest_unit : Unit
+var taunter_found := false
 
 #going to go for a hail mary here and just put this code here
 #current plan, may get rid of this later, just commenting for myself
@@ -32,11 +33,18 @@ func find_closet_human_character():
 		return 
 	
 	human_units.clear() #needed to prevent the array from keeping duplicate units
+	tank_units.clear() #needed for same reason as above
+	var taunter_found := false #needed to reset the bool every turn
 	
 	#let's get all the units that are human in the array
 	for unit in gameboard._units.values():
 		if unit is not BasicEnemy:
 			human_units.append(unit)
+			if unit.unit_role and unit.unit_role is tank and unit.is_taunting:
+				taunter_found = true
+				tank_units.append(unit)
+	
+	
 	
 	#now we need to calculate the who is the closest 
 	#we are using Manhattan distance = | X1 - X2 | + | Y1 - Y2 |, not Eucledian as that would get us errors 
@@ -54,17 +62,35 @@ func find_closet_human_character():
 	for unit in human_units:
 		#doing the manhattan distance calculation
 		temp_distance = abs(unit.cell.x - self.cell.x) + abs(unit.cell.y - self.cell.y)
-		#'closest' one we found so far in previous loops.
-		if temp_distance <= 1:
 			#since it IS closer, update our record of the shortest distance.
 			#least_distance = temp_distance
 			#this is the unit the AI will eventually move toward or attack.
 			#least_distance_unit = unit
 			#by returning null here the gameboard's if near_tile check will faill and ai will stand still when next to a unit
-			return null
-		elif temp_distance < least_distance:
-			least_distance = temp_distance
-			least_distance_unit = unit
+		
+		#tank is taunting. 
+		#the enemy MUST ignore everyone who isn't a taunting tank.
+		if taunter_found:
+			if unit.unit_role is tank and unit.is_taunting:
+				#if we are already next to the Tank stop moving
+				if temp_distance <= 1:
+					return null
+				#find the closest taunting tank
+				if temp_distance < least_distance:
+					least_distance = temp_distance
+					least_distance_unit = unit
+			else:
+				continue
+
+		#no one is taunting Use normal closest human stuff
+		else:
+			#same as before if already next to unit stop moving
+			if temp_distance <= 1:
+				return null
+			
+			if temp_distance < least_distance:
+				least_distance = temp_distance
+				least_distance_unit = unit
 	#
 	#print("-----------------------")
 	#print(least_distance_unit)
