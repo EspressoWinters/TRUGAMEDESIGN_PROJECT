@@ -11,6 +11,10 @@
 [ext_resource type="PackedScene" uid="uid://de53ukdqyusan" path="res://Entities/Background/Map.tscn" id="10"]
 [ext_resource type="PackedScene" uid="uid://bnhj47p63ostv" path="res://Entities/UI/UI.tscn" id="10_wkp8b"]
 [ext_resource type="Resource" uid="uid://bxlihyh6h2ggd" path="res://Resources/Classes/Musketeer/Musketeer.tres" id="12_fpfj3"]
+[ext_resource type="Resource" uid="uid://dhyalatumlvik" path="res://Resources/Classes/Tank/Class_Tank.tres" id="11_j4qnp"]
+[ext_resource type="PackedScene" uid="uid://civ2clvctpumk" path="res://Entities/Enemies/basic_enemy.tscn" id="13_c6i3y"]
+[ext_resource type="Resource" uid="uid://b62e2fu6oowdg" path="res://Resources/Classes/Basic Enemy/Basic_enemy.tres" id="13_j4qnp"]
+[ext_resource type="Texture2D" uid="uid://dx34ow1am5ih6" path="res://Assets/Units/guywithknife.png" id="14_j4qnp"]
 [ext_resource type="PackedScene" uid="uid://cbid3yyxh2mey" path="res://Entities/Attack_Overlay/Attack_Overlay.tscn" id="15_j4qnp"]
 
 [sub_resource type="Curve2D" id="Curve2D_trn2v"]
@@ -48,7 +52,7 @@ skin = ExtResource("8_wkp8b")
 [node name="Tank2" parent="." unique_id=1365851675 instance=ExtResource("2")]
 position = Vector2(200, 200)
 curve = SubResource("Curve2D_03owx")
-unit_role = ExtResource("12_fpfj3")
+unit_role = ExtResource("11_j4qnp")
 current_health = 5
 max_health = 5
 skin = ExtResource("8_wkp8b")
