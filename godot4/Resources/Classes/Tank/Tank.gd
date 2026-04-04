@@ -1,6 +1,7 @@
 class_name tank
 #now we are extending 
 extends Unit_Interaction
+var Role = ""
 
 #because for some reason in Godot you can't just access parent variables, therefroe 
 func init():
