@@ -46,8 +46,8 @@ func get_attackable_cells(origin_cell : Vector2, direction : Vector2):
 func attack():
 	print("Musketeer is attacking")
 
-func ability():
+func ability(unit: Unit):
 	print("Musketeer is abiltying")
 
-func passive():
+func passive(unit: Unit):
 	pass

@@ -3,6 +3,8 @@ class_name tank
 extends Unit_Interaction
 var Role = ""
 
+var taunt_charges : int = 0
+
 #because for some reason in Godot you can't just access parent variables, therefroe 
 func init():
 	attack_range = 3
@@ -64,11 +66,19 @@ func attack_roll(attacker : Unit) -> int:
 func attack():
 	print("Tank is attacking")
 
-func ability():
-	print("Tank is abiltying")
+func ability(unit: Unit):
+	if taunt_charges > 0:
+		taunt_charges -= 1
+		unit.is_taunting = true
+		print("%s TAUNTED! Charges remaining: %d" % [unit.name, taunt_charges])
+	else:
+		print("No taunt charges left!")
 
-func passive():
-	pass
-
+func passive(unit: Unit):
+	var heal_amount = 5
+	unit.current_health += heal_amount
+	unit.current_health = clamp(unit.current_health, 0, unit.max_health)
+	unit.set_health_bar()
+	print("Tank passive healed for 5!")
 
  
