@@ -5,7 +5,7 @@ extends Resource
 @export var skin = Texture2D
 
 @export var ID: int
-@export var Role: String = ""
+#@export var Role: String = ""
 @export var max_hp: int = 5
 @export var attack_stat: int = 5
 @export var speed: int = 5
@@ -20,6 +20,8 @@ var attackable_cells : Array = []
 #holding the cells in the direction of the attack 
 var direction_attack_cells : Array = []
 
+var on_fire:bool = false
+var turns_left_on_fire: int = 0
 
 #this is just going to be for the attack overlay
 func get_attackable_cells(origin_cell : Vector2, direction : Vector2):
@@ -42,75 +44,7 @@ func get_attackable_cells_direction(origin_cell : Vector2, target_cell : Vector2
 	#now it should be converted into either 1,0,-1
 	#direction_attack_cells.append(difference)
 	return difference
-	
-	
-	#now we just do the possible cases here
-	
-	#this needs to definetly be shorten up a bit 
-	
-	##first case, the down direction 
-	#if difference.x == 0 and difference.y == 1:
-		##loop through the attackable cell
-		#for cell in attackable_cells:
-			#tempDifference = cell - origin_cell
-			#tempDifference.sign()
-			##must mean it was above the coodinates
-			##for example (3,5)"cell" - (1,1)"origin" would equal 1 since it is taller
-			#if ((tempDifference.y) == 1): 
-				##this cell must be above it
-				#direction_attack_cells.append(cell)
-		#
-			#
-				#
-		#return direction_attack_cells
-	##up case 
-	#elif difference.x == 0 and difference.y == -1:
-		##loop through attackable cells again
-		#for cell in attackable_cells:
-			#tempDifference = cell - origin_cell
-			#tempDifference.sign()
-			##this means it must be below it
-			#if ((tempDifference.y) == (-1)):
-				#direction_attack_cells.append(cell)
-				#
-		#for cell in direction_attack_cells:
-			#print(cell)
-		#return direction_attack_cells
-	##right case 
-	#elif difference.x == 1 and difference.y == 0:
-		#for cell in attackable_cells:
-			#tempDifference = cell - origin_cell
-			#tempDifference.sign()
-			##slide to the right cha cha real smooth 
-			#if (tempDifference.x == 1):
-				#direction_attack_cells.append(cell)
-				#
-		#for cell in direction_attack_cells:
-			#print(cell)
-			#
-		#return direction_attack_cells
-	#elif difference.x == -1 and difference.y == 0:
-		#for cell in attackable_cells:
-			#tempDifference = cell - origin_cell
-			#tempDifference.sign()
-			#if (tempDifference.x == -1):
-				#direction_attack_cells.append(cell)
-				#
-		#for cell in direction_attack_cells:
-			#print(cell)
-			#
-		#return direction_attack_cells
-	##okay now the more complicated and probably more common diagonal cases 
-	##upper right corner case 
-	#elif difference.x == 1 and difference.y == 1: 
-		#for cell in attackable_cells:
-			#tempDifference = cell - origin_cell
-			#tempDifference.sign()
-			#
-		#for cell in direction_attack_cells:
-			#print(cell)
-		#pass
-	#return direction_attack_cells
+
 
 #func attack():
 	#print("Unit is attacking")

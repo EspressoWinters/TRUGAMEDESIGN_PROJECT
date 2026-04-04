@@ -42,6 +42,10 @@ var _move_overlay_visable := false
 #having the attack overlay
 var _attack_overlay_visable := false
 
+var fire_dot_damage: int = 1
+var fire_dot_turns: int = 3
+
+
 #when the gameboard is called into the scene it will clear its dicitonary of units then fill it up again with the units in tjhe active scenee
 func _ready() -> void:
 	_reinitialize()
@@ -85,6 +89,12 @@ func start_turn():
 	_active_unit.is_taunting = false
 	print("It is now " + _active_unit.name + "'s turn.")
 	print(_active_unit.cell)
+	#print(_active_unit.unit_role.turns_left_on_fire)
+	if _active_unit.unit_role.turns_left_on_fire > 0:
+		apply_damage(_active_unit.cell,fire_dot_damage,null)
+		_active_unit.unit_role.turns_left_on_fire -= 1
+	elif _active_unit.unit_role.turns_left_on_fire == 0 and _active_unit.unit_role.on_fire:
+		_active_unit.unit_role.on_fire = false
 	#activates passive at start of turn
 	_active_unit.unit_role.passive(_active_unit)
 	
@@ -127,7 +137,7 @@ func initiative_bubble_sort(initiative_array: Array):
 			if (initiative_array[j].initiative_stat < initiative_array[j+1].initiative_stat):
 				swap(initiative_array, j, j+1)
 			
-	print(initiative_array)
+	#print(initiative_array)
 
 ##Godot doesn't have a swap function so we decided to create our own just in case we ever need to swap again,
 func swap(initiative_array: Array, i : int, j : int):
@@ -139,7 +149,7 @@ func swap(initiative_array: Array, i : int, j : int):
 	initiative_array[i]=a
 	initiative_array[j]=b
 	#Just debugging
-	print ("A:",a, "\nB:",b)
+	#print ("A:",a, "\nB:",b)
 #General input handler, only for deselecting here
 #func _unhandled_input(event: InputEvent) -> void:
 	#deselects the current unit when 'ui_cancel' hit if one is selected
@@ -459,7 +469,7 @@ func _on_Cursor_accept_pressed(cell: Vector2) -> void:
 			_attackable_cells.append_array(_active_unit.unit_role.get_attackable_cells(_active_unit.cell,attack_direction))
 			for attacking_cell in _attackable_cells:
 				if _units.has(attacking_cell):
-					apply_damage(attacking_cell, _active_unit.unit_role.attack_roll(_active_unit))
+					apply_damage(attacking_cell, _active_unit.unit_role.attack_roll(_active_unit), _active_unit)
 					print(attacking_cell)
 			_has_attacked_this_turn = true
 			clear_overlay()
@@ -518,9 +528,13 @@ func unit_passive():
 	else:
 		push_warning("Attempted to passive, but _active_unit is null!")
 
-func apply_damage(target_cell: Vector2, amount: int) -> void:
+func apply_damage(target_cell: Vector2, amount: int, attacker: Unit) -> void:
 	var victim = _units[target_cell]
 	print(victim)
+	if attacker:
+		if attacker.unit_role.Role == "Flamethrower":
+			victim.unit_role.on_fire = true
+			victim.unit_role.turns_left_on_fire = fire_dot_turns
 	victim.current_health -= amount
 	_update_health_bar.emit()
 	print("%s took %d damage!" % [victim.name, amount])

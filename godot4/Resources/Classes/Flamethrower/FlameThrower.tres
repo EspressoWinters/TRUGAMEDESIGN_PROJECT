@@ -1,0 +1,6 @@
+[gd_resource type="Resource" script_class="Flamethrower" format=3 uid="uid://dnttimsxfk83r"]
+
+[ext_resource type="Script" uid="uid://boy2lo7qhecj6" path="res://Resources/Classes/Flamethrower/Flamethrower.gd" id="1_hgfj1"]
+
+[resource]
+script = ExtResource("1_hgfj1")
