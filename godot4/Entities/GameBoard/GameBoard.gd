@@ -532,7 +532,7 @@ func apply_damage(target_cell: Vector2, amount: int, attacker: Unit) -> void:
 	var victim = _units[target_cell]
 	print(victim)
 	if attacker:
-		if attacker.unit_role.Role == "Flamethrower":
+		if attacker.unit_role is Flamethrower:
 			victim.unit_role.on_fire = true
 			victim.unit_role.turns_left_on_fire = fire_dot_turns
 	victim.current_health -= amount
@@ -544,6 +544,8 @@ func apply_damage(target_cell: Vector2, amount: int, attacker: Unit) -> void:
 
 func _handle_unit_death(cell: Vector2) -> void:
 	var unit_to_remove = _units[cell]
+	print("Pre: ", _units)
 	_units.erase(cell)
+	print("post: ",_units)
 	initiative_order.erase(unit_to_remove)
 	unit_to_remove.queue_free()
