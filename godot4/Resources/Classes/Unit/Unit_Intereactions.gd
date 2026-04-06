@@ -24,7 +24,7 @@ var on_fire:bool = false
 var turns_left_on_fire: int = 0
 
 #this is just going to be for the attack overlay
-func get_attackable_cells(origin_cell : Vector2, direction : Vector2):
+func get_attackable_cells(origin_cell : Vector2, direction : Vector2, caller_name : String):
 	print("Getting the attack cells")
 	return attackable_cells
 

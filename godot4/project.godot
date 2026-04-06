@@ -31,6 +31,10 @@ window/stretch/aspect="expand"
 window/size/width=1280
 window/size/height=720
 
+[global_group]
+
+player_units=""
+
 [input]
 
 move_right={

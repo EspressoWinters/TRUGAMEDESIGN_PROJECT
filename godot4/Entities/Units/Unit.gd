@@ -124,3 +124,7 @@ func walk_along(path: PackedVector2Array) -> void:
 
 func set_health_bar() -> void:
 	$Healthbar.value = current_health
+
+func reset_health() -> void:
+	current_health = max_health
+	$Healthbar.value = current_health

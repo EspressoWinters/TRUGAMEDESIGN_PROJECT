@@ -40,7 +40,7 @@ func find_closet_human_character():
 	for unit in gameboard._units.values():
 		if unit is not BasicEnemy:
 			human_units.append(unit)
-			if unit.unit_role and unit.unit_role is tank and unit.is_taunting:
+			if unit.unit_role and unit.unit_role is Tank and unit.is_taunting:
 				taunter_found = true
 				tank_units.append(unit)
 	
@@ -71,7 +71,7 @@ func find_closet_human_character():
 		#tank is taunting. 
 		#the enemy MUST ignore everyone who isn't a taunting tank.
 		if taunter_found:
-			if unit.unit_role is tank and unit.is_taunting:
+			if unit.unit_role is Tank and unit.is_taunting:
 				#if we are already next to the Tank stop moving
 				if temp_distance <= 1:
 					return null

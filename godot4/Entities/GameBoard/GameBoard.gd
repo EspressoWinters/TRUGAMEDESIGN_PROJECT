@@ -89,6 +89,13 @@ func start_turn():
 	_active_unit.is_taunting = false
 	print("It is now " + _active_unit.name + "'s turn.")
 	print(_active_unit.cell)
+	
+	if _active_unit.unit_role is Medic:
+		for healing_cell in _active_unit.unit_role.passive(_active_unit):
+			if _units.has(healing_cell):
+				apply_damage(healing_cell, -1, _active_unit)
+				print(healing_cell)
+	
 	#print(_active_unit.unit_role.turns_left_on_fire)
 	if _active_unit.unit_role.turns_left_on_fire > 0:
 		apply_damage(_active_unit.cell,fire_dot_damage,null)
@@ -220,7 +227,7 @@ func _reinitialize() -> void:
 		_units[unit.cell] = unit
 		unit.gameboard = self 
 		# Check if the unit's role is a Tank
-		if unit.unit_role is tank:
+		if unit.unit_role is Tank:
 			tank_list.append(unit)
 	# Now assign charges based on the total count found
 	var total_tanks = tank_list.size()
@@ -466,7 +473,7 @@ func _on_Cursor_accept_pressed(cell: Vector2) -> void:
 		#getting all of what we should attack
 		attack_direction = _active_unit.unit_role.get_attackable_cells_direction(_active_unit.cell, cell)
 		if _has_attacked_this_turn == false and cell in _targetable_cells:
-			_attackable_cells.append_array(_active_unit.unit_role.get_attackable_cells(_active_unit.cell,attack_direction))
+			_attackable_cells.append_array(_active_unit.unit_role.get_attackable_cells(_active_unit.cell,attack_direction, "null"))
 			for attacking_cell in _attackable_cells:
 				if _units.has(attacking_cell):
 					apply_damage(attacking_cell, _active_unit.unit_role.attack_roll(_active_unit), _active_unit)
@@ -496,7 +503,7 @@ func _on_Cursor_moved(new_cell: Vector2) -> void:
 		#Ask the unit role for the specific directional cells
 		if new_cell in _targetable_cells:
 			attack_direction = ( _active_unit.unit_role.get_attackable_cells_direction(_active_unit.cell, new_cell))
-			highlighted_attack_cells = _active_unit.unit_role.get_attackable_cells(_active_unit.cell, attack_direction)
+			highlighted_attack_cells = _active_unit.unit_role.get_attackable_cells(_active_unit.cell, attack_direction, "null")
 			
 		#Draw the result on the specific AttackOverlay
 		#If cleave_cells is empty (diagonal), .draw() will clear the tiles
@@ -526,7 +533,7 @@ func unit_passive():
 	if _active_unit != null:
 		_active_unit.unit_role.passive()
 	else:
-		push_warning("Attempted to passive, but _active_unit is null!")
+		push_warning("Attempted to passive, but _activecaller_name : String_unit is null!")
 
 func apply_damage(target_cell: Vector2, amount: int, attacker: Unit) -> void:
 	var victim = _units[target_cell]
@@ -535,9 +542,13 @@ func apply_damage(target_cell: Vector2, amount: int, attacker: Unit) -> void:
 		if attacker.unit_role.Role == "Flamethrower":
 			victim.unit_role.on_fire = true
 			victim.unit_role.turns_left_on_fire = fire_dot_turns
+	
 	victim.current_health -= amount
 	_update_health_bar.emit()
 	print("%s took %d damage!" % [victim.name, amount])
+		
+	if victim.current_health >= victim.max_health:
+		victim.current_health = victim.max_health
 	
 	if victim.current_health <= 0:
 		_handle_unit_death(target_cell)
