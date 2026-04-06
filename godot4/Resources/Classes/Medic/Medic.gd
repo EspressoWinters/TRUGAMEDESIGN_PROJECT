@@ -71,7 +71,16 @@ func attack():
 	pass
 
 func ability(unit: Unit):
-	pass
+#get everyone in the "units" group
+	var all_potential_targets = unit.get_tree().get_nodes_in_group("player_units")
+	   
+	for target in all_potential_targets:
+		#check if the target is NOT a BasicEnemy
+		if not (target is BasicEnemy) and target.has_method("heal"):
+			target.heal(20) #heal amount
+			print("Healed ally: ", target.name)
+		else:
+			print("Skipped healing: ", target.name, " (Enemy or invalid)")
 func passive(unit: Unit):
 	var healing_aoe_cells = get_attackable_cells(unit.cell, Vector2(0,0), "passive")
 	return healing_aoe_cells

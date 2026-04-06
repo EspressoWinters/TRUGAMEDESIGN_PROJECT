@@ -45,6 +45,7 @@ var _attack_overlay_visable := false
 var fire_dot_damage: int = 1
 var fire_dot_turns: int = 3
 
+signal enemy_done_moving
 
 #when the gameboard is called into the scene it will clear its dicitonary of units then fill it up again with the units in tjhe active scenee
 func _ready() -> void:
@@ -93,8 +94,11 @@ func start_turn():
 	if _active_unit.unit_role is Medic:
 		for healing_cell in _active_unit.unit_role.passive(_active_unit):
 			if _units.has(healing_cell):
-				apply_damage(healing_cell, -1, _active_unit)
-				print(healing_cell)
+				var target_unit = _units[healing_cell]
+				
+				if target_unit.is_in_group("player_units"):
+					apply_damage(healing_cell, -1, _active_unit)
+					print(healing_cell)
 	
 	#print(_active_unit.unit_role.turns_left_on_fire)
 	if _active_unit.unit_role.turns_left_on_fire > 0:
@@ -116,8 +120,10 @@ func start_turn():
 		if near_tile:
 			#moving the unit near the tile 
 			_move_active_unit(near_tile)
+			enemy_done_moving.emit()
 			end_turn()
-		else: 
+		else:
+			enemy_done_moving.emit()
 			end_turn()
 			print("I'm already as close as can be!")
 
@@ -226,6 +232,11 @@ func _reinitialize() -> void:
 		
 		_units[unit.cell] = unit
 		unit.gameboard = self 
+		
+		if unit is BasicEnemy:
+			if not enemy_done_moving.is_connected(unit.check_and_attack_adjacent):
+				enemy_done_moving.connect(unit.check_and_attack_adjacent)
+		
 		# Check if the unit's role is a Tank
 		if unit.unit_role is Tank:
 			tank_list.append(unit)
@@ -552,6 +563,8 @@ func apply_damage(target_cell: Vector2, amount: int, attacker: Unit) -> void:
 	
 	if victim.current_health <= 0:
 		_handle_unit_death(target_cell)
+	
+	DamageNumbers.display_number(amount, victim.global_position, false)
 
 func _handle_unit_death(cell: Vector2) -> void:
 	var unit_to_remove = _units[cell]
