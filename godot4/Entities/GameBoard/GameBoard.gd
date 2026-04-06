@@ -44,7 +44,7 @@ var _attack_overlay_visable := false
 
 var fire_dot_damage: int = 1
 var fire_dot_turns: int = 3
-
+var flame_explosion_damage: int = 3
 
 #when the gameboard is called into the scene it will clear its dicitonary of units then fill it up again with the units in tjhe active scenee
 func _ready() -> void:
@@ -88,12 +88,12 @@ func start_turn():
 	_select_unit(_cell_of_active_unit)
 	_active_unit.is_taunting = false
 	print("It is now " + _active_unit.name + "'s turn.")
-	print(_active_unit.cell)
+	print(_active_unit.unit_role.on_fire)
 	#print(_active_unit.unit_role.turns_left_on_fire)
-	if _active_unit.unit_role.turns_left_on_fire > 0:
+	if _active_unit.unit_role.turns_left_on_fire > 0 and _active_unit.unit_role.on_fire == true:
 		apply_damage(_active_unit.cell,fire_dot_damage,null)
 		_active_unit.unit_role.turns_left_on_fire -= 1
-	elif _active_unit.unit_role.turns_left_on_fire == 0 and _active_unit.unit_role.on_fire:
+	elif _active_unit.unit_role.turns_left_on_fire == 0 and _active_unit.unit_role.on_fire == true:
 		_active_unit.unit_role.on_fire = false
 	#activates passive at start of turn
 	_active_unit.unit_role.passive(_active_unit)
@@ -116,6 +116,9 @@ func start_turn():
 
 ##This will end the turn of the individual unit, it will also check at the end whether to start a new round or not
 func end_turn():
+
+	
+	
 	_deselect_active_unit()
 	clear_overlay()
 	
@@ -519,6 +522,19 @@ func unit_attack():
 func unit_ability():
 	if _active_unit != null:
 		_active_unit.unit_role.ability(_active_unit)
+				#Logic for flamethrower ability damage
+		if _active_unit.unit_role.explodering:
+			if _active_unit.unit_role.explodering == true:
+				for unit in _units:
+					if _units.get(unit).unit_role.on_fire:
+						apply_damage(unit, flame_explosion_damage, _active_unit)
+						_units.get(unit).unit_role.on_fire = false
+						_units.get(unit).unit_role.turns_left_on_fire = 0
+					else:
+						continue
+				_active_unit.unit_role.explodering = false
+			else:
+				pass
 	else:
 		push_warning("Attempted to ability, but _active_unit is null!")
 
@@ -544,8 +560,6 @@ func apply_damage(target_cell: Vector2, amount: int, attacker: Unit) -> void:
 
 func _handle_unit_death(cell: Vector2) -> void:
 	var unit_to_remove = _units[cell]
-	print("Pre: ", _units)
 	_units.erase(cell)
-	print("post: ",_units)
 	initiative_order.erase(unit_to_remove)
 	unit_to_remove.queue_free()
