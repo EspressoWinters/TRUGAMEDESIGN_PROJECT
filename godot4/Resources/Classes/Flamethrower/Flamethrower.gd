@@ -1,7 +1,7 @@
 class_name Flamethrower 
 extends Unit_Interaction
 
-var Role = "Flamethrower"
+
 #because for some reason in Godot you can't just access parent variables, therefroe 
 func init():
 	print("here")
@@ -48,7 +48,9 @@ func attack():
 	print("Musketeer is attacking")
 
 func ability(unit: Unit):
+	explodering = true
 	print("Musketeer is abiltying")
+	
 
 func passive(unit: Unit):
 	pass

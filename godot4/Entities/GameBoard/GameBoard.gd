@@ -42,10 +42,16 @@ var _move_overlay_visable := false
 #having the attack overlay
 var _attack_overlay_visable := false
 
+
+#firethrower passive variables 
 var fire_dot_damage: int = 1
 var fire_dot_turns: int = 3
 
 signal enemy_done_moving
+#grenaider speed boost passive 
+var has_done_speed_boost_once := false 
+
+var flame_explosion_damage: int = 3
 
 #when the gameboard is called into the scene it will clear its dicitonary of units then fill it up again with the units in tjhe active scenee
 func _ready() -> void:
@@ -100,12 +106,33 @@ func start_turn():
 					apply_damage(healing_cell, -1, _active_unit)
 					print(healing_cell)
 	
+	print(_active_unit.unit_role.on_fire)
 	#print(_active_unit.unit_role.turns_left_on_fire)
-	if _active_unit.unit_role.turns_left_on_fire > 0:
+	if _active_unit.unit_role.turns_left_on_fire > 0 and _active_unit.unit_role.on_fire == true:
 		apply_damage(_active_unit.cell,fire_dot_damage,null)
 		_active_unit.unit_role.turns_left_on_fire -= 1
-	elif _active_unit.unit_role.turns_left_on_fire == 0 and _active_unit.unit_role.on_fire:
+	elif _active_unit.unit_role.turns_left_on_fire == 0 and _active_unit.unit_role.on_fire == true:
 		_active_unit.unit_role.on_fire = false
+		
+	#checking at the start of turn to turn off the grenadier speed boost
+	
+	if _active_unit.unit_role.Role == "Grenadier":
+		#need to halve the speed back to base
+		if _active_unit.unit_role.has_used_speed_boost == true and has_done_speed_boost_once == false:
+			#should be back to the original stat now 
+			_active_unit.unit_role.speed /= 2
+			_active_unit.recalculate_speed()
+			_walkable_cells = get_walkable_cells(_active_unit)
+			#now we need to update thy path 
+			_unit_path.initialize(_walkable_cells)
+			
+			if _move_overlay_visable:
+				_unit_overlay.clear()
+				_unit_overlay.draw(_walkable_cells)
+			#need to reset that 
+			has_done_speed_boost_once = true 
+			
+	
 	#activates passive at start of turn
 	_active_unit.unit_role.passive(_active_unit)
 	
@@ -129,6 +156,9 @@ func start_turn():
 
 ##This will end the turn of the individual unit, it will also check at the end whether to start a new round or not
 func end_turn():
+
+	
+	
 	_deselect_active_unit()
 	clear_overlay()
 	
@@ -421,16 +451,26 @@ func display_attack_overlay() -> void:
 			#_active_unit.cell + Vector2(1, -1)   # Bottom Right
 		#]
 		
-		#goes through the attackable_cells array and filters the cells to get rid of the corners
-		for cell in _targetable_cells:
-			#only skips the corners if the unit_role is a tank
-			#if _active_unit.unit_role is tank:
-				#if cell in corners:
-					#continue # Skip this cell, don't add it to filtered_cells
-					#
-			# If we got here, it's a valid cell to draw!
-			filtered_cells.append(cell)
-
+		#goes through the attackable_cells array and filters the cells to get rid of the corner\
+		#okay this should currently work
+		if _active_unit.unit_role.Role != "Grenadier":
+			for cell in _targetable_cells:
+				#only skips the corners if the unit_role is a tank
+				#if _active_unit.unit_role is tank:
+					#if cell in corners:
+						#continue # Skip this cell, don't add it to filtered_cells
+						#
+				# If we got here, it's a valid cell to draw!
+				filtered_cells.append(cell)
+		#Grenadier case 
+		elif _active_unit.unit_role.Role == "Grenadier":
+			
+			filtered_cells.append_array(_active_unit.unit_role.get_attack_range(_active_unit.cell))
+			
+			#may need to reverse this 
+			#filtered_cells.append_array(_active_unit.unit_role.get_attackable_cells(_active_unit.cell))
+			#for cell in _attackable_cells:
+				#filtered_cells
 		# 4. Draw the filtered list
 		if _active_unit:
 			_unit_overlay.clear()
@@ -468,29 +508,65 @@ func _on_Cursor_accept_pressed(cell: Vector2) -> void:
 	_attackable_cells.clear()
 	var damage
 	
+	var range_limit
+	
 	#okay so this is if it is visible then do the move overlay here
 	if _move_overlay_visable:
 		_move_active_unit(cell)
 		clear_overlay()
-		_targetable_cells = get_targetable_cells(_active_unit)
+		#okay so we are using _targetable_cells for the non_grenadier units 
+		#the grenadier unit does not need it so we shouldn't use it for them 
+		if _active_unit.unit_role.Role != "Grenadier":
+			_targetable_cells = get_targetable_cells(_active_unit)
 	#now we are going to do the attack block
 	#NOTES FOR SELF 
 	#okay if we have the cell which the player has clicked, then we could get the direction through the sign. 
 	#that way we could do direction
+	
+	#this may be broken because for some reason the fire thrower can attack mutiple times 
 	elif _attack_overlay_visable:
+		
+		#don't know why it is broken, always something new eh? 
 		if _has_attacked_this_turn: 
 			print("You have already attacked")
 	
 		#getting all of what we should attack
-		attack_direction = _active_unit.unit_role.get_attackable_cells_direction(_active_unit.cell, cell)
+		#this doesn't need to be an attack direciton for the grenadier I think
+		#holy if statements
+		if _active_unit.unit_role.Role != "Grenadier":
+			attack_direction = _active_unit.unit_role.get_attackable_cells_direction(_active_unit.cell, cell)
+		
 		if _has_attacked_this_turn == false and cell in _targetable_cells:
 			_attackable_cells.append_array(_active_unit.unit_role.get_attackable_cells(_active_unit.cell,attack_direction, "null"))
+			#non Grenadier case 
+			#redudant, but keeping it for now
+			if _active_unit.unit_role.Role != "Grenadier":
+				_attackable_cells.append_array(_active_unit.unit_role.get_attackable_cells(_active_unit.cell,attack_direction))
+				for attacking_cell in _attackable_cells:
+					if _units.has(attacking_cell):
+						apply_damage(attacking_cell, _active_unit.unit_role.attack_roll(_active_unit), _active_unit)
+						print(attacking_cell)
+		elif _has_attacked_this_turn == false and _active_unit.unit_role.Role == "Grenadier" :
+			
+			#okay getting the whole range for the unit? 
+			#I guess the limit for the attack would be this so we would need it? 
+			range_limit = _active_unit.unit_role.get_attack_range(_active_unit.cell)
+			
+			if cell not in range_limit:
+				print("Out of bombing range")
+				return
+			
+			#that is the blast radius of the attack 
+			_attackable_cells.append_array(_active_unit.unit_role.get_attackable_cells(cell))
+			
+			#okay this is just the attack block
 			for attacking_cell in _attackable_cells:
-				if _units.has(attacking_cell):
+				if _units.has(attacking_cell) and attacking_cell in range_limit:
 					apply_damage(attacking_cell, _active_unit.unit_role.attack_roll(_active_unit), _active_unit)
 					print(attacking_cell)
-			_has_attacked_this_turn = true
-			clear_overlay()
+				
+		_has_attacked_this_turn = true
+		clear_overlay()
 	 
 	
 	#old block of previous implementation
@@ -516,10 +592,31 @@ func _on_Cursor_moved(new_cell: Vector2) -> void:
 			attack_direction = ( _active_unit.unit_role.get_attackable_cells_direction(_active_unit.cell, new_cell))
 			highlighted_attack_cells = _active_unit.unit_role.get_attackable_cells(_active_unit.cell, attack_direction, "null")
 			
+		if _active_unit.unit_role.Role != "Grenadier":
+			if new_cell in _targetable_cells:
+				attack_direction = ( _active_unit.unit_role.get_attackable_cells_direction(_active_unit.cell, new_cell))
+				highlighted_attack_cells = _active_unit.unit_role.get_attackable_cells(_active_unit.cell, attack_direction)
+		#should be the grenadier because it doesn't need direction 
+		else:
+			# so we are getting the attack range of the grenaider 
+			#probably should just be this?
+			#highlighted_attack_cells = _active_unit.unit_role.get_attack_range(_active_unit.cell)
+			#should not be on the origin of unit rather the mouse hover
+			#please work
+			highlighted_attack_cells = _active_unit.unit_role.get_attackable_cells(new_cell)
 		#Draw the result on the specific AttackOverlay
 		#If cleave_cells is empty (diagonal), .draw() will clear the tiles
 		if _attack_overlay:
 			_attack_overlay.draw(highlighted_attack_cells)
+
+#okay we are going to use a grid clamp, but just reuse it for this attack
+#the basic idea is that I am trying to clamp it to the edge of the attack range
+#func attack_clamp(grid_position: Vector2) -> Vector2:
+	#var out := grid_position
+	##Correcting the off by one error
+	#out.x = clamp(out.x, 0, size.x - 1.0)
+	#out.y = clamp(out.y, 0, size.y - 1.0)
+	#return out
 
 
 ##This is the function where the unit will take damage 
@@ -534,15 +631,45 @@ func unit_attack():
 	else:
 		push_warning("No active unit to attack!")
 
+
 func unit_ability():
 	if _active_unit != null:
 		_active_unit.unit_role.ability(_active_unit)
+		#need to recalculate the speed if the _active_unit is the Grenadier doing their speed boost ability
+		if _active_unit.unit_role.Role == "Grenadier":
+			_active_unit.recalculate_speed() 
+			#need to get the walkable cells 
+			_walkable_cells = get_walkable_cells(_active_unit)
+			
+			#now we need to update thy path 
+			_unit_path.initialize(_walkable_cells)
+			
+			#now may need to change to refesh overlay 
+			if _move_overlay_visable:
+				_unit_overlay.clear()
+				_unit_overlay.draw(_walkable_cells)
+				
+				#Logic for flamethrower ability damage
+		if _active_unit.unit_role.explodering:
+			if _active_unit.unit_role.explodering == true:
+				for unit in _units:
+					if _units.get(unit).unit_role.on_fire:
+						apply_damage(unit, flame_explosion_damage, _active_unit)
+						_units.get(unit).unit_role.on_fire = false
+						_units.get(unit).unit_role.turns_left_on_fire = 0
+					else:
+						continue
+				_active_unit.unit_role.explodering = false
+			else:
+				pass
 	else:
 		push_warning("Attempted to ability, but _active_unit is null!")
 
 func unit_passive():
 	if _active_unit != null:
+		
 		_active_unit.unit_role.passive()
+		
 	else:
 		push_warning("Attempted to passive, but _activecaller_name : String_unit is null!")
 
@@ -550,10 +677,15 @@ func apply_damage(target_cell: Vector2, amount: int, attacker: Unit) -> void:
 	var victim = _units[target_cell]
 	print(victim)
 	if attacker:
+		#Damage over time passive
 		if attacker.unit_role.Role == "Flamethrower":
 			victim.unit_role.on_fire = true
 			victim.unit_role.turns_left_on_fire = fire_dot_turns
-	
+		#1/4 Grenade damage to self
+		if attacker.unit_role.Role == "Grenadier":
+			if victim == attacker:
+				#quartering the damage to self
+				amount *= 0.25
 	victim.current_health -= amount
 	_update_health_bar.emit()
 	print("%s took %d damage!" % [victim.name, amount])

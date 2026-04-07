@@ -1,7 +1,7 @@
 class_name Tank
 #now we are extending 
 extends Unit_Interaction
-var Role = ""
+var Role = "Tank"
 
 var taunt_charges : int = 0
 

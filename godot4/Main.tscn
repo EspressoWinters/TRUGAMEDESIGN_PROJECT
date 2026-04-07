@@ -7,13 +7,10 @@
 [ext_resource type="PackedScene" uid="uid://n825j345khoi" path="res://Entities/UnitOverlay/UnitOverlay.tscn" id="5"]
 [ext_resource type="PackedScene" uid="uid://dxyfefsgkgc4l" path="res://Entities/GameBoard/UnitPath.tscn" id="6"]
 [ext_resource type="Texture2D" uid="uid://iljdxgodmq5n" path="res://Assets/Units/Tank.png" id="8_wkp8b"]
-[ext_resource type="Resource" uid="uid://dnttimsxfk83r" path="res://Resources/Classes/Flamethrower/FlameThrower.tres" id="9_j4qnp"]
+[ext_resource type="Resource" uid="uid://dhyalatumlvik" path="res://Resources/Classes/Tank/Class_Tank.tres" id="9_j4qnp"]
 [ext_resource type="PackedScene" uid="uid://de53ukdqyusan" path="res://Entities/Background/Map.tscn" id="10"]
 [ext_resource type="PackedScene" uid="uid://bnhj47p63ostv" path="res://Entities/UI/UI.tscn" id="10_wkp8b"]
-[ext_resource type="Resource" uid="uid://b8amy4dvpx5oc" path="res://Resources/Classes/Medic/Medic.tres" id="11_j4qnp"]
-[ext_resource type="PackedScene" uid="uid://civ2clvctpumk" path="res://Entities/Enemies/basic_enemy.tscn" id="13_c6i3y"]
-[ext_resource type="Resource" uid="uid://b62e2fu6oowdg" path="res://Resources/Classes/Basic Enemy/Basic_enemy.tres" id="13_j4qnp"]
-[ext_resource type="Texture2D" uid="uid://dx34ow1am5ih6" path="res://Assets/Units/guywithknife.png" id="14_j4qnp"]
+[ext_resource type="Resource" uid="uid://dhyalatumlvik" path="res://Resources/Classes/Tank/Class_Tank.tres" id="11_j4qnp"]
 [ext_resource type="PackedScene" uid="uid://cbid3yyxh2mey" path="res://Entities/Attack_Overlay/Attack_Overlay.tscn" id="15_j4qnp"]
 [ext_resource type="Resource" uid="uid://bxlihyh6h2ggd" path="res://Resources/Classes/Musketeer/Musketeer.tres" id="16_sc1dx"]
 
@@ -58,14 +55,6 @@ unit_role = ExtResource("11_j4qnp")
 current_health = 5
 max_health = 5
 skin = ExtResource("8_wkp8b")
-
-[node name="BasicEnemy" parent="." unique_id=393416970 instance=ExtResource("13_c6i3y")]
-position = Vector2(300, 300)
-unit_role = ExtResource("13_j4qnp")
-grid = ExtResource("4")
-current_health = 5
-max_health = 5
-skin = ExtResource("14_j4qnp")
 
 [node name="Ui" parent="." unique_id=1993505447 instance=ExtResource("10_wkp8b")]
 unique_name_in_owner = true

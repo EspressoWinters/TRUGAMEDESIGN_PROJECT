@@ -108,6 +108,14 @@ func _process(delta: float) -> void:
 		position = grid.calculate_map_position(cell)
 		curve.clear_points()
 		emit_signal("walk_finished")
+		
+
+##Recalculating the speed for some edge cases 
+func recalculate_speed():
+	
+	move_range = unit_role.speed
+	move_speed = unit_role.speed * 100 
+	
 
 
 ## Starts walking along the `path`.
