@@ -5,7 +5,7 @@ extends Resource
 @export var skin = Texture2D
 
 @export var ID: int
-#@export var Role: String = ""
+@export var Role: String = ""
 @export var max_hp: int = 5
 @export var attack_stat: int = 5
 @export var speed: int = 5
@@ -22,6 +22,7 @@ var direction_attack_cells : Array = []
 
 var on_fire:bool = false
 var turns_left_on_fire: int = 0
+var explodering : bool = false
 
 #this is just going to be for the attack overlay
 func get_attackable_cells(origin_cell : Vector2, direction : Vector2):
