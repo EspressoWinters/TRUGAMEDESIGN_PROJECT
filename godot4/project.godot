@@ -19,6 +19,10 @@ run/main_scene="uid://xgmbb8el1xj4"
 config/features=PackedStringArray("4.6")
 config/icon="res://icon.png"
 
+[autoload]
+
+DamageNumbers="*uid://dpx4yq3ulp1kl"
+
 [display]
 
 window/size/viewport_width=640
@@ -30,6 +34,10 @@ window/stretch/mode="viewport"
 window/stretch/aspect="expand"
 window/size/width=1280
 window/size/height=720
+
+[global_group]
+
+player_units=""
 
 [input]
 

@@ -1,0 +1,6 @@
+[gd_resource type="Resource" script_class="media" format=3 uid="uid://b8amy4dvpx5oc"]
+
+[ext_resource type="Script" uid="uid://cci7liaxfi0a1" path="res://Resources/Classes/Medic/Medic.gd" id="1_2utxa"]
+
+[resource]
+script = ExtResource("1_2utxa")

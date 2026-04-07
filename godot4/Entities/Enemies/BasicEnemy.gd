@@ -22,7 +22,6 @@ var taunter_found := false
 #keep _ready as that is just calculating the movement speed and making sure the process is not setting off instantly
 #keep walk_along as it is just keeping the curve that the path it will follow
 
-
 #let's create a function to find the closet player character
 func find_closet_human_character():
 	
@@ -40,7 +39,7 @@ func find_closet_human_character():
 	for unit in gameboard._units.values():
 		if unit is not BasicEnemy:
 			human_units.append(unit)
-			if unit.unit_role and unit.unit_role is tank and unit.is_taunting:
+			if unit.unit_role and unit.unit_role is Tank and unit.is_taunting:
 				taunter_found = true
 				tank_units.append(unit)
 	
@@ -71,7 +70,7 @@ func find_closet_human_character():
 		#tank is taunting. 
 		#the enemy MUST ignore everyone who isn't a taunting tank.
 		if taunter_found:
-			if unit.unit_role is tank and unit.is_taunting:
+			if unit.unit_role is Tank and unit.is_taunting:
 				#if we are already next to the Tank stop moving
 				if temp_distance <= 1:
 					return null
@@ -96,3 +95,15 @@ func find_closet_human_character():
 	#print(least_distance_unit)
 	#print("-----------------------")
 	return least_distance_unit
+		
+		
+func check_and_attack_adjacent():
+	for unit in gameboard._units.values():
+		if unit is BasicEnemy: continue
+		
+		#calculate distance from our NEW position (self.cell)
+		var d = abs(unit.cell.x - self.cell.x) + abs(unit.cell.y - self.cell.y)
+		
+		if d <= 1:
+			gameboard.apply_damage(unit.cell, 1, self)
+			

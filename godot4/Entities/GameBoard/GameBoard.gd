@@ -47,6 +47,7 @@ var _attack_overlay_visable := false
 var fire_dot_damage: int = 1
 var fire_dot_turns: int = 3
 
+signal enemy_done_moving
 #grenaider speed boost passive 
 var has_done_speed_boost_once := false 
 
@@ -94,6 +95,17 @@ func start_turn():
 	_select_unit(_cell_of_active_unit)
 	_active_unit.is_taunting = false
 	print("It is now " + _active_unit.name + "'s turn.")
+	print(_active_unit.cell)
+	
+	if _active_unit.unit_role is Medic:
+		for healing_cell in _active_unit.unit_role.passive(_active_unit):
+			if _units.has(healing_cell):
+				var target_unit = _units[healing_cell]
+				
+				if target_unit.is_in_group("player_units"):
+					apply_damage(healing_cell, -1, _active_unit)
+					print(healing_cell)
+	
 	print(_active_unit.unit_role.on_fire)
 	#print(_active_unit.unit_role.turns_left_on_fire)
 	if _active_unit.unit_role.turns_left_on_fire > 0 and _active_unit.unit_role.on_fire == true:
@@ -135,8 +147,10 @@ func start_turn():
 		if near_tile:
 			#moving the unit near the tile 
 			_move_active_unit(near_tile)
+			enemy_done_moving.emit()
 			end_turn()
-		else: 
+		else:
+			enemy_done_moving.emit()
 			end_turn()
 			print("I'm already as close as can be!")
 
@@ -248,8 +262,13 @@ func _reinitialize() -> void:
 		
 		_units[unit.cell] = unit
 		unit.gameboard = self 
+		
+		if unit is BasicEnemy:
+			if not enemy_done_moving.is_connected(unit.check_and_attack_adjacent):
+				enemy_done_moving.connect(unit.check_and_attack_adjacent)
+		
 		# Check if the unit's role is a Tank
-		if unit.unit_role is tank:
+		if unit.unit_role is Tank:
 			tank_list.append(unit)
 	# Now assign charges based on the total count found
 	var total_tanks = tank_list.size()
@@ -518,6 +537,7 @@ func _on_Cursor_accept_pressed(cell: Vector2) -> void:
 			attack_direction = _active_unit.unit_role.get_attackable_cells_direction(_active_unit.cell, cell)
 		
 		if _has_attacked_this_turn == false and cell in _targetable_cells:
+			_attackable_cells.append_array(_active_unit.unit_role.get_attackable_cells(_active_unit.cell,attack_direction, "null"))
 			#non Grenadier case 
 			#redudant, but keeping it for now
 			if _active_unit.unit_role.Role != "Grenadier":
@@ -568,6 +588,10 @@ func _on_Cursor_moved(new_cell: Vector2) -> void:
 		
 	if _attack_overlay_visable == true and _has_attacked_this_turn == false:
 		#Ask the unit role for the specific directional cells
+		if new_cell in _targetable_cells:
+			attack_direction = ( _active_unit.unit_role.get_attackable_cells_direction(_active_unit.cell, new_cell))
+			highlighted_attack_cells = _active_unit.unit_role.get_attackable_cells(_active_unit.cell, attack_direction, "null")
+			
 		if _active_unit.unit_role.Role != "Grenadier":
 			if new_cell in _targetable_cells:
 				attack_direction = ( _active_unit.unit_role.get_attackable_cells_direction(_active_unit.cell, new_cell))
@@ -647,7 +671,7 @@ func unit_passive():
 		_active_unit.unit_role.passive()
 		
 	else:
-		push_warning("Attempted to passive, but _active_unit is null!")
+		push_warning("Attempted to passive, but _activecaller_name : String_unit is null!")
 
 func apply_damage(target_cell: Vector2, amount: int, attacker: Unit) -> void:
 	var victim = _units[target_cell]
@@ -665,9 +689,14 @@ func apply_damage(target_cell: Vector2, amount: int, attacker: Unit) -> void:
 	victim.current_health -= amount
 	_update_health_bar.emit()
 	print("%s took %d damage!" % [victim.name, amount])
+		
+	if victim.current_health >= victim.max_health:
+		victim.current_health = victim.max_health
 	
 	if victim.current_health <= 0:
 		_handle_unit_death(target_cell)
+	
+	DamageNumbers.display_number(amount, victim.global_position, false)
 
 func _handle_unit_death(cell: Vector2) -> void:
 	var unit_to_remove = _units[cell]
