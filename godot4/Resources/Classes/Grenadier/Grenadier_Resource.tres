@@ -1,0 +1,6 @@
+[gd_resource type="Resource" script_class="Grenadier" format=3 uid="uid://pgb7b1sofgni"]
+
+[ext_resource type="Script" uid="uid://d322pjscifge8" path="res://Resources/Classes/Grenadier/Grenadier.gd" id="1_w5fgi"]
+
+[resource]
+script = ExtResource("1_w5fgi")

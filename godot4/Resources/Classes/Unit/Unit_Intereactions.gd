@@ -59,6 +59,7 @@ func get_attackable_cells_direction(origin_cell : Vector2, target_cell : Vector2
 
 func attack_roll(attacker : Unit) -> int:
 	print("AATKATKAKKDSVKzs!!")
-	return 1
+	#making it four because I want to see if grenade dude passive works 
+	return 4
 
  
