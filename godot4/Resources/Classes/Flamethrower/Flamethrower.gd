@@ -9,7 +9,7 @@ func init():
 
 
 #think chess king for the attack pattern. I actually have no bloody clue what the attack range is even meant for 
-func get_attackable_cells(origin_cell : Vector2, direction : Vector2,caller_name : String):
+func get_attackable_cells(origin_cell : Vector2, caller_name : String, direction : Vector2):
 	attackable_cells.clear()
 	#I guess I'll have to do it by hand because I can't see any other way of doing this 
 	#left to the origin

@@ -11,7 +11,7 @@ func init():
 
 #think chess king for the attack pattern. I actually have no bloody clue what the attack range is even meant for
 #maybe here this could be for the overlay and another one handles the users choice 
-func get_attackable_cells(origin_cell : Vector2, direction : Vector2,caller_name : String):
+func get_attackable_cells(origin_cell : Vector2, caller_name : String, direction : Vector2):
 	#just clearing it so it didn't save from last time
 	attackable_cells.clear()
 	#I guess I'll have to do it by hand because I can't see any other way of doing this 

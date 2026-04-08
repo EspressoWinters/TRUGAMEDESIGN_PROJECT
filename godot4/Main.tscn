@@ -2,17 +2,22 @@
 
 [ext_resource type="PackedScene" uid="uid://bv1ul1qynrdwd" path="res://Entities/GameBoard/Cursor/Cursor.tscn" id="1"]
 [ext_resource type="PackedScene" uid="uid://d4mhjq651egt" path="res://Entities/Units/Unit.tscn" id="2"]
+[ext_resource type="Resource" uid="uid://b62e2fu6oowdg" path="res://Resources/Classes/Basic Enemy/Basic_enemy.tres" id="2_sc1dx"]
 [ext_resource type="Script" uid="uid://dagxku00ifba6" path="res://Entities/GameBoard/GameBoard.gd" id="3"]
 [ext_resource type="Resource" uid="uid://bj7vassh2i26e" path="res://Entities/GameBoard/Grid.tres" id="4"]
 [ext_resource type="PackedScene" uid="uid://n825j345khoi" path="res://Entities/UnitOverlay/UnitOverlay.tscn" id="5"]
 [ext_resource type="PackedScene" uid="uid://dxyfefsgkgc4l" path="res://Entities/GameBoard/UnitPath.tscn" id="6"]
 [ext_resource type="Texture2D" uid="uid://iljdxgodmq5n" path="res://Assets/Units/Tank.png" id="8_wkp8b"]
-[ext_resource type="Resource" uid="uid://dhyalatumlvik" path="res://Resources/Classes/Tank/Class_Tank.tres" id="9_j4qnp"]
+[ext_resource type="Resource" uid="uid://dnttimsxfk83r" path="res://Resources/Classes/Flamethrower/FlameThrower.tres" id="9_c6i3y"]
 [ext_resource type="PackedScene" uid="uid://de53ukdqyusan" path="res://Entities/Background/Map.tscn" id="10"]
 [ext_resource type="PackedScene" uid="uid://bnhj47p63ostv" path="res://Entities/UI/UI.tscn" id="10_wkp8b"]
+[ext_resource type="Resource" uid="uid://b8amy4dvpx5oc" path="res://Resources/Classes/Medic/Medic.tres" id="11_c2ibq"]
 [ext_resource type="Resource" uid="uid://dhyalatumlvik" path="res://Resources/Classes/Tank/Class_Tank.tres" id="11_j4qnp"]
+[ext_resource type="Resource" uid="uid://pgb7b1sofgni" path="res://Resources/Classes/Grenadier/Grenadier_Resource.tres" id="14_j4qnp"]
 [ext_resource type="PackedScene" uid="uid://cbid3yyxh2mey" path="res://Entities/Attack_Overlay/Attack_Overlay.tscn" id="15_j4qnp"]
+[ext_resource type="PackedScene" uid="uid://civ2clvctpumk" path="res://Entities/Enemies/basic_enemy.tscn" id="16_kjvhd"]
 [ext_resource type="Resource" uid="uid://bxlihyh6h2ggd" path="res://Resources/Classes/Musketeer/Musketeer.tres" id="16_sc1dx"]
+[ext_resource type="Texture2D" uid="uid://dx34ow1am5ih6" path="res://Assets/Units/guywithknife.png" id="18_kjvhd"]
 
 [sub_resource type="Curve2D" id="Curve2D_trn2v"]
 
@@ -22,7 +27,7 @@
 
 [node name="Main" type="Node2D" unique_id=1057318780]
 script = ExtResource("3")
-grid = ExtResource("4")
+grid = ExtResource("2_sc1dx")
 
 [node name="Map" parent="." unique_id=1615484314 instance=ExtResource("10")]
 unique_name_in_owner = true
@@ -43,7 +48,7 @@ unique_name_in_owner = true
 [node name="Flamethrower" parent="." unique_id=2135963956 instance=ExtResource("2")]
 position = Vector2(240, 240)
 curve = SubResource("Curve2D_trn2v")
-unit_role = ExtResource("9_j4qnp")
+unit_role = ExtResource("9_c6i3y")
 current_health = 5
 max_health = 5
 skin = ExtResource("8_wkp8b")
@@ -51,7 +56,7 @@ skin = ExtResource("8_wkp8b")
 [node name="Medic" parent="." unique_id=1365851675 instance=ExtResource("2")]
 position = Vector2(200, 200)
 curve = SubResource("Curve2D_03owx")
-unit_role = ExtResource("11_j4qnp")
+unit_role = ExtResource("11_c2ibq")
 current_health = 5
 max_health = 5
 skin = ExtResource("8_wkp8b")
@@ -66,6 +71,22 @@ unit_role = ExtResource("16_sc1dx")
 current_health = 5
 max_health = 5
 skin = ExtResource("8_wkp8b")
+
+[node name="Granader" parent="." unique_id=318286111 instance=ExtResource("2")]
+position = Vector2(255, 193)
+unit_role = ExtResource("14_j4qnp")
+skin = ExtResource("8_wkp8b")
+
+[node name="Tank" parent="." unique_id=252684278 instance=ExtResource("2")]
+position = Vector2(310, 222)
+unit_role = ExtResource("11_j4qnp")
+skin = ExtResource("8_wkp8b")
+
+[node name="BasicEnemy" parent="." unique_id=393416970 instance=ExtResource("16_kjvhd")]
+position = Vector2(300, 100)
+unit_role = ExtResource("2_sc1dx")
+grid = ExtResource("4")
+skin = ExtResource("18_kjvhd")
 
 [connection signal="accept_pressed" from="Cursor" to="." method="_on_Cursor_accept_pressed"]
 [connection signal="moved" from="Cursor" to="." method="_on_Cursor_moved"]

@@ -116,7 +116,7 @@ func start_turn():
 		
 	#checking at the start of turn to turn off the grenadier speed boost
 	
-	if _active_unit.unit_role.Role == "Grenadier":
+	if _active_unit.unit_role is Grenadier:
 		#need to halve the speed back to base
 		if _active_unit.unit_role.has_used_speed_boost == true and has_done_speed_boost_once == false:
 			#should be back to the original stat now 
@@ -453,7 +453,7 @@ func display_attack_overlay() -> void:
 		
 		#goes through the attackable_cells array and filters the cells to get rid of the corner\
 		#okay this should currently work
-		if _active_unit.unit_role.Role != "Grenadier":
+		if _active_unit.unit_role is not Grenadier:
 			for cell in _targetable_cells:
 				#only skips the corners if the unit_role is a tank
 				#if _active_unit.unit_role is tank:
@@ -463,7 +463,7 @@ func display_attack_overlay() -> void:
 				# If we got here, it's a valid cell to draw!
 				filtered_cells.append(cell)
 		#Grenadier case 
-		elif _active_unit.unit_role.Role == "Grenadier":
+		elif _active_unit.unit_role is Grenadier:
 			
 			filtered_cells.append_array(_active_unit.unit_role.get_attack_range(_active_unit.cell))
 			
@@ -516,7 +516,7 @@ func _on_Cursor_accept_pressed(cell: Vector2) -> void:
 		clear_overlay()
 		#okay so we are using _targetable_cells for the non_grenadier units 
 		#the grenadier unit does not need it so we shouldn't use it for them 
-		if _active_unit.unit_role.Role != "Grenadier":
+		if _active_unit.unit_role is not  Grenadier:
 			_targetable_cells = get_targetable_cells(_active_unit)
 	#now we are going to do the attack block
 	#NOTES FOR SELF 
@@ -533,20 +533,20 @@ func _on_Cursor_accept_pressed(cell: Vector2) -> void:
 		#getting all of what we should attack
 		#this doesn't need to be an attack direciton for the grenadier I think
 		#holy if statements
-		if _active_unit.unit_role.Role != "Grenadier":
+		if _active_unit.unit_role is not Grenadier:
 			attack_direction = _active_unit.unit_role.get_attackable_cells_direction(_active_unit.cell, cell)
 		
 		if _has_attacked_this_turn == false and cell in _targetable_cells:
-			_attackable_cells.append_array(_active_unit.unit_role.get_attackable_cells(_active_unit.cell,attack_direction, "null"))
+			_attackable_cells.append_array(_active_unit.unit_role.get_attackable_cells(_active_unit.cell,"null", attack_direction))
 			#non Grenadier case 
 			#redudant, but keeping it for now
-			if _active_unit.unit_role.Role != "Grenadier":
-				_attackable_cells.append_array(_active_unit.unit_role.get_attackable_cells(_active_unit.cell,attack_direction))
+			if _active_unit.unit_role is not  Grenadier:
+				_attackable_cells.append_array(_active_unit.unit_role.get_attackable_cells(_active_unit.cell,"null", attack_direction))
 				for attacking_cell in _attackable_cells:
 					if _units.has(attacking_cell):
 						apply_damage(attacking_cell, _active_unit.unit_role.attack_roll(_active_unit), _active_unit)
 						print(attacking_cell)
-		elif _has_attacked_this_turn == false and _active_unit.unit_role.Role == "Grenadier" :
+		elif _has_attacked_this_turn == false and _active_unit.unit_role is  Grenadier:
 			
 			#okay getting the whole range for the unit? 
 			#I guess the limit for the attack would be this so we would need it? 
@@ -590,12 +590,12 @@ func _on_Cursor_moved(new_cell: Vector2) -> void:
 		#Ask the unit role for the specific directional cells
 		if new_cell in _targetable_cells:
 			attack_direction = ( _active_unit.unit_role.get_attackable_cells_direction(_active_unit.cell, new_cell))
-			highlighted_attack_cells = _active_unit.unit_role.get_attackable_cells(_active_unit.cell, attack_direction, "null")
+			highlighted_attack_cells = _active_unit.unit_role.get_attackable_cells(_active_unit.cell, "null", attack_direction)
 			
-		if _active_unit.unit_role.Role != "Grenadier":
+		if _active_unit.unit_role is not  Grenadier:
 			if new_cell in _targetable_cells:
 				attack_direction = ( _active_unit.unit_role.get_attackable_cells_direction(_active_unit.cell, new_cell))
-				highlighted_attack_cells = _active_unit.unit_role.get_attackable_cells(_active_unit.cell, attack_direction)
+				highlighted_attack_cells = _active_unit.unit_role.get_attackable_cells(_active_unit.cell, "null", attack_direction)
 		#should be the grenadier because it doesn't need direction 
 		else:
 			# so we are getting the attack range of the grenaider 
@@ -636,7 +636,7 @@ func unit_ability():
 	if _active_unit != null:
 		_active_unit.unit_role.ability(_active_unit)
 		#need to recalculate the speed if the _active_unit is the Grenadier doing their speed boost ability
-		if _active_unit.unit_role.Role == "Grenadier":
+		if _active_unit.unit_role is  Grenadier:
 			_active_unit.recalculate_speed() 
 			#need to get the walkable cells 
 			_walkable_cells = get_walkable_cells(_active_unit)
@@ -678,11 +678,11 @@ func apply_damage(target_cell: Vector2, amount: int, attacker: Unit) -> void:
 	print(victim)
 	if attacker:
 		#Damage over time passive
-		if attacker.unit_role.Role == "Flamethrower":
+		if attacker.unit_role is  Flamethrower:
 			victim.unit_role.on_fire = true
 			victim.unit_role.turns_left_on_fire = fire_dot_turns
 		#1/4 Grenade damage to self
-		if attacker.unit_role.Role == "Grenadier":
+		if attacker.unit_role is  Grenadier:
 			if victim == attacker:
 				#quartering the damage to self
 				amount *= 0.25

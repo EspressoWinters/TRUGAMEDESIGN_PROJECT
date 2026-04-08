@@ -1,8 +1,6 @@
 class_name Grenadier 
 extends Unit_Interaction
 
-var Role = "Grenadier"
-
 
 var has_used_speed_boost : bool = false
 
@@ -48,7 +46,7 @@ func get_attack_range(origin_cell: Vector2) -> Array:
 #this will get their blase radius from the explosion 
 #the origin cell here is different compared to the other units, it is actually going to be where the cell is pressed 
 #FUCK!!!! KILL ME!!, this is going to be a pain in the ass to do the overlay  ain't it?
-func get_attackable_cells(origin_cell : Vector2, direction : Vector2 = Vector2.ZERO):
+func get_attackable_cells(origin_cell : Vector2, caller_name : String, direction : Vector2 = Vector2.ZERO):
 	var cell
 	#clear it, probably because we don't need it now because we have the origin piece
 	attackable_cells.clear()
