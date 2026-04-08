@@ -5,11 +5,12 @@ extends Resource
 @export var skin = Texture2D
 
 @export var ID: int
-@export var max_hp: int = 5
+@export var max_hp: int = 20
 @export var attack_stat: int = 5
 @export var speed: int = 5
 @export var defense: int = 5
 @export var luck: int = 5
+@export var crit: bool = false
 
 var attack_range: int = 1
 
@@ -61,5 +62,3 @@ func attack_roll(attacker : Unit) -> int:
 	print("AATKATKAKKDSVKzs!!")
 	#making it four because I want to see if grenade dude passive works 
 	return 4
-
- 

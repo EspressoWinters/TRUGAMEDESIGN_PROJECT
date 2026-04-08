@@ -105,5 +105,5 @@ func check_and_attack_adjacent():
 		var d = abs(unit.cell.x - self.cell.x) + abs(unit.cell.y - self.cell.y)
 		
 		if d <= 1:
-			gameboard.apply_damage(unit.cell, 1, self)
+			gameboard.apply_damage(unit.cell, unit_role.attack_roll(self), self, unit_role.crit)
 			

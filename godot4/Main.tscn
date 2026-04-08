@@ -25,9 +25,13 @@
 
 [sub_resource type="Curve2D" id="Curve2D_fpfj3"]
 
+[sub_resource type="Curve2D" id="Curve2D_sc1dx"]
+
+[sub_resource type="Curve2D" id="Curve2D_kjvhd"]
+
 [node name="Main" type="Node2D" unique_id=1057318780]
 script = ExtResource("3")
-grid = ExtResource("2_sc1dx")
+grid = ExtResource("4")
 
 [node name="Map" parent="." unique_id=1615484314 instance=ExtResource("10")]
 unique_name_in_owner = true
@@ -74,18 +78,26 @@ skin = ExtResource("8_wkp8b")
 
 [node name="Granader" parent="." unique_id=318286111 instance=ExtResource("2")]
 position = Vector2(255, 193)
+curve = SubResource("Curve2D_sc1dx")
 unit_role = ExtResource("14_j4qnp")
+current_health = 5
+max_health = 5
 skin = ExtResource("8_wkp8b")
 
 [node name="Tank" parent="." unique_id=252684278 instance=ExtResource("2")]
 position = Vector2(310, 222)
+curve = SubResource("Curve2D_kjvhd")
 unit_role = ExtResource("11_j4qnp")
+current_health = 5
+max_health = 5
 skin = ExtResource("8_wkp8b")
 
 [node name="BasicEnemy" parent="." unique_id=393416970 instance=ExtResource("16_kjvhd")]
-position = Vector2(300, 100)
+position = Vector2(400, 150)
 unit_role = ExtResource("2_sc1dx")
 grid = ExtResource("4")
+current_health = 5
+max_health = 5
 skin = ExtResource("18_kjvhd")
 
 [connection signal="accept_pressed" from="Cursor" to="." method="_on_Cursor_accept_pressed"]

@@ -3,8 +3,7 @@ class_name Medic
 extends Unit_Interaction
 var Role = "Medic"
 
-var taunt_charges : int = 0
-
+var has_global_healed = false
 #because for some reason in Godot you can't just access parent variables, therefroe 
 func init():
 	attack_range = 3
@@ -57,14 +56,23 @@ func get_attackable_cells(origin_cell : Vector2, caller_name : String, direction
 func attack_roll(attacker : Unit) -> int:
 	var die1 = randi_range(1, 6)
 	var die2 = randi_range(1, 6)
+	var crit = randf_range(0.0,100.0) #using float for percentage
 	
+	
+	var total_damage: int
 	#accesses the modifier from the attacker's unit_role
 	var modifier = attacker.unit_role.attack_stat
-	var total_damage = die1 + die2 + modifier
-	
+	if crit <= luck:
+		var crit_multiplier = 2.0
+		print("CRITICAL HIT!")
+		total_damage = (((die1 + die2 + modifier) * crit_multiplier) * -1)
+		crit = true
+	else:
+		total_damage = ((die1 + die2 + modifier) * -1)
+		crit = false
 	print(total_damage)
 	
-	return -1
+	return total_damage
 	
 #block here for each ability 
 func attack():
@@ -73,16 +81,18 @@ func attack():
 func ability(unit: Unit):
 #get everyone in the "units" group
 	var all_potential_targets = unit.get_tree().get_nodes_in_group("player_units")
-	   
-	for target in all_potential_targets:
-		#check if the target is NOT a BasicEnemy
-		if not (target is BasicEnemy) and target.has_method("heal"):
-			target.heal(20) #heal amount
-			print("Healed ally: ", target.name)
-		else:
-			print("Skipped healing: ", target.name, " (Enemy or invalid)")
+	
+	if has_global_healed == false:
+		for target in all_potential_targets:
+			#check if the target is NOT a BasicEnemy
+			has_global_healed = true
+			if not (target is BasicEnemy) and target.has_method("heal"):
+				target.heal(20) #heal amount
+				print("Healed ally: ", target.name)
+			else:
+				print("Skipped healing: ", target.name, " (Enemy or invalid or has already global healed)")
+	else:
+		print("Has already global healed this battle")
 func passive(unit: Unit):
 	var healing_aoe_cells = get_attackable_cells(unit.cell, "passive", Vector2(0,0))
 	return healing_aoe_cells
-	
- 

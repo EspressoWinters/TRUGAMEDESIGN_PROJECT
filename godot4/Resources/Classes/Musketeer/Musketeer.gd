@@ -41,6 +41,29 @@ func get_attackable_cells(origin_cell : Vector2, caller_name : String, direction
 
 	
 	return attackable_cells
+
+func attack_roll(attacker : Unit) -> int:
+	var die1 = randi_range(1, 6)
+	var die2 = randi_range(1, 6)
+	var crit = randf_range(0.0,100.0) #using float for percentage
+	
+	var marksmen_luck = luck + 5
+	
+	var total_damage: int
+	#accesses the modifier from the attacker's unit_role
+	var modifier = attacker.unit_role.attack_stat
+	if crit <= marksmen_luck:
+		var crit_multiplier = 3.0
+		print("CRITICAL HIT!")
+		total_damage = ((die1 + die2 + modifier) * crit_multiplier)
+		crit = true
+	else:
+		total_damage = (die1 + die2 + modifier)
+		crit = false
+	print(total_damage)
+	
+	return total_damage
+
 #block here for each ability 
 func attack():
 	print("Musketeer is attacking")

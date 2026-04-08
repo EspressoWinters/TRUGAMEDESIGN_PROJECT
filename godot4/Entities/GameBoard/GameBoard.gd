@@ -103,13 +103,13 @@ func start_turn():
 				var target_unit = _units[healing_cell]
 				
 				if target_unit.is_in_group("player_units"):
-					apply_damage(healing_cell, -1, _active_unit)
+					apply_damage(healing_cell, -1, _active_unit, false)
 					print(healing_cell)
 	
 	print(_active_unit.unit_role.on_fire)
 	#print(_active_unit.unit_role.turns_left_on_fire)
 	if _active_unit.unit_role.turns_left_on_fire > 0 and _active_unit.unit_role.on_fire == true:
-		apply_damage(_active_unit.cell,fire_dot_damage,null)
+		apply_damage(_active_unit.cell,fire_dot_damage,null, false)
 		_active_unit.unit_role.turns_left_on_fire -= 1
 	elif _active_unit.unit_role.turns_left_on_fire == 0 and _active_unit.unit_role.on_fire == true:
 		_active_unit.unit_role.on_fire = false
@@ -506,8 +506,6 @@ func _clear_active_unit() -> void:
 ## Selects or moves a unit based on where the cursor is.
 func _on_Cursor_accept_pressed(cell: Vector2) -> void:
 	_attackable_cells.clear()
-	var damage
-	
 	var range_limit
 	
 	#okay so this is if it is visible then do the move overlay here
@@ -516,38 +514,35 @@ func _on_Cursor_accept_pressed(cell: Vector2) -> void:
 		clear_overlay()
 		#okay so we are using _targetable_cells for the non_grenadier units 
 		#the grenadier unit does not need it so we shouldn't use it for them 
-		if _active_unit.unit_role is not  Grenadier:
+		if _active_unit.unit_role is not Grenadier:
 			_targetable_cells = get_targetable_cells(_active_unit)
-	#now we are going to do the attack block
-	#NOTES FOR SELF 
-	#okay if we have the cell which the player has clicked, then we could get the direction through the sign. 
-	#that way we could do direction
-	
-	#this may be broken because for some reason the fire thrower can attack mutiple times 
+
+	# now we are going to do the attack block
 	elif _attack_overlay_visable:
-		
-		#don't know why it is broken, always something new eh? 
+		# check if they've already acted
 		if _has_attacked_this_turn: 
 			print("You have already attacked")
-	
-		#getting all of what we should attack
-		#this doesn't need to be an attack direciton for the grenadier I think
-		#holy if statements
+			return
+
+		#NON-GRENADIER BLOCK (Flamethrower, etc.)
 		if _active_unit.unit_role is not Grenadier:
+			#getting all of what we should attack
+			#this doesn't need to be an attack direciton for the grenadier I think
 			attack_direction = _active_unit.unit_role.get_attackable_cells_direction(_active_unit.cell, cell)
-		
-		if _has_attacked_this_turn == false and cell in _targetable_cells:
-			_attackable_cells.append_array(_active_unit.unit_role.get_attackable_cells(_active_unit.cell,"null", attack_direction))
-			#non Grenadier case 
-			#redudant, but keeping it for now
-			if _active_unit.unit_role is not  Grenadier:
-				_attackable_cells.append_array(_active_unit.unit_role.get_attackable_cells(_active_unit.cell,"null", attack_direction))
+			
+			if cell in _targetable_cells:
+				_attackable_cells = _active_unit.unit_role.get_attackable_cells(_active_unit.cell, "null", attack_direction)
+				
 				for attacking_cell in _attackable_cells:
 					if _units.has(attacking_cell):
-						apply_damage(attacking_cell, _active_unit.unit_role.attack_roll(_active_unit), _active_unit)
+						apply_damage(attacking_cell, _active_unit.unit_role.attack_roll(_active_unit), _active_unit, _active_unit.unit_role.crit)
 						print(attacking_cell)
-		elif _has_attacked_this_turn == false and _active_unit.unit_role is  Grenadier:
-			
+				
+				_has_attacked_this_turn = true
+				clear_overlay()
+
+		#GRENADIER BLOCK
+		elif _active_unit.unit_role is Grenadier:
 			#okay getting the whole range for the unit? 
 			#I guess the limit for the attack would be this so we would need it? 
 			range_limit = _active_unit.unit_role.get_attack_range(_active_unit.cell)
@@ -557,17 +552,16 @@ func _on_Cursor_accept_pressed(cell: Vector2) -> void:
 				return
 			
 			#that is the blast radius of the attack 
-			_attackable_cells.append_array(_active_unit.unit_role.get_attackable_cells(cell))
+			_attackable_cells = _active_unit.unit_role.get_attackable_cells(cell, "null", attack_direction)
 			
 			#okay this is just the attack block
 			for attacking_cell in _attackable_cells:
 				if _units.has(attacking_cell) and attacking_cell in range_limit:
-					apply_damage(attacking_cell, _active_unit.unit_role.attack_roll(_active_unit), _active_unit)
+					apply_damage(attacking_cell, _active_unit.unit_role.attack_roll(_active_unit), _active_unit, _active_unit.unit_role.crit)
 					print(attacking_cell)
-				
-		_has_attacked_this_turn = true
-		clear_overlay()
-	 
+			
+			_has_attacked_this_turn = true
+			clear_overlay()
 	
 	#old block of previous implementation
 # Only allow movement if the blue tiles are actually showing
@@ -603,7 +597,7 @@ func _on_Cursor_moved(new_cell: Vector2) -> void:
 			#highlighted_attack_cells = _active_unit.unit_role.get_attack_range(_active_unit.cell)
 			#should not be on the origin of unit rather the mouse hover
 			#please work
-			highlighted_attack_cells = _active_unit.unit_role.get_attackable_cells(new_cell)
+			highlighted_attack_cells = _active_unit.unit_role.get_attackable_cells(new_cell, "null", Vector2.ZERO)
 		#Draw the result on the specific AttackOverlay
 		#If cleave_cells is empty (diagonal), .draw() will clear the tiles
 		if _attack_overlay:
@@ -654,7 +648,7 @@ func unit_ability():
 			if _active_unit.unit_role.explodering == true:
 				for unit in _units:
 					if _units.get(unit).unit_role.on_fire:
-						apply_damage(unit, flame_explosion_damage, _active_unit)
+						apply_damage(unit, flame_explosion_damage, _active_unit, false)
 						_units.get(unit).unit_role.on_fire = false
 						_units.get(unit).unit_role.turns_left_on_fire = 0
 					else:
@@ -673,7 +667,7 @@ func unit_passive():
 	else:
 		push_warning("Attempted to passive, but _activecaller_name : String_unit is null!")
 
-func apply_damage(target_cell: Vector2, amount: int, attacker: Unit) -> void:
+func apply_damage(target_cell: Vector2, amount: int, attacker: Unit, crit: bool) -> void:
 	var victim = _units[target_cell]
 	print(victim)
 	if attacker:
@@ -695,8 +689,10 @@ func apply_damage(target_cell: Vector2, amount: int, attacker: Unit) -> void:
 	
 	if victim.current_health <= 0:
 		_handle_unit_death(target_cell)
-	
-	DamageNumbers.display_number(amount, victim.global_position, false)
+	if crit == false:
+		DamageNumbers.display_number(amount, victim.global_position, false)
+	else:
+		DamageNumbers.display_number(amount, victim.global_position, true)
 
 func _handle_unit_death(cell: Vector2) -> void:
 	var unit_to_remove = _units[cell]

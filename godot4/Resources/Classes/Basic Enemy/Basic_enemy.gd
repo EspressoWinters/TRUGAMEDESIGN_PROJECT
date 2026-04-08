@@ -1,42 +1,34 @@
 class_name Basic_enemy 
 extends Unit_Interaction
 
-#because for some reason in Godot you can't just access parent variables, therefroe 
-func init():
-	attack_range = 3
+#this resource is here to not cause problems in the game :D
 
-
-#think chess king for the attack pattern. I actually have no bloody clue what the attack range is even meant for 
-func get_attackable_cells(origin_cell : Vector2, caller_name : String, direction : Vector2):
-	attackable_cells.clear()
-	#I guess I'll have to do it by hand because I can't see any other way of doing this 
-	#left to the origin
-	if direction == Vector2(-1,0):
-		attackable_cells.append(origin_cell + Vector2(-1,0)) 
-
-	#Right 
-	elif direction == Vector2(1,0):
-		attackable_cells.append(origin_cell + Vector2(1,0)) 
-
-	#Down
-	elif direction == Vector2(0,1):
-		attackable_cells.append(origin_cell + Vector2(0,1))
-
-	#up
-	elif direction == Vector2(0,-1):
-		attackable_cells.append(origin_cell + Vector2(0,-1))
-
-	else:
-		pass
-
+func attack_roll(attacker : Unit) -> int:
+	var die1 = randi_range(1, 6)
+	var die2 = randi_range(1, 6)
+	var crit = randf_range(0.0,100.0) #using float for percentage
 	
-	return attackable_cells
-#block here for each ability 
+	
+	var total_damage: int
+	#accesses the modifier from the attacker's unit_role
+	var modifier = attacker.unit_role.attack_stat
+	if crit <= luck:
+		var crit_multiplier = 2.0
+		print("CRITICAL HIT!")
+		total_damage = (((die1 + modifier) * crit_multiplier))
+		crit = true
+	else:
+		total_damage = ((die1 + modifier))
+		crit = false
+	print(total_damage)
+	
+	return total_damage
+
 func attack():
-	print("Musketeer is attacking")
-
+	pass
+#
 func ability(unit: Unit):
-	print("Musketeer is abiltying")
-
+	pass
+#
 func passive(unit: Unit):
 	pass
