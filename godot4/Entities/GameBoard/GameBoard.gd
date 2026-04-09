@@ -169,7 +169,7 @@ func start_turn():
 	_active_unit.unit_role.passive(_active_unit)
 	
 	#doing AI Logic here
-	if _active_unit is BasicEnemy or _active_unit is HunterEnemy:
+	if _active_unit is BasicEnemy or _active_unit is HunterEnemy or _active_unit is BigEnemy:
 		var near_tile
 		#get the closest tile from the human
 		near_tile = closest_tile_to_human_unit(_active_unit)
@@ -297,7 +297,7 @@ func _reinitialize() -> void:
 		_units[unit.cell] = unit
 		unit.gameboard = self 
 		
-		if unit is BasicEnemy or unit is HunterEnemy:
+		if unit is BasicEnemy or unit is HunterEnemy or unit is BigEnemy:
 			if not enemy_done_moving.is_connected(unit.check_and_attack_adjacent):
 				enemy_done_moving.connect(unit.check_and_attack_adjacent)
 		
@@ -379,7 +379,7 @@ func _move_active_unit(new_cell: Vector2) -> void:
 	if is_occupied(new_cell) or not new_cell in _walkable_cells:
 		return
 	#okay I am going to add human logic and ai logic, since the AI needs to not get the current path from the cursor and instead calculate itself
-	if _active_unit is not BasicEnemy and _active_unit is not HunterEnemy: 
+	if _active_unit is not BasicEnemy and _active_unit is not HunterEnemy and _active_unit is not BigEnemy: 
 		# warning-ignore:return_value_discarded
 		_units.erase(_active_unit.cell)
 		_units[new_cell] = _active_unit
@@ -459,7 +459,7 @@ func display_move_overlay() -> void:
 		print("Unit has already moved!")
 		return
 	
-	if _active_unit and _active_unit is not BasicEnemy:
+	if _active_unit and _active_unit is not BasicEnemy and _active_unit is not HunterEnemy and _active_unit is not BigEnemy:
 		# Clear any existing overlay first to prevent stacking
 		_unit_overlay.clear() 
 		_unit_overlay.draw(_walkable_cells)

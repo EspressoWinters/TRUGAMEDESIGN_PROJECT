@@ -1,7 +1,6 @@
 res://Main.tscn
 res://Entities/UnitOverlay/unit_overlay_tileset.tres
 res://Entities/GameBoard/unit_path_tileset.tres
-res://Entities/GameBoard/GameBoard.gd
-res://Entities/Enemies/Tower_res.gd
-res://Entities/Enemies/Tower.tscn
-res://Entities/Enemies/Tower_Resource.tres
+res://Entities/Enemies/BasicEnemy.gd
+res://Entities/Enemies/big_enemy.gd
+res://Entities/Enemies/hunter_enemy.gd
