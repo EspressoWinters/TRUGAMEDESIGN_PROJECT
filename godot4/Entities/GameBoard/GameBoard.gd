@@ -156,8 +156,9 @@ func start_turn():
 
 ##This will end the turn of the individual unit, it will also check at the end whether to start a new round or not
 func end_turn():
-
-	
+	#Resets muskateers ability at the end of turn
+	if _active_unit.unit_role is Musketeer:
+		_active_unit.unit_role.ability_luck = 0
 	
 	_deselect_active_unit()
 	clear_overlay()

@@ -1,8 +1,8 @@
 63f7b34db8d8cdea90c76aacccf841ec
-::res://::1775507890
+::res://::1775676891
 arrows.svg::CompressedTexture2D::4758664585829825197::1773087565::1775153433::1::::<><><>0<>0<>9481e35834ca6bac9e1f6d82d3412c29<>res://.godot/imported/arrows.svg-3b88e7a629b8cfce3558583111b7639a.ctex::
 icon.png::CompressedTexture2D::4800787463865256339::1773087565::1775073408::1::::<><><>0<>0<>82ee8a5321f43c16dd729bef6de1615b<>res://.godot/imported/icon.png-487276ed1e3a0c39cad0279d744ee560.ctex::
-Main.tscn::PackedScene::1627460163605592043::1775507874::0::1::::<><><>0<>0<><>::uid://bv1ul1qynrdwd::::res://Entities/GameBoard/Cursor/Cursor.tscn<>uid://d4mhjq651egt::::res://Entities/Units/Unit.tscn<>uid://dagxku00ifba6::::res://Entities/GameBoard/GameBoard.gd<>uid://bj7vassh2i26e::::res://Entities/GameBoard/Grid.tres<>uid://n825j345khoi::::res://Entities/UnitOverlay/UnitOverlay.tscn<>uid://dxyfefsgkgc4l::::res://Entities/GameBoard/UnitPath.tscn<>uid://iljdxgodmq5n::::res://Assets/Units/Tank.png<>uid://dnttimsxfk83r::::res://Resources/Classes/Flamethrower/FlameThrower.tres<>uid://de53ukdqyusan::::res://Entities/Background/Map.tscn<>uid://bnhj47p63ostv::::res://Entities/UI/UI.tscn<>uid://bxlihyh6h2ggd::::res://Resources/Classes/Musketeer/Musketeer.tres<>uid://dhyalatumlvik::::res://Resources/Classes/Tank/Class_Tank.tres<>uid://civ2clvctpumk::::res://Entities/Enemies/basic_enemy.tscn<>uid://b62e2fu6oowdg::::res://Resources/Classes/Basic Enemy/Basic_enemy.tres<>uid://dx34ow1am5ih6::::res://Assets/Units/guywithknife.png<>uid://cbid3yyxh2mey::::res://Entities/Attack_Overlay/Attack_Overlay.tscn
+Main.tscn::PackedScene::1627460163605592043::1775676862::0::1::::<><><>0<>0<><>::uid://bv1ul1qynrdwd::::res://Entities/GameBoard/Cursor/Cursor.tscn<>uid://d4mhjq651egt::::res://Entities/Units/Unit.tscn<>uid://b62e2fu6oowdg::::res://Resources/Classes/Basic Enemy/Basic_enemy.tres<>uid://dagxku00ifba6::::res://Entities/GameBoard/GameBoard.gd<>uid://bj7vassh2i26e::::res://Entities/GameBoard/Grid.tres<>uid://n825j345khoi::::res://Entities/UnitOverlay/UnitOverlay.tscn<>uid://dxyfefsgkgc4l::::res://Entities/GameBoard/UnitPath.tscn<>uid://iljdxgodmq5n::::res://Assets/Units/Tank.png<>uid://dnttimsxfk83r::::res://Resources/Classes/Flamethrower/FlameThrower.tres<>uid://de53ukdqyusan::::res://Entities/Background/Map.tscn<>uid://bnhj47p63ostv::::res://Entities/UI/UI.tscn<>uid://b8amy4dvpx5oc::::res://Resources/Classes/Medic/Medic.tres<>uid://dhyalatumlvik::::res://Resources/Classes/Tank/Class_Tank.tres<>uid://pgb7b1sofgni::::res://Resources/Classes/Grenadier/Grenadier_Resource.tres<>uid://cbid3yyxh2mey::::res://Entities/Attack_Overlay/Attack_Overlay.tscn<>uid://civ2clvctpumk::::res://Entities/Enemies/basic_enemy.tscn<>uid://bxlihyh6h2ggd::::res://Resources/Classes/Musketeer/Musketeer.tres<>uid://dx34ow1am5ih6::::res://Assets/Units/guywithknife.png
 ::res://Assets/::1773861875
 ::res://Assets/Placeholders/::1775073408
 bear.png::CompressedTexture2D::8170655742763384520::1773782983::1775073408::1::::<><><>0<>0<>997e4d25e59a542a896cf16aacac2430<>res://.godot/imported/bear.png-eea725d97bc793fd75e479668a60e605.ctex::
@@ -22,17 +22,17 @@ Attack_Overlay.tscn::PackedScene::4859778684955502968::1775246455::0::1::::<><><
 Red.png::CompressedTexture2D::3758943448937689619::1775152944::1775153433::1::::<><><>0<>0<>83482c205cea51f076daef6a98364cad<>res://.godot/imported/Red.png-796b574c03e0a2b886d0c5bbe3bb751c.ctex::
 ::res://Entities/Background/::1775246455
 Map.tscn::PackedScene::7503685080556545333::1775246455::0::1::::<><><>0<>0<><>::uid://hhjhhexo114y::::res://Assets/Tilemap/Gabe's Tilemap.png
-::res://Entities/Enemies/::1775329545
-BasicEnemy.gd::GDScript::5030898724631262503::1775329545::0::1::::BasicEnemy<>Unit<><>0<>1<><>::
+::res://Entities/Enemies/::1775676862
+BasicEnemy.gd::GDScript::5030898724631262503::1775676862::0::1::::BasicEnemy<>Unit<><>0<>1<><>::
 basic_enemy.tscn::PackedScene::5379347590032839450::1775329545::0::1::::<><><>0<>0<><>::uid://cdxafxavudtc6::::res://Entities/Enemies/BasicEnemy.gd<>uid://b5ghlcxjxmmgw::::res://Entities/Units/unit_shadow.svg
-::res://Entities/GameBoard/::1775507874
-GameBoard.gd::GDScript::7173063756610226731::1775507874::0::1::::GameBoard<>Node2D<><>0<>0<><>::
+::res://Entities/GameBoard/::1775676862
+GameBoard.gd::GDScript::7173063756610226731::1775676862::0::1::::GameBoard<>Node2D<><>0<>0<><>::
 Grid.gd::GDScript::7060620540460228450::1775246455::0::1::::Grid<>Resource<><>0<>0<><>::
 Grid.tres::Resource/Grid::3085456394994658910::1773786000::0::1::::<><><>0<>0<><>::uid://c7uhnhmyktbe5::::res://Entities/GameBoard/Grid.gd
 Pathfinder.gd::GDScript::6797009315942668527::1775246455::0::1::::PathFinder<>Resource<><>0<>0<><>::
 UnitPath.gd::GDScript::8480235457114261391::1775246455::0::1::::UnitPath<>TileMap<><>0<>0<><>::
 UnitPath.tscn::PackedScene::8823461539700379773::1775246455::0::1::::<><><>0<>0<><>::uid://ds25iejxleodb::::res://Entities/GameBoard/UnitPath.gd<>uid://dqg14aj86so4a::::res://Entities/GameBoard/unit_path_tileset.tres<>uid://bj7vassh2i26e::::res://Entities/GameBoard/Grid.tres
-unit_path_tileset.tres::TileSet::8296300261092109810::1775329997::0::1::::<><><>0<>0<><>::uid://b82ermd4qywbt::::res://arrows.svg
+unit_path_tileset.tres::TileSet::8296300261092109810::1775511468::0::1::::<><><>0<>0<><>::uid://b82ermd4qywbt::::res://arrows.svg
 ::res://Entities/GameBoard/Cursor/::1775246455
 Cursor.gd::GDScript::4852161879150179370::1775246455::0::1::::Cursor<>Node2D<><>0<>1<><>::
 Cursor.tscn::PackedScene::3915295596718087763::1775246455::0::1::::<><><>0<>0<><>::uid://cbeonrhd7oh1k::::res://Entities/GameBoard/Cursor/Cursor.gd<>uid://dsmh2fn7kpkri::::res://Entities/GameBoard/Cursor/menu_selection_arrow.png<>uid://bj7vassh2i26e::::res://Entities/GameBoard/Grid.tres
@@ -40,14 +40,14 @@ menu_selection_arrow.png::CompressedTexture2D::8447907289164507594::1773782983::
 ::res://Entities/UI/::1775329545
 ui.gd::GDScript::8864979170884827712::1775329545::0::1::::<>Control<><>0<>0<><>::
 UI.tscn::PackedScene::3313926241589838771::1775246455::0::1::::<><><>0<>0<><>::uid://dyki588u1icp1::::res://Entities/UI/ui.gd
-::res://Entities/UnitOverlay/::1775329997
+::res://Entities/UnitOverlay/::1775511468
 tileset_unit_overlay.svg::CompressedTexture2D::2430363315898339962::1775246455::1775073408::1::::<><><>0<>0<>ed5c6c7da7c2be0bbd06dbff82fccf8f<>res://.godot/imported/tileset_unit_overlay.svg-a1e6a374719549d7e4655ae69d909778.ctex::
 UnitOverlay.gd::GDScript::3597877913519642046::1775246455::0::1::::UnitOverlay<>TileMap<><>0<>0<><>::
 UnitOverlay.tscn::PackedScene::982272883123028944::1775246455::0::1::::<><><>0<>0<><>::uid://b0rmv12s3p35::::res://Entities/UnitOverlay/unit_overlay_tileset.tres<>uid://bri3r2i0vveeo::::res://Entities/UnitOverlay/UnitOverlay.gd
-unit_overlay_tileset.tres::TileSet::122853050300612594::1775329997::0::1::::<><><>0<>0<><>::uid://bavjy1odiaew5::::res://Entities/UnitOverlay/tileset_unit_overlay.svg
-::res://Entities/Units/::1775329545
-Unit.gd::GDScript::3074741435938709037::1775329545::0::1::::Unit<>Path2D<><>0<>1<><>::
-Unit.tscn::PackedScene::271175089128999423::1775329545::0::1::::<><><>0<>0<><>::uid://bj2oso2ug885f::::res://Entities/Units/Unit.gd<>uid://bj7vassh2i26e::::res://Entities/GameBoard/Grid.tres<>uid://b5ghlcxjxmmgw::::res://Entities/Units/unit_shadow.svg
+unit_overlay_tileset.tres::TileSet::122853050300612594::1775511468::0::1::::<><><>0<>0<><>::uid://bavjy1odiaew5::::res://Entities/UnitOverlay/tileset_unit_overlay.svg
+::res://Entities/Units/::1775676862
+Unit.gd::GDScript::3074741435938709037::1775599140::0::1::::Unit<>Path2D<><>0<>1<><>::
+Unit.tscn::PackedScene::271175089128999423::1775676862::0::1::::<><><>0<>0<><>::uid://bj2oso2ug885f::::res://Entities/Units/Unit.gd<>uid://bj7vassh2i26e::::res://Entities/GameBoard/Grid.tres<>uid://b5ghlcxjxmmgw::::res://Entities/Units/unit_shadow.svg
 unit_shadow.svg::CompressedTexture2D::4504917063058092482::1775246455::1775073408::1::::<><><>0<>0<>762f946d734f279b1763598a370678f5<>res://.godot/imported/unit_shadow.svg-3b17cc994f9b3b3b19a8239b247f5ad8.ctex::
 ::res://GameBoard/::1773782983
 ::res://GameBoard/Cursor/::1773782983
@@ -58,23 +58,29 @@ rivers.tscn::PackedScene::3099955576227939628::1775246455::0::1::::<><><>0<>0<><
 ruins.tscn::PackedScene::5577903787821140111::1775246455::0::1::::<><><>0<>0<><>::uid://de53ukdqyusan::::res://Entities/Background/Map.tscn<>res://Entities/GameBoard/GameBoard.gd<>uid://bj7vassh2i26e::::res://Entities/GameBoard/Grid.tres<>uid://n825j345khoi::::res://Entities/UnitOverlay/UnitOverlay.tscn<>uid://dxyfefsgkgc4l::::res://Entities/GameBoard/UnitPath.tscn<>uid://bv1ul1qynrdwd::::res://Entities/GameBoard/Cursor/Cursor.tscn
 ruin_ambush.tscn::PackedScene::4863874849828842262::1775246455::0::1::::<><><>0<>0<><>::uid://de53ukdqyusan::::res://Entities/Background/Map.tscn<>res://Entities/GameBoard/GameBoard.gd<>uid://bj7vassh2i26e::::res://Entities/GameBoard/Grid.tres<>uid://n825j345khoi::::res://Entities/UnitOverlay/UnitOverlay.tscn<>uid://dxyfefsgkgc4l::::res://Entities/GameBoard/UnitPath.tscn<>uid://bv1ul1qynrdwd::::res://Entities/GameBoard/Cursor/Cursor.tscn
 ::res://Resources/::1775154605
-::res://Resources/Classes/::1775327358
-::res://Resources/Classes/Basic Enemy/::1775507874
-Basic_enemy.gd::GDScript::8756953469242025599::1775507874::0::1::::Basic_enemy<>Unit_Interaction<><>0<>0<><>::
+::res://Resources/Classes/::1775598728
+::res://Resources/Classes/Basic Enemy/::1775676862
+Basic_enemy.gd::GDScript::8756953469242025599::1775676862::0::1::::Basic_enemy<>Unit_Interaction<><>0<>0<><>::
 Basic_enemy.tres::Resource::4618304415178838644::1775329830::0::1::::<><><>0<>0<><>::uid://dw060kljl4vfj::::res://Resources/Classes/Basic Enemy/Basic_enemy.gd
-::res://Resources/Classes/Flamethrower/::1775507874
-Flamethrower.gd::GDScript::3420269348757761769::1775507874::0::1::::Flamethrower<>Unit_Interaction<><>0<>0<><>::
+::res://Resources/Classes/Flamethrower/::1775676862
+Flamethrower.gd::GDScript::3420269348757761769::1775676862::0::1::::Flamethrower<>Unit_Interaction<><>0<>0<><>::
 FlameThrower.tres::Resource/Flamethrower::8112108764053471693::1775329830::0::1::::<><><>0<>0<><>::uid://boy2lo7qhecj6::::res://Resources/Classes/Flamethrower/Flamethrower.gd
-::res://Resources/Classes/Medic/::1775246455
-Medic.gd::GDScript::4931697085435066734::1775246455::0::1::::<>Node<><>0<>0<><>::
-::res://Resources/Classes/Musketeer/::1775507874
-Musketeer.gd::GDScript::8314512724602559576::1775507874::0::1::::Musketeer<>Unit_Interaction<><>0<>0<><>::
+::res://Resources/Classes/Grenadier/::1775676862
+Grenadier.gd::GDScript::9181954518635487785::1775676862::0::1::::Grenadier<>Unit_Interaction<><>0<>0<><>::
+Grenadier_Resource.tres::Resource/Grenadier::1065336877017582754::1775598728::0::1::::<><><>0<>0<><>::uid://d322pjscifge8::::res://Resources/Classes/Grenadier/Grenadier.gd
+::res://Resources/Classes/Medic/::1775676862
+Medic.gd::GDScript::4931697085435066734::1775676862::0::1::::Medic<>Unit_Interaction<><>0<>0<><>::
+Medic.tres::Resource/media::4703425515501780318::1775599147::0::1::::<><><>0<>0<><>::uid://cci7liaxfi0a1::::res://Resources/Classes/Medic/Medic.gd
+::res://Resources/Classes/Musketeer/::1775676862
+Musketeer.gd::GDScript::8314512724602559576::1775676862::0::1::::Musketeer<>Unit_Interaction<><>0<>0<><>::
 Musketeer.tres::Resource/Musketeer::4023971751954924623::1775246470::0::1::::<><><>0<>0<><>::uid://dqpu2seyrj8dw::::res://Resources/Classes/Musketeer/Musketeer.gd
-::res://Resources/Classes/Tank/::1775507874
+::res://Resources/Classes/Tank/::1775676862
 Class_Tank.tres::Resource/tank::7700148696652403654::1775246455::0::1::::<><><>0<>0<><>::uid://cbjujf0ehx6ue::::res://Resources/Classes/Tank/Tank.gd
-Tank.gd::GDScript::4862840324240143504::1775507874::0::1::::tank<>Unit_Interaction<><>0<>0<><>::
-::res://Resources/Classes/Unit/::1775507874
-Unit_Intereactions.gd::GDScript::2638213500701513093::1775507874::0::1::::Unit_Interaction<>Resource<><>0<>0<><>::
+Tank.gd::GDScript::4862840324240143504::1775676862::0::1::::Tank<>Unit_Interaction<><>0<>0<><>::
+::res://Resources/Classes/Unit/::1775676862
+Unit_Intereactions.gd::GDScript::2638213500701513093::1775676862::0::1::::Unit_Interaction<>Resource<><>0<>0<><>::
 ::res://Resources/Unit/::1775254843
+::res://Singletons/::1775599161
+DamageNumbers.gd::GDScript::8261379930389262831::1775599140::0::1::::<>Node<><>0<>0<><>::
 ::res://UnitOverlay/::1773782983
 ::res://Units/::1773782983
