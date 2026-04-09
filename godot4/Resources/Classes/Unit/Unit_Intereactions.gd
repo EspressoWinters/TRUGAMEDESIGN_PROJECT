@@ -8,7 +8,7 @@ extends Resource
 @export var max_hp: int = 20
 @export var attack_stat: int = 5
 @export var speed: int = 5
-@export var defense: int = 5
+@export var defense: int = 5 
 @export var luck: int = 5
 @export var crit: bool = false
 

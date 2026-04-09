@@ -1,10 +1,11 @@
 class_name Musketeer 
 extends Unit_Interaction
 
-
+var ability_luck: float = 0
 #because for some reason in Godot you can't just access parent variables, therefroe 
 func init():
 	attack_range = 3
+
 
 #think chess king for the attack pattern. I actually have no bloody clue what the attack range is even meant for 
 func get_attackable_cells(origin_cell : Vector2, caller_name : String, direction : Vector2):
@@ -47,7 +48,7 @@ func attack_roll(attacker : Unit) -> int:
 	var die2 = randi_range(1, 6)
 	var crit = randf_range(0.0,100.0) #using float for percentage
 	
-	var marksmen_luck = luck + 5
+	var marksmen_luck = luck + 5 + ability_luck
 	
 	var total_damage: int
 	#accesses the modifier from the attacker's unit_role
@@ -69,6 +70,7 @@ func attack():
 	print("Musketeer is attacking")
 
 func ability(unit: Unit):
+	ability_luck = 100
 	print("Musketeer is abiltying")
 
 func passive(unit: Unit):

@@ -20,12 +20,13 @@
 [ext_resource type="Texture2D" uid="uid://dx34ow1am5ih6" path="res://Assets/Units/guywithknife.png" id="18_kjvhd"]
 [ext_resource type="PackedScene" uid="uid://cxdy8de6npsch" path="res://Entities/Enemies/Hunter_Enemy.tscn" id="19_5tuhn"]
 [ext_resource type="Resource" uid="uid://biqcay3d4j8tk" path="res://Resources/Classes/Hunter Enemy/Hunter_Class.tres" id="20_2gh4u"]
-
-[sub_resource type="Curve2D" id="Curve2D_fpfj3"]
+[ext_resource type="Texture2D" uid="uid://cansjd7oqbysh" path="res://icon.png" id="21_devvj"]
 
 [sub_resource type="Curve2D" id="Curve2D_trn2v"]
 
 [sub_resource type="Curve2D" id="Curve2D_03owx"]
+
+[sub_resource type="Curve2D" id="Curve2D_fpfj3"]
 
 [sub_resource type="Curve2D" id="Curve2D_sc1dx"]
 
@@ -51,14 +52,6 @@ scale = Vector2(0.2, 0.2)
 [node name="UnitPath" parent="." unique_id=1709809203 instance=ExtResource("6")]
 unique_name_in_owner = true
 
-[node name="Gun" parent="." unique_id=1996755128 instance=ExtResource("2")]
-position = Vector2(184, 256)
-curve = SubResource("Curve2D_fpfj3")
-unit_role = ExtResource("16_sc1dx")
-current_health = 20
-max_health = 20
-skin = ExtResource("8_wkp8b")
-
 [node name="Flamethrower" parent="." unique_id=2135963956 instance=ExtResource("2")]
 position = Vector2(240, 240)
 curve = SubResource("Curve2D_trn2v")
@@ -77,6 +70,14 @@ skin = ExtResource("8_wkp8b")
 
 [node name="Ui" parent="." unique_id=1993505447 instance=ExtResource("10_wkp8b")]
 unique_name_in_owner = true
+
+[node name="Gun" parent="." unique_id=1996755128 instance=ExtResource("2")]
+position = Vector2(184, 256)
+curve = SubResource("Curve2D_fpfj3")
+unit_role = ExtResource("16_sc1dx")
+current_health = 20
+max_health = 20
+skin = ExtResource("8_wkp8b")
 
 [node name="Granader" parent="." unique_id=318286111 instance=ExtResource("2")]
 position = Vector2(255, 193)
@@ -106,7 +107,7 @@ skin = ExtResource("18_kjvhd")
 position = Vector2(50, 50)
 unit_role = ExtResource("20_2gh4u")
 grid = ExtResource("4")
-skin = ExtResource("18_kjvhd")
+skin = ExtResource("21_devvj")
 
 [connection signal="accept_pressed" from="Cursor" to="." method="_on_Cursor_accept_pressed"]
 [connection signal="moved" from="Cursor" to="." method="_on_Cursor_moved"]
