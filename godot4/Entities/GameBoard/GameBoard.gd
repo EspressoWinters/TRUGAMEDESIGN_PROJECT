@@ -93,9 +93,41 @@ func start_turn():
 	_cell_of_active_unit = _units.find_key(initiative_order[turn_count])
 	#print(_cell_of_active_unit, "\n", _units.get(_cell_of_active_unit))
 	_select_unit(_cell_of_active_unit)
+	#only affeects the taunt 
 	_active_unit.is_taunting = false
 	print("It is now " + _active_unit.name + "'s turn.")
 	print(_active_unit.cell)
+	
+	if _active_unit.unit_role is Tower_Res:
+		
+		var temp_cell
+		var attack_range
+		var damage 
+		attack_range = _active_unit.get_attack_range(_active_unit.cell)
+		
+		
+		for taunt_cell in attack_range:
+			if _units.has(taunt_cell):
+				if _units[taunt_cell].is_taunting:
+					_active_unit.taunter_found = true 
+					temp_cell = taunt_cell
+			
+		
+		if _active_unit.taunter_found:
+			damage = _active_unit.unit_role.attack_roll(_active_unit)
+			apply_damage(temp_cell, damage, _active_unit, false)
+		else:
+			for attack_cell in attack_range:
+				#skip itself
+				if attack_cell == _active_unit.cell:
+					continue 
+				if _units.has(attack_cell):
+					damage = _active_unit.unit_role.attack_roll(_active_unit)
+					apply_damage(attack_cell, damage, _active_unit, false)
+		
+		end_turn()
+
+	
 	
 	if _active_unit.unit_role is Medic:
 		for healing_cell in _active_unit.unit_role.passive(_active_unit):
@@ -153,6 +185,7 @@ func start_turn():
 			enemy_done_moving.emit()
 			end_turn()
 			print("I'm already as close as can be!")
+			
 
 ##This will end the turn of the individual unit, it will also check at the end whether to start a new round or not
 func end_turn():
