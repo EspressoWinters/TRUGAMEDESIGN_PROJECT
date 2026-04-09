@@ -1,6 +1,9 @@
-res://Entities/GameBoard/GameBoard.gd
-res://Entities/Units/Unit.gd
 res://Main.tscn
 res://Entities/UnitOverlay/unit_overlay_tileset.tres
 res://Entities/GameBoard/unit_path_tileset.tres
-res://Entities/Enemies/hunter_enemy.gd
+res://Resources/Classes/BigEnemy/BigEnemy.tres
+res://Resources/Classes/BigEnemy/BigEnemy.gd
+res://Entities/Enemies/big_enemy.tscn
+res://Entities/Enemies/BasicEnemy.gd
+res://Entities/Enemies/big_enemy.gd
+res://Entities/GameBoard/GameBoard.gd

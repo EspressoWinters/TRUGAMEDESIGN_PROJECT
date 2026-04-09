@@ -20,6 +20,7 @@
 [ext_resource type="Texture2D" uid="uid://dx34ow1am5ih6" path="res://Assets/Units/guywithknife.png" id="18_kjvhd"]
 [ext_resource type="PackedScene" uid="uid://cxdy8de6npsch" path="res://Entities/Enemies/Hunter_Enemy.tscn" id="19_5tuhn"]
 [ext_resource type="Resource" uid="uid://biqcay3d4j8tk" path="res://Resources/Classes/Hunter Enemy/Hunter_Class.tres" id="20_2gh4u"]
+[ext_resource type="PackedScene" uid="uid://3uqmxmcvncpi" path="res://Entities/Enemies/big_enemy.tscn" id="21_devvj"]
 
 [sub_resource type="Curve2D" id="Curve2D_fpfj3"]
 
@@ -106,6 +107,14 @@ skin = ExtResource("18_kjvhd")
 position = Vector2(50, 50)
 unit_role = ExtResource("20_2gh4u")
 grid = ExtResource("4")
+current_health = 20
+max_health = 20
+skin = ExtResource("18_kjvhd")
+
+[node name="BigEnemy" parent="." unique_id=1907112192 instance=ExtResource("21_devvj")]
+position = Vector2(400, 200)
+current_health = 20
+max_health = 20
 skin = ExtResource("18_kjvhd")
 
 [connection signal="accept_pressed" from="Cursor" to="." method="_on_Cursor_accept_pressed"]

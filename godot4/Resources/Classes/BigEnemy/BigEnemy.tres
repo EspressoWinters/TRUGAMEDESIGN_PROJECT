@@ -1,0 +1,6 @@
+[gd_resource type="Resource" format=3 uid="uid://cudtnc0vm77xd"]
+
+[ext_resource type="Script" uid="uid://bhqbfoc8tp68t" path="res://Resources/Classes/BigEnemy/BigEnemy.gd" id="1_tphkd"]
+
+[resource]
+script = ExtResource("1_tphkd")
