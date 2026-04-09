@@ -1,0 +1,6 @@
+[gd_resource type="Resource" script_class="Tower_Res" format=3 uid="uid://5kurp5dcq3sk"]
+
+[ext_resource type="Script" uid="uid://dwqyljg2c4l8l" path="res://Entities/Enemies/Tower_res.gd" id="1_l4cp4"]
+
+[resource]
+script = ExtResource("1_l4cp4")
