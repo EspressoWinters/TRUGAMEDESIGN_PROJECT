@@ -137,7 +137,7 @@ func start_turn():
 	_active_unit.unit_role.passive(_active_unit)
 	
 	#doing AI Logic here
-	if _active_unit is BasicEnemy:
+	if _active_unit is BasicEnemy or _active_unit is HunterEnemy:
 		var near_tile
 		#get the closest tile from the human
 		near_tile = closest_tile_to_human_unit(_active_unit)
@@ -264,7 +264,7 @@ func _reinitialize() -> void:
 		_units[unit.cell] = unit
 		unit.gameboard = self 
 		
-		if unit is BasicEnemy:
+		if unit is BasicEnemy or unit is HunterEnemy:
 			if not enemy_done_moving.is_connected(unit.check_and_attack_adjacent):
 				enemy_done_moving.connect(unit.check_and_attack_adjacent)
 		
@@ -346,7 +346,7 @@ func _move_active_unit(new_cell: Vector2) -> void:
 	if is_occupied(new_cell) or not new_cell in _walkable_cells:
 		return
 	#okay I am going to add human logic and ai logic, since the AI needs to not get the current path from the cursor and instead calculate itself
-	if _active_unit is not BasicEnemy: 
+	if _active_unit is not BasicEnemy and _active_unit is not HunterEnemy: 
 		# warning-ignore:return_value_discarded
 		_units.erase(_active_unit.cell)
 		_units[new_cell] = _active_unit
@@ -392,8 +392,9 @@ func _select_unit(cell: Vector2) -> void:
 	_unit_path.initialize(_walkable_cells)
 
 #this is the bot/computer movement section 
-func closest_tile_to_human_unit(enemy_unit : BasicEnemy):
+func closest_tile_to_human_unit(enemy_unit : Variant):
 	var closet_human_unit = enemy_unit.find_closet_human_character()
+	print(closet_human_unit)
 	if closet_human_unit == null:
 		print("There isn't any humans roger roger!")
 		return

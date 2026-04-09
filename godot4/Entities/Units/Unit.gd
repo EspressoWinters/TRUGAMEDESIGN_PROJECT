@@ -139,3 +139,7 @@ func heal(amount: int) -> void:
 	
 	if current_health > max_health:
 		current_health = max_health
+		
+#Do not delete: it is needed for the extended emenies to not crash
+func find_closet_human_character():
+	print()
