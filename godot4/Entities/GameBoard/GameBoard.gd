@@ -149,6 +149,8 @@ func start_turn():
 			_move_active_unit(near_tile)
 			enemy_done_moving.emit()
 			end_turn()
+	elif _active_unit is Tower:
+		
 		else:
 			enemy_done_moving.emit()
 			end_turn()

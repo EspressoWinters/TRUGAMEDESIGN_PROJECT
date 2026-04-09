@@ -53,16 +53,16 @@ unique_name_in_owner = true
 position = Vector2(240, 240)
 curve = SubResource("Curve2D_trn2v")
 unit_role = ExtResource("9_c6i3y")
-current_health = 5
-max_health = 5
+current_health = 20
+max_health = 20
 skin = ExtResource("8_wkp8b")
 
 [node name="Medic" parent="." unique_id=1365851675 instance=ExtResource("2")]
 position = Vector2(200, 200)
 curve = SubResource("Curve2D_03owx")
 unit_role = ExtResource("11_c2ibq")
-current_health = 5
-max_health = 5
+current_health = 20
+max_health = 20
 skin = ExtResource("8_wkp8b")
 
 [node name="Ui" parent="." unique_id=1993505447 instance=ExtResource("10_wkp8b")]
@@ -72,32 +72,32 @@ unique_name_in_owner = true
 position = Vector2(184, 256)
 curve = SubResource("Curve2D_fpfj3")
 unit_role = ExtResource("16_sc1dx")
-current_health = 5
-max_health = 5
+current_health = 20
+max_health = 20
 skin = ExtResource("8_wkp8b")
 
 [node name="Granader" parent="." unique_id=318286111 instance=ExtResource("2")]
 position = Vector2(255, 193)
 curve = SubResource("Curve2D_sc1dx")
 unit_role = ExtResource("14_j4qnp")
-current_health = 5
-max_health = 5
+current_health = 20
+max_health = 20
 skin = ExtResource("8_wkp8b")
 
 [node name="Tank" parent="." unique_id=252684278 instance=ExtResource("2")]
 position = Vector2(310, 222)
 curve = SubResource("Curve2D_kjvhd")
 unit_role = ExtResource("11_j4qnp")
-current_health = 5
-max_health = 5
+current_health = 20
+max_health = 20
 skin = ExtResource("8_wkp8b")
 
 [node name="BasicEnemy" parent="." unique_id=393416970 instance=ExtResource("16_kjvhd")]
 position = Vector2(400, 150)
 unit_role = ExtResource("2_sc1dx")
 grid = ExtResource("4")
-current_health = 5
-max_health = 5
+current_health = 20
+max_health = 20
 skin = ExtResource("18_kjvhd")
 
 [connection signal="accept_pressed" from="Cursor" to="." method="_on_Cursor_accept_pressed"]
