@@ -14,9 +14,8 @@
 [ext_resource type="Resource" uid="uid://b8amy4dvpx5oc" path="res://Resources/Classes/Medic/Medic.tres" id="12_cq8dg"]
 [ext_resource type="Resource" uid="uid://pgb7b1sofgni" path="res://Resources/Classes/Grenadier/Grenadier_Resource.tres" id="13_egevs"]
 [ext_resource type="Resource" uid="uid://dhyalatumlvik" path="res://Resources/Classes/Tank/Class_Tank.tres" id="14_s6hku"]
-[ext_resource type="PackedScene" uid="uid://3dpsdgxcbphd" path="res://Entities/Enemies/WalkingTrainingDummy.tscn" id="17_wgmyg"]
+[ext_resource type="PackedScene" uid="uid://civ2clvctpumk" path="res://Entities/Enemies/basic_enemy.tscn" id="17_wgmyg"]
 [ext_resource type="PackedScene" uid="uid://bnhj47p63ostv" path="res://Entities/UI/UI.tscn" id="23_7dqg4"]
-[ext_resource type="PackedScene" uid="uid://u0xoc2d2sgj" path="res://Entities/Enemies/TrainingDummy.tscn" id="24_dytny"]
 
 [sub_resource type="Curve2D" id="Curve2D_fpfj3"]
 
@@ -92,13 +91,23 @@ skin = ExtResource("10_lqb5f")
 [node name="Ui" parent="." unique_id=1993505447 instance=ExtResource("23_7dqg4")]
 unique_name_in_owner = true
 
-[node name="TrainingDummy" parent="." unique_id=1851314133 instance=ExtResource("24_dytny")]
-position = Vector2(350, 150)
+[node name="BasicEnemy" parent="." unique_id=393416970 instance=ExtResource("17_wgmyg")]
+position = Vector2(444, 50)
 current_health = 20
 max_health = 20
 
-[node name="TrainingDummy2" parent="." unique_id=393416970 instance=ExtResource("17_wgmyg")]
-position = Vector2(350, 200)
+[node name="BasicEnemy3" parent="." unique_id=1662616543 instance=ExtResource("17_wgmyg")]
+position = Vector2(543, 200)
+current_health = 20
+max_health = 20
+
+[node name="BasicEnemy2" parent="." unique_id=1463720137 instance=ExtResource("17_wgmyg")]
+position = Vector2(600, 100)
+current_health = 20
+max_health = 20
+
+[node name="BasicEnemy4" parent="." unique_id=1883861692 instance=ExtResource("17_wgmyg")]
+position = Vector2(300, 400)
 current_health = 20
 max_health = 20
 

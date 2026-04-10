@@ -1,6 +1,3 @@
 [gd_resource type="Resource" format=3 uid="uid://da7e0nnskc0ja"]
 
-[ext_resource type="Script" uid="uid://oxhf3g6q1xpu" path="res://Resources/Classes/Bosses/BossWizzard.gd" id="1_ediy8"]
-
 [resource]
-script = ExtResource("1_ediy8")

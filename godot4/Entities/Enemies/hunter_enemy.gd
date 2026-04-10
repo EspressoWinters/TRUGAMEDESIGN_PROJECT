@@ -45,15 +45,20 @@ func find_closet_human_character():
 	#now we need to calculate the who is the closest 
 	#we are using Manhattan distance = | X1 - X2 | + | Y1 - Y2 |, not Eucledian as that would get us errors 
 	#our A* algorithm use Manhattan distances for context
+	
+	#this is what will be holding the values of the unit's temporarily 
+	var temp_distance : int 
+	
 	if taunter_found:
 		highest_score_unit = Highest_Score_Player_Unit(tank_units)
 
 	else:
 		highest_score_unit = Highest_Score_Player_Unit(human_units)	
-
-	print("-----------------------")
-	print(highest_score_unit)
-	print("-----------------------")
+	#gathering which human unit has the least amount of distance
+	temp_distance = abs(highest_score_unit.cell.x - self.cell.x) + abs(highest_score_unit.cell.y - self.cell.y)
+	if temp_distance <= 1:
+		return null
+	
 	return highest_score_unit
 		
 		

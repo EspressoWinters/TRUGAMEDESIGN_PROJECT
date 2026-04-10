@@ -14,3 +14,12 @@ res://Entities/Enemies/BasicEnemy.gd
 res://Entities/Enemies/big_enemy.gd
 res://Entities/GameBoard/GameBoard.gd
 res://Entities/Enemies/hunter_enemy.gd
+res://Entities/Enemies/Tower.tscn
+res://Entities/Enemies/WalkingTrainingDummy.tscn
+res://Entities/Enemies/basic_enemy.tscn
+res://Entities/Enemies/Hunter_Enemy.tscn
+res://Entities/Enemies/big_enemy.tscn
+res://Entities/Enemies/TrainingDummy.tscn
+res://Maps/Tutorialz.tscn
+res://Resources/Classes/Grenadier/Grenadier_Resource.tres
+res://Entities/Units/Unit.gd

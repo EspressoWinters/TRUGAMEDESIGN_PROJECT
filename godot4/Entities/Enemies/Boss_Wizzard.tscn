@@ -1,9 +1,10 @@
 [gd_scene format=3 uid="uid://c22g8f8h3i25w"]
 
 [ext_resource type="Script" uid="uid://dhltgxmpq8x3w" path="res://Entities/Enemies/boss_wizzard.gd" id="1_0y8gn"]
+[ext_resource type="Resource" uid="uid://da7e0nnskc0ja" path="res://Resources/Classes/Bosses/Boss_Wizzard.tres" id="2_lt5yr"]
 [ext_resource type="Texture2D" uid="uid://b5ghlcxjxmmgw" path="res://Entities/Units/unit_shadow.svg" id="2_mf555"]
 [ext_resource type="Resource" uid="uid://bj7vassh2i26e" path="res://Entities/GameBoard/Grid.tres" id="2_qg8r0"]
-[ext_resource type="Texture2D" uid="uid://iljdxgodmq5n" path="res://Assets/Units/Tank.png" id="4_lt5yr"]
+[ext_resource type="Texture2D" uid="uid://dx34ow1am5ih6" path="res://Assets/Units/guywithknife.png" id="5_lt5yr"]
 
 [sub_resource type="Curve2D" id="Curve2D_mu52m"]
 
@@ -13,7 +14,7 @@ bg_color = Color(1, 0, 0, 1)
 [node name="Boss_Wizard" type="Path2D" unique_id=393416970]
 curve = SubResource("Curve2D_mu52m")
 script = ExtResource("1_0y8gn")
-unit_role = null
+unit_role = ExtResource("2_lt5yr")
 grid = ExtResource("2_qg8r0")
 
 [node name="PathFollow2D" type="PathFollow2D" parent="." unique_id=1680380729]
@@ -26,7 +27,7 @@ scale = Vector2(0.2, 0.2)
 texture = ExtResource("2_mf555")
 
 [node name="Sprite" type="Sprite2D" parent="PathFollow2D" unique_id=1974049774]
-texture = ExtResource("4_lt5yr")
+texture = ExtResource("5_lt5yr")
 
 [node name="Healthbar" type="ProgressBar" parent="." unique_id=1884163062]
 offset_left = -8.0

@@ -2,7 +2,6 @@
 
 [ext_resource type="PackedScene" uid="uid://bv1ul1qynrdwd" path="res://Entities/GameBoard/Cursor/Cursor.tscn" id="1"]
 [ext_resource type="PackedScene" uid="uid://d4mhjq651egt" path="res://Entities/Units/Unit.tscn" id="2"]
-[ext_resource type="Resource" uid="uid://b62e2fu6oowdg" path="res://Resources/Classes/Basic Enemy/Basic_enemy.tres" id="2_sc1dx"]
 [ext_resource type="Script" uid="uid://dagxku00ifba6" path="res://Entities/GameBoard/GameBoard.gd" id="3"]
 [ext_resource type="Resource" uid="uid://bj7vassh2i26e" path="res://Entities/GameBoard/Grid.tres" id="4"]
 [ext_resource type="PackedScene" uid="uid://n825j345khoi" path="res://Entities/UnitOverlay/UnitOverlay.tscn" id="5"]
@@ -19,9 +18,7 @@
 [ext_resource type="Resource" uid="uid://bxlihyh6h2ggd" path="res://Resources/Classes/Musketeer/Musketeer.tres" id="16_sc1dx"]
 [ext_resource type="Texture2D" uid="uid://dx34ow1am5ih6" path="res://Assets/Units/guywithknife.png" id="18_kjvhd"]
 [ext_resource type="PackedScene" uid="uid://cxdy8de6npsch" path="res://Entities/Enemies/Hunter_Enemy.tscn" id="19_5tuhn"]
-[ext_resource type="Resource" uid="uid://biqcay3d4j8tk" path="res://Resources/Classes/Hunter Enemy/Hunter_Class.tres" id="20_2gh4u"]
 [ext_resource type="PackedScene" uid="uid://cnwqb4uvl3gd2" path="res://Entities/Enemies/Tower.tscn" id="21_3b0ty"]
-[ext_resource type="Resource" uid="uid://5kurp5dcq3sk" path="res://Entities/Enemies/Tower_Resource.tres" id="22_3b0ty"]
 [ext_resource type="PackedScene" uid="uid://3uqmxmcvncpi" path="res://Entities/Enemies/big_enemy.tscn" id="23_bg4s2"]
 
 [sub_resource type="Curve2D" id="Curve2D_fpfj3"]
@@ -96,29 +93,28 @@ skin = ExtResource("8_wkp8b")
 
 [node name="BasicEnemy" parent="." unique_id=393416970 instance=ExtResource("16_kjvhd")]
 position = Vector2(400, 150)
-unit_role = ExtResource("2_sc1dx")
-grid = ExtResource("4")
 current_health = 20
 max_health = 20
 skin = ExtResource("18_kjvhd")
 
 [node name="HunterEnemy" parent="." unique_id=2053675038 instance=ExtResource("19_5tuhn")]
 position = Vector2(50, 50)
-unit_role = ExtResource("20_2gh4u")
-grid = ExtResource("4")
+current_health = 20
+max_health = 20
+skin = ExtResource("18_kjvhd")
+
+[node name="HunterEnemy2" parent="." unique_id=677739594 instance=ExtResource("19_5tuhn")]
+position = Vector2(50, 100)
 current_health = 20
 max_health = 20
 skin = ExtResource("18_kjvhd")
 
 [node name="Tower" parent="." unique_id=1346702188 instance=ExtResource("21_3b0ty")]
 position = Vector2(100, 50)
-unit_role = ExtResource("22_3b0ty")
 skin = ExtResource("18_kjvhd")
 
 [node name="BigEnemy" parent="." unique_id=624947293 instance=ExtResource("23_bg4s2")]
 position = Vector2(450, 150)
-current_health = 20
-max_health = 20
 skin = ExtResource("18_kjvhd")
 
 [node name="Ui" parent="." unique_id=1993505447 instance=ExtResource("10_wkp8b")]
