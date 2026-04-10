@@ -29,7 +29,7 @@ var  attack_direction : Vector2
 @onready var _attack_overlay: AttackOverlay = %AttackOverlay
 @onready var _unit_path: UnitPath = %UnitPath
 @onready var ui = %Ui
-
+@onready var timer := $Timer
 var initiative_order := []
 
 var turn_count := 0
@@ -56,7 +56,7 @@ var flame_explosion_damage: int = 3
 #when the gameboard is called into the scene it will clear its dicitonary of units then fill it up again with the units in tjhe active scenee
 func _ready() -> void:
 	_reinitialize()
-	
+	timer.timeout.connect(_on_timer_timeout)
 	#gatherin the UI attack and such
 	if ui:
 		ui.move_requested.connect(display_move_overlay)
@@ -86,6 +86,8 @@ func roll_initiative():
 
 ##This will start the turn of the individual unit
 func start_turn():
+	timer.start()
+	await timer.timeout
 	#set the boolean value to false so it hasn't attacked
 	_has_attacked_this_turn = false
 	_move_overlay_visable = false
@@ -194,6 +196,7 @@ func start_turn():
 
 ##This will end the turn of the individual unit, it will also check at the end whether to start a new round or not
 func end_turn():
+	
 	#Resets muskateers ability at the end of turn
 	if _active_unit.unit_role is Musketeer:
 		_active_unit.unit_role.ability_luck = 0
@@ -209,6 +212,7 @@ func end_turn():
 		round_count += 1
 		print("--- Round " + str(round_count) + " Over ---")
 	_has_moved_this_turn = false
+	timer.start()
 	start_turn()
 
 ##This is a simple bubble sort becuase we need to sort initiative
@@ -739,3 +743,7 @@ func _handle_unit_death(cell: Vector2) -> void:
 	_units.erase(cell)
 	initiative_order.erase(unit_to_remove)
 	unit_to_remove.queue_free()
+
+
+func _on_timer_timeout() -> void:
+	pass # Replace with function body.

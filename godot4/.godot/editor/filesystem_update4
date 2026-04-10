@@ -11,3 +11,4 @@ res://Entities/Enemies/boss_main.gd
 res://Entities/Enemies/boss_wizzard.gd
 res://Entities/Enemies/hunter_enemy.gd
 res://Entities/Units/Unit.gd
+res://Main.tscn
