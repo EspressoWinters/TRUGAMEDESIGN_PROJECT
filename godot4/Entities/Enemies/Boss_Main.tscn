@@ -1,0 +1,40 @@
+[gd_scene format=3 uid="uid://iogax2ckuh3j"]
+
+[ext_resource type="Script" uid="uid://dl3qi0ejvvwy3" path="res://Entities/Enemies/boss_main.gd" id="1_dhl72"]
+[ext_resource type="Texture2D" uid="uid://b5ghlcxjxmmgw" path="res://Entities/Units/unit_shadow.svg" id="2_a6763"]
+[ext_resource type="Resource" uid="uid://bj7vassh2i26e" path="res://Entities/GameBoard/Grid.tres" id="2_dtkqx"]
+[ext_resource type="Texture2D" uid="uid://iljdxgodmq5n" path="res://Assets/Units/Tank.png" id="4_o0w5w"]
+
+[sub_resource type="Curve2D" id="Curve2D_mu52m"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_08waf"]
+bg_color = Color(1, 0, 0, 1)
+
+[node name="Boss_main" type="Path2D" unique_id=393416970]
+curve = SubResource("Curve2D_mu52m")
+script = ExtResource("1_dhl72")
+unit_role = null
+grid = ExtResource("2_dtkqx")
+
+[node name="PathFollow2D" type="PathFollow2D" parent="." unique_id=1680380729]
+rotates = false
+loop = false
+
+[node name="Shadow" type="Sprite2D" parent="PathFollow2D" unique_id=1316727778]
+modulate = Color(1, 1, 1, 0)
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("2_a6763")
+
+[node name="Sprite" type="Sprite2D" parent="PathFollow2D" unique_id=1974049774]
+texture = ExtResource("4_o0w5w")
+
+[node name="Healthbar" type="ProgressBar" parent="." unique_id=1884163062]
+offset_left = -8.0
+offset_top = -12.0
+offset_right = 8.0
+offset_bottom = -8.0
+scale = Vector2(0.8, 0.8)
+theme_override_styles/fill = SubResource("StyleBoxFlat_08waf")
+max_value = 5.0
+step = 1.0
+show_percentage = false

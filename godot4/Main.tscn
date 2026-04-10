@@ -23,6 +23,10 @@
 [ext_resource type="PackedScene" uid="uid://cnwqb4uvl3gd2" path="res://Entities/Enemies/Tower.tscn" id="21_3b0ty"]
 [ext_resource type="Resource" uid="uid://5kurp5dcq3sk" path="res://Entities/Enemies/Tower_Resource.tres" id="22_3b0ty"]
 [ext_resource type="PackedScene" uid="uid://3uqmxmcvncpi" path="res://Entities/Enemies/big_enemy.tscn" id="23_bg4s2"]
+[ext_resource type="PackedScene" uid="uid://c22g8f8h3i25w" path="res://Entities/Enemies/Boss_Wizzard.tscn" id="24_mxvw5"]
+[ext_resource type="Resource" uid="uid://da7e0nnskc0ja" path="res://Resources/Classes/Bosses/Boss_Wizzard.tres" id="25_sqvbp"]
+[ext_resource type="PackedScene" uid="uid://iogax2ckuh3j" path="res://Entities/Enemies/Boss_Main.tscn" id="25_xrxkg"]
+[ext_resource type="Resource" uid="uid://mdwfvkgbgbll" path="res://Resources/Classes/Bosses/Boss_Main.tres" id="27_hri7i"]
 
 [sub_resource type="Curve2D" id="Curve2D_fpfj3"]
 
@@ -123,6 +127,12 @@ skin = ExtResource("18_kjvhd")
 
 [node name="Ui" parent="." unique_id=1993505447 instance=ExtResource("10_wkp8b")]
 unique_name_in_owner = true
+
+[node name="Boss_Wizard" parent="." unique_id=165907203 instance=ExtResource("24_mxvw5")]
+unit_role = ExtResource("25_sqvbp")
+
+[node name="Boss_main" parent="." unique_id=1326663448 instance=ExtResource("25_xrxkg")]
+unit_role = ExtResource("27_hri7i")
 
 [connection signal="accept_pressed" from="Cursor" to="." method="_on_Cursor_accept_pressed"]
 [connection signal="moved" from="Cursor" to="." method="_on_Cursor_moved"]
