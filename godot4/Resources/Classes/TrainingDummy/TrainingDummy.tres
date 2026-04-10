@@ -1,0 +1,6 @@
+[gd_resource type="Resource" script_class="Tank" format=3 uid="uid://btl40g5dsl14p"]
+
+[ext_resource type="Script" uid="uid://cfmgynfcrblb3" path="res://Resources/Classes/TrainingDummy/TrainingDummy.gd" id="1_nnc1k"]
+
+[resource]
+script = ExtResource("1_nnc1k")
