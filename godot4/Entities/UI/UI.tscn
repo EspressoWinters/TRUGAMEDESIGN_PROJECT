@@ -35,7 +35,7 @@ grow_vertical = 2
 script = ExtResource("1_ibh87")
 
 [node name="Timer" type="Timer" parent="." unique_id=1817342850]
-wait_time = 0.865
+wait_time = 0.5
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=273067531]
 

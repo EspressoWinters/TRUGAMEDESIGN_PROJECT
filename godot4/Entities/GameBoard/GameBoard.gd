@@ -181,10 +181,13 @@ func start_turn():
 			_move_active_unit(near_tile)
 			await _active_unit.walk_finished
 			enemy_done_moving.emit()
+			_active_unit.check_and_attack_adjacent()
 			end_turn()
 		else:
 			#await _active_unit.walk_finished
 			enemy_done_moving.emit()
+			_active_unit.check_and_attack_adjacent()
+
 			end_turn()
 			print("I'm already as close as can be!")
 			
@@ -298,10 +301,10 @@ func _reinitialize() -> void:
 		
 		_units[unit.cell] = unit
 		unit.gameboard = self 
-		
-		if unit is BasicEnemy or unit is HunterEnemy or unit is BigEnemy or _active_unit is BossMain or _active_unit is BossWizzard:
-			if not enemy_done_moving.is_connected(unit.check_and_attack_adjacent):
-				enemy_done_moving.connect(unit.check_and_attack_adjacent)
+		#Removed this as it was making all enemies attack when any enemy is done walking
+		#if unit is BasicEnemy or unit is HunterEnemy or unit is BigEnemy or _active_unit is BossMain or _active_unit is BossWizzard:
+			#if not enemy_done_moving.is_connected(unit.check_and_attack_adjacent):
+				#enemy_done_moving.connect(unit.check_and_attack_adjacent)
 		
 		# Check if the unit's role is a Tank
 		if unit.unit_role is Tank:
@@ -429,9 +432,9 @@ func _select_unit(cell: Vector2) -> void:
 #this is the bot/computer movement section 
 func closest_tile_to_human_unit(enemy_unit : Variant):
 	var closet_human_unit = enemy_unit.find_closet_human_character()
-	print(closet_human_unit)
+	#print(closet_human_unit)
 	if closet_human_unit == null:
-		print("There isn't any humans roger roger!")
+		#print("There isn't any humans roger roger!")
 		return
 	
 	#now we get all the walkable cells from our trusted flood fill function

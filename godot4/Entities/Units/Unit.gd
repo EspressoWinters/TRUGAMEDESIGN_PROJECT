@@ -142,4 +142,7 @@ func heal(amount: int) -> void:
 		
 #Do not delete: it is needed for the extended emenies to not crash
 func find_closet_human_character():
-	print()
+	print("")
+	
+func check_and_attack_adjacent():
+	print("")

@@ -5,3 +5,9 @@ res://Resources/Classes/Grenadier/Grenadier_Resource.tres
 res://Entities/GameBoard/GameBoard.gd
 res://Entities/UI/UI.tscn
 res://Entities/UI/ui.gd
+res://Entities/Enemies/BasicEnemy.gd
+res://Entities/Enemies/big_enemy.gd
+res://Entities/Enemies/boss_main.gd
+res://Entities/Enemies/boss_wizzard.gd
+res://Entities/Enemies/hunter_enemy.gd
+res://Entities/Units/Unit.gd

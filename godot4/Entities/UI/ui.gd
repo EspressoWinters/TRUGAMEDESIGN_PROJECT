@@ -22,7 +22,5 @@ func _on_end_turn_button_pressed() -> void:
 		can_next_turn = false
 		timer.start()
 
-
-
 func _on_timer_timeout() -> void:
 	can_next_turn = true
