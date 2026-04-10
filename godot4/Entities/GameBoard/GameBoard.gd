@@ -179,6 +179,7 @@ func start_turn():
 		if near_tile:
 			#moving the unit near the tile 
 			_move_active_unit(near_tile)
+			await _active_unit.walk_finished
 			enemy_done_moving.emit()
 			end_turn()
 		else:

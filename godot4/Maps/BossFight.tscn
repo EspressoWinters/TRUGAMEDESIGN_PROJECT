@@ -16,9 +16,7 @@
 [ext_resource type="Resource" uid="uid://dhyalatumlvik" path="res://Resources/Classes/Tank/Class_Tank.tres" id="14_tuk8q"]
 [ext_resource type="PackedScene" uid="uid://bnhj47p63ostv" path="res://Entities/UI/UI.tscn" id="23_icq7t"]
 [ext_resource type="PackedScene" uid="uid://c22g8f8h3i25w" path="res://Entities/Enemies/Boss_Wizzard.tscn" id="24_hfrus"]
-[ext_resource type="Resource" uid="uid://da7e0nnskc0ja" path="res://Resources/Classes/Bosses/Boss_Wizzard.tres" id="25_t0r8f"]
 [ext_resource type="PackedScene" uid="uid://iogax2ckuh3j" path="res://Entities/Enemies/Boss_Main.tscn" id="26_g2342"]
-[ext_resource type="Resource" uid="uid://mdwfvkgbgbll" path="res://Resources/Classes/Bosses/Boss_Main.tres" id="27_unyjb"]
 
 [sub_resource type="Curve2D" id="Curve2D_fpfj3"]
 
@@ -95,13 +93,11 @@ unique_name_in_owner = true
 
 [node name="Boss_Wizard" parent="." unique_id=165907203 instance=ExtResource("24_hfrus")]
 position = Vector2(300, 100)
-unit_role = ExtResource("25_t0r8f")
 current_health = 20
 max_health = 20
 
 [node name="Boss_main" parent="." unique_id=1326663448 instance=ExtResource("26_g2342")]
 position = Vector2(300, 200)
-unit_role = ExtResource("27_unyjb")
 current_health = 20
 max_health = 20
 
