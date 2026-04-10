@@ -1,8 +1,10 @@
+res://Resources/Classes/TrainingDummy/
 res://Entities/Enemies/
+res://Entities/GameBoard/
+res://Maps/
 res://Resources/Classes/Hunter Enemy/
 res://Resources/Classes/Basic Enemy/
 res://Resources/Classes/Flamethrower/
 res://Resources/Classes/Tank/
 res://Resources/Classes/Unit/
-res://Entities/GameBoard/
 res://Resources/Classes/Musketeer/

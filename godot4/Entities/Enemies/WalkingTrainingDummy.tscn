@@ -1,0 +1,41 @@
+[gd_scene format=3 uid="uid://3dpsdgxcbphd"]
+
+[ext_resource type="Script" uid="uid://pvc3j5cfdfgc" path="res://Entities/Enemies/walking_training_dummy.gd" id="1_f07dn"]
+[ext_resource type="Resource" uid="uid://btl40g5dsl14p" path="res://Resources/Classes/TrainingDummy/TrainingDummy.tres" id="2_dh8dq"]
+[ext_resource type="Resource" uid="uid://bj7vassh2i26e" path="res://Entities/GameBoard/Grid.tres" id="3_jc5o3"]
+[ext_resource type="Texture2D" uid="uid://b5ghlcxjxmmgw" path="res://Entities/Units/unit_shadow.svg" id="4_bsbci"]
+[ext_resource type="Texture2D" uid="uid://dx34ow1am5ih6" path="res://Assets/Units/guywithknife.png" id="5_0b1up"]
+
+[sub_resource type="Curve2D" id="Curve2D_mu52m"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_08waf"]
+bg_color = Color(1, 0, 0, 1)
+
+[node name="TrainingDummy" type="Path2D" unique_id=393416970]
+curve = SubResource("Curve2D_mu52m")
+script = ExtResource("1_f07dn")
+unit_role = ExtResource("2_dh8dq")
+grid = ExtResource("3_jc5o3")
+
+[node name="PathFollow2D" type="PathFollow2D" parent="." unique_id=1680380729]
+rotates = false
+loop = false
+
+[node name="Shadow" type="Sprite2D" parent="PathFollow2D" unique_id=1316727778]
+modulate = Color(1, 1, 1, 0)
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("4_bsbci")
+
+[node name="Sprite" type="Sprite2D" parent="PathFollow2D" unique_id=1974049774]
+texture = ExtResource("5_0b1up")
+
+[node name="Healthbar" type="ProgressBar" parent="." unique_id=1884163062]
+offset_left = -8.0
+offset_top = -12.0
+offset_right = 8.0
+offset_bottom = -8.0
+scale = Vector2(0.8, 0.8)
+theme_override_styles/fill = SubResource("StyleBoxFlat_08waf")
+max_value = 5.0
+step = 1.0
+show_percentage = false

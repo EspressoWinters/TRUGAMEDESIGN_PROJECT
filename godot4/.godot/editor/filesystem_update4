@@ -1,6 +1,10 @@
-res://Main.tscn
+res://Entities/Enemies/TrainingDummy.gd
+res://Maps/tutorial_level.tscn
 res://Entities/UnitOverlay/unit_overlay_tileset.tres
 res://Entities/GameBoard/unit_path_tileset.tres
-res://Entities/Enemies/BasicEnemy.gd
-res://Entities/Enemies/big_enemy.gd
+res://Resources/Classes/TrainingDummy/TrainingDummy.gd
+res://Entities/Enemies/TrainingDummy.tscn
+res://Maps/Tutorialz.tscn
+res://Entities/Enemies/WalkingTrainingDummy.tscn
 res://Entities/Enemies/hunter_enemy.gd
+res://Entities/Enemies/walking_training_dummy.gd
