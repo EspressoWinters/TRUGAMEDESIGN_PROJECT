@@ -1,0 +1,109 @@
+[gd_scene format=3 uid="uid://bdsrkk7w4i1np"]
+
+[ext_resource type="Script" uid="uid://dagxku00ifba6" path="res://Entities/GameBoard/GameBoard.gd" id="1_og2y6"]
+[ext_resource type="Resource" uid="uid://bj7vassh2i26e" path="res://Entities/GameBoard/Grid.tres" id="2_4xks8"]
+[ext_resource type="PackedScene" uid="uid://de53ukdqyusan" path="res://Entities/Background/Map.tscn" id="3_f4fg1"]
+[ext_resource type="PackedScene" uid="uid://cbid3yyxh2mey" path="res://Entities/Attack_Overlay/Attack_Overlay.tscn" id="4_jsgbr"]
+[ext_resource type="PackedScene" uid="uid://n825j345khoi" path="res://Entities/UnitOverlay/UnitOverlay.tscn" id="5_thvvh"]
+[ext_resource type="PackedScene" uid="uid://bv1ul1qynrdwd" path="res://Entities/GameBoard/Cursor/Cursor.tscn" id="6_wbvoa"]
+[ext_resource type="PackedScene" uid="uid://dxyfefsgkgc4l" path="res://Entities/GameBoard/UnitPath.tscn" id="7_083qi"]
+[ext_resource type="PackedScene" uid="uid://d4mhjq651egt" path="res://Entities/Units/Unit.tscn" id="8_b22np"]
+[ext_resource type="Resource" uid="uid://bxlihyh6h2ggd" path="res://Resources/Classes/Musketeer/Musketeer.tres" id="9_cj4v3"]
+[ext_resource type="Texture2D" uid="uid://iljdxgodmq5n" path="res://Assets/Units/Tank.png" id="10_wa7r4"]
+[ext_resource type="Resource" uid="uid://dnttimsxfk83r" path="res://Resources/Classes/Flamethrower/FlameThrower.tres" id="11_w5mdd"]
+[ext_resource type="Resource" uid="uid://b8amy4dvpx5oc" path="res://Resources/Classes/Medic/Medic.tres" id="12_h6sig"]
+[ext_resource type="Resource" uid="uid://pgb7b1sofgni" path="res://Resources/Classes/Grenadier/Grenadier_Resource.tres" id="13_iqb6k"]
+[ext_resource type="Resource" uid="uid://dhyalatumlvik" path="res://Resources/Classes/Tank/Class_Tank.tres" id="14_tuk8q"]
+[ext_resource type="PackedScene" uid="uid://bnhj47p63ostv" path="res://Entities/UI/UI.tscn" id="23_icq7t"]
+[ext_resource type="PackedScene" uid="uid://c22g8f8h3i25w" path="res://Entities/Enemies/Boss_Wizzard.tscn" id="24_hfrus"]
+[ext_resource type="Resource" uid="uid://da7e0nnskc0ja" path="res://Resources/Classes/Bosses/Boss_Wizzard.tres" id="25_t0r8f"]
+[ext_resource type="PackedScene" uid="uid://iogax2ckuh3j" path="res://Entities/Enemies/Boss_Main.tscn" id="26_g2342"]
+[ext_resource type="Resource" uid="uid://mdwfvkgbgbll" path="res://Resources/Classes/Bosses/Boss_Main.tres" id="27_unyjb"]
+
+[sub_resource type="Curve2D" id="Curve2D_fpfj3"]
+
+[sub_resource type="Curve2D" id="Curve2D_trn2v"]
+
+[sub_resource type="Curve2D" id="Curve2D_03owx"]
+
+[sub_resource type="Curve2D" id="Curve2D_sc1dx"]
+
+[sub_resource type="Curve2D" id="Curve2D_kjvhd"]
+
+[node name="Main" type="Node2D" unique_id=1057318780]
+script = ExtResource("1_og2y6")
+grid = ExtResource("2_4xks8")
+
+[node name="Map" parent="." unique_id=1615484314 instance=ExtResource("3_f4fg1")]
+unique_name_in_owner = true
+
+[node name="AttackOverlay" parent="." unique_id=2086890748 instance=ExtResource("4_jsgbr")]
+unique_name_in_owner = true
+
+[node name="UnitOverlay" parent="." unique_id=1982980651 instance=ExtResource("5_thvvh")]
+unique_name_in_owner = true
+
+[node name="Cursor" parent="." unique_id=1216491812 instance=ExtResource("6_wbvoa")]
+position = Vector2(794.2046, 238.50526)
+scale = Vector2(0.2, 0.2)
+
+[node name="UnitPath" parent="." unique_id=1709809203 instance=ExtResource("7_083qi")]
+unique_name_in_owner = true
+
+[node name="muskateer" parent="." unique_id=1996755128 instance=ExtResource("8_b22np")]
+position = Vector2(184, 256)
+curve = SubResource("Curve2D_fpfj3")
+unit_role = ExtResource("9_cj4v3")
+current_health = 20
+max_health = 20
+skin = ExtResource("10_wa7r4")
+
+[node name="Flamethrower" parent="." unique_id=2135963956 instance=ExtResource("8_b22np")]
+position = Vector2(240, 240)
+curve = SubResource("Curve2D_trn2v")
+unit_role = ExtResource("11_w5mdd")
+current_health = 20
+max_health = 20
+skin = ExtResource("10_wa7r4")
+
+[node name="Medic" parent="." unique_id=1365851675 instance=ExtResource("8_b22np")]
+position = Vector2(200, 200)
+curve = SubResource("Curve2D_03owx")
+unit_role = ExtResource("12_h6sig")
+current_health = 20
+max_health = 20
+skin = ExtResource("10_wa7r4")
+
+[node name="Granader" parent="." unique_id=318286111 instance=ExtResource("8_b22np")]
+position = Vector2(255, 193)
+curve = SubResource("Curve2D_sc1dx")
+unit_role = ExtResource("13_iqb6k")
+current_health = 20
+max_health = 20
+skin = ExtResource("10_wa7r4")
+
+[node name="Tank" parent="." unique_id=252684278 instance=ExtResource("8_b22np")]
+position = Vector2(310, 222)
+curve = SubResource("Curve2D_kjvhd")
+unit_role = ExtResource("14_tuk8q")
+current_health = 20
+max_health = 20
+skin = ExtResource("10_wa7r4")
+
+[node name="Ui" parent="." unique_id=1993505447 instance=ExtResource("23_icq7t")]
+unique_name_in_owner = true
+
+[node name="Boss_Wizard" parent="." unique_id=165907203 instance=ExtResource("24_hfrus")]
+position = Vector2(300, 100)
+unit_role = ExtResource("25_t0r8f")
+current_health = 20
+max_health = 20
+
+[node name="Boss_main" parent="." unique_id=1326663448 instance=ExtResource("26_g2342")]
+position = Vector2(300, 200)
+unit_role = ExtResource("27_unyjb")
+current_health = 20
+max_health = 20
+
+[connection signal="accept_pressed" from="Cursor" to="." method="_on_Cursor_accept_pressed"]
+[connection signal="moved" from="Cursor" to="." method="_on_Cursor_moved"]

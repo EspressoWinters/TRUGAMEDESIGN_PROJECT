@@ -9,3 +9,8 @@ res://Resources/Classes/Bosses/BossWizzard.gd
 res://Entities/Enemies/boss_main.gd
 res://Resources/Classes/Bosses/Boss_Wizzard.tres
 res://Main.tscn
+res://Maps/BossFight.tscn
+res://Entities/Enemies/BasicEnemy.gd
+res://Entities/Enemies/big_enemy.gd
+res://Entities/GameBoard/GameBoard.gd
+res://Entities/Enemies/hunter_enemy.gd

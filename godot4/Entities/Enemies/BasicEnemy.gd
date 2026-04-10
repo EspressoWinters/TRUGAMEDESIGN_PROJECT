@@ -37,7 +37,7 @@ func find_closet_human_character():
 	
 	#let's get all the units that are human in the array
 	for unit in gameboard._units.values():
-		if unit is not BasicEnemy and unit is not HunterEnemy and unit is not BigEnemy and unit is not Tower:
+		if unit is not BasicEnemy and unit is not HunterEnemy and unit is not BigEnemy and unit is not Tower  and unit is not BossMain and unit is not BossWizzard:
 			human_units.append(unit)
 			if unit.unit_role and unit.unit_role is Tank and unit.is_taunting:
 				taunter_found = true
