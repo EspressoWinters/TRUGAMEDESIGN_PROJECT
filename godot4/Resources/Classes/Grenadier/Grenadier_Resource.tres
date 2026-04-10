@@ -4,4 +4,5 @@
 
 [resource]
 script = ExtResource("1_w5fgi")
+max_hp = 1000
 speed = 100

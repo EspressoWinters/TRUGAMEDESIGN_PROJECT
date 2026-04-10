@@ -183,6 +183,7 @@ func start_turn():
 			enemy_done_moving.emit()
 			end_turn()
 		else:
+			#await _active_unit.walk_finished
 			enemy_done_moving.emit()
 			end_turn()
 			print("I'm already as close as can be!")
