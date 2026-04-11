@@ -63,5 +63,8 @@ position = Vector2(400, 175)
 current_health = 20
 max_health = 20
 
+[node name="Timer" type="Timer" parent="." unique_id=1566837051]
+wait_time = 0.1
+
 [connection signal="accept_pressed" from="Cursor" to="." method="_on_Cursor_accept_pressed"]
 [connection signal="moved" from="Cursor" to="." method="_on_Cursor_moved"]

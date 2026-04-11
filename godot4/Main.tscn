@@ -36,8 +36,7 @@ script = ExtResource("3")
 grid = ExtResource("4")
 
 [node name="Timer" type="Timer" parent="." unique_id=1100344647]
-wait_time = 0.25
-autostart = true
+wait_time = 0.1
 
 [node name="Map" parent="." unique_id=1615484314 instance=ExtResource("10")]
 unique_name_in_owner = true
@@ -124,6 +123,5 @@ skin = ExtResource("18_kjvhd")
 [node name="Ui" parent="." unique_id=1993505447 instance=ExtResource("10_wkp8b")]
 unique_name_in_owner = true
 
-[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
 [connection signal="accept_pressed" from="Cursor" to="." method="_on_Cursor_accept_pressed"]
 [connection signal="moved" from="Cursor" to="." method="_on_Cursor_moved"]

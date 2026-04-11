@@ -56,7 +56,6 @@ var flame_explosion_damage: int = 3
 #when the gameboard is called into the scene it will clear its dicitonary of units then fill it up again with the units in tjhe active scenee
 func _ready() -> void:
 	_reinitialize()
-	timer.timeout.connect(_on_timer_timeout)
 	#gatherin the UI attack and such
 	if ui:
 		ui.move_requested.connect(display_move_overlay)
@@ -86,8 +85,6 @@ func roll_initiative():
 
 ##This will start the turn of the individual unit
 func start_turn():
-	timer.start()
-	await timer.timeout
 	#set the boolean value to false so it hasn't attacked
 	_has_attacked_this_turn = false
 	_move_overlay_visable = false
@@ -126,7 +123,8 @@ func start_turn():
 				if _units.has(attack_cell):
 					damage = _active_unit.unit_role.attack_roll(_active_unit)
 					apply_damage(attack_cell, damage, _active_unit, false)
-		
+		timer.start()
+		await timer.timeout
 		end_turn()
 
 	
@@ -184,12 +182,15 @@ func start_turn():
 			await _active_unit.walk_finished
 			enemy_done_moving.emit()
 			_active_unit.check_and_attack_adjacent()
+			timer.start()
+			await timer.timeout
 			end_turn()
 		else:
 			#await _active_unit.walk_finished
 			enemy_done_moving.emit()
 			_active_unit.check_and_attack_adjacent()
-
+			timer.start()
+			await timer.timeout
 			end_turn()
 			print("I'm already as close as can be!")
 			
@@ -213,6 +214,7 @@ func end_turn():
 		print("--- Round " + str(round_count) + " Over ---")
 	_has_moved_this_turn = false
 	timer.start()
+	await timer.timeout
 	start_turn()
 
 ##This is a simple bubble sort becuase we need to sort initiative
@@ -743,7 +745,3 @@ func _handle_unit_death(cell: Vector2) -> void:
 	_units.erase(cell)
 	initiative_order.erase(unit_to_remove)
 	unit_to_remove.queue_free()
-
-
-func _on_timer_timeout() -> void:
-	pass # Replace with function body.
