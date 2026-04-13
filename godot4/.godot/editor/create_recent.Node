@@ -1,3 +1,14 @@
-Path2D
-Node2D
-Camera2D
+Button
+Label
+Panel
+VBoxContainer
+VScrollBar
+RichTextLabel
+ItemList
+MarginContainer
+HBoxContainer
+TextureRect
+Sprite2D
+CanvasLayer
+CollisionShape2D
+Area2D

@@ -10,7 +10,6 @@ class_name GameBoard
 extends Node2D
 
 signal _update_health_bar
-
 const DIRECTIONS = [Vector2.LEFT, Vector2.RIGHT, Vector2.UP, Vector2.DOWN]
 
 ## Resource of type Grid.
@@ -66,7 +65,7 @@ func _ready() -> void:
 		ui.ability_requested.connect(unit_ability)
 	else:
 		push_error("GameBoard: UI node not found at path!")
-	
+	spawn_party_from_manager()
 	turn_manager()
 
 func turn_manager():
@@ -204,10 +203,13 @@ func end_turn():
 		round_count += 1
 		print("--- Round " + str(round_count) + " Over ---")
 	_has_moved_this_turn = false
-	start_turn()
+	await _check_for_victory_or_defeat()
+	if not get_tree().paused:
+		#call_deferred breaks the recursion loop
+		call_deferred("start_turn")
 
 ##This is a simple bubble sort becuase we need to sort initiative
-#If you don't know bubble sort here is the algorithm: https://www.geeksforgeeks.org/dsa/bubble-sort-algorithm/
+#If you don't know bubble sort here is the algorithm: https://woverww.geeksforgeeks.org/dsa/bubble-sort-algorithm/
 func initiative_bubble_sort(initiative_array: Array):
 	for i in range(len(initiative_array)):
 		for j in range(len(initiative_array)-1-i):
@@ -734,3 +736,114 @@ func _handle_unit_death(cell: Vector2) -> void:
 	_units.erase(cell)
 	initiative_order.erase(unit_to_remove)
 	unit_to_remove.queue_free()
+
+#corridnates of spawn for each level
+const SPAWN_CONFIG = {
+	"Level_0_plains": [
+		Vector2(4, 6), Vector2(4, 7), #Front
+		Vector2(5, 6), Vector2(5, 7), #Mid
+		Vector2(6, 6), Vector2(6, 7)  #Back
+	],
+	"Level_1_rivers": [
+		Vector2(3, 16), Vector2(3, 17),
+		Vector2(4, 16), Vector2(4, 17),
+		Vector2(5, 16), Vector2(5, 17)
+	],
+	"Level_2_ruin_ambush": [
+		Vector2(18, 12), Vector2(18, 13),
+		Vector2(19, 12), Vector2(19, 13),
+		Vector2(19, 12), Vector2(19, 13)
+	],
+	"Level_3_ruins": [
+		Vector2(5, 10), Vector2(4, 11),
+		Vector2(5, 10), Vector2(5, 11),
+		Vector2(6, 10), Vector2(6, 11) 
+	],
+	"Level_4_bridge": [
+		Vector2(5, 10), Vector2(4, 11),
+		Vector2(5, 10), Vector2(5, 11),
+		Vector2(6, 10), Vector2(6, 11) 
+	]
+}
+
+func spawn_party_from_manager() -> void:
+	#gets the current level name from the scene tree
+	var current_level = get_tree().current_scene.name
+	
+	#selects the spawn array based on the level name
+	var spawn_points = SPAWN_CONFIG.get(current_level)
+	
+	#if the level isn't in SPAWN_CONFIG exit early
+	if spawn_points == null:
+		print("No spawn points defined for: ", current_level)
+		return
+	
+	var unit_scene = preload("res://Entities/Units/UnitTemplate/Unit.tscn")
+	
+	for i in range(PartyManager.active_party.size()):
+		#stops if we run out of defined spawn points for this level
+		if i >= spawn_points.size():
+			break
+			
+		var data = PartyManager.active_party[i]
+		var new_unit = unit_scene.instantiate() as Unit
+		
+		#so the unit_role setter can trigger correctly
+		new_unit.unit_role = data
+		new_unit.grid = PartyManager.GRID_RES 
+		
+		add_child(new_unit)
+		
+		#set coordinates based on the level-specific list
+		new_unit.cell = spawn_points[i]
+		new_unit.position = new_unit.grid.calculate_map_position(new_unit.cell)
+	
+	# Refresh units dictionary for movement logic
+	_reinitialize()
+
+func _check_for_victory_or_defeat() -> void:
+	var player_alive := false
+	var enemies_alive := false
+
+	# Scan the initiative list to see who is still standing
+	for unit in initiative_order:
+		if unit.is_in_group("player_units"):
+			player_alive = true
+		elif unit is BasicEnemy or unit is HunterEnemy or unit is BigEnemy:
+			enemies_alive = true
+			
+	if not enemies_alive:
+		grant_xp()
+		ui.combat_end_label_ui.text = "WINNER!"
+		get_tree().paused = true
+		ui.combat_end_ui.visible = true
+		ui.battle_ui.visible = false
+	elif not player_alive:
+		ui.combat_end_label_ui.text = "LOSER"
+		get_tree().paused = true
+		ui.combat_end_ui.visible = true
+		ui.continue_button_ui.visible = false
+		ui.battle_ui.visible = false
+
+func grant_xp() -> void:
+	print("Granting victory XP to survivors...")
+	for unit in initiative_order:
+		if unit.is_in_group("player_units") and is_instance_valid(unit):
+			unit.unit_role.xp += 25
+			print("%s gained 25 XP. Total: %d" % [unit.unit_role.role, unit.unit_role.xp])
+	_check_for_level_ups()
+
+func _check_for_level_ups() -> void:
+	for unit in initiative_order:
+		if unit.is_in_group("player_units") and is_instance_valid(unit):
+			
+			#checks if unit is ready to level up!
+			while unit.unit_role.xp >= 100:
+				unit.unit_role.level += 1
+				unit.unit_role.xp -= 100
+				unit.unit_role.defense += 1 # Add +1 Defense per level
+				unit.unit_role.attack_stat += 1
+				unit.unit_role.max_hp += 2
+				unit.unit_role.luck += 1
+				
+				print("LEVEL UP! %s is now Level %d." % [unit.unit_role.role, unit.unit_role.level])

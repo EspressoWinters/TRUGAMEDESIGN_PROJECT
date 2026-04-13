@@ -1,0 +1,237 @@
+[gd_scene format=3 uid="uid://cg6p1hsswqwll"]
+
+[ext_resource type="Script" uid="uid://b8hj1hdk1l0o5" path="res://Levels/Hub/Hub.gd" id="1_vgcwu"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_82nlh"]
+bg_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_gvx88"]
+bg_color = Color(0.10980392, 0.10980392, 0.10980392, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_c2pbl"]
+bg_color = Color(0.11119685, 0.11119685, 0.11119678, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vgcwu"]
+bg_color = Color(0.10980392, 0.10980392, 0.10980392, 1)
+
+[node name="Hub" type="Control" unique_id=760544455]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_vgcwu")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=867235651]
+
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer" unique_id=1143361010]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="HeroManagerBuilding" type="Button" parent="CanvasLayer/TextureRect" unique_id=1367728986]
+custom_minimum_size = Vector2(100, 150)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -50.0
+offset_top = -75.0
+offset_right = 50.0
+offset_bottom = 75.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Hero Manager"
+
+[node name="QuitButton" type="Button" parent="CanvasLayer/TextureRect" unique_id=407867803]
+custom_minimum_size = Vector2(50, 25)
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -25.0
+offset_right = 50.0
+grow_vertical = 0
+text = "QUIT"
+
+[node name="ExpeditionButton" type="Button" parent="CanvasLayer/TextureRect" unique_id=1171021978]
+custom_minimum_size = Vector2(50, 25)
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -68.0
+offset_top = -25.0
+grow_horizontal = 0
+grow_vertical = 0
+text = "EXPEDITION"
+
+[node name="PartyManager" type="Panel" parent="CanvasLayer/TextureRect" unique_id=1572280717]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -200.0
+offset_top = -150.0
+offset_right = 200.0
+offset_bottom = 150.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_82nlh")
+
+[node name="CloseButton" type="Button" parent="CanvasLayer/TextureRect/PartyManager" unique_id=1293689184]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -19.0
+offset_top = -21.0
+offset_right = 19.0
+grow_horizontal = 2
+grow_vertical = 0
+text = "CLOSE"
+
+[node name="CurrentPartyPanel" type="Panel" parent="CanvasLayer/TextureRect/PartyManager" unique_id=1953830868]
+custom_minimum_size = Vector2(150, 200)
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 20.0
+offset_top = -100.0
+offset_right = 170.0
+offset_bottom = 100.0
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_gvx88")
+
+[node name="FireButton" type="Button" parent="CanvasLayer/TextureRect/PartyManager/CurrentPartyPanel" unique_id=1521575806]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -14.0
+offset_top = -21.0
+offset_right = 14.0
+grow_horizontal = 2
+grow_vertical = 0
+text = "Fire"
+
+[node name="CurrentPartyList" type="VBoxContainer" parent="CanvasLayer/TextureRect/PartyManager/CurrentPartyPanel" unique_id=1864248043]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -60.0
+offset_top = 10.0
+offset_right = 60.0
+offset_bottom = 70.0
+grow_horizontal = 2
+
+[node name="RecruitableHerosPanel" type="Panel" parent="CanvasLayer/TextureRect/PartyManager" unique_id=2095190789]
+custom_minimum_size = Vector2(150, 100)
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -180.0
+offset_top = -145.0
+offset_right = -20.0
+offset_bottom = -25.0
+grow_horizontal = 0
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_c2pbl")
+
+[node name="Label" type="Label" parent="CanvasLayer/TextureRect/PartyManager/RecruitableHerosPanel" unique_id=1020030344]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -38.0
+offset_right = 38.0
+offset_bottom = 18.0
+grow_horizontal = 2
+text = "Heros For Hire"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HireButton" type="Button" parent="CanvasLayer/TextureRect/PartyManager/RecruitableHerosPanel" unique_id=656625483]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -16.0
+offset_top = -21.0
+offset_right = 16.0
+grow_horizontal = 2
+grow_vertical = 0
+text = "HIRE"
+
+[node name="RecruitableHerosList" type="VBoxContainer" parent="CanvasLayer/TextureRect/PartyManager/RecruitableHerosPanel" unique_id=2025216548]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -60.0
+offset_top = 20.0
+offset_right = 60.0
+offset_bottom = 97.0
+grow_horizontal = 2
+
+[node name="HeroInfo" type="Panel" parent="CanvasLayer/TextureRect/PartyManager" unique_id=1617741285]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -180.0
+offset_top = -164.0
+offset_right = -20.0
+offset_bottom = -24.0
+grow_horizontal = 0
+grow_vertical = 0
+theme_override_styles/panel = SubResource("StyleBoxFlat_vgcwu")
+
+[node name="Label" type="Label" parent="CanvasLayer/TextureRect/PartyManager/HeroInfo" unique_id=241256191]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -26.0
+offset_right = 26.0
+offset_bottom = 13.0
+grow_horizontal = 2
+text = "Class: ???"
+
+[node name="RichTextLabel" type="RichTextLabel" parent="CanvasLayer/TextureRect/PartyManager/HeroInfo" unique_id=1643937852]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.21800001
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 0.009999275
+grow_horizontal = 2
+grow_vertical = 2
+bbcode_enabled = true
+
+[connection signal="pressed" from="CanvasLayer/TextureRect/HeroManagerBuilding" to="." method="_on_hero_manager_building_pressed"]
+[connection signal="pressed" from="CanvasLayer/TextureRect/QuitButton" to="." method="_on_quit_button_pressed"]
+[connection signal="pressed" from="CanvasLayer/TextureRect/ExpeditionButton" to="." method="_on_expedition_button_pressed"]
+[connection signal="pressed" from="CanvasLayer/TextureRect/PartyManager/CloseButton" to="." method="_on_close_HiringUI_button_pressed"]

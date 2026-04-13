@@ -1,0 +1,74 @@
+[gd_scene format=3 uid="uid://cqp1aa03mgbaj"]
+
+[ext_resource type="Script" uid="uid://ck6347g4l1xuy" path="res://Levels/main_menu/main_menu.gd" id="1_ehjm0"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_rg281"]
+bg_color = Color(0, 0, 0, 1)
+
+[node name="MainMenu" type="Control" unique_id=2081424531]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_ehjm0")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1432764045]
+
+[node name="Panel" type="Panel" parent="CanvasLayer" unique_id=674109347]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_rg281")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/Panel" unique_id=1641615581]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -81.0
+offset_top = -117.5
+offset_right = 81.0
+offset_bottom = 117.5
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 1
+
+[node name="Label" type="Label" parent="CanvasLayer/Panel/VBoxContainer" unique_id=1343556310]
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = "GAME NAME"
+horizontal_alignment = 1
+
+[node name="Label2" type="Label" parent="CanvasLayer/Panel/VBoxContainer" unique_id=1165033969]
+layout_mode = 2
+text = "By: Clockwork Studio"
+horizontal_alignment = 1
+
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/Panel/VBoxContainer" unique_id=382984441]
+custom_minimum_size = Vector2(0, 100)
+layout_mode = 2
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="CanvasLayer/Panel/VBoxContainer" unique_id=205716669]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+alignment = 1
+
+[node name="PlayButton" type="Button" parent="CanvasLayer/Panel/VBoxContainer/VBoxContainer2" unique_id=1682785064]
+custom_minimum_size = Vector2(50, 25)
+layout_mode = 2
+text = "PLAY"
+
+[node name="QuitButton" type="Button" parent="CanvasLayer/Panel/VBoxContainer/VBoxContainer2" unique_id=1007707393]
+custom_minimum_size = Vector2(100, 25)
+layout_mode = 2
+text = "QUIT"
+
+[connection signal="pressed" from="CanvasLayer/Panel/VBoxContainer/VBoxContainer2/PlayButton" to="." method="_on_play_button_pressed"]
+[connection signal="pressed" from="CanvasLayer/Panel/VBoxContainer/VBoxContainer2/QuitButton" to="." method="_on_quit_button_pressed"]

@@ -1,12 +1,18 @@
 [gd_scene format=3 uid="uid://cxdy8de6npsch"]
 
 [ext_resource type="Script" uid="uid://cd0wrkp1ttumk" path="res://Entities/Enemies/hunter_enemy.gd" id="1_ni0ue"]
-[ext_resource type="Texture2D" uid="uid://b5ghlcxjxmmgw" path="res://Entities/Units/unit_shadow.svg" id="2_bwqf6"]
+[ext_resource type="Texture2D" uid="uid://b5ghlcxjxmmgw" path="res://Entities/Units/UnitTemplate/unit_shadow.svg" id="2_bwqf6"]
 
 [sub_resource type="Curve2D" id="Curve2D_18dde"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1o3fl"]
 bg_color = Color(1, 0, 0, 1)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ni0ue"]
+size = Vector2(16, 16)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bwqf6"]
+bg_color = Color(0, 0, 0, 1)
 
 [node name="HunterEnemy" type="Path2D" unique_id=2053675038]
 curve = SubResource("Curve2D_18dde")
@@ -33,3 +39,38 @@ theme_override_styles/fill = SubResource("StyleBoxFlat_1o3fl")
 max_value = 5.0
 step = 1.0
 show_percentage = false
+
+[node name="Area2D" type="Area2D" parent="." unique_id=117195472]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=997651283]
+shape = SubResource("RectangleShape2D_ni0ue")
+
+[node name="Panel" type="Panel" parent="Area2D" unique_id=73649749]
+visible = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -19.0
+offset_top = -25.0
+offset_right = 14.0
+offset_bottom = -13.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_bwqf6")
+
+[node name="HealthLabel" type="Label" parent="Area2D/Panel" unique_id=1717969098]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -1.0
+offset_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 16
+text = "HP: 20"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[connection signal="mouse_entered" from="Area2D" to="." method="_on_container_mouse_entered"]
+[connection signal="mouse_exited" from="Area2D" to="." method="_on_container_mouse_exited"]

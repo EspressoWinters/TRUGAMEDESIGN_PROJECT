@@ -1,0 +1,120 @@
+[gd_scene format=3 uid="uid://d4mhjq651egt"]
+
+[ext_resource type="Script" uid="uid://bj2oso2ug885f" path="res://Entities/Units/UnitTemplate/Unit.gd" id="1"]
+[ext_resource type="Resource" uid="uid://bj7vassh2i26e" path="res://Entities/GameBoard/Grid.tres" id="2"]
+[ext_resource type="Texture2D" uid="uid://b5ghlcxjxmmgw" path="res://Entities/Units/UnitTemplate/unit_shadow.svg" id="3"]
+
+[sub_resource type="Curve2D" id="Curve2D_ybgvn"]
+
+[sub_resource type="Animation" id="1"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("PathFollow2D/Sprite:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="2"]
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("PathFollow2D/Sprite:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.7),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1.5, 1.5, 1.5, 1), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_5dan3"]
+_data = {
+&"idle": SubResource("1"),
+&"selected": SubResource("2")
+}
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ybgvn"]
+bg_color = Color(1, 0, 0, 1)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ybgvn"]
+size = Vector2(16, 16)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_nuw8c"]
+bg_color = Color(0, 0, 0, 1)
+
+[node name="Unit" type="Path2D" unique_id=2135963956 groups=["player_units"]]
+curve = SubResource("Curve2D_ybgvn")
+script = ExtResource("1")
+grid = ExtResource("2")
+
+[node name="PathFollow2D" type="PathFollow2D" parent="." unique_id=1992455458 groups=["player_units"]]
+rotates = false
+loop = false
+
+[node name="Shadow" type="Sprite2D" parent="PathFollow2D" unique_id=1061409248 groups=["player_units"]]
+modulate = Color(0.101961, 0.109804, 0.0901961, 0.329412)
+position = Vector2(0, 8)
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("3")
+
+[node name="Sprite" type="Sprite2D" parent="PathFollow2D" unique_id=2074728205 groups=["player_units"]]
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=458609128 groups=["player_units"]]
+libraries/ = SubResource("AnimationLibrary_5dan3")
+autoplay = &"idle"
+
+[node name="Healthbar" type="ProgressBar" parent="." unique_id=2019113874 groups=["player_units"]]
+offset_left = -8.0
+offset_top = -12.0
+offset_right = 8.0
+offset_bottom = -8.0
+scale = Vector2(0.8, 0.8)
+theme_override_styles/fill = SubResource("StyleBoxFlat_ybgvn")
+max_value = 5.0
+step = 1.0
+show_percentage = false
+metadata/_edit_use_anchors_ = true
+
+[node name="Area2D" type="Area2D" parent="." unique_id=205582]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=671466075]
+shape = SubResource("RectangleShape2D_ybgvn")
+
+[node name="Panel" type="Panel" parent="Area2D" unique_id=1622482784]
+visible = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -19.0
+offset_top = -25.0
+offset_right = 14.0
+offset_bottom = -13.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_nuw8c")
+
+[node name="HealthLabel" type="Label" parent="Area2D/Panel" unique_id=134756531]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -1.0
+offset_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 16
+text = "HP: 20"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[connection signal="mouse_entered" from="Area2D" to="." method="_on_container_mouse_entered"]
+[connection signal="mouse_exited" from="Area2D" to="." method="_on_container_mouse_exited"]

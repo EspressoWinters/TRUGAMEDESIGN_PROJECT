@@ -7,7 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://n825j345khoi" path="res://Entities/UnitOverlay/UnitOverlay.tscn" id="5_bhhit"]
 [ext_resource type="PackedScene" uid="uid://bv1ul1qynrdwd" path="res://Entities/GameBoard/Cursor/Cursor.tscn" id="6_svyqi"]
 [ext_resource type="PackedScene" uid="uid://dxyfefsgkgc4l" path="res://Entities/GameBoard/UnitPath.tscn" id="7_j01xv"]
-[ext_resource type="PackedScene" uid="uid://d4mhjq651egt" path="res://Entities/Units/Unit.tscn" id="8_7ncde"]
+[ext_resource type="PackedScene" uid="uid://d4mhjq651egt" path="res://Entities/Units/UnitTemplate/Unit.tscn" id="8_7ncde"]
 [ext_resource type="Resource" uid="uid://bxlihyh6h2ggd" path="res://Resources/Classes/Musketeer/Musketeer.tres" id="9_lb2k3"]
 [ext_resource type="Texture2D" uid="uid://iljdxgodmq5n" path="res://Assets/Units/Tank.png" id="10_lqb5f"]
 [ext_resource type="Resource" uid="uid://dnttimsxfk83r" path="res://Resources/Classes/Flamethrower/FlameThrower.tres" id="11_nyrwo"]

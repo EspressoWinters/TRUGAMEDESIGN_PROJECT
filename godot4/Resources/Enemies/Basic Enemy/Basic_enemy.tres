@@ -1,0 +1,8 @@
+[gd_resource type="Resource" script_class="Basic_enemy" format=3 uid="uid://b62e2fu6oowdg"]
+
+[ext_resource type="Script" uid="uid://dw060kljl4vfj" path="res://Resources/Enemies/Basic Enemy/Basic_enemy.gd" id="1_jymir"]
+[ext_resource type="Texture2D" uid="uid://dx34ow1am5ih6" path="res://Assets/Units/guywithknife.png" id="2_3spbl"]
+
+[resource]
+script = ExtResource("1_jymir")
+skin = ExtResource("2_3spbl")

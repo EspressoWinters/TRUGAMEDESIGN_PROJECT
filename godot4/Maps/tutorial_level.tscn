@@ -10,7 +10,7 @@
 [ext_resource type="PackedScene" uid="uid://dxyfefsgkgc4l" path="res://Entities/GameBoard/UnitPath.tscn" id="7_barnf"]
 [ext_resource type="PackedScene" uid="uid://n825j345khoi" path="res://Entities/UnitOverlay/UnitOverlay.tscn" id="7_uv1ew"]
 [ext_resource type="PackedScene" uid="uid://bnhj47p63ostv" path="res://Entities/UI/UI.tscn" id="8_l36a7"]
-[ext_resource type="PackedScene" uid="uid://d4mhjq651egt" path="res://Entities/Units/Unit.tscn" id="8_tx3ur"]
+[ext_resource type="PackedScene" uid="uid://d4mhjq651egt" path="res://Entities/Units/UnitTemplate/Unit.tscn" id="8_tx3ur"]
 [ext_resource type="Texture2D" uid="uid://iljdxgodmq5n" path="res://Assets/Units/Tank.png" id="10_4o3jm"]
 [ext_resource type="Resource" uid="uid://dhyalatumlvik" path="res://Resources/Classes/Tank/Class_Tank.tres" id="10_pf5se"]
 [ext_resource type="PackedScene" uid="uid://u0xoc2d2sgj" path="res://Entities/Enemies/TrainingDummy.tscn" id="12_pf5se"]
