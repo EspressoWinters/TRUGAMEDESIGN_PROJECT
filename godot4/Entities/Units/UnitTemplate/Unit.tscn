@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://d4mhjq651egt"]
 
-[ext_resource type="Script" uid="uid://bj2oso2ug885f" path="res://Entities/Units/UnitTemplate/Unit.gd" id="1"]
+[ext_resource type="Script" uid="uid://bj2oso2ug885f" path="res://Entities/Units/Unit.gd" id="1"]
 [ext_resource type="Resource" uid="uid://bj7vassh2i26e" path="res://Entities/GameBoard/Grid.tres" id="2"]
 [ext_resource type="Texture2D" uid="uid://b5ghlcxjxmmgw" path="res://Entities/Units/UnitTemplate/unit_shadow.svg" id="3"]
 

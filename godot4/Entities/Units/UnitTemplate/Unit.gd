@@ -28,7 +28,6 @@ var is_taunting: bool = false
 @export var max_health: int
 var gameboard: GameBoard
 @export var initiative_stat := 0
-@onready var health_label: Label = $Area2D/Panel/HealthLabel
 
 ## Set for each sprite to line up with the shadow
 @export var skin_offset := Vector2.ZERO:
@@ -139,7 +138,7 @@ func find_closet_human_character():
 	print()
 
 func _on_container_mouse_entered() -> void:
-	health_label.text = "HP: %d" % [current_health]
+	$Area2D/Panel/HealthLabel.text = "HP: %d" % [current_health]
 	$Area2D/Panel.visible = true
 
 func _on_container_mouse_exited() -> void:
