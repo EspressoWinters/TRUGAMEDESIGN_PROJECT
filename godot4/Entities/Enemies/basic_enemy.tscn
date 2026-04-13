@@ -1,9 +1,10 @@
 [gd_scene format=3 uid="uid://civ2clvctpumk"]
 
 [ext_resource type="Script" uid="uid://cdxafxavudtc6" path="res://Entities/Enemies/BasicEnemy.gd" id="1_ok2tl"]
-[ext_resource type="Resource" uid="uid://b62e2fu6oowdg" path="res://Resources/Enemies/Basic Enemy/Basic_enemy.tres" id="2_7m3eu"]
-[ext_resource type="Texture2D" uid="uid://b5ghlcxjxmmgw" path="res://Entities/Units/UnitTemplate/unit_shadow.svg" id="2_08waf"]
+[ext_resource type="Resource" uid="uid://b62e2fu6oowdg" path="res://Resources/Classes/Basic Enemy/Basic_enemy.tres" id="2_7m3eu"]
+[ext_resource type="Texture2D" uid="uid://b5ghlcxjxmmgw" path="res://Entities/Units/unit_shadow.svg" id="2_08waf"]
 [ext_resource type="Resource" uid="uid://bj7vassh2i26e" path="res://Entities/GameBoard/Grid.tres" id="2_xpl8d"]
+[ext_resource type="Texture2D" uid="uid://dx34ow1am5ih6" path="res://Assets/Units/guywithknife.png" id="5_u3b1g"]
 
 [sub_resource type="Curve2D" id="Curve2D_mu52m"]
 
@@ -32,6 +33,7 @@ scale = Vector2(0.2, 0.2)
 texture = ExtResource("2_08waf")
 
 [node name="Sprite" type="Sprite2D" parent="PathFollow2D" unique_id=1974049774]
+texture = ExtResource("5_u3b1g")
 
 [node name="Healthbar" type="ProgressBar" parent="." unique_id=1884163062]
 offset_left = -8.0

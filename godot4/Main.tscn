@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://xgmbb8el1xj4"]
 
 [ext_resource type="PackedScene" uid="uid://bv1ul1qynrdwd" path="res://Entities/GameBoard/Cursor/Cursor.tscn" id="1"]
-[ext_resource type="PackedScene" uid="uid://d4mhjq651egt" path="res://Entities/Units/UnitTemplate/Unit.tscn" id="2"]
+[ext_resource type="PackedScene" uid="uid://d4mhjq651egt" path="res://Entities/Units/Unit.tscn" id="2"]
 [ext_resource type="Script" uid="uid://dagxku00ifba6" path="res://Entities/GameBoard/GameBoard.gd" id="3"]
 [ext_resource type="Resource" uid="uid://bj7vassh2i26e" path="res://Entities/GameBoard/Grid.tres" id="4"]
 [ext_resource type="PackedScene" uid="uid://n825j345khoi" path="res://Entities/UnitOverlay/UnitOverlay.tscn" id="5"]
@@ -55,41 +55,34 @@ unique_name_in_owner = true
 position = Vector2(184, 256)
 curve = SubResource("Curve2D_fpfj3")
 unit_role = ExtResource("16_sc1dx")
-current_health = 20
 max_health = 20
 
 [node name="Flamethrower" parent="." unique_id=2135963956 instance=ExtResource("2")]
 position = Vector2(240, 240)
 curve = SubResource("Curve2D_trn2v")
 unit_role = ExtResource("9_c6i3y")
-current_health = 20
 max_health = 20
 
 [node name="Medic" parent="." unique_id=1365851675 instance=ExtResource("2")]
 position = Vector2(200, 200)
 curve = SubResource("Curve2D_03owx")
 unit_role = ExtResource("11_c2ibq")
-current_health = 20
 max_health = 20
 
 [node name="Granader" parent="." unique_id=318286111 instance=ExtResource("2")]
 position = Vector2(255, 193)
 curve = SubResource("Curve2D_sc1dx")
 unit_role = ExtResource("14_j4qnp")
-current_health = 20
 max_health = 20
 
 [node name="Tank" parent="." unique_id=252684278 instance=ExtResource("2")]
 position = Vector2(310, 222)
 curve = SubResource("Curve2D_kjvhd")
 unit_role = ExtResource("11_j4qnp")
-current_health = 20
 max_health = 20
 
 [node name="BasicEnemy" parent="." unique_id=393416970 instance=ExtResource("16_kjvhd")]
 position = Vector2(400, 150)
-current_health = 20
-max_health = 20
 
 [node name="HunterEnemy" parent="." unique_id=2053675038 instance=ExtResource("19_5tuhn")]
 position = Vector2(50, 50)
@@ -97,6 +90,8 @@ unit_role = ExtResource("20_2gh4u")
 grid = ExtResource("4")
 current_health = 20
 max_health = 20
+skin = null
+skin_offset = Vector2(0, 0)
 
 [node name="Tower" parent="." unique_id=1346702188 instance=ExtResource("21_3b0ty")]
 position = Vector2(100, 50)

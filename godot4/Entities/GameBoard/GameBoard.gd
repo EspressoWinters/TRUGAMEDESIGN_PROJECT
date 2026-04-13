@@ -717,14 +717,14 @@ func apply_damage(target_cell: Vector2, amount: int, attacker: Unit, crit: bool)
 			if victim == attacker:
 				#quartering the damage to self
 				amount *= 0.25
-	victim.current_health -= amount
+	victim.unit_role.current_health -= amount
 	_update_health_bar.emit()
 	print("%s took %d damage!" % [victim.name, amount])
 		
-	if victim.current_health >= victim.max_health:
-		victim.current_health = victim.max_health
+	if victim.unit_role.current_health >= victim.max_health:
+		victim.unit_role.current_health = victim.max_health
 	
-	if victim.current_health <= 0:
+	if victim.unit_role.current_health <= 0:
 		_handle_unit_death(target_cell)
 	if crit == false:
 		DamageNumbers.display_number(amount, victim.global_position, false)
@@ -778,7 +778,7 @@ func spawn_party_from_manager() -> void:
 		print("No spawn points defined for: ", current_level)
 		return
 	
-	var unit_scene = preload("res://Entities/Units/UnitTemplate/Unit.tscn")
+	var unit_scene = preload("res://Entities/Units/Unit.tscn")
 	
 	for i in range(PartyManager.active_party.size()):
 		#stops if we run out of defined spawn points for this level
@@ -813,6 +813,8 @@ func _check_for_victory_or_defeat() -> void:
 			enemies_alive = true
 			
 	if not enemies_alive:
+		for unit in _units:
+			_units[unit].unit_role.current_health
 		grant_xp()
 		ui.combat_end_label_ui.text = "WINNER!"
 		get_tree().paused = true

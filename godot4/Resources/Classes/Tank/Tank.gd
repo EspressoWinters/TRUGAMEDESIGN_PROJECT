@@ -85,8 +85,8 @@ func ability(unit: Unit):
 
 func passive(unit: Unit):
 	var heal_amount = 5
-	unit.current_health += heal_amount
-	unit.current_health = clamp(unit.current_health, 0, unit.max_health)
+	current_health += heal_amount
+	current_health = clamp(current_health, 0, unit.max_health)
 	unit.set_health_bar()
 	print("Tank passive healed for 5!")
 

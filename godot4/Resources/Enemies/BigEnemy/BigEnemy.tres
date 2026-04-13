@@ -1,8 +1,0 @@
-[gd_resource type="Resource" script_class="Big_enemy" format=3 uid="uid://cudtnc0vm77xd"]
-
-[ext_resource type="Script" uid="uid://bhqbfoc8tp68t" path="res://Resources/Enemies/BigEnemy/BigEnemy.gd" id="1_tphkd"]
-[ext_resource type="Texture2D" uid="uid://dx34ow1am5ih6" path="res://Assets/Units/guywithknife.png" id="2_ygmb2"]
-
-[resource]
-script = ExtResource("1_tphkd")
-skin = ExtResource("2_ygmb2")

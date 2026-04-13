@@ -87,7 +87,7 @@ func Highest_Score_Player_Unit(Human_units: Array):
 		elif unit.unit_role is Musketeer: 
 			temp_score += 0
 		else: print ("What unit is this?")
-		temp_score -= unit.current_health
+		temp_score -= unit.unit_role.current_health
 		
 		print(temp_score)
 		

@@ -1,6 +1,9 @@
-[gd_resource type="Resource" format=3 uid="uid://b62e2fu6oowdg"]
+[gd_resource type="Resource" script_class="Basic_enemy" format=3 uid="uid://b62e2fu6oowdg"]
 
-[ext_resource type="Script" uid="uid://dw060kljl4vfj" path="res://Resources/Classes/Basic Enemy/Basic_enemy.gd" id="1_jymir"]
+[ext_resource type="Script" uid="uid://dw060kljl4vfj" path="res://Resources/Classes/Basic Enemy/Basic_enemy.gd" id="1_3spbl"]
+[ext_resource type="Texture2D" uid="uid://dx34ow1am5ih6" path="res://Assets/Units/guywithknife.png" id="2_al8e2"]
 
 [resource]
-script = ExtResource("1_jymir")
+script = ExtResource("1_3spbl")
+skin = ExtResource("2_al8e2")
+current_health = 20

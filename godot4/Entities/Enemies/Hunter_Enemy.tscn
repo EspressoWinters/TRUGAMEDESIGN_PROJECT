@@ -1,7 +1,9 @@
 [gd_scene format=3 uid="uid://cxdy8de6npsch"]
 
 [ext_resource type="Script" uid="uid://cd0wrkp1ttumk" path="res://Entities/Enemies/hunter_enemy.gd" id="1_ni0ue"]
-[ext_resource type="Texture2D" uid="uid://b5ghlcxjxmmgw" path="res://Entities/Units/UnitTemplate/unit_shadow.svg" id="2_bwqf6"]
+[ext_resource type="Resource" uid="uid://biqcay3d4j8tk" path="res://Resources/Classes/Hunter Enemy/Hunter_Class.tres" id="2_18dde"]
+[ext_resource type="Texture2D" uid="uid://b5ghlcxjxmmgw" path="res://Entities/Units/unit_shadow.svg" id="2_bwqf6"]
+[ext_resource type="Resource" uid="uid://bj7vassh2i26e" path="res://Entities/GameBoard/Grid.tres" id="3_1o3fl"]
 
 [sub_resource type="Curve2D" id="Curve2D_18dde"]
 
@@ -17,6 +19,8 @@ bg_color = Color(0, 0, 0, 1)
 [node name="HunterEnemy" type="Path2D" unique_id=2053675038]
 curve = SubResource("Curve2D_18dde")
 script = ExtResource("1_ni0ue")
+unit_role = ExtResource("2_18dde")
+grid = ExtResource("3_1o3fl")
 
 [node name="PathFollow2D" type="PathFollow2D" parent="." unique_id=77674485]
 rotates = false

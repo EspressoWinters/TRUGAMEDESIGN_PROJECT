@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://pvc3j5cfdfgc" path="res://Entities/Enemies/walking_training_dummy.gd" id="1_f07dn"]
 [ext_resource type="Resource" uid="uid://btl40g5dsl14p" path="res://Resources/Classes/TrainingDummy/TrainingDummy.tres" id="2_dh8dq"]
 [ext_resource type="Resource" uid="uid://bj7vassh2i26e" path="res://Entities/GameBoard/Grid.tres" id="3_jc5o3"]
-[ext_resource type="Texture2D" uid="uid://b5ghlcxjxmmgw" path="res://Entities/Units/UnitTemplate/unit_shadow.svg" id="4_bsbci"]
+[ext_resource type="Texture2D" uid="uid://b5ghlcxjxmmgw" path="res://Entities/Units/unit_shadow.svg" id="4_bsbci"]
 [ext_resource type="Texture2D" uid="uid://dx34ow1am5ih6" path="res://Assets/Units/guywithknife.png" id="5_0b1up"]
 
 [sub_resource type="Curve2D" id="Curve2D_mu52m"]
@@ -16,7 +16,6 @@ curve = SubResource("Curve2D_mu52m")
 script = ExtResource("1_f07dn")
 unit_role = ExtResource("2_dh8dq")
 grid = ExtResource("3_jc5o3")
-current_health = 20
 max_health = 20
 
 [node name="PathFollow2D" type="PathFollow2D" parent="." unique_id=1680380729]

@@ -8,7 +8,10 @@ extends Control
 @onready var info_stats_label : RichTextLabel = $CanvasLayer/TextureRect/PartyManager/HeroInfo/RichTextLabel
 
 func _ready() -> void:
+	for unit in PartyManager.active_party:
+		unit.current_health = unit.max_hp
 	party_manager_ui.visible = false
+	
 	
 func _on_hero_manager_building_pressed() -> void:
 	party_manager_ui.visible = true

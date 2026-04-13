@@ -2,7 +2,8 @@
 
 [ext_resource type="Script" uid="uid://dpr8ncf8bkism" path="res://Entities/Enemies/Tower.gd" id="1_ytsc7"]
 [ext_resource type="Resource" uid="uid://bj7vassh2i26e" path="res://Entities/GameBoard/Grid.tres" id="2_arthw"]
-[ext_resource type="Texture2D" uid="uid://b5ghlcxjxmmgw" path="res://Entities/Units/UnitTemplate/unit_shadow.svg" id="2_kriq8"]
+[ext_resource type="Texture2D" uid="uid://b5ghlcxjxmmgw" path="res://Entities/Units/unit_shadow.svg" id="2_kriq8"]
+[ext_resource type="Resource" uid="uid://5kurp5dcq3sk" path="res://Entities/Enemies/Tower_Resource.tres" id="2_qcre3"]
 
 [sub_resource type="Curve2D" id="Curve2D_mu52m"]
 
@@ -18,8 +19,8 @@ bg_color = Color(0, 0, 0, 1)
 [node name="BasicEnemy" type="Path2D" unique_id=393416970]
 curve = SubResource("Curve2D_mu52m")
 script = ExtResource("1_ytsc7")
+unit_role = ExtResource("2_qcre3")
 grid = ExtResource("2_arthw")
-current_health = 20
 max_health = 20
 
 [node name="PathFollow2D" type="PathFollow2D" parent="." unique_id=1680380729]

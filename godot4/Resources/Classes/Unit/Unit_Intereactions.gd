@@ -7,6 +7,7 @@ extends Resource
 @export var ID: int
 @export var role: String = ""
 @export var max_hp: int = 20
+@export var current_health: int
 @export var attack_stat: int = 5
 @export var speed: int = 5
 @export var defense: int = 5 
