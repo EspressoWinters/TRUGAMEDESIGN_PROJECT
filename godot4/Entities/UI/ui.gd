@@ -19,8 +19,8 @@ func _on_attack_button_pressed() -> void:
 func _on_end_turn_button_pressed() -> void:
 	if can_next_turn:
 		end_turn_requested.emit()
-		can_next_turn = false
+		#can_next_turn = false
 		timer.start()
 
-func _on_timer_timeout() -> void:
-	can_next_turn = true
+#func _on_timer_timeout() -> void:
+	#can_next_turn = true

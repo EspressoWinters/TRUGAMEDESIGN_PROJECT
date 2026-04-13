@@ -123,8 +123,8 @@ func start_turn():
 				if _units.has(attack_cell):
 					damage = _active_unit.unit_role.attack_roll(_active_unit)
 					apply_damage(attack_cell, damage, _active_unit, false)
-		timer.start()
-		await timer.timeout
+		#timer.start()
+		#await timer.timeout
 		end_turn()
 
 	
@@ -182,15 +182,15 @@ func start_turn():
 			await _active_unit.walk_finished
 			enemy_done_moving.emit()
 			_active_unit.check_and_attack_adjacent()
-			timer.start()
-			await timer.timeout
+			#timer.start()
+			#await timer.timeout
 			end_turn()
 		else:
 			#await _active_unit.walk_finished
 			enemy_done_moving.emit()
 			_active_unit.check_and_attack_adjacent()
-			timer.start()
-			await timer.timeout
+			#timer.start()
+			#await timer.timeout
 			end_turn()
 			print("I'm already as close as can be!")
 			
@@ -213,8 +213,8 @@ func end_turn():
 		round_count += 1
 		print("--- Round " + str(round_count) + " Over ---")
 	_has_moved_this_turn = false
-	timer.start()
-	await timer.timeout
+	#timer.start()
+	#await timer.timeout
 	start_turn()
 
 ##This is a simple bubble sort becuase we need to sort initiative
@@ -391,14 +391,19 @@ func _move_active_unit(new_cell: Vector2) -> void:
 		return
 	#okay I am going to add human logic and ai logic, since the AI needs to not get the current path from the cursor and instead calculate itself
 	if _active_unit is not BasicEnemy and _active_unit is not HunterEnemy and _active_unit is not BigEnemy and _active_unit is not BossMain and _active_unit is not BossWizzard: 
+		
+		ui.can_next_turn = false 
 		# warning-ignore:return_value_discarded
 		_units.erase(_active_unit.cell)
 		_units[new_cell] = _active_unit
 		_active_unit.walk_along(_unit_path.current_path)
-		#await _active_unit.walk_finished
+		await _active_unit.walk_finished
+		ui.can_next_turn = true
 		#_clear_active_unit()
 	#the AI logic
 	else: 
+		#adding protection 
+		ui.can_next_turn = false 
 		old_cell = _active_unit.cell
 		_units.erase(old_cell)
 		_units[new_cell] = _active_unit
@@ -407,6 +412,9 @@ func _move_active_unit(new_cell: Vector2) -> void:
 		_active_unit.walk_along(ai_path)
 		#await _active_unit.walk_finished
 		_active_unit.cell = new_cell 
+		await _active_unit.walk_finished
+		#now players can press it.
+		ui.can_next_turn = true
 		#_units[near_tile] = _active_unit
 	
 	#locks players and AI to only move once per turn
