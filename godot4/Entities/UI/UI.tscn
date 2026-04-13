@@ -26,6 +26,7 @@ func _on_end_turn_button_pressed() -> void:
 "
 
 [node name="Ui" type="Control" unique_id=1993505447]
+process_mode = 3
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -91,7 +92,62 @@ alignment = 2
 layout_mode = 2
 text = "End Turn"
 
+[node name="CombatEndUi" type="Panel" parent="CanvasLayer" unique_id=1986847911]
+visible = false
+custom_minimum_size = Vector2(150, 180)
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="CanvasLayer/CombatEndUi" unique_id=2022694784]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -36.0
+offset_top = 5.0
+offset_right = 36.0
+offset_bottom = 31.0
+grow_horizontal = 2
+theme_override_font_sizes/font_size = 32
+text = "Winner!"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ContinueButton" type="Button" parent="CanvasLayer/CombatEndUi" unique_id=516602840]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -52.0
+offset_top = -21.0
+grow_horizontal = 0
+grow_vertical = 0
+text = "Continue"
+
+[node name="BaseButton" type="Button" parent="CanvasLayer/CombatEndUi" unique_id=1165683597]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -21.0
+offset_right = 50.0
+grow_vertical = 0
+text = "Home"
+
 [connection signal="pressed" from="CanvasLayer/BattleUI/HBoxCharacterMoves/MoveButton" to="." method="_on_move_button_pressed"]
 [connection signal="pressed" from="CanvasLayer/BattleUI/HBoxCharacterMoves/AbilityButton" to="." method="_on_ability_button_pressed"]
 [connection signal="pressed" from="CanvasLayer/BattleUI/HBoxCharacterMoves/AttackButton" to="." method="_on_attack_button_pressed"]
 [connection signal="pressed" from="CanvasLayer/BattleUI/HBoxEndTurn/EndTurnButton" to="." method="_on_end_turn_button_pressed"]
+[connection signal="pressed" from="CanvasLayer/CombatEndUi/ContinueButton" to="." method="_on_continue_button_pressed"]
+[connection signal="pressed" from="CanvasLayer/CombatEndUi/BaseButton" to="." method="_on_base_button_pressed"]

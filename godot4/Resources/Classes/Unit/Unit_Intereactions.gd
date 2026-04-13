@@ -5,11 +5,14 @@ extends Resource
 @export var skin = Texture2D
 
 @export var ID: int
+@export var role: String = ""
 @export var max_hp: int = 20
 @export var attack_stat: int = 5
 @export var speed: int = 5
 @export var defense: int = 5 
 @export var luck: int = 5
+@export var level: int = 1
+@export var xp: int = 100
 @export var crit: bool = false
 
 var attack_range: int = 1

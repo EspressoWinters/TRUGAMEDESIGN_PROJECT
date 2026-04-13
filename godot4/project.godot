@@ -15,13 +15,15 @@ compatibility/default_parent_skeleton_in_mesh_instance_3d=true
 [application]
 
 config/name="Tactical RPG Movement"
-run/main_scene="uid://xgmbb8el1xj4"
+run/main_scene="uid://cqp1aa03mgbaj"
 config/features=PackedStringArray("4.6")
 config/icon="res://icon.png"
 
 [autoload]
 
 DamageNumbers="*uid://dpx4yq3ulp1kl"
+PartyManager="*uid://bi7ux7awgbhdl"
+LevelManager="*uid://bc7ht4ol5bc4x"
 
 [display]
 
@@ -37,6 +39,10 @@ window/size/height=720
 [global_group]
 
 player_units=""
+
+[gui]
+
+theme/custom_font="uid://c2h14rkkeohwd"
 
 [input]
 

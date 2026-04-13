@@ -106,4 +106,10 @@ func check_and_attack_adjacent():
 		
 		if d <= 1:
 			gameboard.apply_damage(unit.cell, unit_role.attack_roll(self), self, unit_role.crit)
-			
+
+func _on_container_mouse_entered() -> void:
+	health_label.text = "HP: %d" % [current_health]
+	$Area2D/Panel.visible = true
+
+func _on_container_mouse_exited() -> void:
+	$Area2D/Panel.visible = false

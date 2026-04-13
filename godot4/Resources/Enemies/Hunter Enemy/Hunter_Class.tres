@@ -1,0 +1,8 @@
+[gd_resource type="Resource" script_class="Hunter_enemy" format=3 uid="uid://biqcay3d4j8tk"]
+
+[ext_resource type="Script" uid="uid://ttodv433y51f" path="res://Resources/Enemies/Hunter Enemy/Hunter_class.gd" id="1_0vwf6"]
+[ext_resource type="Texture2D" uid="uid://dx34ow1am5ih6" path="res://Assets/Units/guywithknife.png" id="2_ab0c2"]
+
+[resource]
+script = ExtResource("1_0vwf6")
+skin = ExtResource("2_ab0c2")

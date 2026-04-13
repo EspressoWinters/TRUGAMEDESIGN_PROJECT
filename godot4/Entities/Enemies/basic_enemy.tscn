@@ -1,16 +1,26 @@
 [gd_scene format=3 uid="uid://civ2clvctpumk"]
 
 [ext_resource type="Script" uid="uid://cdxafxavudtc6" path="res://Entities/Enemies/BasicEnemy.gd" id="1_ok2tl"]
-[ext_resource type="Texture2D" uid="uid://b5ghlcxjxmmgw" path="res://Entities/Units/unit_shadow.svg" id="2_08waf"]
+[ext_resource type="Resource" uid="uid://b62e2fu6oowdg" path="res://Resources/Enemies/Basic Enemy/Basic_enemy.tres" id="2_7m3eu"]
+[ext_resource type="Texture2D" uid="uid://b5ghlcxjxmmgw" path="res://Entities/Units/UnitTemplate/unit_shadow.svg" id="2_08waf"]
+[ext_resource type="Resource" uid="uid://bj7vassh2i26e" path="res://Entities/GameBoard/Grid.tres" id="2_xpl8d"]
 
 [sub_resource type="Curve2D" id="Curve2D_mu52m"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_08waf"]
 bg_color = Color(1, 0, 0, 1)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_08waf"]
+size = Vector2(16, 16)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xpl8d"]
+bg_color = Color(0, 0, 0, 1)
+
 [node name="BasicEnemy" type="Path2D" unique_id=393416970]
 curve = SubResource("Curve2D_mu52m")
 script = ExtResource("1_ok2tl")
+unit_role = ExtResource("2_7m3eu")
+grid = ExtResource("2_xpl8d")
 
 [node name="PathFollow2D" type="PathFollow2D" parent="." unique_id=1680380729]
 rotates = false
@@ -33,3 +43,38 @@ theme_override_styles/fill = SubResource("StyleBoxFlat_08waf")
 max_value = 5.0
 step = 1.0
 show_percentage = false
+
+[node name="Area2D" type="Area2D" parent="." unique_id=344882561]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=2096572637]
+shape = SubResource("RectangleShape2D_08waf")
+
+[node name="Panel" type="Panel" parent="Area2D" unique_id=99526847]
+visible = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -19.0
+offset_top = -25.0
+offset_right = 14.0
+offset_bottom = -13.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_xpl8d")
+
+[node name="HealthLabel" type="Label" parent="Area2D/Panel" unique_id=446450456]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -1.0
+offset_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 16
+text = "HP: 20"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[connection signal="mouse_entered" from="Area2D" to="." method="_on_container_mouse_entered"]
+[connection signal="mouse_exited" from="Area2D" to="." method="_on_container_mouse_exited"]
