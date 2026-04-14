@@ -16,7 +16,6 @@ curve = SubResource("Curve2D_mu52m")
 script = ExtResource("1_f07dn")
 unit_role = ExtResource("2_dh8dq")
 grid = ExtResource("3_jc5o3")
-current_health = 20
 max_health = 20
 
 [node name="PathFollow2D" type="PathFollow2D" parent="." unique_id=1680380729]

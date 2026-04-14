@@ -8,7 +8,6 @@
 [ext_resource type="PackedScene" uid="uid://bv1ul1qynrdwd" path="res://Entities/GameBoard/Cursor/Cursor.tscn" id="6_svyqi"]
 [ext_resource type="PackedScene" uid="uid://dxyfefsgkgc4l" path="res://Entities/GameBoard/UnitPath.tscn" id="7_j01xv"]
 [ext_resource type="PackedScene" uid="uid://d4mhjq651egt" path="res://Entities/Units/Unit.tscn" id="8_7ncde"]
-[ext_resource type="Texture2D" uid="uid://iljdxgodmq5n" path="res://Assets/Units/Tank.png" id="10_lqb5f"]
 [ext_resource type="PackedScene" uid="uid://cxdy8de6npsch" path="res://Entities/Enemies/Hunter_Enemy.tscn" id="12_fdo7m"]
 [ext_resource type="Resource" uid="uid://pgb7b1sofgni" path="res://Resources/Classes/Grenadier/Grenadier_Resource.tres" id="13_egevs"]
 [ext_resource type="PackedScene" uid="uid://civ2clvctpumk" path="res://Entities/Enemies/basic_enemy.tscn" id="17_wgmyg"]
@@ -41,26 +40,29 @@ unique_name_in_owner = true
 position = Vector2(100, 200)
 curve = SubResource("Curve2D_sc1dx")
 unit_role = ExtResource("13_egevs")
-current_health = 1000
 max_health = 1000
-skin = ExtResource("10_lqb5f")
 
 [node name="Ui" parent="." unique_id=1993505447 instance=ExtResource("23_7dqg4")]
 unique_name_in_owner = true
 
 [node name="HunterEnemy" parent="." unique_id=2053675038 instance=ExtResource("12_fdo7m")]
 position = Vector2(400, 100)
-current_health = 20
 max_health = 20
 
 [node name="HunterEnemy2" parent="." unique_id=1487317923 instance=ExtResource("12_fdo7m")]
 position = Vector2(400, 200)
-current_health = 20
 max_health = 20
 
 [node name="BasicEnemy" parent="." unique_id=393416970 instance=ExtResource("17_wgmyg")]
 position = Vector2(400, 175)
-current_health = 20
+max_health = 20
+
+[node name="BasicEnemy2" parent="." unique_id=1423046480 instance=ExtResource("17_wgmyg")]
+position = Vector2(450, 200)
+max_health = 20
+
+[node name="BasicEnemy3" parent="." unique_id=2011701095 instance=ExtResource("17_wgmyg")]
+position = Vector2(450, 175)
 max_health = 20
 
 [node name="Timer" type="Timer" parent="." unique_id=1566837051]

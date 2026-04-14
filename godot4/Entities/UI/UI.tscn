@@ -36,7 +36,6 @@ grow_vertical = 2
 script = ExtResource("1_ibh87")
 
 [node name="Timer" type="Timer" parent="." unique_id=1817342850]
-wait_time = 0.5
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=273067531]
 
@@ -95,7 +94,6 @@ alignment = 2
 layout_mode = 2
 text = "End Turn"
 
-[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
 [node name="CombatEndUi" type="Panel" parent="CanvasLayer" unique_id=1986847911]
 visible = false
 custom_minimum_size = Vector2(150, 180)
@@ -149,6 +147,7 @@ offset_right = 50.0
 grow_vertical = 0
 text = "Home"
 
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
 [connection signal="pressed" from="CanvasLayer/BattleUI/HBoxCharacterMoves/MoveButton" to="." method="_on_move_button_pressed"]
 [connection signal="pressed" from="CanvasLayer/BattleUI/HBoxCharacterMoves/AbilityButton" to="." method="_on_ability_button_pressed"]
 [connection signal="pressed" from="CanvasLayer/BattleUI/HBoxCharacterMoves/AttackButton" to="." method="_on_attack_button_pressed"]

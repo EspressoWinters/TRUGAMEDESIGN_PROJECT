@@ -25,11 +25,11 @@ func _on_end_turn_button_pressed() -> void:
 	if can_next_turn:
 		end_turn_requested.emit()
 		#can_next_turn = false
-		timer.start()
+		#timer.start()
 
 #func _on_timer_timeout() -> void:
 	#can_next_turn = true
-	end_turn_requested.emit()
+	#end_turn_requested.emit()
 
 func _on_continue_button_pressed() -> void:
 	PartyManager.save_party()

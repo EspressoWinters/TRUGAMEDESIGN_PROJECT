@@ -1,9 +1,21 @@
-res://Levels/Level_0_plains.tscn
+res://Entities/Enemies/WalkingTrainingDummy.tscn
 res://Resources/Classes/BigEnemy/BigEnemy.tres
+res://Resources/Classes/Hunter Enemy/Hunter_Class.tres
 res://Entities/UnitOverlay/unit_overlay_tileset.tres
 res://Entities/GameBoard/unit_path_tileset.tres
 res://Resources/Classes/Basic Enemy/Basic_enemy.tres
-res://Resources/Classes/Hunter Enemy/Hunter_Class.tres
-res://Entities/Enemies/Tower.tscn
-res://Entities/Enemies/Hunter_Enemy.tscn
-res://Entities/Enemies/WalkingTrainingDummy.tscn
+res://Resources/Classes/Bosses/Boss_Main.tres
+res://Resources/Classes/Bosses/Boss_Wizzard.tres
+res://Resources/Classes/Bosses/BossTower.gd
+res://Entities/Enemies/boss_tower.gd
+res://Entities/Enemies/BasicEnemy.gd
+res://Entities/Enemies/big_enemy.gd
+res://Entities/Enemies/boss_main.gd
+res://Entities/GameBoard/GameBoard.gd
+res://Entities/Enemies/hunter_enemy.gd
+res://Levels/Level_0_plains.tscn
+res://Entities/UI/ui.gd
+res://Entities/UI/UI.tscn
+res://Maps/Tutorialz.tscn
+res://Resources/Classes/Grenadier/Grenadier_Resource.tres
+res://Entities/Units/Unit.gd

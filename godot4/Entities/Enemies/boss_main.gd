@@ -35,7 +35,7 @@ func find_closet_human_character():
 	
 	#let's get all the units that are human in the array
 	for unit in gameboard._units.values():
-		if unit is not BasicEnemy and unit is not HunterEnemy and unit is not BigEnemy and unit is not Tower  and unit is not BossMain and unit is not BossWizzard:
+		if unit is not BasicEnemy and unit is not HunterEnemy and unit is not BigEnemy and unit is not Tower  and unit is not BossMain and unit is not BossTower:
 			human_units.append(unit)
 			if unit.unit_role and unit.unit_role is Tank and unit.is_taunting:
 				taunter_found = true
@@ -98,7 +98,7 @@ func find_closet_human_character():
 		
 func check_and_attack_adjacent():
 	for unit in gameboard._units.values():
-		if unit is BasicEnemy or unit is HunterEnemy or unit is BigEnemy or unit is BossMain or unit is BossWizzard or unit is Tower: continue
+		if unit is BasicEnemy or unit is HunterEnemy or unit is BigEnemy or unit is BossMain or unit is BossTower or unit is Tower: continue
 		
 		#calculate distance from our NEW position (self.cell)
 		var d = abs(unit.cell.x - self.cell.x) + abs(unit.cell.y - self.cell.y)

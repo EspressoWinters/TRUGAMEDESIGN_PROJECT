@@ -1,3 +1,8 @@
-[gd_resource type="Resource" format=3 uid="uid://mdwfvkgbgbll"]
+[gd_resource type="Resource" script_class="Boss_Main" format=3 uid="uid://mdwfvkgbgbll"]
+
+[ext_resource type="Script" uid="uid://k2xu5hbt8vp5" path="res://Resources/Classes/Bosses/BossMain.gd" id="1_nxmnh"]
+[ext_resource type="Texture2D" uid="uid://dx34ow1am5ih6" path="res://Assets/Units/guywithknife.png" id="2_g1if5"]
 
 [resource]
+script = ExtResource("1_nxmnh")
+skin = ExtResource("2_g1if5")

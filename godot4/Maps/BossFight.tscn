@@ -15,8 +15,9 @@
 [ext_resource type="Resource" uid="uid://pgb7b1sofgni" path="res://Resources/Classes/Grenadier/Grenadier_Resource.tres" id="13_iqb6k"]
 [ext_resource type="Resource" uid="uid://dhyalatumlvik" path="res://Resources/Classes/Tank/Class_Tank.tres" id="14_tuk8q"]
 [ext_resource type="PackedScene" uid="uid://bnhj47p63ostv" path="res://Entities/UI/UI.tscn" id="23_icq7t"]
-[ext_resource type="PackedScene" uid="uid://c22g8f8h3i25w" path="res://Entities/Enemies/Boss_Wizzard.tscn" id="24_hfrus"]
+[ext_resource type="PackedScene" uid="uid://c22g8f8h3i25w" path="res://Entities/Enemies/Boss_Tower.tscn" id="24_hfrus"]
 [ext_resource type="PackedScene" uid="uid://iogax2ckuh3j" path="res://Entities/Enemies/Boss_Main.tscn" id="26_g2342"]
+
 
 [sub_resource type="Curve2D" id="Curve2D_fpfj3"]
 

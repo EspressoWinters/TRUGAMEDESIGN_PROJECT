@@ -1,4 +1,4 @@
-class_name Boss_Wizzard
+class_name Boss_Tower
 extends Unit_Interaction
 
 #this resource is here to not cause problems in the game :D
