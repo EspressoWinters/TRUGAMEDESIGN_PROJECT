@@ -1,0 +1,7 @@
+[gd_resource type="Resource" script_class="PartySaveData" format=3 uid="uid://ddy18v5ybqw4a"]
+
+[ext_resource type="Script" uid="uid://bdt78xqxavxa8" path="res://Resources/Classes/Unit/Unit_Intereactions.gd" id="1_63twl"]
+[ext_resource type="Script" uid="uid://ldj0myd6ysi2" path="res://Resources/PartyData/PartySaveData.gd" id="2_qxs6l"]
+
+[resource]
+script = ExtResource("2_qxs6l")

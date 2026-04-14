@@ -1,5 +1,9 @@
-res://Maps/Tutorialz.tscn
+res://Levels/Level_0_plains.tscn
+res://Resources/Classes/BigEnemy/BigEnemy.tres
 res://Entities/UnitOverlay/unit_overlay_tileset.tres
 res://Entities/GameBoard/unit_path_tileset.tres
-res://Entities/UI/ui.gd
-res://Entities/GameBoard/GameBoard.gd
+res://Resources/Classes/Basic Enemy/Basic_enemy.tres
+res://Resources/Classes/Hunter Enemy/Hunter_Class.tres
+res://Entities/Enemies/Tower.tscn
+res://Entities/Enemies/Hunter_Enemy.tscn
+res://Entities/Enemies/WalkingTrainingDummy.tscn

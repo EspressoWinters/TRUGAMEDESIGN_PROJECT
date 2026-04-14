@@ -1,6 +1,8 @@
-[gd_resource type="Resource" script_class="Tank" format=3 uid="uid://btl40g5dsl14p"]
+[gd_resource type="Resource" script_class="TrainingDummy_class" format=3 uid="uid://btl40g5dsl14p"]
 
 [ext_resource type="Script" uid="uid://cfmgynfcrblb3" path="res://Resources/Classes/TrainingDummy/TrainingDummy.gd" id="1_nnc1k"]
+[ext_resource type="Texture2D" uid="uid://dx34ow1am5ih6" path="res://Assets/Units/guywithknife.png" id="2_qjrt6"]
 
 [resource]
 script = ExtResource("1_nnc1k")
+skin = ExtResource("2_qjrt6")

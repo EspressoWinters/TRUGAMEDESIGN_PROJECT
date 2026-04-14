@@ -1,16 +1,21 @@
 [gd_scene format=3 uid="uid://3uqmxmcvncpi"]
 
 [ext_resource type="Script" uid="uid://ninuua3kv1c5" path="res://Entities/Enemies/big_enemy.gd" id="1_omn74"]
-[ext_resource type="Resource" uid="uid://cudtnc0vm77xd" path="res://Resources/Classes/BigEnemy/BigEnemy.tres" id="2_3x6ou"]
-[ext_resource type="Texture2D" uid="uid://b5ghlcxjxmmgw" path="res://Entities/Units/unit_shadow.svg" id="2_yrrvw"]
+[ext_resource type="Resource" uid="uid://cudtnc0vm77xd" path="res://Resources/Enemies/BigEnemy/BigEnemy.tres" id="2_3x6ou"]
+[ext_resource type="Texture2D" uid="uid://b5ghlcxjxmmgw" path="res://Entities/Units/UnitTemplate/unit_shadow.svg" id="2_yrrvw"]
 [ext_resource type="Resource" uid="uid://bj7vassh2i26e" path="res://Entities/GameBoard/Grid.tres" id="3_3e2lp"]
 [ext_resource type="Texture2D" uid="uid://don6rhlapjhye" path="res://Assets/Placeholders/bear.png" id="4_1livp"]
-[ext_resource type="Texture2D" uid="uid://dx34ow1am5ih6" path="res://Assets/Units/guywithknife.png" id="6_3x6ou"]
 
 [sub_resource type="Curve2D" id="Curve2D_mu52m"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_08waf"]
 bg_color = Color(1, 0, 0, 1)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_omn74"]
+size = Vector2(16, 16)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_3x6ou"]
+bg_color = Color(0, 0, 0, 1)
 
 [node name="BigEnemy" type="Path2D" unique_id=393416970]
 curve = SubResource("Curve2D_mu52m")
@@ -19,7 +24,6 @@ unit_role = ExtResource("2_3x6ou")
 grid = ExtResource("3_3e2lp")
 current_health = 20
 max_health = 20
-skin = ExtResource("4_1livp")
 
 [node name="PathFollow2D" type="PathFollow2D" parent="." unique_id=1680380729]
 rotates = false
@@ -31,7 +35,7 @@ scale = Vector2(0.2, 0.2)
 texture = ExtResource("2_yrrvw")
 
 [node name="Sprite" type="Sprite2D" parent="PathFollow2D" unique_id=1974049774]
-texture = ExtResource("6_3x6ou")
+texture = ExtResource("4_1livp")
 
 [node name="Healthbar" type="ProgressBar" parent="." unique_id=1884163062]
 offset_left = -8.0
@@ -43,3 +47,38 @@ theme_override_styles/fill = SubResource("StyleBoxFlat_08waf")
 max_value = 5.0
 step = 1.0
 show_percentage = false
+
+[node name="Area2D" type="Area2D" parent="." unique_id=1019938809]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=1738821882]
+shape = SubResource("RectangleShape2D_omn74")
+
+[node name="Panel" type="Panel" parent="Area2D" unique_id=2106183132]
+visible = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -19.0
+offset_top = -25.0
+offset_right = 14.0
+offset_bottom = -13.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_3x6ou")
+
+[node name="HealthLabel" type="Label" parent="Area2D/Panel" unique_id=870190113]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -1.0
+offset_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 16
+text = "HP: 20"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[connection signal="mouse_entered" from="Area2D" to="." method="_on_container_mouse_entered"]
+[connection signal="mouse_exited" from="Area2D" to="." method="_on_container_mouse_exited"]
