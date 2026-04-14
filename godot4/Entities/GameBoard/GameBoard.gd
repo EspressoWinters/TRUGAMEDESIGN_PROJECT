@@ -379,12 +379,7 @@ func _flood_fill(cell: Vector2, max_distance: int) -> Array:
 #this is the HUMAN/PLAYER Unit movement section
 ## Updates the _units dictionary with the target position for the unit and asks the _active_unit to walk to it.
 func _move_active_unit(new_cell: Vector2) -> void:
-	
-	var near_tile
-	
-	
-	#terrible coding standards but we ball
-	
+
 	var ai_path
 	if _has_moved_this_turn: 
 		return
