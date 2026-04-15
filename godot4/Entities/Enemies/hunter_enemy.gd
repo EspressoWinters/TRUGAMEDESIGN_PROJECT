@@ -22,6 +22,38 @@ var taunter_found := false
 #keep _ready as that is just calculating the movement speed and making sure the process is not setting off instantly
 #keep walk_along as it is just keeping the curve that the path it will follow
 
+#I JUST ADDED THIS 
+#Credit to this lad for showing us how to make unique resources
+#https://simondalvai.org/blog/godot-duplicate-resources/
+func _ready() -> void:
+	#to make it unique copy it own?
+	unit_role = unit_role.duplicate()
+	
+	
+	sprite.texture = unit_role.skin
+	move_range = unit_role.speed
+	move_speed = unit_role.speed * 100
+	max_health = unit_role.max_hp
+	if unit_role is Basic_enemy or unit_role is Hunter_enemy or unit_role is Big_enemy:
+		unit_role.current_health = max_health
+	
+	#makes sure the object doesn't start the _process function
+	set_process(false)
+	#locks it so it doesn't rotate along the path
+	#basically instead of looking statically at one side, it would "follow" the direction of the path and rotate itself
+	_path_follow.rotates = false 
+	#just getting the pixel and the grid values so that we can use them later
+	cell = grid.calculate_grid_coordinates(position)
+	position = grid.calculate_map_position(cell)
+
+	var _health_bar = get_node_or_null("Healthbar")
+	
+	_health_bar.max_value = max_health
+	_health_bar.value = unit_role.current_health
+	await get_tree().process_frame
+	gameboard._update_health_bar.connect(set_health_bar)
+
+
 #let's create a function to find the closet player character
 func find_closet_human_character():
 	var highest_score_unit : Unit
