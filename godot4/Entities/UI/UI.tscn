@@ -35,6 +35,8 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_ibh87")
 
+[node name="Timer" type="Timer" parent="." unique_id=1817342850]
+
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=273067531]
 
 [node name="BattleUI" type="Panel" parent="CanvasLayer" unique_id=1999099371]
@@ -145,6 +147,7 @@ offset_right = 50.0
 grow_vertical = 0
 text = "Home"
 
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
 [connection signal="pressed" from="CanvasLayer/BattleUI/HBoxCharacterMoves/MoveButton" to="." method="_on_move_button_pressed"]
 [connection signal="pressed" from="CanvasLayer/BattleUI/HBoxCharacterMoves/AbilityButton" to="." method="_on_ability_button_pressed"]
 [connection signal="pressed" from="CanvasLayer/BattleUI/HBoxCharacterMoves/AttackButton" to="." method="_on_attack_button_pressed"]

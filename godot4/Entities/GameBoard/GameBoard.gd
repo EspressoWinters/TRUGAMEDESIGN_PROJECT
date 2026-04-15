@@ -28,7 +28,7 @@ var  attack_direction : Vector2
 @onready var _attack_overlay: AttackOverlay = %AttackOverlay
 @onready var _unit_path: UnitPath = %UnitPath
 @onready var ui = %Ui
-
+@onready var timer := $Timer
 var initiative_order := []
 
 var turn_count := 0
@@ -46,7 +46,7 @@ var _attack_overlay_visable := false
 var fire_dot_damage: int = 1
 var fire_dot_turns: int = 3
 
-signal enemy_done_moving
+#signal enemy_done_moving
 #grenaider speed boost passive 
 var has_done_speed_boost_once := false 
 
@@ -55,7 +55,6 @@ var flame_explosion_damage: int = 3
 #when the gameboard is called into the scene it will clear its dicitonary of units then fill it up again with the units in tjhe active scenee
 func _ready() -> void:
 	_reinitialize()
-	
 	#gatherin the UI attack and such
 	if ui:
 		ui.move_requested.connect(display_move_overlay)
@@ -82,6 +81,8 @@ func roll_initiative():
 		unit.initiative_stat = initiative_unit_roll
 		initiative_order.append(unit)
 	initiative_bubble_sort(initiative_order)
+	print(initiative_order)
+
 
 ##This will start the turn of the individual unit
 func start_turn():
@@ -123,7 +124,8 @@ func start_turn():
 				if _units.has(attack_cell):
 					damage = _active_unit.unit_role.attack_roll(_active_unit)
 					apply_damage(attack_cell, damage, _active_unit, false)
-		
+		#timer.start()
+		#await timer.timeout
 		end_turn()
 
 	
@@ -137,8 +139,6 @@ func start_turn():
 					apply_damage(healing_cell, -1, _active_unit, false)
 					print(healing_cell)
 	
-	print(_active_unit.unit_role.on_fire)
-	#print(_active_unit.unit_role.turns_left_on_fire)
 	if _active_unit.unit_role.turns_left_on_fire > 0 and _active_unit.unit_role.on_fire == true:
 		apply_damage(_active_unit.cell,fire_dot_damage,null, false)
 		_active_unit.unit_role.turns_left_on_fire -= 1
@@ -168,26 +168,36 @@ func start_turn():
 	_active_unit.unit_role.passive(_active_unit)
 	
 	#doing AI Logic here
-	if _active_unit is BasicEnemy or _active_unit is HunterEnemy or _active_unit is BigEnemy:
+	if _active_unit is BasicEnemy or _active_unit is HunterEnemy or _active_unit is BigEnemy or _active_unit is BossMain or _active_unit is WalkingTrainingDummy or _active_unit is WalkingTrainingDummy:
 		var near_tile
 		#get the closest tile from the human
 		near_tile = closest_tile_to_human_unit(_active_unit)
 		#just making another check to ensure that near_tile exists
 		#just printing it to see the tile
-		#print(near_tile)
-		if near_tile:
+		print(near_tile)
+		
+		if near_tile != _active_unit.cell and near_tile:
 			#moving the unit near the tile 
 			_move_active_unit(near_tile)
-			enemy_done_moving.emit()
-			end_turn()
+			await _active_unit.walk_finished
+			#enemy_done_moving.emit()
+			_active_unit.check_and_attack_adjacent()
+			#timer.start()
+			#await timer.timeout
+			#end_turn()
 		else:
-			enemy_done_moving.emit()
-			end_turn()
-			print("I'm already as close as can be!")
+			#await _active_unit.walk_finished
+			#enemy_done_moving.emit()
+			_active_unit.check_and_attack_adjacent()
+			#timer.start()
+			#await timer.timeout
+		end_turn()
+			#print("I'm already as close as can be!")
 			
 
 ##This will end the turn of the individual unit, it will also check at the end whether to start a new round or not
 func end_turn():
+	
 	#Resets muskateers ability at the end of turn
 	if _active_unit.unit_role is Musketeer:
 		_active_unit.unit_role.ability_luck = 0
@@ -207,6 +217,8 @@ func end_turn():
 	if not get_tree().paused:
 		#call_deferred breaks the recursion loop
 		call_deferred("start_turn")
+		#called_deferred broke the turns
+		#start_turn()
 
 ##This is a simple bubble sort becuase we need to sort initiative
 #If you don't know bubble sort here is the algorithm: https://woverww.geeksforgeeks.org/dsa/bubble-sort-algorithm/
@@ -298,10 +310,10 @@ func _reinitialize() -> void:
 		
 		_units[unit.cell] = unit
 		unit.gameboard = self 
-		
-		if unit is BasicEnemy or unit is HunterEnemy or unit is BigEnemy:
-			if not enemy_done_moving.is_connected(unit.check_and_attack_adjacent):
-				enemy_done_moving.connect(unit.check_and_attack_adjacent)
+		#Removed this as it was making all enemies attack when any enemy is done walking
+		#if unit is BasicEnemy or unit is HunterEnemy or unit is BigEnemy or _active_unit is BossMain or _active_unit is BossTower:
+			#if not enemy_done_moving.is_connected(unit.check_and_attack_adjacent):
+				#enemy_done_moving.connect(unit.check_and_attack_adjacent)
 		
 		# Check if the unit's role is a Tank
 		if unit.unit_role is Tank:
@@ -367,13 +379,7 @@ func _flood_fill(cell: Vector2, max_distance: int) -> Array:
 #this is the HUMAN/PLAYER Unit movement section
 ## Updates the _units dictionary with the target position for the unit and asks the _active_unit to walk to it.
 func _move_active_unit(new_cell: Vector2) -> void:
-	
-	var near_tile
-	
-	var old_cell
-	
-	#terrible coding standards but we ball
-	
+
 	var ai_path
 	if _has_moved_this_turn: 
 		return
@@ -381,23 +387,29 @@ func _move_active_unit(new_cell: Vector2) -> void:
 	if is_occupied(new_cell) or not new_cell in _walkable_cells:
 		return
 	#okay I am going to add human logic and ai logic, since the AI needs to not get the current path from the cursor and instead calculate itself
-	if _active_unit is not BasicEnemy and _active_unit is not HunterEnemy and _active_unit is not BigEnemy: 
+	if _active_unit is not BasicEnemy and _active_unit is not HunterEnemy and _active_unit is not BigEnemy and _active_unit is not BossMain and _active_unit is not BossTower: 
+		
+		ui.can_next_turn = false 
 		# warning-ignore:return_value_discarded
 		_units.erase(_active_unit.cell)
 		_units[new_cell] = _active_unit
 		_active_unit.walk_along(_unit_path.current_path)
-		#await _active_unit.walk_finished
+		await _active_unit.walk_finished
+		ui.can_next_turn = true
 		#_clear_active_unit()
 	#the AI logic
 	else: 
-		old_cell = _active_unit.cell
-		_units.erase(old_cell)
+		#adding protection 
+		ui.can_next_turn = false 
+		_units.erase(_active_unit.cell)
 		_units[new_cell] = _active_unit
-		near_tile = closest_tile_to_human_unit(_active_unit)
-		ai_path = _unit_path._pathfinder.calculate_point_path(_active_unit.cell, near_tile)
+		ai_path = _unit_path._pathfinder.calculate_point_path(_active_unit.cell, new_cell)
 		_active_unit.walk_along(ai_path)
 		#await _active_unit.walk_finished
 		_active_unit.cell = new_cell 
+		await _active_unit.walk_finished
+		#now players can press it.
+		ui.can_next_turn = true
 		#_units[near_tile] = _active_unit
 	
 	#locks players and AI to only move once per turn
@@ -429,9 +441,9 @@ func _select_unit(cell: Vector2) -> void:
 #this is the bot/computer movement section 
 func closest_tile_to_human_unit(enemy_unit : Variant):
 	var closet_human_unit = enemy_unit.find_closet_human_character()
-	print(closet_human_unit)
+	#print(closet_human_unit)
 	if closet_human_unit == null:
-		print("There isn't any humans roger roger!")
+		#print("There isn't any humans roger roger!")
 		return
 	
 	#now we get all the walkable cells from our trusted flood fill function
@@ -441,10 +453,11 @@ func closest_tile_to_human_unit(enemy_unit : Variant):
 	#again just a big value for the comparison 
 	var least_distance := 1000
 	for cell in reachable_cells:
-		
+		if is_occupied(cell):
+			pass
 		#just adding a check 
 		if cell == closet_human_unit.cell:
-			continue 
+			pass 
 		#adding another check
 		if !is_occupied(cell):
 			var distance_to_target = abs(cell.x - closet_human_unit.cell.x) + abs(cell.y - closet_human_unit.cell.y)
@@ -461,7 +474,7 @@ func display_move_overlay() -> void:
 		print("Unit has already moved!")
 		return
 	
-	if _active_unit and _active_unit is not BasicEnemy and _active_unit is not HunterEnemy and _active_unit is not BigEnemy:
+	if _active_unit and _active_unit is not BasicEnemy and _active_unit is not HunterEnemy and _active_unit is not BigEnemy  and _active_unit is not BossMain and _active_unit is not BossTower: 
 		# Clear any existing overlay first to prevent stacking
 		_unit_overlay.clear() 
 		_unit_overlay.draw(_walkable_cells)
@@ -752,15 +765,15 @@ const SPAWN_CONFIG = {
 	"Level_2_ruin_ambush": [
 		Vector2(18, 12), Vector2(18, 13),
 		Vector2(19, 12), Vector2(19, 13),
-		Vector2(19, 12), Vector2(19, 13)
+		Vector2(20, 12), Vector2(20, 13)
 	],
 	"Level_3_ruins": [
-		Vector2(5, 10), Vector2(4, 11),
+		Vector2(4, 10), Vector2(4, 11),
 		Vector2(5, 10), Vector2(5, 11),
 		Vector2(6, 10), Vector2(6, 11) 
 	],
 	"Level_4_bridge": [
-		Vector2(5, 10), Vector2(4, 11),
+		Vector2(4, 10), Vector2(4, 11),
 		Vector2(5, 10), Vector2(5, 11),
 		Vector2(6, 10), Vector2(6, 11) 
 	]
@@ -809,7 +822,7 @@ func _check_for_victory_or_defeat() -> void:
 	for unit in initiative_order:
 		if unit.is_in_group("player_units"):
 			player_alive = true
-		elif unit is BasicEnemy or unit is HunterEnemy or unit is BigEnemy:
+		elif unit is BasicEnemy or unit is HunterEnemy or unit is BigEnemy or unit is BossMain or unit is BossTower or unit is Tower or unit is TrainingDummy or unit is WalkingTrainingDummy:
 			enemies_alive = true
 			
 	if not enemies_alive:

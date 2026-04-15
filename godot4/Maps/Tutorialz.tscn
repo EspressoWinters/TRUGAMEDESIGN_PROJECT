@@ -7,26 +7,13 @@
 [ext_resource type="PackedScene" uid="uid://n825j345khoi" path="res://Entities/UnitOverlay/UnitOverlay.tscn" id="5_bhhit"]
 [ext_resource type="PackedScene" uid="uid://bv1ul1qynrdwd" path="res://Entities/GameBoard/Cursor/Cursor.tscn" id="6_svyqi"]
 [ext_resource type="PackedScene" uid="uid://dxyfefsgkgc4l" path="res://Entities/GameBoard/UnitPath.tscn" id="7_j01xv"]
-[ext_resource type="PackedScene" uid="uid://d4mhjq651egt" path="res://Entities/Units/UnitTemplate/Unit.tscn" id="8_7ncde"]
-[ext_resource type="Resource" uid="uid://bxlihyh6h2ggd" path="res://Resources/Classes/Musketeer/Musketeer.tres" id="9_lb2k3"]
-[ext_resource type="Texture2D" uid="uid://iljdxgodmq5n" path="res://Assets/Units/Tank.png" id="10_lqb5f"]
-[ext_resource type="Resource" uid="uid://dnttimsxfk83r" path="res://Resources/Classes/Flamethrower/FlameThrower.tres" id="11_nyrwo"]
-[ext_resource type="Resource" uid="uid://b8amy4dvpx5oc" path="res://Resources/Classes/Medic/Medic.tres" id="12_cq8dg"]
+[ext_resource type="PackedScene" uid="uid://d4mhjq651egt" path="res://Entities/Units/Unit.tscn" id="8_7ncde"]
+[ext_resource type="PackedScene" uid="uid://cxdy8de6npsch" path="res://Entities/Enemies/Hunter_Enemy.tscn" id="12_fdo7m"]
 [ext_resource type="Resource" uid="uid://pgb7b1sofgni" path="res://Resources/Classes/Grenadier/Grenadier_Resource.tres" id="13_egevs"]
-[ext_resource type="Resource" uid="uid://dhyalatumlvik" path="res://Resources/Classes/Tank/Class_Tank.tres" id="14_s6hku"]
-[ext_resource type="PackedScene" uid="uid://3dpsdgxcbphd" path="res://Entities/Enemies/WalkingTrainingDummy.tscn" id="17_wgmyg"]
+[ext_resource type="PackedScene" uid="uid://civ2clvctpumk" path="res://Entities/Enemies/basic_enemy.tscn" id="17_wgmyg"]
 [ext_resource type="PackedScene" uid="uid://bnhj47p63ostv" path="res://Entities/UI/UI.tscn" id="23_7dqg4"]
-[ext_resource type="PackedScene" uid="uid://u0xoc2d2sgj" path="res://Entities/Enemies/TrainingDummy.tscn" id="24_dytny"]
-
-[sub_resource type="Curve2D" id="Curve2D_fpfj3"]
-
-[sub_resource type="Curve2D" id="Curve2D_trn2v"]
-
-[sub_resource type="Curve2D" id="Curve2D_03owx"]
 
 [sub_resource type="Curve2D" id="Curve2D_sc1dx"]
-
-[sub_resource type="Curve2D" id="Curve2D_kjvhd"]
 
 [node name="Main" type="Node2D" unique_id=1057318780]
 script = ExtResource("1_3kq2r")
@@ -49,58 +36,37 @@ scale = Vector2(0.2, 0.2)
 [node name="UnitPath" parent="." unique_id=1709809203 instance=ExtResource("7_j01xv")]
 unique_name_in_owner = true
 
-[node name="muskateer" parent="." unique_id=1996755128 instance=ExtResource("8_7ncde")]
-position = Vector2(100, 50)
-curve = SubResource("Curve2D_fpfj3")
-unit_role = ExtResource("9_lb2k3")
-current_health = 20
-max_health = 20
-skin = ExtResource("10_lqb5f")
-
-[node name="Flamethrower" parent="." unique_id=2135963956 instance=ExtResource("8_7ncde")]
-position = Vector2(100, 100)
-curve = SubResource("Curve2D_trn2v")
-unit_role = ExtResource("11_nyrwo")
-current_health = 20
-max_health = 20
-skin = ExtResource("10_lqb5f")
-
-[node name="Medic" parent="." unique_id=1365851675 instance=ExtResource("8_7ncde")]
-position = Vector2(100, 150)
-curve = SubResource("Curve2D_03owx")
-unit_role = ExtResource("12_cq8dg")
-current_health = 20
-max_health = 20
-skin = ExtResource("10_lqb5f")
-
 [node name="Granader" parent="." unique_id=318286111 instance=ExtResource("8_7ncde")]
 position = Vector2(100, 200)
 curve = SubResource("Curve2D_sc1dx")
 unit_role = ExtResource("13_egevs")
-current_health = 20
-max_health = 20
-skin = ExtResource("10_lqb5f")
-
-[node name="Tank" parent="." unique_id=252684278 instance=ExtResource("8_7ncde")]
-position = Vector2(100, 250)
-curve = SubResource("Curve2D_kjvhd")
-unit_role = ExtResource("14_s6hku")
-current_health = 20
-max_health = 20
-skin = ExtResource("10_lqb5f")
+max_health = 1000
 
 [node name="Ui" parent="." unique_id=1993505447 instance=ExtResource("23_7dqg4")]
 unique_name_in_owner = true
 
-[node name="TrainingDummy" parent="." unique_id=1851314133 instance=ExtResource("24_dytny")]
-position = Vector2(350, 150)
-current_health = 20
+[node name="HunterEnemy" parent="." unique_id=2053675038 instance=ExtResource("12_fdo7m")]
+position = Vector2(400, 100)
 max_health = 20
 
-[node name="TrainingDummy2" parent="." unique_id=393416970 instance=ExtResource("17_wgmyg")]
-position = Vector2(350, 200)
-current_health = 20
+[node name="HunterEnemy2" parent="." unique_id=1487317923 instance=ExtResource("12_fdo7m")]
+position = Vector2(400, 200)
 max_health = 20
+
+[node name="BasicEnemy" parent="." unique_id=393416970 instance=ExtResource("17_wgmyg")]
+position = Vector2(400, 175)
+max_health = 20
+
+[node name="BasicEnemy2" parent="." unique_id=1423046480 instance=ExtResource("17_wgmyg")]
+position = Vector2(450, 200)
+max_health = 20
+
+[node name="BasicEnemy3" parent="." unique_id=2011701095 instance=ExtResource("17_wgmyg")]
+position = Vector2(450, 175)
+max_health = 20
+
+[node name="Timer" type="Timer" parent="." unique_id=1566837051]
+wait_time = 0.1
 
 [connection signal="accept_pressed" from="Cursor" to="." method="_on_Cursor_accept_pressed"]
 [connection signal="moved" from="Cursor" to="." method="_on_Cursor_moved"]

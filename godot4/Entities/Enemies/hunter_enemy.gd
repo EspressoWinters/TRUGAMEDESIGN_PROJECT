@@ -37,7 +37,7 @@ func find_closet_human_character():
 
 	#let's get all the units that are human in the array
 	for unit in gameboard._units.values():
-		if unit is not BasicEnemy and unit is not HunterEnemy and unit is not BigEnemy and unit is not Tower:
+		if unit is not BasicEnemy and unit is not HunterEnemy and unit is not BigEnemy and unit is not Tower  and unit is not BossMain and unit is not BossTower:
 			human_units.append(unit)
 			if unit.unit_role and unit.unit_role is Tank and unit.is_taunting:
 				taunter_found = true
@@ -45,21 +45,26 @@ func find_closet_human_character():
 	#now we need to calculate the who is the closest 
 	#we are using Manhattan distance = | X1 - X2 | + | Y1 - Y2 |, not Eucledian as that would get us errors 
 	#our A* algorithm use Manhattan distances for context
+	
+	#this is what will be holding the values of the unit's temporarily 
+	var temp_distance : int 
+	
 	if taunter_found:
 		highest_score_unit = Highest_Score_Player_Unit(tank_units)
 
 	else:
 		highest_score_unit = Highest_Score_Player_Unit(human_units)	
-
-	print("-----------------------")
-	print(highest_score_unit)
-	print("-----------------------")
+	#gathering which human unit has the least amount of distance
+	temp_distance = abs(highest_score_unit.cell.x - self.cell.x) + abs(highest_score_unit.cell.y - self.cell.y)
+	if temp_distance <= 1:
+		return null
+	
 	return highest_score_unit
 		
 		
 func check_and_attack_adjacent():
 	for unit in gameboard._units.values():
-		if unit is HunterEnemy: continue
+		if unit is BasicEnemy or unit is HunterEnemy or unit is BigEnemy or unit is BossMain or unit is BossTower or unit is Tower: continue
 		
 		#calculate distance from our NEW position (self.cell)
 		var d = abs(unit.cell.x - self.cell.x) + abs(unit.cell.y - self.cell.y)
@@ -89,7 +94,7 @@ func Highest_Score_Player_Unit(Human_units: Array):
 		else: print ("What unit is this?")
 		temp_score -= unit.unit_role.current_health
 		
-		print(temp_score)
+		#print(temp_score)
 		
 		if temp_score > max_score:
 			max_score = temp_score
