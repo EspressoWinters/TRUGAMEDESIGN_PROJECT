@@ -99,7 +99,8 @@ func start_turn():
 	_select_unit(_cell_of_active_unit)
 	#only affeects the taunt 
 	_active_unit.is_taunting = false
-	
+	#resets muskateer ability cooldown
+	_active_unit.unit_role.has_ablilitied = false
 	#Fire DOT damage
 	if _active_unit.unit_role.turns_left_on_fire > 0 and _active_unit.unit_role.on_fire == true:
 		apply_damage(_active_unit.cell,fire_dot_damage,null, false)
@@ -313,7 +314,7 @@ func get_targetable_cells(unit: Unit) -> Array:
 func _reinitialize() -> void:
 	_units.clear()
 	var tank_list = []
-
+	var musketeer_list = []
 	for child in get_children():
 		var unit := child as Unit
 		if not unit: continue
@@ -324,16 +325,22 @@ func _reinitialize() -> void:
 		#if unit is BasicEnemy or unit is HunterEnemy or unit is BigEnemy or _active_unit is BossMain or _active_unit is BossTower:
 			#if not enemy_done_moving.is_connected(unit.check_and_attack_adjacent):
 				#enemy_done_moving.connect(unit.check_and_attack_adjacent)
-		
+		if unit.unit_role is Musketeer:
+			musketeer_list.append(unit)
 		# Check if the unit's role is a Tank
 		if unit.unit_role is Tank:
 			tank_list.append(unit)
 	# Now assign charges based on the total count found
+	var total_muskateers = tank_list.size()
 	var total_tanks = tank_list.size()
 	for t in tank_list:
 		# Example: Each tank gets 1 charge for every tank present
 		t.unit_role.taunt_charges = total_tanks
 		print("Tank %s initialized with %d charges." % [t.name, total_tanks])
+	for m in musketeer_list:
+		m.unit_role.luck_charges = total_muskateers
+		print("Musketeer %s initialized with %d charges." % [m.name, total_muskateers])
+
 	
 	#okay passes a reference to the gameboard here so the enemy unit can use it, maybe I could just pass it to just enemies but for ease of use I am just giving it to all units 
 

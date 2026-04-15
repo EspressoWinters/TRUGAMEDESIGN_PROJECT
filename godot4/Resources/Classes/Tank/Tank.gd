@@ -76,9 +76,10 @@ func attack():
 	print("Tank is attacking")
 
 func ability(unit: Unit):
-	if taunt_charges > 0:
+	if taunt_charges > 0 and not has_ablilitied:
 		taunt_charges -= 1
 		unit.is_taunting = true
+		has_ablilitied = true
 		print("%s TAUNTED! Charges remaining: %d" % [unit.name, taunt_charges])
 	else:
 		print("No taunt charges left!")

@@ -3,7 +3,6 @@ class_name TrainingDummy_class
 extends Unit_Interaction
 var Role = "Training Dummy"
 
-var taunt_charges : int = 0
 
 #because for some reason in Godot you can't just access parent variables, therefroe 
 func init():
