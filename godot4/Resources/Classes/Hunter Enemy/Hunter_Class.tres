@@ -1,9 +1,9 @@
 [gd_resource type="Resource" script_class="Hunter_enemy" format=3 uid="uid://biqcay3d4j8tk"]
 
 [ext_resource type="Script" uid="uid://ttodv433y51f" path="res://Resources/Classes/Hunter Enemy/Hunter_class.gd" id="1_0brwc"]
-[ext_resource type="Texture2D" uid="uid://dx34ow1am5ih6" path="res://Assets/Units/guywithknife.png" id="2_y1y6f"]
+[ext_resource type="Texture2D" uid="uid://1rdl85pvi5kc" path="res://Assets/Units/enemy_units/Goblin in bush (hunter).png" id="2_0brwc"]
 
 [resource]
 script = ExtResource("1_0brwc")
-skin = ExtResource("2_y1y6f")
+skin = ExtResource("2_0brwc")
 current_health = 20

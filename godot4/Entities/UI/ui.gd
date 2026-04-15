@@ -11,6 +11,14 @@ var can_next_turn : bool = true
 @onready var continue_button_ui: Button = $CanvasLayer/CombatEndUi/ContinueButton
 @onready var battle_ui: Panel = $CanvasLayer/BattleUI
 @onready var combat_end_label_ui = $CanvasLayer/CombatEndUi/Label
+@onready var backtohub_ui = $BackToHubButton
+
+func _ready() -> void:
+	var current_level = get_tree().current_scene.name
+	if current_level == "Tutorialz":
+		backtohub_ui.visible = true
+	else:
+		backtohub_ui.visible = false
 
 func _on_move_button_pressed() -> void:
 	move_requested.emit()
@@ -41,4 +49,8 @@ func _on_base_button_pressed() -> void:
 	PartyManager.save_party()
 	get_tree().paused = false
 	LevelManager.reset_progression()
+	get_tree().change_scene_to_file("res://Levels/Hub/Hub.tscn")
+
+func _on_back_to_hub_button_pressed() -> void:
+	get_tree().paused = false
 	get_tree().change_scene_to_file("res://Levels/Hub/Hub.tscn")

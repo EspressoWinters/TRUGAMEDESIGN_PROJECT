@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://o4s4tivigrng" path="res://Entities/Enemies/TrainingDummy.gd" id="1_on5c7"]
 [ext_resource type="Resource" uid="uid://btl40g5dsl14p" path="res://Resources/Classes/TrainingDummy/TrainingDummy.tres" id="2_06dm7"]
-[ext_resource type="Texture2D" uid="uid://b5ghlcxjxmmgw" path="res://Entities/Units/UnitTemplate/unit_shadow.svg" id="2_jxkbc"]
+[ext_resource type="Texture2D" uid="uid://b5ghlcxjxmmgw" path="res://Entities/Units/unit_shadow.svg" id="2_jxkbc"]
 [ext_resource type="Resource" uid="uid://bj7vassh2i26e" path="res://Entities/GameBoard/Grid.tres" id="3_4bqjj"]
 [ext_resource type="Texture2D" uid="uid://dx34ow1am5ih6" path="res://Assets/Units/guywithknife.png" id="5_4bqjj"]
 
@@ -16,7 +16,6 @@ curve = SubResource("Curve2D_mu52m")
 script = ExtResource("1_on5c7")
 unit_role = ExtResource("2_06dm7")
 grid = ExtResource("3_4bqjj")
-current_health = 20
 max_health = 20
 
 [node name="PathFollow2D" type="PathFollow2D" parent="." unique_id=1680380729]
@@ -41,3 +40,4 @@ theme_override_styles/fill = SubResource("StyleBoxFlat_08waf")
 max_value = 5.0
 step = 1.0
 show_percentage = false
+metadata/_edit_use_anchors_ = true

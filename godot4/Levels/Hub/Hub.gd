@@ -90,3 +90,6 @@ func _on_fire_confirmed(index: int) -> void:
 
 func _on_expedition_button_pressed() -> void:
 	get_tree().change_scene_to_file("res://Levels/Level_0_plains.tscn")
+
+func _on_training_button_pressed() -> void:
+	get_tree().change_scene_to_file("res://Levels/Tutorialz.tscn")
