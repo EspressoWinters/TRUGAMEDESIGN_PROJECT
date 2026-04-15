@@ -91,6 +91,11 @@ func find_closet_human_character():
 	
 	#gathering which human unit has the least amount of distance
 	for unit in human_units:
+		
+		#skip the unit that is surronded 
+		if unit.is_surronded() == true:
+			continue 
+		
 		#doing the manhattan distance calculation
 		temp_distance = abs(unit.cell.x - self.cell.x) + abs(unit.cell.y - self.cell.y)
 			#since it IS closer, update our record of the shortest distance.
