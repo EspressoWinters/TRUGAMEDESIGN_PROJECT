@@ -1,7 +1,7 @@
 [gd_resource type="Resource" script_class="Musketeer" format=3 uid="uid://bxlihyh6h2ggd"]
 
 [ext_resource type="Script" uid="uid://dqpu2seyrj8dw" path="res://Resources/Classes/Musketeer/Musketeer.gd" id="1_pwtky"]
-[ext_resource type="Texture2D" uid="uid://iljdxgodmq5n" path="res://Assets/Units/Tank.png" id="2_qamwd"]
+[ext_resource type="Texture2D" uid="uid://chew502s54dp3" path="res://Assets/Units/player_units/the Musketeer.png" id="2_qamwd"]
 
 [resource]
 script = ExtResource("1_pwtky")

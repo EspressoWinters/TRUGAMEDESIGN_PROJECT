@@ -755,12 +755,17 @@ const SPAWN_CONFIG = {
 		Vector2(19, 12), Vector2(19, 13)
 	],
 	"Level_3_ruins": [
-		Vector2(5, 10), Vector2(4, 11),
+		Vector2(4, 10), Vector2(4, 11),
 		Vector2(5, 10), Vector2(5, 11),
 		Vector2(6, 10), Vector2(6, 11) 
 	],
 	"Level_4_bridge": [
-		Vector2(5, 10), Vector2(4, 11),
+		Vector2(4, 10), Vector2(4, 11),
+		Vector2(5, 10), Vector2(5, 11),
+		Vector2(6, 10), Vector2(6, 11) 
+	],
+		"Tutorialz": [
+		Vector2(4, 10), Vector2(4, 11),
 		Vector2(5, 10), Vector2(5, 11),
 		Vector2(6, 10), Vector2(6, 11) 
 	]
@@ -804,15 +809,17 @@ func spawn_party_from_manager() -> void:
 func _check_for_victory_or_defeat() -> void:
 	var player_alive := false
 	var enemies_alive := false
-
+	var current_level = get_tree().current_scene.name
 	# Scan the initiative list to see who is still standing
 	for unit in initiative_order:
 		if unit.is_in_group("player_units"):
 			player_alive = true
 		elif unit is BasicEnemy or unit is HunterEnemy or unit is BigEnemy:
 			enemies_alive = true
-			
-	if not enemies_alive:
+		
+	if current_level == "Tutorialz":
+		null
+	elif not enemies_alive:
 		for unit in _units:
 			_units[unit].unit_role.current_health
 		grant_xp()

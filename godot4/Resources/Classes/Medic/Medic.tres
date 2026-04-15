@@ -1,7 +1,7 @@
 [gd_resource type="Resource" script_class="Medic" format=3 uid="uid://b8amy4dvpx5oc"]
 
 [ext_resource type="Script" uid="uid://cci7liaxfi0a1" path="res://Resources/Classes/Medic/Medic.gd" id="1_2utxa"]
-[ext_resource type="Texture2D" uid="uid://iljdxgodmq5n" path="res://Assets/Units/Tank.png" id="2_tb5u4"]
+[ext_resource type="Texture2D" uid="uid://dr8otjekdtyhb" path="res://Assets/Units/player_units/the Physician.png" id="2_tb5u4"]
 
 [resource]
 script = ExtResource("1_2utxa")

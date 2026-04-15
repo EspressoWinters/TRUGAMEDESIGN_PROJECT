@@ -1,7 +1,7 @@
 [gd_resource type="Resource" script_class="Grenadier" format=3 uid="uid://pgb7b1sofgni"]
 
 [ext_resource type="Script" uid="uid://d322pjscifge8" path="res://Resources/Classes/Grenadier/Grenadier.gd" id="1_w5fgi"]
-[ext_resource type="Texture2D" uid="uid://iljdxgodmq5n" path="res://Assets/Units/Tank.png" id="2_daykl"]
+[ext_resource type="Texture2D" uid="uid://dd50ykl80cctt" path="res://Assets/Units/player_units/the Grenadier.png" id="2_daykl"]
 
 [resource]
 script = ExtResource("1_w5fgi")

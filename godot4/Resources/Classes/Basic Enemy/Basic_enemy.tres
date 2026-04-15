@@ -1,9 +1,9 @@
 [gd_resource type="Resource" script_class="Basic_enemy" format=3 uid="uid://b62e2fu6oowdg"]
 
 [ext_resource type="Script" uid="uid://dw060kljl4vfj" path="res://Resources/Classes/Basic Enemy/Basic_enemy.gd" id="1_3spbl"]
-[ext_resource type="Texture2D" uid="uid://dx34ow1am5ih6" path="res://Assets/Units/guywithknife.png" id="2_al8e2"]
+[ext_resource type="Texture2D" uid="uid://cboitmrxhcus8" path="res://Assets/Units/enemy_units/Small Evil Guy.png" id="2_3spbl"]
 
 [resource]
 script = ExtResource("1_3spbl")
-skin = ExtResource("2_al8e2")
+skin = ExtResource("2_3spbl")
 current_health = 20

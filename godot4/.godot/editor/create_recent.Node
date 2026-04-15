@@ -1,4 +1,5 @@
 Button
+TextureRect
 Label
 Panel
 VBoxContainer
@@ -7,7 +8,6 @@ RichTextLabel
 ItemList
 MarginContainer
 HBoxContainer
-TextureRect
 Sprite2D
 CanvasLayer
 CollisionShape2D

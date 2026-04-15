@@ -1,9 +1,27 @@
-res://Levels/Level_0_plains.tscn
+res://Entities/Enemies/big_enemy.tscn
+res://Resources/Classes/Basic Enemy/Basic_enemy.tres
 res://Resources/Classes/BigEnemy/BigEnemy.tres
+res://Resources/Classes/Hunter Enemy/Hunter_Class.tres
+res://Entities/Enemies/basic_enemy.tscn
+res://Entities/Enemies/Hunter_Enemy.tscn
+res://Entities/Enemies/Tower.tscn
+res://Entities/Enemies/TrainingDummy.tscn
+res://Entities/Enemies/WalkingTrainingDummy.tscn
+res://Resources/Classes/Flamethrower/Flamethrower.gd
+res://Resources/Classes/Flamethrower/FlameThrower.tres
+res://Resources/Classes/Grenadier/Grenadier_Resource.tres
+res://Resources/Classes/Medic/Medic.tres
+res://Resources/Classes/Musketeer/Musketeer.tres
+res://Resources/Classes/Tank/Tank.gd
+res://Resources/Classes/Tank/Class_Tank.tres
+res://Levels/main_menu/Main_Menu.tscn
+res://Levels/main_menu/main_menu.gd
+res://Levels/Hub/Hub.tscn
+res://Levels/Hub/Hub.gd
+res://Levels/Tutorialz.tscn
 res://Entities/UnitOverlay/unit_overlay_tileset.tres
 res://Entities/GameBoard/unit_path_tileset.tres
-res://Resources/Classes/Basic Enemy/Basic_enemy.tres
-res://Resources/Classes/Hunter Enemy/Hunter_Class.tres
-res://Entities/Enemies/Tower.tscn
-res://Entities/Enemies/Hunter_Enemy.tscn
-res://Entities/Enemies/WalkingTrainingDummy.tscn
+res://Entities/UI/UI.tscn
+res://Entities/UI/ui.gd
+res://Resources/Classes/TrainingDummy/TrainingDummy.gd
+res://Entities/GameBoard/GameBoard.gd

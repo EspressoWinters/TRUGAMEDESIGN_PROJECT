@@ -1,6 +1,11 @@
 [gd_scene format=3 uid="uid://cg6p1hsswqwll"]
 
 [ext_resource type="Script" uid="uid://b8hj1hdk1l0o5" path="res://Levels/Hub/Hub.gd" id="1_vgcwu"]
+[ext_resource type="Texture2D" uid="uid://c05q17u82e184" path="res://Assets/Sprites/Landscape (hub).png" id="2_lpy8n"]
+[ext_resource type="Texture2D" uid="uid://bp8piclow1082" path="res://Assets/Sprites/Recruit Building! (can change if wanted, couldnt think of how to do it to fix landscape).png" id="3_dtkgq"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_dtkgq"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_82nlh"]
 bg_color = Color(0, 0, 0, 1)
@@ -31,22 +36,36 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+texture = ExtResource("2_lpy8n")
 
 [node name="HeroManagerBuilding" type="Button" parent="CanvasLayer/TextureRect" unique_id=1367728986]
 custom_minimum_size = Vector2(100, 150)
 layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
+anchors_preset = 4
 anchor_top = 0.5
-anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -50.0
-offset_top = -75.0
-offset_right = 50.0
-offset_bottom = 75.0
-grow_horizontal = 2
+offset_left = 25.0
+offset_top = -68.0
+offset_right = 289.0
+offset_bottom = 84.0
 grow_vertical = 2
-text = "Hero Manager"
+theme_override_styles/normal = SubResource("StyleBoxFlat_dtkgq")
+icon = ExtResource("3_dtkgq")
+
+[node name="TrainingButton" type="Button" parent="CanvasLayer/TextureRect" unique_id=128499783]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = 40.0
+offset_top = -80.0
+offset_right = 89.0
+offset_bottom = -59.0
+grow_horizontal = 2
+grow_vertical = 0
+text = "Training"
 
 [node name="QuitButton" type="Button" parent="CanvasLayer/TextureRect" unique_id=407867803]
 custom_minimum_size = Vector2(50, 25)
@@ -74,6 +93,7 @@ grow_vertical = 0
 text = "EXPEDITION"
 
 [node name="PartyManager" type="Panel" parent="CanvasLayer/TextureRect" unique_id=1572280717]
+visible = false
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -232,6 +252,7 @@ grow_vertical = 2
 bbcode_enabled = true
 
 [connection signal="pressed" from="CanvasLayer/TextureRect/HeroManagerBuilding" to="." method="_on_hero_manager_building_pressed"]
+[connection signal="pressed" from="CanvasLayer/TextureRect/TrainingButton" to="." method="_on_training_button_pressed"]
 [connection signal="pressed" from="CanvasLayer/TextureRect/QuitButton" to="." method="_on_quit_button_pressed"]
 [connection signal="pressed" from="CanvasLayer/TextureRect/ExpeditionButton" to="." method="_on_expedition_button_pressed"]
 [connection signal="pressed" from="CanvasLayer/TextureRect/PartyManager/CloseButton" to="." method="_on_close_HiringUI_button_pressed"]

@@ -11,26 +11,26 @@
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_08waf"]
 bg_color = Color(1, 0, 0, 1)
 
-[node name="TrainingDummy" type="Path2D" unique_id=393416970]
+[node name="TrainingDummy" type="Path2D" unique_id=393416970 groups=["enemy_units"]]
 curve = SubResource("Curve2D_mu52m")
 script = ExtResource("1_f07dn")
 unit_role = ExtResource("2_dh8dq")
 grid = ExtResource("3_jc5o3")
 max_health = 20
 
-[node name="PathFollow2D" type="PathFollow2D" parent="." unique_id=1680380729]
+[node name="PathFollow2D" type="PathFollow2D" parent="." unique_id=1680380729 groups=["enemy_units"]]
 rotates = false
 loop = false
 
-[node name="Shadow" type="Sprite2D" parent="PathFollow2D" unique_id=1316727778]
+[node name="Shadow" type="Sprite2D" parent="PathFollow2D" unique_id=1316727778 groups=["enemy_units"]]
 modulate = Color(1, 1, 1, 0)
 scale = Vector2(0.2, 0.2)
 texture = ExtResource("4_bsbci")
 
-[node name="Sprite" type="Sprite2D" parent="PathFollow2D" unique_id=1974049774]
+[node name="Sprite" type="Sprite2D" parent="PathFollow2D" unique_id=1974049774 groups=["enemy_units"]]
 texture = ExtResource("5_0b1up")
 
-[node name="Healthbar" type="ProgressBar" parent="." unique_id=1884163062]
+[node name="Healthbar" type="ProgressBar" parent="." unique_id=1884163062 groups=["enemy_units"]]
 offset_left = -8.0
 offset_top = -12.0
 offset_right = 8.0
@@ -40,3 +40,4 @@ theme_override_styles/fill = SubResource("StyleBoxFlat_08waf")
 max_value = 5.0
 step = 1.0
 show_percentage = false
+metadata/_edit_use_anchors_ = true
