@@ -103,7 +103,7 @@ size = Vector2(16, 16)
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xr0lo"]
 bg_color = Color(0, 0, 0, 1)
 
-[node name="BasicEnemy" type="Path2D" unique_id=393416970 groups=["enemy_units"]]
+[node name="Tower" type="Path2D" unique_id=393416970 groups=["enemy_units"]]
 curve = SubResource("Curve2D_mu52m")
 script = ExtResource("1_ytsc7")
 unit_role = ExtResource("2_qcre3")
