@@ -2,6 +2,7 @@ class_name Musketeer
 extends Unit_Interaction
 
 var ability_luck: float = 0
+var luck_charges: int = 0
 #because for some reason in Godot you can't just access parent variables, therefroe 
 func init():
 	attack_range = 3
@@ -70,8 +71,13 @@ func attack():
 	print("Musketeer is attacking")
 
 func ability(unit: Unit):
-	ability_luck = 100
-	print("Musketeer is abiltying")
+	if luck_charges > 0 and not has_ablilitied:
+		ability_luck = 100
+		luck_charges -= 1
+		print("Musket is lucky")
+		has_ablilitied = true
+	else:
+		print("No Musket charges left!")
 
 func passive(unit: Unit):
 	pass

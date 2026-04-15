@@ -15,27 +15,27 @@
 [ext_resource type="Script" uid="uid://bhqbfoc8tp68t" path="res://Resources/Classes/BigEnemy/BigEnemy.gd" id="13_4vesq"]
 [ext_resource type="Texture2D" uid="uid://djihpsmsh81d5" path="res://Assets/Units/enemy_units/Big Evil Guy.png" id="14_w0re7"]
 
-[sub_resource type="Resource" id="Resource_3mmna"]
+[sub_resource type="Resource" id="Resource_dw1tu"]
 script = ExtResource("10_ihjkk")
 skin = ExtResource("11_2ndpe")
 current_health = 20
 
-[sub_resource type="Resource" id="Resource_f4hu6"]
+[sub_resource type="Resource" id="Resource_ihjkk"]
 script = ExtResource("13_4vesq")
 skin = ExtResource("14_w0re7")
 current_health = 20
 
-[sub_resource type="Resource" id="Resource_g5cjg"]
+[sub_resource type="Resource" id="Resource_2ndpe"]
 script = ExtResource("10_ihjkk")
 skin = ExtResource("11_2ndpe")
 current_health = 20
 
-[sub_resource type="Resource" id="Resource_xxrwe"]
+[sub_resource type="Resource" id="Resource_0mo6p"]
 script = ExtResource("10_ihjkk")
 skin = ExtResource("11_2ndpe")
 current_health = 20
 
-[sub_resource type="Resource" id="Resource_0xs1d"]
+[sub_resource type="Resource" id="Resource_4vesq"]
 script = ExtResource("10_ihjkk")
 skin = ExtResource("11_2ndpe")
 current_health = 20
@@ -66,23 +66,23 @@ unique_name_in_owner = true
 
 [node name="BasicEnemy" parent="." unique_id=393416970 instance=ExtResource("9_dw1tu")]
 position = Vector2(504.35327, 44.585533)
-unit_role = SubResource("Resource_3mmna")
+unit_role = SubResource("Resource_dw1tu")
 
 [node name="BigEnemy" parent="." unique_id=1345714883 instance=ExtResource("12_0mo6p")]
 position = Vector2(592.97565, 57.568428)
-unit_role = SubResource("Resource_f4hu6")
+unit_role = SubResource("Resource_ihjkk")
 
 [node name="BasicEnemy2" parent="." unique_id=939965962 instance=ExtResource("9_dw1tu")]
 position = Vector2(471.04932, 49.665794)
-unit_role = SubResource("Resource_g5cjg")
+unit_role = SubResource("Resource_2ndpe")
 
 [node name="BasicEnemy3" parent="." unique_id=186238894 instance=ExtResource("9_dw1tu")]
 position = Vector2(476.69403, 91.43687)
-unit_role = SubResource("Resource_xxrwe")
+unit_role = SubResource("Resource_0mo6p")
 
 [node name="BasicEnemy4" parent="." unique_id=214131600 instance=ExtResource("9_dw1tu")]
 position = Vector2(528.06116, 106.11318)
-unit_role = SubResource("Resource_0xs1d")
+unit_role = SubResource("Resource_4vesq")
 
 [connection signal="accept_pressed" from="Cursor" to="." method="_on_Cursor_accept_pressed"]
 [connection signal="moved" from="Cursor" to="." method="_on_Cursor_moved"]
