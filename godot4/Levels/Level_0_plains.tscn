@@ -8,8 +8,57 @@
 [ext_resource type="PackedScene" uid="uid://bv1ul1qynrdwd" path="res://Entities/GameBoard/Cursor/Cursor.tscn" id="6_orxku"]
 [ext_resource type="PackedScene" uid="uid://dxyfefsgkgc4l" path="res://Entities/GameBoard/UnitPath.tscn" id="7_0fgt4"]
 [ext_resource type="PackedScene" uid="uid://civ2clvctpumk" path="res://Entities/Enemies/basic_enemy.tscn" id="8_87w7x"]
+[ext_resource type="Script" uid="uid://dw060kljl4vfj" path="res://Resources/Classes/Basic Enemy/Basic_enemy.gd" id="9_orxku"]
 [ext_resource type="PackedScene" uid="uid://bnhj47p63ostv" path="res://Entities/UI/UI.tscn" id="9_vy8cc"]
+[ext_resource type="Texture2D" uid="uid://cboitmrxhcus8" path="res://Assets/Units/enemy_units/Small Evil Guy.png" id="10_0fgt4"]
 [ext_resource type="PackedScene" uid="uid://cxdy8de6npsch" path="res://Entities/Enemies/Hunter_Enemy.tscn" id="10_jsawb"]
+[ext_resource type="Script" uid="uid://ttodv433y51f" path="res://Resources/Classes/Hunter Enemy/Hunter_class.gd" id="13_87w7x"]
+[ext_resource type="Texture2D" uid="uid://1rdl85pvi5kc" path="res://Assets/Units/enemy_units/Goblin in bush (hunter).png" id="14_vy8cc"]
+
+[sub_resource type="Resource" id="Resource_wglbq"]
+script = ExtResource("9_orxku")
+skin = ExtResource("10_0fgt4")
+current_health = 20
+
+[sub_resource type="Resource" id="Resource_hnip4"]
+script = ExtResource("9_orxku")
+skin = ExtResource("10_0fgt4")
+current_health = 20
+
+[sub_resource type="Resource" id="Resource_cqov7"]
+script = ExtResource("9_orxku")
+skin = ExtResource("10_0fgt4")
+current_health = 20
+
+[sub_resource type="Resource" id="Resource_bb5c8"]
+script = ExtResource("9_orxku")
+skin = ExtResource("10_0fgt4")
+current_health = 20
+
+[sub_resource type="Resource" id="Resource_awp8x"]
+script = ExtResource("9_orxku")
+skin = ExtResource("10_0fgt4")
+current_health = 20
+
+[sub_resource type="Resource" id="Resource_s6yai"]
+script = ExtResource("13_87w7x")
+skin = ExtResource("14_vy8cc")
+current_health = 20
+
+[sub_resource type="Resource" id="Resource_orxku"]
+script = ExtResource("9_orxku")
+skin = ExtResource("10_0fgt4")
+current_health = 20
+
+[sub_resource type="Resource" id="Resource_0fgt4"]
+script = ExtResource("9_orxku")
+skin = ExtResource("10_0fgt4")
+current_health = 20
+
+[sub_resource type="Resource" id="Resource_87w7x"]
+script = ExtResource("9_orxku")
+skin = ExtResource("10_0fgt4")
+current_health = 20
 
 [node name="Level_0_plains" type="Node2D" unique_id=482813882]
 script = ExtResource("1_0a67r")
@@ -34,31 +83,42 @@ unique_name_in_owner = true
 
 [node name="BasicEnemy" parent="." unique_id=393416970 instance=ExtResource("8_87w7x")]
 position = Vector2(500, 200)
+unit_role = SubResource("Resource_wglbq")
 
 [node name="BasicEnemy2" parent="." unique_id=1567862900 instance=ExtResource("8_87w7x")]
 position = Vector2(550, 200)
-max_health = 20
+unit_role = SubResource("Resource_hnip4")
 
 [node name="BasicEnemy3" parent="." unique_id=207841840 instance=ExtResource("8_87w7x")]
 position = Vector2(500, 250)
-max_health = 20
+unit_role = SubResource("Resource_cqov7")
 
 [node name="BasicEnemy4" parent="." unique_id=561833127 instance=ExtResource("8_87w7x")]
 position = Vector2(550, 250)
-max_health = 20
-
-[node name="BasicEnemy5" parent="." unique_id=252955815 instance=ExtResource("8_87w7x")]
-position = Vector2(600, 200)
-max_health = 20
+unit_role = SubResource("Resource_bb5c8")
 
 [node name="Ui" parent="." unique_id=1993505447 instance=ExtResource("9_vy8cc")]
 unique_name_in_owner = true
 
-[node name="BasicEnemy2" parent="." unique_id=1412028903 instance=ExtResource("8_87w7x")]
+[node name="BasicEnemy6" parent="." unique_id=1412028903 instance=ExtResource("8_87w7x")]
 position = Vector2(500, 225)
+unit_role = SubResource("Resource_awp8x")
 
 [node name="HunterEnemy" parent="." unique_id=2053675038 instance=ExtResource("10_jsawb")]
 position = Vector2(300, 200)
+unit_role = SubResource("Resource_s6yai")
+
+[node name="BasicEnemy5" parent="." unique_id=1233989977 instance=ExtResource("8_87w7x")]
+position = Vector2(500, 100)
+unit_role = SubResource("Resource_orxku")
+
+[node name="BasicEnemy7" parent="." unique_id=1630420352 instance=ExtResource("8_87w7x")]
+position = Vector2(500, 120)
+unit_role = SubResource("Resource_0fgt4")
+
+[node name="BasicEnemy8" parent="." unique_id=1860350239 instance=ExtResource("8_87w7x")]
+position = Vector2(500, 160)
+unit_role = SubResource("Resource_87w7x")
 
 [connection signal="accept_pressed" from="Cursor" to="." method="_on_Cursor_accept_pressed"]
 [connection signal="moved" from="Cursor" to="." method="_on_Cursor_moved"]
