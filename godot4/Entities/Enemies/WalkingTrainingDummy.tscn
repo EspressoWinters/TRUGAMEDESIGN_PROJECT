@@ -1,20 +1,31 @@
 [gd_scene format=3 uid="uid://3dpsdgxcbphd"]
 
 [ext_resource type="Script" uid="uid://pvc3j5cfdfgc" path="res://Entities/Enemies/walking_training_dummy.gd" id="1_f07dn"]
-[ext_resource type="Resource" uid="uid://btl40g5dsl14p" path="res://Resources/Classes/TrainingDummy/TrainingDummy.tres" id="2_dh8dq"]
+[ext_resource type="Script" uid="uid://cfmgynfcrblb3" path="res://Resources/Classes/TrainingDummy/TrainingDummy.gd" id="2_f07dn"]
 [ext_resource type="Resource" uid="uid://bj7vassh2i26e" path="res://Entities/GameBoard/Grid.tres" id="3_jc5o3"]
 [ext_resource type="Texture2D" uid="uid://b5ghlcxjxmmgw" path="res://Entities/Units/unit_shadow.svg" id="4_bsbci"]
 [ext_resource type="Texture2D" uid="uid://dx34ow1am5ih6" path="res://Assets/Units/guywithknife.png" id="5_0b1up"]
 
 [sub_resource type="Curve2D" id="Curve2D_mu52m"]
 
+[sub_resource type="Resource" id="Resource_dh8dq"]
+script = ExtResource("2_f07dn")
+skin = ExtResource("5_0b1up")
+current_health = 20
+
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_08waf"]
 bg_color = Color(1, 0, 0, 1)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_jc5o3"]
+size = Vector2(16, 16)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bsbci"]
+bg_color = Color(0, 0, 0, 1)
 
 [node name="TrainingDummy" type="Path2D" unique_id=393416970 groups=["enemy_units"]]
 curve = SubResource("Curve2D_mu52m")
 script = ExtResource("1_f07dn")
-unit_role = ExtResource("2_dh8dq")
+unit_role = SubResource("Resource_dh8dq")
 grid = ExtResource("3_jc5o3")
 max_health = 20
 
@@ -41,3 +52,38 @@ max_value = 5.0
 step = 1.0
 show_percentage = false
 metadata/_edit_use_anchors_ = true
+
+[node name="Area2D" type="Area2D" parent="." unique_id=174566864 groups=["enemy_units"]]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=1845300041 groups=["enemy_units"]]
+shape = SubResource("RectangleShape2D_jc5o3")
+
+[node name="Panel" type="Panel" parent="Area2D" unique_id=326800099 groups=["enemy_units"]]
+visible = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -19.0
+offset_top = -25.0
+offset_right = 14.0
+offset_bottom = -13.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_bsbci")
+
+[node name="HealthLabel" type="Label" parent="Area2D/Panel" unique_id=1751601037 groups=["enemy_units"]]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -1.0
+offset_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 16
+text = "HP: 20"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[connection signal="mouse_entered" from="Area2D" to="." method="_on_container_mouse_entered"]
+[connection signal="mouse_exited" from="Area2D" to="." method="_on_container_mouse_exited"]

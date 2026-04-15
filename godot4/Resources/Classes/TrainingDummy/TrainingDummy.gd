@@ -1,7 +1,7 @@
 class_name TrainingDummy_class
 #now we are extending 
 extends Unit_Interaction
-var Role = "Tank"
+var Role = "Training Dummy"
 
 var taunt_charges : int = 0
 
@@ -23,43 +23,17 @@ func get_attackable_cells(origin_cell : Vector2, caller_name : String, direction
 	#pass 
 
 func attack_roll(attacker : Unit) -> int:
-	var die1 = randi_range(1, 6)
-	var die2 = randi_range(1, 6)
-	var crit = randf_range(0.0,100.0) #using float for percentage
+	return 0
 	
-	
-	var total_damage: int
-	#accesses the modifier from the attacker's unit_role
-	var modifier = attacker.unit_role.attack_stat
-	if crit <= luck:
-		var crit_multiplier = 2.0
-		print("CRITICAL HIT!")
-		total_damage = ((die1 + die2 + modifier) * crit_multiplier)
-		crit = true
-	else:
-		crit = false
-		total_damage = (die1 + die2 + modifier)
-	print(total_damage)
-	
-	return total_damage
 	
 #block here for each ability 
 func attack():
-	print("Tank is attacking")
+	print("")
 
 func ability(unit: Unit):
-	if taunt_charges > 0:
-		taunt_charges -= 1
-		unit.is_taunting = true
-		print("%s TAUNTED! Charges remaining: %d" % [unit.name, taunt_charges])
-	else:
-		print("No taunt charges left!")
+	print("")
 
 func passive(unit: Unit):
-	var heal_amount = 5
-	current_health += heal_amount
-	current_health = clamp(current_health, 0, unit.max_health)
-	unit.set_health_bar()
-	print("Tank passive healed for 5!")
+	pass
 
  

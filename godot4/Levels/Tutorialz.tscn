@@ -8,10 +8,18 @@
 [ext_resource type="PackedScene" uid="uid://bv1ul1qynrdwd" path="res://Entities/GameBoard/Cursor/Cursor.tscn" id="6_svyqi"]
 [ext_resource type="PackedScene" uid="uid://dxyfefsgkgc4l" path="res://Entities/GameBoard/UnitPath.tscn" id="7_j01xv"]
 [ext_resource type="PackedScene" uid="uid://d4mhjq651egt" path="res://Entities/Units/Unit.tscn" id="8_7ncde"]
+[ext_resource type="Script" uid="uid://cfmgynfcrblb3" path="res://Resources/Classes/TrainingDummy/TrainingDummy.gd" id="12_qmt2v"]
 [ext_resource type="Resource" uid="uid://pgb7b1sofgni" path="res://Resources/Classes/Grenadier/Grenadier_Resource.tres" id="13_egevs"]
+[ext_resource type="Texture2D" uid="uid://dx34ow1am5ih6" path="res://Assets/Units/guywithknife.png" id="13_x3qrp"]
+[ext_resource type="PackedScene" uid="uid://3dpsdgxcbphd" path="res://Entities/Enemies/WalkingTrainingDummy.tscn" id="14_g2jqs"]
 [ext_resource type="PackedScene" uid="uid://bnhj47p63ostv" path="res://Entities/UI/UI.tscn" id="23_7dqg4"]
 
 [sub_resource type="Curve2D" id="Curve2D_sc1dx"]
+
+[sub_resource type="Resource" id="Resource_gl0hf"]
+script = ExtResource("12_qmt2v")
+skin = ExtResource("13_x3qrp")
+current_health = 20
 
 [node name="Tutorialz" type="Node2D" unique_id=1057318780]
 script = ExtResource("1_3kq2r")
@@ -45,6 +53,10 @@ unique_name_in_owner = true
 
 [node name="Timer" type="Timer" parent="." unique_id=1566837051]
 wait_time = 0.1
+
+[node name="TrainingDummy2" parent="." unique_id=1869260185 instance=ExtResource("14_g2jqs")]
+position = Vector2(450, 150)
+unit_role = SubResource("Resource_gl0hf")
 
 [connection signal="accept_pressed" from="Cursor" to="." method="_on_Cursor_accept_pressed"]
 [connection signal="moved" from="Cursor" to="." method="_on_Cursor_moved"]
