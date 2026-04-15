@@ -109,6 +109,50 @@ func recalculate_speed():
 	move_speed = unit_role.speed * 100 
 	
 
+#checking whether you are being jumped utterly
+func is_surronded():
+	
+	var top = cell + Vector2(0,-1)
+	var right = cell + Vector2(1,0)
+	var left = cell + Vector2(-1,0)
+	var bottom = cell + Vector2(0, 1)
+	
+	var top_tile_data: TileData = gameboard.tile_map.get_cell_tile_data(0,top)
+	var right_tile_data: TileData = gameboard.tile_map.get_cell_tile_data(0,right)
+	var left_tile_data: TileData = gameboard.tile_map.get_cell_tile_data(0,left)
+	var bottom_tile_data: TileData = gameboard.tile_map.get_cell_tile_data(0,bottom)
+
+	#top case
+	
+	if (gameboard.is_occupied(top)) and (gameboard.is_occupied(right)) and (gameboard.is_occupied(left)) and (gameboard.is_occupied(bottom)):
+		return true  
+	
+	
+	return false
+	
+	
+	
+ 
+
+
+
+#just using this logic to check if surronded or not
+
+#elif direction == Vector2(-1,0):
+		#attackable_cells.append(origin_cell + Vector2(-1,0)) 
+#
+	##Right 
+	#elif direction == Vector2(1,0):
+		#attackable_cells.append(origin_cell + Vector2(1,0)) 
+#
+	##Down
+	#elif direction == Vector2(0,1):
+		#attackable_cells.append(origin_cell + Vector2(0,1))
+	#
+	##up
+	#elif direction == Vector2(0,-1):
+		#attackable_cells.append(origin_cell + Vector2(0,-1))
+
 
 ## Starts walking along the `path`.
 ## `path` is an array of grid coordinates that the function converts to map coordinates.
