@@ -64,7 +64,7 @@ func _ready() -> void:
 		ui.ability_requested.connect(unit_ability)
 	else:
 		push_error("GameBoard: UI node not found at path!")
-	spawn_party_from_manager()
+	await spawn_party_from_manager()
 	turn_manager()
 
 func turn_manager():
