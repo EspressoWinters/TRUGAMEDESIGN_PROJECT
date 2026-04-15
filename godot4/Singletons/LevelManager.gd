@@ -7,8 +7,13 @@ var level_playlist: Array[String] = [
 	"res://Levels/Level_0_plains.tscn",
 	"res://Levels/Level_1_rivers.tscn",
 	"res://Levels/Level_2_ruin_ambush.tscn",
-	"res://Levels/Level_3_ruins.tscn",
-	"res://Levels/Level_4_bridge.tscn"
+	"res://Levels/Level_3_forest.tscn",
+	"res://Levels/Level_4_bridge.tscn",
+	"res://Levels/Level_5_ruins.tscn",
+	"res://Levels/Level_6_fort.tscn",
+	"res://Levels/Level_7_road_ambush.tscn",
+	"res://Levels/Level_8_tough_fight.tscn",
+	"res://Levels/Level_9_boss.tscn"
 ]
 
 func get_current_level_path() -> String:

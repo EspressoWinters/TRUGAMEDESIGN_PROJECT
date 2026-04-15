@@ -1,0 +1,79 @@
+[gd_scene format=3 uid="uid://u5lkn7t74biu"]
+
+[ext_resource type="Texture2D" uid="uid://dyeewow0y7m7q" path="res://Assets/Sprites/Electrocuted Sheet.png" id="1_xs24h"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_055y6"]
+atlas = ExtResource("1_xs24h")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ygtgh"]
+atlas = ExtResource("1_xs24h")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8rpxw"]
+atlas = ExtResource("1_xs24h")
+region = Rect2(32, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kx2nt"]
+atlas = ExtResource("1_xs24h")
+region = Rect2(48, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3h5gh"]
+atlas = ExtResource("1_xs24h")
+region = Rect2(64, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4eqcs"]
+atlas = ExtResource("1_xs24h")
+region = Rect2(80, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rwdaw"]
+atlas = ExtResource("1_xs24h")
+region = Rect2(96, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_x3hhu"]
+atlas = ExtResource("1_xs24h")
+region = Rect2(112, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yi80j"]
+atlas = ExtResource("1_xs24h")
+region = Rect2(128, 0, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_qiisv"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_055y6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ygtgh")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8rpxw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kx2nt")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3h5gh")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4eqcs")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rwdaw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_x3hhu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yi80j")
+}],
+"loop": true,
+"name": &"new_animation",
+"speed": 10.0
+}]
+
+[node name="ElectroAttack" type="AnimatedSprite2D" unique_id=1681499882]
+sprite_frames = SubResource("SpriteFrames_qiisv")
+animation = &"new_animation"
+frame_progress = 0.27701485

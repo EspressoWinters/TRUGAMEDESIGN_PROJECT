@@ -1,12 +1,103 @@
 [gd_scene format=3 uid="uid://cxdy8de6npsch"]
 
 [ext_resource type="Script" uid="uid://cd0wrkp1ttumk" path="res://Entities/Enemies/hunter_enemy.gd" id="1_ni0ue"]
-[ext_resource type="Resource" uid="uid://biqcay3d4j8tk" path="res://Resources/Classes/Hunter Enemy/Hunter_Class.tres" id="2_18dde"]
+[ext_resource type="Script" uid="uid://ttodv433y51f" path="res://Resources/Classes/Hunter Enemy/Hunter_class.gd" id="2_24oov"]
 [ext_resource type="Texture2D" uid="uid://b5ghlcxjxmmgw" path="res://Entities/Units/unit_shadow.svg" id="2_bwqf6"]
 [ext_resource type="Resource" uid="uid://bj7vassh2i26e" path="res://Entities/GameBoard/Grid.tres" id="3_1o3fl"]
-[ext_resource type="Texture2D" uid="uid://dx34ow1am5ih6" path="res://Assets/Units/guywithknife.png" id="5_1o3fl"]
+[ext_resource type="Texture2D" uid="uid://1rdl85pvi5kc" path="res://Assets/Units/enemy_units/Goblin in bush (hunter).png" id="3_dujoi"]
+[ext_resource type="Texture2D" uid="uid://2ufjgbg3frne" path="res://Assets/Sprites/Just fire Sheet.png" id="5_3kd4x"]
 
 [sub_resource type="Curve2D" id="Curve2D_18dde"]
+
+[sub_resource type="Resource" id="Resource_jeths"]
+script = ExtResource("2_24oov")
+skin = ExtResource("3_dujoi")
+current_health = 20
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ydal0"]
+atlas = ExtResource("5_3kd4x")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sq8yg"]
+atlas = ExtResource("5_3kd4x")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1f3w0"]
+atlas = ExtResource("5_3kd4x")
+region = Rect2(32, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_patpw"]
+atlas = ExtResource("5_3kd4x")
+region = Rect2(48, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7rtut"]
+atlas = ExtResource("5_3kd4x")
+region = Rect2(64, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_f08dv"]
+atlas = ExtResource("5_3kd4x")
+region = Rect2(80, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_o1d27"]
+atlas = ExtResource("5_3kd4x")
+region = Rect2(96, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dcout"]
+atlas = ExtResource("5_3kd4x")
+region = Rect2(112, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fph2j"]
+atlas = ExtResource("5_3kd4x")
+region = Rect2(128, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qj01r"]
+atlas = ExtResource("5_3kd4x")
+region = Rect2(144, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_a7glh"]
+atlas = ExtResource("5_3kd4x")
+region = Rect2(160, 0, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_2m14q"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ydal0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_sq8yg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1f3w0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_patpw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7rtut")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_f08dv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_o1d27")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dcout")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fph2j")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qj01r")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_a7glh")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1o3fl"]
 bg_color = Color(1, 0, 0, 1)
@@ -20,9 +111,15 @@ bg_color = Color(0, 0, 0, 1)
 [node name="HunterEnemy" type="Path2D" unique_id=2053675038 groups=["enemy_units"]]
 curve = SubResource("Curve2D_18dde")
 script = ExtResource("1_ni0ue")
-unit_role = ExtResource("2_18dde")
+unit_role = SubResource("Resource_jeths")
 grid = ExtResource("3_1o3fl")
 max_health = 20
+
+[node name="OnFireAnimation" type="AnimatedSprite2D" parent="." unique_id=2111456523]
+visible = false
+scale = Vector2(1.2, 1.2)
+sprite_frames = SubResource("SpriteFrames_2m14q")
+autoplay = "default"
 
 [node name="PathFollow2D" type="PathFollow2D" parent="." unique_id=77674485 groups=["enemy_units"]]
 rotates = false
@@ -34,7 +131,7 @@ scale = Vector2(0.2, 0.2)
 texture = ExtResource("2_bwqf6")
 
 [node name="Sprite" type="Sprite2D" parent="PathFollow2D" unique_id=1865064725]
-texture = ExtResource("5_1o3fl")
+texture = ExtResource("3_dujoi")
 
 [node name="Healthbar" type="ProgressBar" parent="." unique_id=257175170 groups=["enemy_units"]]
 offset_left = -8.0

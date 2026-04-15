@@ -1,12 +1,103 @@
 [gd_scene format=3 uid="uid://3uqmxmcvncpi"]
 
 [ext_resource type="Script" uid="uid://ninuua3kv1c5" path="res://Entities/Enemies/big_enemy.gd" id="1_omn74"]
-[ext_resource type="Resource" uid="uid://cudtnc0vm77xd" path="res://Resources/Classes/BigEnemy/BigEnemy.tres" id="2_3x6ou"]
+[ext_resource type="Script" uid="uid://bhqbfoc8tp68t" path="res://Resources/Classes/BigEnemy/BigEnemy.gd" id="2_3x6ou"]
 [ext_resource type="Texture2D" uid="uid://b5ghlcxjxmmgw" path="res://Entities/Units/unit_shadow.svg" id="2_yrrvw"]
+[ext_resource type="Texture2D" uid="uid://djihpsmsh81d5" path="res://Assets/Units/enemy_units/Big Evil Guy.png" id="3_1livp"]
 [ext_resource type="Resource" uid="uid://bj7vassh2i26e" path="res://Entities/GameBoard/Grid.tres" id="3_3e2lp"]
-[ext_resource type="Texture2D" uid="uid://dx34ow1am5ih6" path="res://Assets/Units/guywithknife.png" id="5_omn74"]
+[ext_resource type="Texture2D" uid="uid://2ufjgbg3frne" path="res://Assets/Sprites/Just fire Sheet.png" id="5_c8eui"]
 
 [sub_resource type="Curve2D" id="Curve2D_mu52m"]
+
+[sub_resource type="Resource" id="Resource_6l4a0"]
+script = ExtResource("2_3x6ou")
+skin = ExtResource("3_1livp")
+current_health = 20
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ydal0"]
+atlas = ExtResource("5_c8eui")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sq8yg"]
+atlas = ExtResource("5_c8eui")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1f3w0"]
+atlas = ExtResource("5_c8eui")
+region = Rect2(32, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_patpw"]
+atlas = ExtResource("5_c8eui")
+region = Rect2(48, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7rtut"]
+atlas = ExtResource("5_c8eui")
+region = Rect2(64, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_f08dv"]
+atlas = ExtResource("5_c8eui")
+region = Rect2(80, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_o1d27"]
+atlas = ExtResource("5_c8eui")
+region = Rect2(96, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dcout"]
+atlas = ExtResource("5_c8eui")
+region = Rect2(112, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fph2j"]
+atlas = ExtResource("5_c8eui")
+region = Rect2(128, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qj01r"]
+atlas = ExtResource("5_c8eui")
+region = Rect2(144, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_a7glh"]
+atlas = ExtResource("5_c8eui")
+region = Rect2(160, 0, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_4b7qe"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ydal0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_sq8yg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1f3w0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_patpw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7rtut")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_f08dv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_o1d27")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dcout")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fph2j")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qj01r")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_a7glh")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_08waf"]
 bg_color = Color(1, 0, 0, 1)
@@ -20,9 +111,15 @@ bg_color = Color(0, 0, 0, 1)
 [node name="BigEnemy" type="Path2D" unique_id=393416970 groups=["enemy_units"]]
 curve = SubResource("Curve2D_mu52m")
 script = ExtResource("1_omn74")
-unit_role = ExtResource("2_3x6ou")
+unit_role = SubResource("Resource_6l4a0")
 grid = ExtResource("3_3e2lp")
 max_health = 20
+
+[node name="OnFireAnimation" type="AnimatedSprite2D" parent="." unique_id=331154935]
+visible = false
+scale = Vector2(1.2, 1.2)
+sprite_frames = SubResource("SpriteFrames_4b7qe")
+autoplay = "default"
 
 [node name="PathFollow2D" type="PathFollow2D" parent="." unique_id=1680380729 groups=["enemy_units"]]
 rotates = false
@@ -34,7 +131,7 @@ scale = Vector2(0.2, 0.2)
 texture = ExtResource("2_yrrvw")
 
 [node name="Sprite" type="Sprite2D" parent="PathFollow2D" unique_id=1974049774 groups=["enemy_units"]]
-texture = ExtResource("5_omn74")
+texture = ExtResource("3_1livp")
 
 [node name="Healthbar" type="ProgressBar" parent="." unique_id=1884163062 groups=["enemy_units"]]
 offset_left = -8.0

@@ -25,6 +25,9 @@ func _on_end_turn_button_pressed() -> void:
 	end_turn_requested.emit()
 "
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ibh87"]
+bg_color = Color(0, 0, 0, 1)
+
 [node name="Ui" type="Control" unique_id=1993505447]
 process_mode = 3
 layout_mode = 3
@@ -148,10 +151,12 @@ grow_vertical = 0
 text = "Home"
 
 [node name="BackToHubButton" type="Button" parent="." unique_id=1155264339]
-layout_mode = 0
-offset_right = 8.0
-offset_bottom = 8.0
-text = "Back To Hub"
+custom_minimum_size = Vector2(70, 20)
+layout_mode = 1
+offset_right = 72.0
+offset_bottom = 21.0
+theme_override_styles/normal = SubResource("StyleBoxFlat_ibh87")
+text = "BACK TO HUB"
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
 [connection signal="pressed" from="CanvasLayer/BattleUI/HBoxCharacterMoves/MoveButton" to="." method="_on_move_button_pressed"]
@@ -160,3 +165,4 @@ text = "Back To Hub"
 [connection signal="pressed" from="CanvasLayer/BattleUI/HBoxEndTurn/EndTurnButton" to="." method="_on_end_turn_button_pressed"]
 [connection signal="pressed" from="CanvasLayer/CombatEndUi/ContinueButton" to="." method="_on_continue_button_pressed"]
 [connection signal="pressed" from="CanvasLayer/CombatEndUi/BaseButton" to="." method="_on_base_button_pressed"]
+[connection signal="pressed" from="BackToHubButton" to="." method="_on_back_to_hub_button_pressed"]

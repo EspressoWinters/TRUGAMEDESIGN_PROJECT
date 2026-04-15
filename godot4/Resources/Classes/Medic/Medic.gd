@@ -87,6 +87,8 @@ func ability(unit: Unit):
 			#check if the target is NOT a BasicEnemy
 			has_global_healed = true
 			if not (target is BasicEnemy) and target.has_method("heal"):
+				VfxManager.play_vfx("heal_attack", target.global_position)
+				DamageNumbers.display_number(-20, target.global_position, false)
 				target.heal(20) #heal amount
 				print("Healed ally: ", target.name)
 			else:
