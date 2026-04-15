@@ -1,0 +1,45 @@
+[gd_scene format=3 uid="uid://d0mtafc86nfau"]
+
+[ext_resource type="Texture2D" uid="uid://duogo03byuihx" path="res://Assets/Sprites/Heal Sheet.png" id="1_rqtfv"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_83lft"]
+atlas = ExtResource("1_rqtfv")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tjr1f"]
+atlas = ExtResource("1_rqtfv")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_obxa5"]
+atlas = ExtResource("1_rqtfv")
+region = Rect2(32, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6cfrl"]
+atlas = ExtResource("1_rqtfv")
+region = Rect2(48, 0, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_u7ic5"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_83lft")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tjr1f")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_obxa5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6cfrl")
+}],
+"loop": false,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="HealAttack" type="AnimatedSprite2D" unique_id=105500704]
+sprite_frames = SubResource("SpriteFrames_u7ic5")
+autoplay = "default"
+frame = 3
+frame_progress = 1.0

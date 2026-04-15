@@ -1,0 +1,80 @@
+[gd_scene format=3 uid="uid://bylj53gicg02t"]
+
+[ext_resource type="Texture2D" uid="uid://rmys3hfxnfr2" path="res://Assets/Sprites/Explosion Sheet.png" id="1_oj5n8"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ck6fn"]
+atlas = ExtResource("1_oj5n8")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5jyu2"]
+atlas = ExtResource("1_oj5n8")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dlw78"]
+atlas = ExtResource("1_oj5n8")
+region = Rect2(32, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_juix2"]
+atlas = ExtResource("1_oj5n8")
+region = Rect2(48, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kcw2c"]
+atlas = ExtResource("1_oj5n8")
+region = Rect2(64, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_q4imt"]
+atlas = ExtResource("1_oj5n8")
+region = Rect2(80, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ha4k8"]
+atlas = ExtResource("1_oj5n8")
+region = Rect2(96, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_33a4c"]
+atlas = ExtResource("1_oj5n8")
+region = Rect2(112, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pnu4p"]
+atlas = ExtResource("1_oj5n8")
+region = Rect2(128, 0, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_5cctd"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ck6fn")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5jyu2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dlw78")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_juix2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kcw2c")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_q4imt")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ha4k8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_33a4c")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pnu4p")
+}],
+"loop": false,
+"name": &"default",
+"speed": 10.0
+}]
+
+[node name="ExplosionAttack" type="AnimatedSprite2D" unique_id=1578228641]
+sprite_frames = SubResource("SpriteFrames_5cctd")
+autoplay = "default"
+frame = 1
+frame_progress = 0.344074

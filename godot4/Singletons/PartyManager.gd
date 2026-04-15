@@ -14,7 +14,7 @@ var active_party: Array[Unit_Interaction] = []
 func _ready() -> void:
 	load_party()
 
-## Attempts to load existing party; if none exists, creates the starter trio.
+##attempts to load existing party if none exist creates the starter trio
 func load_party() -> void:
 	if FileAccess.file_exists(SAVE_PATH):
 		var save_res = ResourceLoader.load(SAVE_PATH) as PartySaveData

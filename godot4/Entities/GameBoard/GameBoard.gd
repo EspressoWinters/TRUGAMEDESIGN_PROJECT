@@ -1,8 +1,11 @@
 #Special Thanks to this Repository for helping build the basis of the movement system of our game. 
-#https://github.com/gdquest-demos/godot-2d-tactical-rpg-movement/tree/main/godot4 
+#https://github.com/gdquest-demos/godot-2d-tactical-rpg-movement/tree/main/godot4
+#----------------------------------------------------------------------------------
 #Special thanks to this as well to help explain the code 
 #https://www.gdquest.com/tutorial/godot/2d/tactical-rpg-movement/lessons/01.grid/
-
+#----------------------------------------------------------------------------------
+#Special tanks to this creator of the font
+#https://managore.itch.io/m5x7
 ## Represents and manages the game board. Stores references to entities that are in each cell and
 ## tells whether cells are occupied or not.
 ## Units can only move around the grid one at a time.
@@ -136,6 +139,7 @@ func start_turn():
 				var target_unit = _units[healing_cell]
 				
 				if target_unit.is_in_group("player_units"):
+					_trigger_attack_vfx(healing_cell)
 					apply_damage(healing_cell, -1, _active_unit, false)
 					print(healing_cell)
 	
@@ -144,6 +148,7 @@ func start_turn():
 		_active_unit.unit_role.turns_left_on_fire -= 1
 	elif _active_unit.unit_role.turns_left_on_fire == 0 and _active_unit.unit_role.on_fire == true:
 		_active_unit.unit_role.on_fire = false
+		_active_unit.on_fire_vfx.visible = false
 		
 	#checking at the start of turn to turn off the grenadier speed boost
 	
@@ -178,7 +183,7 @@ func start_turn():
 		
 		if near_tile != _active_unit.cell and near_tile:
 			#moving the unit near the tile 
-			_move_active_unit(near_tile)
+			await _move_active_unit(near_tile)
 			await _active_unit.walk_finished
 			#enemy_done_moving.emit()
 			_active_unit.check_and_attack_adjacent()
@@ -584,6 +589,8 @@ func _on_Cursor_accept_pressed(cell: Vector2) -> void:
 				_attackable_cells = _active_unit.unit_role.get_attackable_cells(_active_unit.cell, "null", attack_direction)
 				
 				for attacking_cell in _attackable_cells:
+					#triggers vfx for the attack pls dont break
+					_trigger_attack_vfx(attacking_cell)
 					if _units.has(attacking_cell):
 						apply_damage(attacking_cell, _active_unit.unit_role.attack_roll(_active_unit), _active_unit, _active_unit.unit_role.crit)
 						print(attacking_cell)
@@ -606,6 +613,8 @@ func _on_Cursor_accept_pressed(cell: Vector2) -> void:
 			
 			#okay this is just the attack block
 			for attacking_cell in _attackable_cells:
+				#same thing calls in vfx
+				_trigger_attack_vfx(attacking_cell)
 				if _units.has(attacking_cell) and attacking_cell in range_limit:
 					apply_damage(attacking_cell, _active_unit.unit_role.attack_roll(_active_unit), _active_unit, _active_unit.unit_role.crit)
 					print(attacking_cell)
@@ -724,6 +733,7 @@ func apply_damage(target_cell: Vector2, amount: int, attacker: Unit, crit: bool)
 		#Damage over time passive
 		if attacker.unit_role is  Flamethrower:
 			victim.unit_role.on_fire = true
+			victim.on_fire_vfx.visible = true
 			victim.unit_role.turns_left_on_fire = fire_dot_turns
 		#1/4 Grenade damage to self
 		if attacker.unit_role is  Grenadier:
@@ -746,6 +756,14 @@ func apply_damage(target_cell: Vector2, amount: int, attacker: Unit, crit: bool)
 
 func _handle_unit_death(cell: Vector2) -> void:
 	var unit_to_remove = _units[cell]
+	
+	#this checks if unit has a resource and is in the active party
+	if unit_to_remove.unit_resource in PartyManager.active_party:
+		var party_index = PartyManager.active_party.find(unit_to_remove.unit_resource)
+		if party_index != -1:
+			PartyManager.fire_unit(party_index)
+			print("Unit removed from permanent party.")
+	
 	_units.erase(cell)
 	initiative_order.erase(unit_to_remove)
 	unit_to_remove.queue_free()
@@ -767,12 +785,37 @@ const SPAWN_CONFIG = {
 		Vector2(19, 12), Vector2(19, 13),
 		Vector2(20, 12), Vector2(20, 13)
 	],
-	"Level_3_ruins": [
+	"Level_3_forest": [
 		Vector2(4, 10), Vector2(4, 11),
 		Vector2(5, 10), Vector2(5, 11),
 		Vector2(6, 10), Vector2(6, 11) 
 	],
 	"Level_4_bridge": [
+		Vector2(4, 10), Vector2(4, 11),
+		Vector2(5, 10), Vector2(5, 11),
+		Vector2(6, 10), Vector2(6, 11) 
+	],
+	"Level_5_ruins": [
+		Vector2(4, 10), Vector2(4, 11),
+		Vector2(5, 10), Vector2(5, 11),
+		Vector2(6, 10), Vector2(6, 11) 
+	],
+	"Level_6_fort": [
+		Vector2(4, 10), Vector2(4, 11),
+		Vector2(5, 10), Vector2(5, 11),
+		Vector2(6, 10), Vector2(6, 11) 
+	],
+	"Level_7_road_ambush": [
+		Vector2(4, 10), Vector2(4, 11),
+		Vector2(5, 10), Vector2(5, 11),
+		Vector2(6, 10), Vector2(6, 11) 
+	],
+	"Level_8_tough_fight": [
+		Vector2(4, 10), Vector2(4, 11),
+		Vector2(5, 10), Vector2(5, 11),
+		Vector2(6, 10), Vector2(6, 11) 
+	],
+	"Level_9_boss": [
 		Vector2(4, 10), Vector2(4, 11),
 		Vector2(5, 10), Vector2(5, 11),
 		Vector2(6, 10), Vector2(6, 11) 
@@ -801,6 +844,7 @@ func spawn_party_from_manager() -> void:
 		var data = PartyManager.active_party[i]
 		var new_unit = unit_scene.instantiate() as Unit
 		
+		new_unit.unit_resource = data
 		#so the unit_role setter can trigger correctly
 		new_unit.unit_role = data
 		new_unit.grid = PartyManager.GRID_RES 
@@ -862,3 +906,25 @@ func _check_for_level_ups() -> void:
 				unit.unit_role.luck += 1
 				
 				print("LEVEL UP! %s is now Level %d." % [unit.unit_role.role, unit.unit_role.level])
+
+#determines what vfx to play based on the unit_role
+func _trigger_attack_vfx(cell: Vector2) -> void:
+	#fallback animation just in case
+	var vfx_type = "slash_attack" 
+	
+	#checks units role to determine what vfx to use
+	if _active_unit.unit_role is Tank:
+		vfx_type = "slash_attack"
+	elif _active_unit.unit_role is Flamethrower:
+		vfx_type = "fire_attack"
+	elif _active_unit.unit_role is Grenadier:
+		vfx_type = "explosion_attack"
+	elif _active_unit.unit_role is Musketeer:
+		vfx_type = "gun_attack"
+	elif _active_unit.unit_role is Medic:
+		vfx_type = "heal_attack"
+
+	#this ensures the animation is centered on the square
+	var world_pos = grid.calculate_map_position(cell)
+	
+	VfxManager.play_vfx(vfx_type, world_pos)

@@ -22,7 +22,10 @@ var move_range :int
 ## Speed of it visually moving, doesn't actually affect movement
 var move_speed :int
 var is_taunting: bool = false
+#stores the reference of which resource it is using
+var unit_resource: Unit_Interaction
 @onready var sprite: Sprite2D = $PathFollow2D/Sprite
+@onready var on_fire_vfx: AnimatedSprite2D = $OnFireAnimation
 
 @export var max_health: int
 var gameboard: GameBoard

@@ -1,3 +1,5 @@
+AnimatedSprite2D
+Node2D
 Button
 TextureRect
 Label
@@ -10,5 +12,3 @@ MarginContainer
 HBoxContainer
 Sprite2D
 CanvasLayer
-CollisionShape2D
-Area2D

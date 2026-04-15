@@ -4,9 +4,95 @@
 [ext_resource type="Texture2D" uid="uid://b5ghlcxjxmmgw" path="res://Entities/Units/unit_shadow.svg" id="2_a6763"]
 [ext_resource type="Resource" uid="uid://bj7vassh2i26e" path="res://Entities/GameBoard/Grid.tres" id="2_dtkqx"]
 [ext_resource type="Resource" uid="uid://mdwfvkgbgbll" path="res://Resources/Classes/Bosses/Boss_Main.tres" id="2_o0w5w"]
+[ext_resource type="Texture2D" uid="uid://2ufjgbg3frne" path="res://Assets/Sprites/Just fire Sheet.png" id="4_gu2e8"]
 [ext_resource type="Texture2D" uid="uid://dx34ow1am5ih6" path="res://Assets/Units/guywithknife.png" id="5_o0w5w"]
 
 [sub_resource type="Curve2D" id="Curve2D_mu52m"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ydal0"]
+atlas = ExtResource("4_gu2e8")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sq8yg"]
+atlas = ExtResource("4_gu2e8")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1f3w0"]
+atlas = ExtResource("4_gu2e8")
+region = Rect2(32, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_patpw"]
+atlas = ExtResource("4_gu2e8")
+region = Rect2(48, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7rtut"]
+atlas = ExtResource("4_gu2e8")
+region = Rect2(64, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_f08dv"]
+atlas = ExtResource("4_gu2e8")
+region = Rect2(80, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_o1d27"]
+atlas = ExtResource("4_gu2e8")
+region = Rect2(96, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dcout"]
+atlas = ExtResource("4_gu2e8")
+region = Rect2(112, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fph2j"]
+atlas = ExtResource("4_gu2e8")
+region = Rect2(128, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qj01r"]
+atlas = ExtResource("4_gu2e8")
+region = Rect2(144, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_a7glh"]
+atlas = ExtResource("4_gu2e8")
+region = Rect2(160, 0, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_3ky33"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ydal0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_sq8yg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1f3w0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_patpw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7rtut")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_f08dv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_o1d27")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dcout")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fph2j")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qj01r")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_a7glh")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_08waf"]
 bg_color = Color(1, 0, 0, 1)
@@ -16,6 +102,15 @@ curve = SubResource("Curve2D_mu52m")
 script = ExtResource("1_dhl72")
 unit_role = ExtResource("2_o0w5w")
 grid = ExtResource("2_dtkqx")
+max_health = Object(Sprite2D,"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","visible":true,"modulate":Color(1, 1, 1, 1),"self_modulate":Color(1, 1, 1, 1),"show_behind_parent":false,"top_level":false,"clip_children":0,"light_mask":1,"visibility_layer":1,"z_index":0,"z_as_relative":true,"y_sort_enabled":false,"texture_filter":0,"texture_repeat":0,"material":null,"use_parent_material":false,"position":Vector2(0, 0),"rotation":0.0,"scale":Vector2(1, 1),"skew":0.0,"texture":ExtResource("5_o0w5w"),"centered":true,"offset":Vector2(0, 0),"flip_h":false,"flip_v":false,"hframes":1,"vframes":1,"frame":0,"region_enabled":false,"region_rect":Rect2(0, 0, 0, 0),"region_filter_clip_enabled":false,"script":null)
+
+initiative_stat = null
+
+[node name="OnFireAnimation" type="AnimatedSprite2D" parent="." unique_id=2001919743]
+visible = false
+scale = Vector2(1.2, 1.2)
+sprite_frames = SubResource("SpriteFrames_3ky33")
+autoplay = "default"
 
 [node name="PathFollow2D" type="PathFollow2D" parent="." unique_id=1680380729]
 rotates = false

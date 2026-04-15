@@ -24,6 +24,7 @@ config/icon="res://icon.png"
 DamageNumbers="*uid://dpx4yq3ulp1kl"
 PartyManager="*uid://bi7ux7awgbhdl"
 LevelManager="*uid://bc7ht4ol5bc4x"
+VfxManager="*uid://b7jocj77vsmgu"
 
 [display]
 

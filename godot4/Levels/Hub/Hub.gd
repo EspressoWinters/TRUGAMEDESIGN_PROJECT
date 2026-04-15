@@ -75,6 +75,10 @@ func _on_hero_selected(hero: Unit_Interaction, d_name: String, index: int, is_hi
 		fire_btn.pressed.connect(_on_fire_confirmed.bind(index))
 
 func _on_hire_confirmed(index: int) -> void:
+	#prevents game from crashing from array being out of bound
+	if index == -1 or index >= PartyManager.available_to_hire.size():
+		return
+		
 	var hero_to_hire = PartyManager.available_to_hire[index]
 	if PartyManager.hire_unit(hero_to_hire):
 		PartyManager.available_to_hire.remove_at(index)

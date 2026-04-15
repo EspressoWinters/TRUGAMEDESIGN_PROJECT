@@ -1,0 +1,80 @@
+[gd_scene format=3 uid="uid://cc3jb0jusbroe"]
+
+[ext_resource type="Texture2D" uid="uid://djjno7bb6be0h" path="res://Assets/Sprites/Gunshot Sheet.png" id="1_jbgpk"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6k2qr"]
+atlas = ExtResource("1_jbgpk")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3744f"]
+atlas = ExtResource("1_jbgpk")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5uq8w"]
+atlas = ExtResource("1_jbgpk")
+region = Rect2(32, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cygvp"]
+atlas = ExtResource("1_jbgpk")
+region = Rect2(48, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xiau3"]
+atlas = ExtResource("1_jbgpk")
+region = Rect2(64, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mnnas"]
+atlas = ExtResource("1_jbgpk")
+region = Rect2(80, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_oxxb8"]
+atlas = ExtResource("1_jbgpk")
+region = Rect2(96, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_64rot"]
+atlas = ExtResource("1_jbgpk")
+region = Rect2(112, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pob2q"]
+atlas = ExtResource("1_jbgpk")
+region = Rect2(128, 0, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_qldob"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6k2qr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3744f")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5uq8w")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cygvp")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xiau3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mnnas")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_oxxb8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_64rot")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pob2q")
+}],
+"loop": false,
+"name": &"default",
+"speed": 10.0
+}]
+
+[node name="GunAttack" type="AnimatedSprite2D" unique_id=303413589]
+sprite_frames = SubResource("SpriteFrames_qldob")
+autoplay = "default"
+frame = 8
+frame_progress = 1.0

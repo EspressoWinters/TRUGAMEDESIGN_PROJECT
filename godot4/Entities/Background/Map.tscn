@@ -1,13 +1,17 @@
 [gd_scene format=3 uid="uid://de53ukdqyusan"]
 
-[ext_resource type="Texture2D" uid="uid://hhjhhexo114y" path="res://Assets/Tilemap/Gabe's Tilemap.png" id="1_njd6n"]
+[ext_resource type="Texture2D" uid="uid://cx7s5sfsm03sr" path="res://Assets/Tilemap/tilemap_part_2.png" id="1_5fmxj"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_5cy74"]
-texture = ExtResource("1_njd6n")
+texture = ExtResource("1_5fmxj")
 0:0/0 = 0
 0:0/0/custom_data_0 = true
 1:0/0 = 0
 2:0/0 = 0
+3:0/0 = 0
+3:0/0/custom_data_0 = true
+4:0/0 = 0
+5:0/0 = 0
 
 [sub_resource type="TileSet" id="TileSet_5nrix"]
 custom_data_layer_0/name = "walkable"
