@@ -55,6 +55,7 @@ var has_done_speed_boost_once := false
 
 var flame_explosion_damage: int = 3
 
+var boss_tower_healing : int = 5
 #when the gameboard is called into the scene it will clear its dicitonary of units then fill it up again with the units in tjhe active scenee
 func _ready() -> void:
 	_reinitialize()
@@ -98,6 +99,18 @@ func start_turn():
 	_select_unit(_cell_of_active_unit)
 	#only affeects the taunt 
 	_active_unit.is_taunting = false
+	
+	#Fire DOT damage
+	if _active_unit.unit_role.turns_left_on_fire > 0 and _active_unit.unit_role.on_fire == true:
+		apply_damage(_active_unit.cell,fire_dot_damage,null, false)
+		_active_unit.unit_role.turns_left_on_fire -= 1
+	elif _active_unit.unit_role.turns_left_on_fire == 0 and _active_unit.unit_role.on_fire == true:
+		_active_unit.unit_role.on_fire = false
+		_active_unit.on_fire_vfx.visible = false
+	
+	#activates passive at start of turn
+	_active_unit.unit_role.passive(_active_unit)
+	
 	print("It is now " + _active_unit.name + "'s turn.")
 	print(_active_unit.cell)
 	
@@ -130,8 +143,12 @@ func start_turn():
 		#timer.start()
 		#await timer.timeout
 		end_turn()
-
 	
+	if _active_unit is BossTower:
+		for unit in _units:
+			if unit is BossMain:
+				apply_damage(unit.cell,-boss_tower_healing,_active_unit,false)
+		end_turn()
 	
 	if _active_unit.unit_role is Medic:
 		for healing_cell in _active_unit.unit_role.passive(_active_unit):
@@ -143,15 +160,7 @@ func start_turn():
 					apply_damage(healing_cell, -1, _active_unit, false)
 					print(healing_cell)
 	
-	if _active_unit.unit_role.turns_left_on_fire > 0 and _active_unit.unit_role.on_fire == true:
-		apply_damage(_active_unit.cell,fire_dot_damage,null, false)
-		_active_unit.unit_role.turns_left_on_fire -= 1
-	elif _active_unit.unit_role.turns_left_on_fire == 0 and _active_unit.unit_role.on_fire == true:
-		_active_unit.unit_role.on_fire = false
-		_active_unit.on_fire_vfx.visible = false
-		
 	#checking at the start of turn to turn off the grenadier speed boost
-	
 	if _active_unit.unit_role is Grenadier:
 		#need to halve the speed back to base
 		if _active_unit.unit_role.has_used_speed_boost == true and has_done_speed_boost_once == false:
@@ -167,13 +176,9 @@ func start_turn():
 				_unit_overlay.draw(_walkable_cells)
 			#need to reset that 
 			has_done_speed_boost_once = true 
-			
-	
-	#activates passive at start of turn
-	_active_unit.unit_role.passive(_active_unit)
 	
 	#doing AI Logic here
-	if _active_unit is BasicEnemy or _active_unit is HunterEnemy or _active_unit is BigEnemy or _active_unit is BossMain or _active_unit is WalkingTrainingDummy or _active_unit is WalkingTrainingDummy:
+	if _active_unit is BasicEnemy or _active_unit is HunterEnemy or _active_unit is BigEnemy or _active_unit is BossMain or _active_unit is WalkingTrainingDummy:
 		var near_tile
 		#get the closest tile from the human
 		near_tile = closest_tile_to_human_unit(_active_unit)
@@ -181,9 +186,9 @@ func start_turn():
 		#just printing it to see the tile
 		print(near_tile)
 		
-		if near_tile != _active_unit.cell and near_tile:
+		if near_tile:
 			#moving the unit near the tile 
-			await _move_active_unit(near_tile)
+			_move_active_unit(near_tile)
 			await _active_unit.walk_finished
 			#enemy_done_moving.emit()
 			_active_unit.check_and_attack_adjacent()

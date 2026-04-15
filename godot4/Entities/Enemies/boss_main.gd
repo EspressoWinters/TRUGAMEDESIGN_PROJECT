@@ -16,6 +16,13 @@ var tank_units := []
 var closest_unit : Unit
 var taunter_found := false
 
+var four_tower_boost : int = 0
+var three_tower_boost : int = 10
+var two_tower_boost : int = 20
+var one_tower_boost : int = 30
+var no_tower_boost : int = 40
+
+
 #going to go for a hail mary here and just put this code here
 #current plan, may get rid of this later, just commenting for myself
 #keep _process because that is what is actually moving the character along the path 
@@ -99,41 +106,28 @@ func find_closet_human_character():
 func check_and_attack_adjacent():
 	for unit in gameboard._units.values():
 		if unit is BasicEnemy or unit is HunterEnemy or unit is BigEnemy or unit is BossMain or unit is BossTower or unit is Tower: continue
+		var num_of_towers: int = number_of_towers_left()
+		var enrage_modifier: int = 0
+		match  num_of_towers:
+			4: enrage_modifier = four_tower_boost
+			3: enrage_modifier = three_tower_boost
+			2: enrage_modifier = two_tower_boost
+			1: enrage_modifier = one_tower_boost
+			0: enrage_modifier = no_tower_boost
 		
 		#calculate distance from our NEW position (self.cell)
 		var d = abs(unit.cell.x - self.cell.x) + abs(unit.cell.y - self.cell.y)
 		
 		if d <= 1:
 			VfxManager.play_vfx("slash_attack", unit.global_position)
-			gameboard.apply_damage(unit.cell, unit_role.attack_roll(self), self, unit_role.crit)
-			
+			gameboard.apply_damage(unit.cell, unit_role.attack_roll(self)+enrage_modifier, self, unit_role.crit)
 
-#The hunter gets its value for what it wants to prioritize 
-func Highest_Score_Player_Unit(Human_units: Array):
-	var max_score = -10000
-	
-	var max_unit: Unit
-	
-	for unit in Human_units:
-		var temp_score = 0
-		if unit.unit_role is Tank:
-			temp_score -= 3
-		elif unit.unit_role is Flamethrower: 
-			temp_score -=2
-		elif unit.unit_role is Medic: 
-			temp_score += 1
-		elif unit.unit_role is Grenadier: 
-			temp_score += 3
-		elif unit.unit_role is Musketeer: 
-			temp_score += 0
-		else: print ("What unit is this?")
-		temp_score -= unit.current_health
-		
-		print(temp_score)
-		
-		if temp_score > max_score:
-			max_score = temp_score
-			max_unit = unit
-	#print ("MAx Unit: ",max_unit)
-	return max_unit
-	
+func number_of_towers_left():
+	var num_of_towers: int = 0
+	for unit in gameboard._units.values():
+		if unit is BossTower:
+			num_of_towers += 1
+		else:
+			pass
+	print(num_of_towers)
+	return num_of_towers
