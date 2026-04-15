@@ -147,6 +147,12 @@ offset_right = 50.0
 grow_vertical = 0
 text = "Home"
 
+[node name="BackToHubButton" type="Button" parent="." unique_id=1155264339]
+layout_mode = 0
+offset_right = 8.0
+offset_bottom = 8.0
+text = "Back To Hub"
+
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
 [connection signal="pressed" from="CanvasLayer/BattleUI/HBoxCharacterMoves/MoveButton" to="." method="_on_move_button_pressed"]
 [connection signal="pressed" from="CanvasLayer/BattleUI/HBoxCharacterMoves/AbilityButton" to="." method="_on_ability_button_pressed"]
