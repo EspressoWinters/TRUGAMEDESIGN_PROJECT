@@ -9,7 +9,7 @@
 
 [sub_resource type="Curve2D" id="Curve2D_18dde"]
 
-[sub_resource type="Resource" id="Resource_jeths"]
+[sub_resource type="Resource" id="Resource_24oov"]
 script = ExtResource("2_24oov")
 skin = ExtResource("3_dujoi")
 current_health = 20
@@ -111,7 +111,7 @@ bg_color = Color(0, 0, 0, 1)
 [node name="HunterEnemy" type="Path2D" unique_id=2053675038 groups=["enemy_units"]]
 curve = SubResource("Curve2D_18dde")
 script = ExtResource("1_ni0ue")
-unit_role = SubResource("Resource_jeths")
+unit_role = SubResource("Resource_24oov")
 grid = ExtResource("3_1o3fl")
 max_health = 20
 
@@ -152,6 +152,7 @@ shape = SubResource("RectangleShape2D_ni0ue")
 
 [node name="Panel" type="Panel" parent="Area2D" unique_id=73649749 groups=["enemy_units"]]
 visible = false
+z_index = 2
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -164,6 +165,7 @@ grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_bwqf6")
 
 [node name="HealthLabel" type="Label" parent="Area2D/Panel" unique_id=1717969098 groups=["enemy_units"]]
+z_index = 2
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0

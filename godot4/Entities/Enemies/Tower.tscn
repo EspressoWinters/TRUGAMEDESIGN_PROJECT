@@ -5,6 +5,7 @@
 [ext_resource type="Texture2D" uid="uid://b5ghlcxjxmmgw" path="res://Entities/Units/unit_shadow.svg" id="2_kriq8"]
 [ext_resource type="Resource" uid="uid://5kurp5dcq3sk" path="res://Entities/Enemies/Tower_Resource.tres" id="2_qcre3"]
 [ext_resource type="Texture2D" uid="uid://2ufjgbg3frne" path="res://Assets/Sprites/Just fire Sheet.png" id="4_qcre3"]
+[ext_resource type="Texture2D" uid="uid://duwxqnvnxe1fl" path="res://Assets/Units/enemy_units/Tesla Coil (tower enemy).png" id="6_a8x7b"]
 
 [sub_resource type="Curve2D" id="Curve2D_mu52m"]
 
@@ -96,6 +97,12 @@ animations = [{
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_08waf"]
 bg_color = Color(1, 0, 0, 1)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_hbwge"]
+size = Vector2(16, 16)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xr0lo"]
+bg_color = Color(0, 0, 0, 1)
+
 [node name="BasicEnemy" type="Path2D" unique_id=393416970 groups=["enemy_units"]]
 curve = SubResource("Curve2D_mu52m")
 script = ExtResource("1_ytsc7")
@@ -119,6 +126,7 @@ scale = Vector2(0.2, 0.2)
 texture = ExtResource("2_kriq8")
 
 [node name="Sprite" type="Sprite2D" parent="PathFollow2D" unique_id=1974049774 groups=["enemy_units"]]
+texture = ExtResource("6_a8x7b")
 
 [node name="Healthbar" type="ProgressBar" parent="." unique_id=1884163062 groups=["enemy_units"]]
 offset_left = -8.0
@@ -131,3 +139,40 @@ max_value = 5.0
 step = 1.0
 show_percentage = false
 metadata/_edit_use_anchors_ = true
+
+[node name="Area2D" type="Area2D" parent="." unique_id=724395105 groups=["enemy_units"]]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=761669054 groups=["enemy_units"]]
+shape = SubResource("RectangleShape2D_hbwge")
+
+[node name="Panel" type="Panel" parent="Area2D" unique_id=1926326229 groups=["enemy_units"]]
+visible = false
+z_index = 2
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -19.0
+offset_top = -25.0
+offset_right = 14.0
+offset_bottom = -13.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_xr0lo")
+
+[node name="HealthLabel" type="Label" parent="Area2D/Panel" unique_id=1568445054 groups=["enemy_units"]]
+z_index = 2
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -1.0
+offset_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 16
+text = "HP: 20"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[connection signal="mouse_entered" from="Area2D" to="." method="_on_container_mouse_entered"]
+[connection signal="mouse_exited" from="Area2D" to="." method="_on_container_mouse_exited"]
