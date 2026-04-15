@@ -1,7 +1,7 @@
 [gd_resource type="Resource" script_class="Tank" format=3 uid="uid://dhyalatumlvik"]
 
 [ext_resource type="Script" uid="uid://cbjujf0ehx6ue" path="res://Resources/Classes/Tank/Tank.gd" id="1_eha2t"]
-[ext_resource type="Texture2D" uid="uid://iljdxgodmq5n" path="res://Assets/Units/Tank.png" id="2_411me"]
+[ext_resource type="Texture2D" uid="uid://deaetpu8dgtj5" path="res://Assets/Units/player_units/the Landschnekt.png" id="2_411me"]
 
 [resource]
 script = ExtResource("1_eha2t")

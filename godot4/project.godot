@@ -39,6 +39,7 @@ window/size/height=720
 [global_group]
 
 player_units=""
+enemy_units=""
 
 [gui]
 

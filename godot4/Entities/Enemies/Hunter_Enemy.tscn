@@ -17,13 +17,14 @@ size = Vector2(16, 16)
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bwqf6"]
 bg_color = Color(0, 0, 0, 1)
 
-[node name="HunterEnemy" type="Path2D" unique_id=2053675038]
+[node name="HunterEnemy" type="Path2D" unique_id=2053675038 groups=["enemy_units"]]
 curve = SubResource("Curve2D_18dde")
 script = ExtResource("1_ni0ue")
 unit_role = ExtResource("2_18dde")
 grid = ExtResource("3_1o3fl")
+max_health = 20
 
-[node name="PathFollow2D" type="PathFollow2D" parent="." unique_id=77674485]
+[node name="PathFollow2D" type="PathFollow2D" parent="." unique_id=77674485 groups=["enemy_units"]]
 rotates = false
 loop = false
 
@@ -35,7 +36,7 @@ texture = ExtResource("2_bwqf6")
 [node name="Sprite" type="Sprite2D" parent="PathFollow2D" unique_id=1865064725]
 texture = ExtResource("5_1o3fl")
 
-[node name="Healthbar" type="ProgressBar" parent="." unique_id=257175170]
+[node name="Healthbar" type="ProgressBar" parent="." unique_id=257175170 groups=["enemy_units"]]
 offset_left = -8.0
 offset_top = -12.0
 offset_right = 8.0
@@ -45,13 +46,14 @@ theme_override_styles/fill = SubResource("StyleBoxFlat_1o3fl")
 max_value = 5.0
 step = 1.0
 show_percentage = false
+metadata/_edit_use_anchors_ = true
 
-[node name="Area2D" type="Area2D" parent="." unique_id=117195472]
+[node name="Area2D" type="Area2D" parent="." unique_id=117195472 groups=["enemy_units"]]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=997651283]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=997651283 groups=["enemy_units"]]
 shape = SubResource("RectangleShape2D_ni0ue")
 
-[node name="Panel" type="Panel" parent="Area2D" unique_id=73649749]
+[node name="Panel" type="Panel" parent="Area2D" unique_id=73649749 groups=["enemy_units"]]
 visible = false
 anchors_preset = 15
 anchor_right = 1.0
@@ -64,7 +66,7 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_bwqf6")
 
-[node name="HealthLabel" type="Label" parent="Area2D/Panel" unique_id=1717969098]
+[node name="HealthLabel" type="Label" parent="Area2D/Panel" unique_id=1717969098 groups=["enemy_units"]]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
