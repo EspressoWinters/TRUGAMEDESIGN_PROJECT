@@ -86,6 +86,7 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	#moves the unit along the path by delta
 	_path_follow.progress += move_speed * delta
+	#print(_path_follow.progress)
 	#When the walking is finished resetes path progress and emits walk signal for gameboard managment
 	if _path_follow.progress_ratio >= 1.0:
 		_is_walking = false
@@ -127,6 +128,10 @@ func heal(amount: int) -> void:
 		
 #Do not delete: it is needed for the extended emenies to not crash
 func find_closet_human_character():
+	print("")
+	
+func check_and_attack_adjacent():
+	print("")
 	print()
 
 func _on_container_mouse_entered() -> void:

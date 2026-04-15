@@ -4,7 +4,7 @@
 
 #this allows us to run it in the editor
 @tool
-class_name BasicEnemy
+class_name BossMain
 #we are extending the unit and now we have access to all the unit's functions and variables 
 #https://docs.godotengine.org/en/stable/tutorials/scripting/gdscript/gdscript_basics.html if you need a reference on inheritance 
 extends Unit 
@@ -21,8 +21,6 @@ var taunter_found := false
 #keep _process because that is what is actually moving the character along the path 
 #keep _ready as that is just calculating the movement speed and making sure the process is not setting off instantly
 #keep walk_along as it is just keeping the curve that the path it will follow
-
-#let's create a function to find the closet player character
 func find_closet_human_character():
 	
 	#error and debugging portion
@@ -95,6 +93,7 @@ func find_closet_human_character():
 	#print(least_distance_unit)
 	#print("-----------------------")
 	return least_distance_unit
+
 		
 		
 func check_and_attack_adjacent():
@@ -106,10 +105,34 @@ func check_and_attack_adjacent():
 		
 		if d <= 1:
 			gameboard.apply_damage(unit.cell, unit_role.attack_roll(self), self, unit_role.crit)
+			
 
-func _on_container_mouse_entered() -> void:
-	$Area2D/Panel/HealthLabel.text = "HP: %d" % [unit_role.current_health]
-	$Area2D/Panel.visible = true
-
-func _on_container_mouse_exited() -> void:
-	$Area2D/Panel.visible = false
+#The hunter gets its value for what it wants to prioritize 
+func Highest_Score_Player_Unit(Human_units: Array):
+	var max_score = -10000
+	
+	var max_unit: Unit
+	
+	for unit in Human_units:
+		var temp_score = 0
+		if unit.unit_role is Tank:
+			temp_score -= 3
+		elif unit.unit_role is Flamethrower: 
+			temp_score -=2
+		elif unit.unit_role is Medic: 
+			temp_score += 1
+		elif unit.unit_role is Grenadier: 
+			temp_score += 3
+		elif unit.unit_role is Musketeer: 
+			temp_score += 0
+		else: print ("What unit is this?")
+		temp_score -= unit.current_health
+		
+		print(temp_score)
+		
+		if temp_score > max_score:
+			max_score = temp_score
+			max_unit = unit
+	#print ("MAx Unit: ",max_unit)
+	return max_unit
+	

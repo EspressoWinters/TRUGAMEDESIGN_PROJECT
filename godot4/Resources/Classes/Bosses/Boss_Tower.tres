@@ -1,0 +1,8 @@
+[gd_resource type="Resource" script_class="Boss_Wizzard" format=3 uid="uid://da7e0nnskc0ja"]
+
+[ext_resource type="Script" uid="uid://oxhf3g6q1xpu" path="res://Resources/Classes/Bosses/BossTower.gd" id="1_h4bnf"]
+[ext_resource type="Texture2D" uid="uid://dx34ow1am5ih6" path="res://Assets/Units/guywithknife.png" id="2_beqa5"]
+
+[resource]
+script = ExtResource("1_h4bnf")
+skin = ExtResource("2_beqa5")

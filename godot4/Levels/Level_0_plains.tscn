@@ -35,6 +35,22 @@ unique_name_in_owner = true
 [node name="BasicEnemy" parent="." unique_id=393416970 instance=ExtResource("8_87w7x")]
 position = Vector2(500, 200)
 
+[node name="BasicEnemy2" parent="." unique_id=1567862900 instance=ExtResource("8_87w7x")]
+position = Vector2(550, 200)
+max_health = 20
+
+[node name="BasicEnemy3" parent="." unique_id=207841840 instance=ExtResource("8_87w7x")]
+position = Vector2(500, 250)
+max_health = 20
+
+[node name="BasicEnemy4" parent="." unique_id=561833127 instance=ExtResource("8_87w7x")]
+position = Vector2(550, 250)
+max_health = 20
+
+[node name="BasicEnemy5" parent="." unique_id=252955815 instance=ExtResource("8_87w7x")]
+position = Vector2(600, 200)
+max_health = 20
+
 [node name="Ui" parent="." unique_id=1993505447 instance=ExtResource("9_vy8cc")]
 unique_name_in_owner = true
 

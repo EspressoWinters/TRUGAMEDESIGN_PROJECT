@@ -7,3 +7,6 @@
 script = ExtResource("1_w5fgi")
 skin = ExtResource("2_daykl")
 role = "Grenadier"
+max_hp = 1000
+current_health = 1000
+speed = 100
