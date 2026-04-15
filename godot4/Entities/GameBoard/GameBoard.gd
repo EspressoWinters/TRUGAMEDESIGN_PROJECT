@@ -814,7 +814,7 @@ func _check_for_victory_or_defeat() -> void:
 	for unit in initiative_order:
 		if unit.is_in_group("player_units"):
 			player_alive = true
-		elif unit is BasicEnemy or unit is HunterEnemy or unit is BigEnemy:
+		elif unit.is_in_group("enemy_units"):
 			enemies_alive = true
 		
 	if current_level == "Tutorialz":

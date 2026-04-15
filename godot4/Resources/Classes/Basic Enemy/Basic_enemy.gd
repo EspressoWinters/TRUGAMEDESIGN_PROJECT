@@ -1,7 +1,7 @@
 class_name Basic_enemy 
 extends Unit_Interaction
 
-#this resource is here to not cause problems in the game :D
+#this resource is here to not cause problems in the game :
 
 func attack_roll(attacker : Unit) -> int:
 	var die1 = randi_range(1, 6)

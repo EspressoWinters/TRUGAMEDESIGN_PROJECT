@@ -4,9 +4,9 @@
 [ext_resource type="Resource" uid="uid://b62e2fu6oowdg" path="res://Resources/Classes/Basic Enemy/Basic_enemy.tres" id="2_7m3eu"]
 [ext_resource type="Texture2D" uid="uid://b5ghlcxjxmmgw" path="res://Entities/Units/unit_shadow.svg" id="2_08waf"]
 [ext_resource type="Resource" uid="uid://bj7vassh2i26e" path="res://Entities/GameBoard/Grid.tres" id="2_xpl8d"]
-[ext_resource type="Texture2D" uid="uid://dx34ow1am5ih6" path="res://Assets/Units/guywithknife.png" id="5_u3b1g"]
+[ext_resource type="Texture2D" uid="uid://cboitmrxhcus8" path="res://Assets/Units/enemy_units/Small Evil Guy.png" id="5_u3b1g"]
 
-[sub_resource type="Curve2D" id="Curve2D_mu52m"]
+[sub_resource type="Curve2D" id="Curve2D_u3b1g"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_08waf"]
 bg_color = Color(1, 0, 0, 1)
@@ -18,7 +18,7 @@ size = Vector2(16, 16)
 bg_color = Color(0, 0, 0, 1)
 
 [node name="BasicEnemy" type="Path2D" unique_id=393416970 groups=["enemy_units"]]
-curve = SubResource("Curve2D_mu52m")
+curve = SubResource("Curve2D_u3b1g")
 script = ExtResource("1_ok2tl")
 unit_role = ExtResource("2_7m3eu")
 grid = ExtResource("2_xpl8d")

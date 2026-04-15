@@ -9,6 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://dxyfefsgkgc4l" path="res://Entities/GameBoard/UnitPath.tscn" id="7_0fgt4"]
 [ext_resource type="PackedScene" uid="uid://civ2clvctpumk" path="res://Entities/Enemies/basic_enemy.tscn" id="8_87w7x"]
 [ext_resource type="PackedScene" uid="uid://bnhj47p63ostv" path="res://Entities/UI/UI.tscn" id="9_vy8cc"]
+[ext_resource type="PackedScene" uid="uid://cxdy8de6npsch" path="res://Entities/Enemies/Hunter_Enemy.tscn" id="10_jsawb"]
 
 [node name="Level_0_plains" type="Node2D" unique_id=482813882]
 script = ExtResource("1_0a67r")
@@ -33,10 +34,15 @@ unique_name_in_owner = true
 
 [node name="BasicEnemy" parent="." unique_id=393416970 instance=ExtResource("8_87w7x")]
 position = Vector2(500, 200)
-max_health = 20
 
 [node name="Ui" parent="." unique_id=1993505447 instance=ExtResource("9_vy8cc")]
 unique_name_in_owner = true
+
+[node name="BasicEnemy2" parent="." unique_id=1412028903 instance=ExtResource("8_87w7x")]
+position = Vector2(500, 225)
+
+[node name="HunterEnemy" parent="." unique_id=2053675038 instance=ExtResource("10_jsawb")]
+position = Vector2(300, 200)
 
 [connection signal="accept_pressed" from="Cursor" to="." method="_on_Cursor_accept_pressed"]
 [connection signal="moved" from="Cursor" to="." method="_on_Cursor_moved"]

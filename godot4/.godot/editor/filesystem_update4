@@ -25,3 +25,6 @@ res://Entities/UI/UI.tscn
 res://Entities/UI/ui.gd
 res://Resources/Classes/TrainingDummy/TrainingDummy.gd
 res://Entities/GameBoard/GameBoard.gd
+res://Entities/Units/Unit.gd
+res://Levels/Level_0_plains.tscn
+res://Resources/Classes/Basic Enemy/Basic_enemy.gd
