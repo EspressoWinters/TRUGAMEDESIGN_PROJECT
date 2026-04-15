@@ -16,9 +16,7 @@
 [ext_resource type="PackedScene" uid="uid://civ2clvctpumk" path="res://Entities/Enemies/basic_enemy.tscn" id="16_kjvhd"]
 [ext_resource type="Resource" uid="uid://bxlihyh6h2ggd" path="res://Resources/Classes/Musketeer/Musketeer.tres" id="16_sc1dx"]
 [ext_resource type="PackedScene" uid="uid://cxdy8de6npsch" path="res://Entities/Enemies/Hunter_Enemy.tscn" id="19_5tuhn"]
-[ext_resource type="Resource" uid="uid://biqcay3d4j8tk" path="res://Resources/Enemies/Hunter Enemy/Hunter_Class.tres" id="20_2gh4u"]
 [ext_resource type="PackedScene" uid="uid://cnwqb4uvl3gd2" path="res://Entities/Enemies/Tower.tscn" id="21_3b0ty"]
-[ext_resource type="Resource" uid="uid://5kurp5dcq3sk" path="res://Entities/Enemies/Tower_Resource.tres" id="22_3b0ty"]
 [ext_resource type="PackedScene" uid="uid://3uqmxmcvncpi" path="res://Entities/Enemies/big_enemy.tscn" id="23_bg4s2"]
 
 [sub_resource type="Curve2D" id="Curve2D_fpfj3"]
@@ -73,7 +71,7 @@ max_health = 20
 position = Vector2(255, 193)
 curve = SubResource("Curve2D_sc1dx")
 unit_role = ExtResource("14_j4qnp")
-max_health = 20
+max_health = 1000
 
 [node name="Tank" parent="." unique_id=252684278 instance=ExtResource("2")]
 position = Vector2(310, 222)
@@ -83,19 +81,14 @@ max_health = 20
 
 [node name="BasicEnemy" parent="." unique_id=393416970 instance=ExtResource("16_kjvhd")]
 position = Vector2(400, 150)
+max_health = 20
 
 [node name="HunterEnemy" parent="." unique_id=2053675038 instance=ExtResource("19_5tuhn")]
 position = Vector2(50, 50)
-unit_role = ExtResource("20_2gh4u")
-grid = ExtResource("4")
-current_health = 20
 max_health = 20
-skin = null
-skin_offset = Vector2(0, 0)
 
 [node name="Tower" parent="." unique_id=1346702188 instance=ExtResource("21_3b0ty")]
 position = Vector2(100, 50)
-unit_role = ExtResource("22_3b0ty")
 
 [node name="BigEnemy" parent="." unique_id=624947293 instance=ExtResource("23_bg4s2")]
 position = Vector2(450, 150)

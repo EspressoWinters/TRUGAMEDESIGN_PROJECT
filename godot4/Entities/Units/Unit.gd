@@ -58,6 +58,9 @@ var _is_walking := false:
 @onready var _path_follow: PathFollow2D = $PathFollow2D
 
 #When it loads into the scene tree
+
+#I just copied it because I had to overwrite the parent thing 
+
 func _ready() -> void:
 	sprite.texture = unit_role.skin
 	move_range = unit_role.speed

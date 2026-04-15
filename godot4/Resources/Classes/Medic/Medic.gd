@@ -42,7 +42,7 @@ func get_attackable_cells(origin_cell : Vector2, caller_name : String, direction
 	
 	#up
 	elif direction == Vector2(0,-1):
-		attackable_cells.append(origin_cell + Vector2(1,-1))
+		attackable_cells.append(origin_cell + Vector2(0,-1))
 
 	else:
 		pass

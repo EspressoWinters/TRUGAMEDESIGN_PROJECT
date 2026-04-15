@@ -22,6 +22,7 @@ curve = SubResource("Curve2D_mu52m")
 script = ExtResource("1_ok2tl")
 unit_role = ExtResource("2_7m3eu")
 grid = ExtResource("2_xpl8d")
+max_health = 20
 
 [node name="PathFollow2D" type="PathFollow2D" parent="." unique_id=1680380729]
 rotates = false
