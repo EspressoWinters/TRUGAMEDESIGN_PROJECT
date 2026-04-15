@@ -69,7 +69,7 @@ func _ready() -> void:
 	move_range = unit_role.speed
 	move_speed = unit_role.speed * 100
 	max_health = unit_role.max_hp
-	if unit_role is Basic_enemy or unit_role is Hunter_enemy or unit_role is Big_enemy or unit_role is TrainingDummy_class:
+	if unit_role is Basic_enemy or unit_role is Hunter_enemy or unit_role is Big_enemy or unit_role is TrainingDummy_class or unit_role is Boss_Main or unit_role is Boss_Tower:
 		unit_role.current_health = max_health
 	
 	#makes sure the object doesn't start the _process function
@@ -138,7 +138,6 @@ func find_closet_human_character():
 	
 func check_and_attack_adjacent():
 	print("")
-	print()
 
 func _on_container_mouse_entered() -> void:
 	$Area2D/Panel/HealthLabel.text = "HP: %d" % [unit_role.current_health]

@@ -1,5 +1,14 @@
-res://Entities/Units/Unit.tscn
+res://Levels/Level_9_boss.tscn
 res://Entities/UnitOverlay/unit_overlay_tileset.tres
 res://Entities/GameBoard/unit_path_tileset.tres
+res://Entities/Enemies/boss_main.gd
+res://Entities/GameBoard/GameBoard.gd
 res://Entities/Units/Unit.gd
-res://Levels/Level_0_plains.tscn
+res://Resources/Classes/TrainingDummy/TrainingDummy.gd
+res://Resources/Classes/Bosses/BossMain.gd
+res://Resources/Classes/Unit/Unit_Intereactions.gd
+res://Entities/Enemies/Boss_Tower.tscn
+res://Resources/Classes/Bosses/Boss_Main.tres
+res://Resources/Classes/Bosses/Boss_Tower.tres
+res://Entities/Enemies/big_enemy.tscn
+res://Entities/Enemies/Boss_Main.tscn

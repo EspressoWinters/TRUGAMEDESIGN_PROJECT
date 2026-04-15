@@ -6,3 +6,4 @@
 [resource]
 script = ExtResource("1_nxmnh")
 skin = ExtResource("2_g1if5")
+current_health = 20

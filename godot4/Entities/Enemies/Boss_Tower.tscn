@@ -97,14 +97,18 @@ animations = [{
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_08waf"]
 bg_color = Color(1, 0, 0, 1)
 
-[node name="Boss_Wizard" type="Path2D" unique_id=393416970]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_pvnm7"]
+size = Vector2(16, 16)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_wg6w5"]
+bg_color = Color(0, 0, 0, 1)
+
+[node name="Boss_Tower" type="Path2D" unique_id=393416970]
 curve = SubResource("Curve2D_mu52m")
 script = ExtResource("1_0y8gn")
 unit_role = ExtResource("2_lt5yr")
 grid = ExtResource("2_qg8r0")
-max_health = Object(Sprite2D,"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","visible":true,"modulate":Color(1, 1, 1, 1),"self_modulate":Color(1, 1, 1, 1),"show_behind_parent":false,"top_level":false,"clip_children":0,"light_mask":1,"visibility_layer":1,"z_index":0,"z_as_relative":true,"y_sort_enabled":false,"texture_filter":0,"texture_repeat":0,"material":null,"use_parent_material":false,"position":Vector2(0, 0),"rotation":0.0,"scale":Vector2(1, 1),"skew":0.0,"texture":ExtResource("5_lt5yr"),"centered":true,"offset":Vector2(0, 0),"flip_h":false,"flip_v":false,"hframes":1,"vframes":1,"frame":0,"region_enabled":false,"region_rect":Rect2(0, 0, 0, 0),"region_filter_clip_enabled":false,"script":null)
-
-initiative_stat = null
+max_health = 20
 
 [node name="OnFireAnimation" type="AnimatedSprite2D" parent="." unique_id=1724732019]
 visible = false
@@ -134,3 +138,38 @@ theme_override_styles/fill = SubResource("StyleBoxFlat_08waf")
 max_value = 5.0
 step = 1.0
 show_percentage = false
+
+[node name="Area2D" type="Area2D" parent="." unique_id=1147282455 groups=["enemy_units"]]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=1704043317 groups=["enemy_units"]]
+shape = SubResource("RectangleShape2D_pvnm7")
+
+[node name="Panel" type="Panel" parent="Area2D" unique_id=350751681 groups=["enemy_units"]]
+visible = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -19.0
+offset_top = -25.0
+offset_right = 14.0
+offset_bottom = -13.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_wg6w5")
+
+[node name="HealthLabel" type="Label" parent="Area2D/Panel" unique_id=898494819 groups=["enemy_units"]]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -1.0
+offset_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 16
+text = "HP: 20"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[connection signal="mouse_entered" from="Area2D" to="." method="_on_container_mouse_entered"]
+[connection signal="mouse_exited" from="Area2D" to="." method="_on_container_mouse_exited"]

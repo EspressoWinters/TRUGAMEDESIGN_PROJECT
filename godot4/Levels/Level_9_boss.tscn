@@ -14,22 +14,22 @@
 [ext_resource type="Script" uid="uid://bhqbfoc8tp68t" path="res://Resources/Classes/BigEnemy/BigEnemy.gd" id="12_ly788"]
 [ext_resource type="Texture2D" uid="uid://djihpsmsh81d5" path="res://Assets/Units/enemy_units/Big Evil Guy.png" id="13_qc531"]
 
-[sub_resource type="Resource" id="Resource_6lbmd"]
+[sub_resource type="Resource" id="Resource_pia1p"]
 script = ExtResource("12_ly788")
 skin = ExtResource("13_qc531")
 current_health = 20
 
-[sub_resource type="Resource" id="Resource_wccts"]
+[sub_resource type="Resource" id="Resource_l8gxr"]
 script = ExtResource("12_ly788")
 skin = ExtResource("13_qc531")
 current_health = 20
 
-[sub_resource type="Resource" id="Resource_l1eb8"]
+[sub_resource type="Resource" id="Resource_owndv"]
 script = ExtResource("12_ly788")
 skin = ExtResource("13_qc531")
 current_health = 20
 
-[sub_resource type="Resource" id="Resource_o5fbc"]
+[sub_resource type="Resource" id="Resource_ly788"]
 script = ExtResource("12_ly788")
 skin = ExtResource("13_qc531")
 current_health = 20
@@ -60,39 +60,34 @@ unique_name_in_owner = true
 
 [node name="Boss_main" parent="." unique_id=393416970 instance=ExtResource("9_pia1p")]
 position = Vector2(572.437, 165.37494)
-max_health = 20
 
-[node name="Boss_Wizard" parent="." unique_id=646607302 instance=ExtResource("10_l8gxr")]
+[node name="Boss_Tower" parent="." unique_id=646607302 instance=ExtResource("10_l8gxr")]
 position = Vector2(549.85803, 54.173584)
-max_health = 20
 
-[node name="Boss_Wizard2" parent="." unique_id=1119030274 instance=ExtResource("10_l8gxr")]
+[node name="Boss_Tower2" parent="." unique_id=1119030274 instance=ExtResource("10_l8gxr")]
 position = Vector2(53.121002, 55.30253)
-max_health = 20
 
-[node name="Boss_Wizard3" parent="." unique_id=667375023 instance=ExtResource("10_l8gxr")]
+[node name="Boss_Tower3" parent="." unique_id=667375023 instance=ExtResource("10_l8gxr")]
 position = Vector2(53.121002, 280.52762)
-max_health = 20
 
-[node name="Boss_Wizard4" parent="." unique_id=595866033 instance=ExtResource("10_l8gxr")]
+[node name="Boss_Tower4" parent="." unique_id=595866033 instance=ExtResource("10_l8gxr")]
 position = Vector2(550.98694, 279.39865)
-max_health = 20
 
 [node name="BigEnemy" parent="." unique_id=239398337 instance=ExtResource("11_owndv")]
 position = Vector2(68.92627, 251.73944)
-unit_role = SubResource("Resource_6lbmd")
+unit_role = SubResource("Resource_pia1p")
 
 [node name="BigEnemy2" parent="." unique_id=1933766034 instance=ExtResource("11_owndv")]
 position = Vector2(98.84338, 51.35121)
-unit_role = SubResource("Resource_wccts")
+unit_role = SubResource("Resource_l8gxr")
 
 [node name="BigEnemy3" parent="." unique_id=1972787939 instance=ExtResource("11_owndv")]
 position = Vector2(510.34482, 53.609108)
-unit_role = SubResource("Resource_l1eb8")
+unit_role = SubResource("Resource_owndv")
 
 [node name="BigEnemy4" parent="." unique_id=40348834 instance=ExtResource("11_owndv")]
 position = Vector2(500.74875, 280.52762)
-unit_role = SubResource("Resource_o5fbc")
+unit_role = SubResource("Resource_ly788")
 
 [connection signal="accept_pressed" from="Cursor" to="." method="_on_Cursor_accept_pressed"]
 [connection signal="moved" from="Cursor" to="." method="_on_Cursor_moved"]
