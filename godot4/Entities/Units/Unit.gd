@@ -124,11 +124,11 @@ func is_surronded():
 
 	#top case
 	
-	if (gameboard.is_occupied(top) || top_tile_data) and (gameboard.is_occupied(right) || right_tile_data) and (gameboard.is_occupied(left) || left_tile_data) and (gameboard.is_occupied(bottom) || bottom_tile_data):
-		return false 
+	if (gameboard.is_occupied(top)) and (gameboard.is_occupied(right)) and (gameboard.is_occupied(left)) and (gameboard.is_occupied(bottom)):
+		return true  
 	
 	
-	return true
+	return false
 	
 	
 	

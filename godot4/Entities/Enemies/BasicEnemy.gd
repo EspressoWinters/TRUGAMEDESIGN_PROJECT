@@ -69,6 +69,10 @@ func find_closet_human_character():
 	
 	#let's get all the units that are human in the array
 	for unit in gameboard._units.values():
+		
+		if unit.is_surronded() == true:
+			continue 
+			
 		if unit is not BasicEnemy and unit is not HunterEnemy and unit is not BigEnemy and unit is not Tower  and unit is not BossMain and unit is not BossTower:
 			human_units.append(unit)
 			if unit.unit_role and unit.unit_role is Tank and unit.is_taunting:
@@ -93,8 +97,8 @@ func find_closet_human_character():
 	for unit in human_units:
 		
 		#skip the unit that is surronded 
-		if unit.is_surronded() == true:
-			continue 
+		#if unit.is_surronded() == true:
+			#continue 
 		
 		#doing the manhattan distance calculation
 		temp_distance = abs(unit.cell.x - self.cell.x) + abs(unit.cell.y - self.cell.y)
