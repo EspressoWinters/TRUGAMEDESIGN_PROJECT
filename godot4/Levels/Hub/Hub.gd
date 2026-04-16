@@ -54,8 +54,8 @@ func _populate_list(container: VBoxContainer, data_array: Array, is_hiring_list:
 func _on_hero_selected(hero: Unit_Interaction, d_name: String, index: int, is_hiring_list: bool) -> void:
 	#update labels
 	info_name_label.text = d_name
-	info_stats_label.text = "Attributes\nHP: %d\nATK: %d\nDEF: %d\nSPD: %d" % [
-		hero.max_hp, hero.attack_stat, hero.defense, hero.speed
+	info_stats_label.text = "Attributes\nLVL: %d\nHP: %d\nATK: %d\nDEF: %d\nSPD: %d\n\nDescription:\n%s\n\n%s\n\n%s" % [
+		hero.level, hero.max_hp, hero.attack_stat, hero.defense, hero.speed, hero.atk_explain, hero.ability_explain, hero.passive_explain
 	]
 	
 	var hire_btn = $CanvasLayer/TextureRect/PartyManager/RecruitableHerosPanel/HireButton
@@ -95,6 +95,7 @@ func _on_fire_confirmed(index: int) -> void:
 func _on_expedition_button_pressed() -> void:
 	for unit in PartyManager.active_party:
 		unit.current_health = unit.max_hp
+	SoundManager._play_battle_music()
 	get_tree().change_scene_to_file("res://Levels/Level_0_plains.tscn")
 
 func _on_training_button_pressed() -> void:

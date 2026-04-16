@@ -6,4 +6,8 @@
 [resource]
 script = ExtResource("1_0brwc")
 skin = ExtResource("2_0brwc")
-current_health = 20
+max_hp = 15
+current_health = 15
+attack_stat = 8
+speed = 6
+defense = 2

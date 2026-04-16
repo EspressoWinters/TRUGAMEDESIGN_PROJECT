@@ -103,32 +103,32 @@ size = Vector2(16, 16)
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_3ky33"]
 bg_color = Color(0, 0, 0, 1)
 
-[node name="Boss_main" type="Path2D" unique_id=393416970]
+[node name="Boss_main" type="Path2D" unique_id=393416970 groups=["enemy_units"]]
 curve = SubResource("Curve2D_mu52m")
 script = ExtResource("1_dhl72")
 unit_role = ExtResource("2_o0w5w")
 grid = ExtResource("2_dtkqx")
 max_health = 20
 
-[node name="OnFireAnimation" type="AnimatedSprite2D" parent="." unique_id=2001919743]
+[node name="OnFireAnimation" type="AnimatedSprite2D" parent="." unique_id=2001919743 groups=["enemy_units"]]
 visible = false
 scale = Vector2(1.2, 1.2)
 sprite_frames = SubResource("SpriteFrames_3ky33")
 autoplay = "default"
 
-[node name="PathFollow2D" type="PathFollow2D" parent="." unique_id=1680380729]
+[node name="PathFollow2D" type="PathFollow2D" parent="." unique_id=1680380729 groups=["enemy_units"]]
 rotates = false
 loop = false
 
-[node name="Shadow" type="Sprite2D" parent="PathFollow2D" unique_id=1316727778]
+[node name="Shadow" type="Sprite2D" parent="PathFollow2D" unique_id=1316727778 groups=["enemy_units"]]
 modulate = Color(1, 1, 1, 0)
 scale = Vector2(0.2, 0.2)
 texture = ExtResource("2_a6763")
 
-[node name="Sprite" type="Sprite2D" parent="PathFollow2D" unique_id=1974049774]
+[node name="Sprite" type="Sprite2D" parent="PathFollow2D" unique_id=1974049774 groups=["enemy_units"]]
 texture = ExtResource("5_o0w5w")
 
-[node name="Healthbar" type="ProgressBar" parent="." unique_id=1884163062]
+[node name="Healthbar" type="ProgressBar" parent="." unique_id=1884163062 groups=["enemy_units"]]
 offset_left = -8.0
 offset_top = -12.0
 offset_right = 8.0
@@ -138,6 +138,7 @@ theme_override_styles/fill = SubResource("StyleBoxFlat_08waf")
 max_value = 5.0
 step = 1.0
 show_percentage = false
+metadata/_edit_use_anchors_ = true
 
 [node name="Area2D" type="Area2D" parent="." unique_id=402259583 groups=["enemy_units"]]
 

@@ -7,3 +7,9 @@
 script = ExtResource("1_2utxa")
 skin = ExtResource("2_tb5u4")
 role = "Medic"
+max_hp = 25
+current_health = 25
+defense = 3
+atk_explain = "Attack an adjacent unit to heal them."
+ability_explain = "Global heal that heals all player units."
+passive_explain = "Heals units in a square around them at start of turn."

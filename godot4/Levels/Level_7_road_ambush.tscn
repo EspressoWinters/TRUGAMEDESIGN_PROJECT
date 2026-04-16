@@ -50,6 +50,21 @@ script = ExtResource("9_qatd1")
 skin = ExtResource("10_k4cgl")
 current_health = 20
 
+[sub_resource type="Resource" id="Resource_a7jwu"]
+script = ExtResource("13_rnh6h")
+skin = ExtResource("14_pfsma")
+current_health = 20
+
+[sub_resource type="Resource" id="Resource_k4cgl"]
+script = ExtResource("9_qatd1")
+skin = ExtResource("10_k4cgl")
+current_health = 20
+
+[sub_resource type="Resource" id="Resource_qatd1"]
+script = ExtResource("9_qatd1")
+skin = ExtResource("10_k4cgl")
+current_health = 20
+
 [node name="Level_7_road_ambush" type="Node2D" unique_id=482813882]
 script = ExtResource("1_0vrpe")
 grid = ExtResource("2_pnbns")
@@ -101,6 +116,18 @@ unit_role = SubResource("Resource_367gl")
 [node name="BasicEnemy3" parent="." unique_id=1863596348 instance=ExtResource("8_a7jwu")]
 position = Vector2(436.22568, 73.885826)
 unit_role = SubResource("Resource_n7ofg")
+
+[node name="HunterEnemy5" parent="." unique_id=1676973851 instance=ExtResource("12_1dv04")]
+position = Vector2(537.4716, 222.61954)
+unit_role = SubResource("Resource_a7jwu")
+
+[node name="BasicEnemy4" parent="." unique_id=1813907260 instance=ExtResource("8_a7jwu")]
+position = Vector2(478.97168, 74.316864)
+unit_role = SubResource("Resource_k4cgl")
+
+[node name="BasicEnemy5" parent="." unique_id=609157608 instance=ExtResource("8_a7jwu")]
+position = Vector2(199.30054, 80.47476)
+unit_role = SubResource("Resource_qatd1")
 
 [connection signal="accept_pressed" from="Cursor" to="." method="_on_Cursor_accept_pressed"]
 [connection signal="moved" from="Cursor" to="." method="_on_Cursor_moved"]

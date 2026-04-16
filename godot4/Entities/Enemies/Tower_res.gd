@@ -3,7 +3,25 @@ class_name Tower_Res
 extends Unit_Interaction
 
 func attack_roll(attacker : Unit) -> int:
-	return 2
+	var die1 = randi_range(1, 6)
+	var die2 = randi_range(1, 6)
+	var crit = randf_range(0.0,100.0) #using float for percentage
+	
+	
+	var total_damage: int
+	#accesses the modifier from the attacker's unit_role
+	var modifier = attacker.unit_role.attack_stat
+	if crit <= luck:
+		var crit_multiplier = 2.0
+		print("CRITICAL HIT!")
+		total_damage = (((die1 + die2 + modifier) * crit_multiplier))
+		crit = true
+	else:
+		total_damage = ((die1 + die2 + modifier))
+		crit = false
+	print(total_damage)
+	
+	return total_damage
 
 func attack():
 	pass

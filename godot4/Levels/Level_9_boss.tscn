@@ -12,27 +12,39 @@
 [ext_resource type="PackedScene" uid="uid://bnhj47p63ostv" path="res://Entities/UI/UI.tscn" id="11_iecqy"]
 [ext_resource type="PackedScene" uid="uid://3uqmxmcvncpi" path="res://Entities/Enemies/big_enemy.tscn" id="11_owndv"]
 [ext_resource type="Script" uid="uid://bhqbfoc8tp68t" path="res://Resources/Classes/BigEnemy/BigEnemy.gd" id="12_ly788"]
-[ext_resource type="Texture2D" uid="uid://djihpsmsh81d5" path="res://Assets/Units/enemy_units/Big Evil Guy.png" id="13_qc531"]
+[ext_resource type="Texture2D" uid="uid://dacxy1l8tl066" path="res://Assets/Units/enemy_units/big_enemy.png" id="13_pia1p"]
 
 [sub_resource type="Resource" id="Resource_pia1p"]
 script = ExtResource("12_ly788")
-skin = ExtResource("13_qc531")
-current_health = 20
+skin = ExtResource("13_pia1p")
+max_hp = 55
+current_health = 55
+attack_stat = 6
+defense = 8
 
 [sub_resource type="Resource" id="Resource_l8gxr"]
 script = ExtResource("12_ly788")
-skin = ExtResource("13_qc531")
-current_health = 20
+skin = ExtResource("13_pia1p")
+max_hp = 55
+current_health = 55
+attack_stat = 6
+defense = 8
 
 [sub_resource type="Resource" id="Resource_owndv"]
 script = ExtResource("12_ly788")
-skin = ExtResource("13_qc531")
-current_health = 20
+skin = ExtResource("13_pia1p")
+max_hp = 55
+current_health = 55
+attack_stat = 6
+defense = 8
 
 [sub_resource type="Resource" id="Resource_ly788"]
 script = ExtResource("12_ly788")
-skin = ExtResource("13_qc531")
-current_health = 20
+skin = ExtResource("13_pia1p")
+max_hp = 55
+current_health = 55
+attack_stat = 6
+defense = 8
 
 [node name="Level_9_boss" type="Node2D" unique_id=482813882]
 script = ExtResource("1_l8gxr")
@@ -58,36 +70,45 @@ unique_name_in_owner = true
 [node name="Ui" parent="." unique_id=1993505447 instance=ExtResource("11_iecqy")]
 unique_name_in_owner = true
 
-[node name="Boss_main" parent="." unique_id=393416970 instance=ExtResource("9_pia1p")]
-position = Vector2(572.437, 165.37494)
-
 [node name="Boss_Tower" parent="." unique_id=646607302 instance=ExtResource("10_l8gxr")]
 position = Vector2(549.85803, 54.173584)
+max_health = 40
 
 [node name="Boss_Tower2" parent="." unique_id=1119030274 instance=ExtResource("10_l8gxr")]
 position = Vector2(53.121002, 55.30253)
+max_health = 40
 
 [node name="Boss_Tower3" parent="." unique_id=667375023 instance=ExtResource("10_l8gxr")]
 position = Vector2(53.121002, 280.52762)
+max_health = 40
 
 [node name="Boss_Tower4" parent="." unique_id=595866033 instance=ExtResource("10_l8gxr")]
 position = Vector2(550.98694, 279.39865)
+max_health = 40
 
-[node name="BigEnemy" parent="." unique_id=239398337 instance=ExtResource("11_owndv")]
-position = Vector2(68.92627, 251.73944)
+[node name="Boss_main" parent="." unique_id=393416970 instance=ExtResource("9_pia1p")]
+position = Vector2(540.3964, 167.79448)
+max_health = 100
+
+[node name="BigEnemy" parent="." unique_id=1685886051 instance=ExtResource("11_owndv")]
+position = Vector2(87.123856, 265.44843)
 unit_role = SubResource("Resource_pia1p")
+max_health = 55
 
-[node name="BigEnemy2" parent="." unique_id=1933766034 instance=ExtResource("11_owndv")]
-position = Vector2(98.84338, 51.35121)
+[node name="BigEnemy2" parent="." unique_id=1756211585 instance=ExtResource("11_owndv")]
+position = Vector2(518.3819, 261.49713)
 unit_role = SubResource("Resource_l8gxr")
+max_health = 55
 
-[node name="BigEnemy3" parent="." unique_id=1972787939 instance=ExtResource("11_owndv")]
-position = Vector2(510.34482, 53.609108)
+[node name="BigEnemy3" parent="." unique_id=1400514126 instance=ExtResource("11_owndv")]
+position = Vector2(520.63983, 71.26944)
 unit_role = SubResource("Resource_owndv")
+max_health = 55
 
-[node name="BigEnemy4" parent="." unique_id=40348834 instance=ExtResource("11_owndv")]
-position = Vector2(500.74875, 280.52762)
+[node name="BigEnemy4" parent="." unique_id=308305809 instance=ExtResource("11_owndv")]
+position = Vector2(71.3186, 69.01154)
 unit_role = SubResource("Resource_ly788")
+max_health = 55
 
 [connection signal="accept_pressed" from="Cursor" to="." method="_on_Cursor_accept_pressed"]
 [connection signal="moved" from="Cursor" to="." method="_on_Cursor_moved"]

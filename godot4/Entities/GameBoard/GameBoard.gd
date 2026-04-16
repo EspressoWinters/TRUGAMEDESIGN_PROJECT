@@ -53,13 +53,17 @@ var fire_dot_turns: int = 3
 #grenaider speed boost passive 
 var has_done_speed_boost_once := false 
 
-var flame_explosion_damage: int = 3
+var flame_explosion_damage: int = 10
 
 var boss_tower_healing : int = 5
 #when the gameboard is called into the scene it will clear its dicitonary of units then fill it up again with the units in tjhe active scenee
 func _ready() -> void:
 	_reinitialize()
 	#gatherin the UI attack and such
+	var current_level = get_tree().current_scene.name
+	if current_level == "Level_9_boss":
+		SoundManager._play_boss_music()
+	
 	if ui:
 		ui.move_requested.connect(display_move_overlay)
 		ui.attack_requested.connect(clear_overlay)
@@ -722,6 +726,7 @@ func unit_ability():
 						apply_damage(unit, flame_explosion_damage, _active_unit, false)
 						_units.get(unit).unit_role.on_fire = false
 						_units.get(unit).unit_role.turns_left_on_fire = 0
+						SoundManager._play_explosionSFX()
 					else:
 						continue
 				_active_unit.unit_role.explodering = false
@@ -741,6 +746,7 @@ func unit_passive():
 func apply_damage(target_cell: Vector2, amount: int, attacker: Unit, crit: bool) -> void:
 	var victim = _units[target_cell]
 	print(victim)
+	var total_damage = max(1, amount - victim.unit_role.defense)
 	if attacker:
 		#Damage over time passive
 		if attacker.unit_role is  Flamethrower:
@@ -752,9 +758,11 @@ func apply_damage(target_cell: Vector2, amount: int, attacker: Unit, crit: bool)
 			if victim == attacker:
 				#quartering the damage to self
 				amount *= 0.25
-	victim.unit_role.current_health -= amount
+		if attacker.unit_role is Medic:
+			total_damage = amount
+	victim.unit_role.current_health -= total_damage
 	_update_health_bar.emit()
-	print("%s took %d damage!" % [victim.name, amount])
+	print("%s took %d damage!" % [victim.name, total_damage])
 		
 	if victim.unit_role.current_health >= victim.max_health:
 		victim.unit_role.current_health = victim.max_health
@@ -762,9 +770,9 @@ func apply_damage(target_cell: Vector2, amount: int, attacker: Unit, crit: bool)
 	if victim.unit_role.current_health <= 0:
 		_handle_unit_death(target_cell)
 	if crit == false:
-		DamageNumbers.display_number(amount, victim.global_position, false)
+		DamageNumbers.display_number(total_damage, victim.global_position, false)
 	else:
-		DamageNumbers.display_number(amount, victim.global_position, true)
+		DamageNumbers.display_number(total_damage, victim.global_position, true)
 
 func _handle_unit_death(cell: Vector2) -> void:
 	var unit_to_remove = _units[cell]
@@ -798,9 +806,9 @@ const SPAWN_CONFIG = {
 		Vector2(20, 12), Vector2(20, 13)
 	],
 	"Level_3_forest": [
-		Vector2(4, 10), Vector2(4, 11),
-		Vector2(5, 10), Vector2(5, 11),
-		Vector2(6, 10), Vector2(6, 11) 
+		Vector2(3, 16), Vector2(3, 17),
+		Vector2(4, 16), Vector2(4, 17),
+		Vector2(5, 16), Vector2(5, 17) 
 	],
 	"Level_4_bridge": [
 		Vector2(4, 10), Vector2(4, 11),
@@ -818,9 +826,9 @@ const SPAWN_CONFIG = {
 		Vector2(6, 10), Vector2(6, 11) 
 	],
 	"Level_7_road_ambush": [
-		Vector2(4, 10), Vector2(4, 11),
-		Vector2(5, 10), Vector2(5, 11),
-		Vector2(6, 10), Vector2(6, 11) 
+		Vector2(18, 10), Vector2(18, 11),
+		Vector2(19, 10), Vector2(19, 11),
+		Vector2(20, 10), Vector2(20, 11) 
 	],
 	"Level_8_tough_fight": [
 		Vector2(4, 10), Vector2(4, 11),
@@ -927,15 +935,19 @@ func _trigger_attack_vfx(cell: Vector2) -> void:
 	#checks units role to determine what vfx to use
 	if _active_unit.unit_role is Tank:
 		vfx_type = "slash_attack"
+		SoundManager._play_slashSFX()
 	elif _active_unit.unit_role is Flamethrower:
 		vfx_type = "fire_attack"
+		SoundManager._play_flamethrowerSFX()
 	elif _active_unit.unit_role is Grenadier:
 		vfx_type = "explosion_attack"
+		SoundManager._play_explosionSFX()
 	elif _active_unit.unit_role is Musketeer:
 		vfx_type = "gun_attack"
+		SoundManager._play_gunSFX()
 	elif _active_unit.unit_role is Medic:
 		vfx_type = "heal_attack"
-
+		SoundManager._play_healSFX()
 	#this ensures the animation is centered on the square
 	var world_pos = grid.calculate_map_position(cell)
 	

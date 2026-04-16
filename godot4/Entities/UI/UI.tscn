@@ -72,7 +72,7 @@ text = "MOVE"
 [node name="AbilityButton" type="Button" parent="CanvasLayer/BattleUI/HBoxCharacterMoves" unique_id=988469756]
 layout_mode = 2
 theme_override_font_sizes/font_size = 16
-text = "Ability1"
+text = "ABILITY"
 
 [node name="AttackButton" type="Button" parent="CanvasLayer/BattleUI/HBoxCharacterMoves" unique_id=818119920]
 layout_mode = 2

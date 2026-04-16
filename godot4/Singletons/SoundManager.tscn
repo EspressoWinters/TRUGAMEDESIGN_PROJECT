@@ -1,0 +1,85 @@
+[gd_scene format=3 uid="uid://d0aggvnpmxojs"]
+
+[ext_resource type="Script" uid="uid://b7h000galci2f" path="res://Singletons/sound_manager.gd" id="1_aoim2"]
+[ext_resource type="AudioStream" uid="uid://d1ocjx7hdho4b" path="res://Assets/Audio/SFX/Slash_2(slash).wav" id="2_d34xx"]
+[ext_resource type="AudioStream" uid="uid://5dw2fmq26yl1" path="res://Assets/Audio/Music(kevin_mcleod my goat)/Overworld.mp3" id="2_ht4al"]
+[ext_resource type="AudioStream" uid="uid://cf36ijg0otug5" path="res://Assets/Audio/Music(kevin_mcleod my goat)/Undaunted.mp3" id="3_dv6ws"]
+[ext_resource type="AudioStream" uid="uid://53xe5ibskx5y" path="res://Assets/Audio/SFX/Retro Weapon Gun LoFi 03(gunshot).wav" id="3_o74db"]
+[ext_resource type="AudioStream" uid="uid://db0yk0lxfywik" path="res://Assets/Audio/SFX/Retro Explosion Short 01(explosion).wav" id="4_fyxg4"]
+[ext_resource type="AudioStream" uid="uid://jbgkvkcpqteq" path="res://Assets/Audio/SFX/Retro Weapon Electric 05(electricattack).wav" id="4_odatp"]
+[ext_resource type="AudioStream" uid="uid://dtnmucglaqhy8" path="res://Assets/Audio/Music(kevin_mcleod my goat)/Airship Serenity.mp3" id="4_ujg3h"]
+[ext_resource type="AudioStream" uid="uid://bcc7sqpm5yyd5" path="res://Assets/Audio/SFX/Damage_3(flamethrower).wav" id="5_m7khm"]
+[ext_resource type="AudioStream" uid="uid://crm12300n0osd" path="res://Assets/Audio/SFX/Heal_2(heal).wav" id="6_6d2v6"]
+[ext_resource type="AudioStream" uid="uid://cg7kt2arv77a4" path="res://Assets/Audio/SFX/make_more_sound-8-bit-video-game-fail-version-3-145479(lose).mp3" id="6_kqvjd"]
+[ext_resource type="AudioStream" uid="uid://c7edatifuh5qo" path="res://Assets/Audio/SFX/SFX_FastUiClick19(pressed).wav" id="9_5lwfu"]
+[ext_resource type="AudioStream" uid="uid://bgknqoep0k7l8" path="res://Assets/Audio/SFX/SFX_FastUiClick10(hover).wav" id="10_ht4al"]
+
+[node name="SoundManager" type="Node" unique_id=1626804885]
+process_mode = 3
+script = ExtResource("1_aoim2")
+
+[node name="BattleMusic" type="AudioStreamPlayer" parent="." unique_id=1238333702]
+process_mode = 3
+stream = ExtResource("2_ht4al")
+volume_db = -10.0
+bus = &"Music"
+
+[node name="BossMusic" type="AudioStreamPlayer" parent="." unique_id=249132]
+process_mode = 3
+stream = ExtResource("3_dv6ws")
+bus = &"Music"
+
+[node name="ChillMusic" type="AudioStreamPlayer" parent="." unique_id=370294570]
+process_mode = 3
+stream = ExtResource("4_ujg3h")
+bus = &"Music"
+
+[node name="SlashSFX" type="AudioStreamPlayer" parent="." unique_id=1652065125]
+process_mode = 3
+stream = ExtResource("2_d34xx")
+volume_db = -5.0
+bus = &"SFX"
+
+[node name="GunSFX" type="AudioStreamPlayer" parent="." unique_id=1039814704]
+process_mode = 3
+stream = ExtResource("3_o74db")
+volume_db = -5.0
+bus = &"SFX"
+
+[node name="ExplosionSFX" type="AudioStreamPlayer" parent="." unique_id=1262670467]
+stream = ExtResource("4_fyxg4")
+volume_db = -5.0
+bus = &"SFX"
+
+[node name="FlameThrowerSFX" type="AudioStreamPlayer" parent="." unique_id=647540260]
+process_mode = 3
+stream = ExtResource("5_m7khm")
+volume_db = -5.0
+bus = &"SFX"
+
+[node name="ShockSFX" type="AudioStreamPlayer" parent="." unique_id=640269058]
+stream = ExtResource("4_odatp")
+volume_db = -5.0
+bus = &"SFX"
+
+[node name="HealSFX" type="AudioStreamPlayer" parent="." unique_id=1284644147]
+process_mode = 3
+stream = ExtResource("6_6d2v6")
+volume_db = -5.0
+bus = &"SFX"
+
+[node name="LoseSFX" type="AudioStreamPlayer" parent="." unique_id=868998243]
+process_mode = 3
+stream = ExtResource("6_kqvjd")
+volume_db = -5.0
+bus = &"SFX"
+
+[node name="ButtonPressSFX" type="AudioStreamPlayer" parent="." unique_id=132226586]
+stream = ExtResource("9_5lwfu")
+volume_db = -10.0
+bus = &"SFX"
+
+[node name="ButtonHoverSFX" type="AudioStreamPlayer" parent="." unique_id=1242659639]
+stream = ExtResource("10_ht4al")
+volume_db = -10.0
+bus = &"SFX"

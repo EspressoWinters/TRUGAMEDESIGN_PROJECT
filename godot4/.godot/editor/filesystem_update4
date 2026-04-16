@@ -1,10 +1,5 @@
-res://Resources/Classes/Musketeer/Musketeer.gd
-res://Resources/Classes/Tank/Tank.gd
-res://Resources/Classes/TrainingDummy/TrainingDummy.gd
-res://Levels/Level_1_rivers.tscn
+res://Singletons/SoundManager.tscn
 res://Entities/UnitOverlay/unit_overlay_tileset.tres
 res://Entities/GameBoard/unit_path_tileset.tres
 res://Resources/Classes/Bosses/Boss_Main.tres
 res://Resources/Classes/Bosses/Boss_Tower.tres
-res://Entities/GameBoard/GameBoard.gd
-res://Resources/Classes/Unit/Unit_Intereactions.gd
