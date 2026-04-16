@@ -7,6 +7,11 @@
 script = ExtResource("1_w5fgi")
 skin = ExtResource("2_daykl")
 role = "Grenadier"
-max_hp = 1000
-current_health = 1000
+max_hp = 15
+current_health = 15
+attack_stat = 8
 speed = 100
+defense = 3
+atk_explain = "Throws bombs that attack in a 3x3 square."
+ability_explain = "Increases movement speed temporarily."
+passive_explain = "Takes 1/4 the damage from its own attacks."

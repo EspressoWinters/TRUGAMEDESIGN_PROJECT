@@ -49,6 +49,7 @@ func _on_base_button_pressed() -> void:
 	PartyManager.save_party()
 	get_tree().paused = false
 	LevelManager.reset_progression()
+	SoundManager._play_chill_music()
 	get_tree().change_scene_to_file("res://Levels/Hub/Hub.tscn")
 
 func _on_back_to_hub_button_pressed() -> void:

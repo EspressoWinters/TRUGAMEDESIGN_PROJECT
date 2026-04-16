@@ -15,7 +15,9 @@ extends Resource
 @export var level: int = 1
 @export var xp: int = 100
 @export var crit: bool = false
-
+@export var atk_explain: String
+@export var ability_explain: String
+@export var passive_explain: String
 var attack_range: int = 1
 
 #holding the cells that are possibly attackable for the overlay

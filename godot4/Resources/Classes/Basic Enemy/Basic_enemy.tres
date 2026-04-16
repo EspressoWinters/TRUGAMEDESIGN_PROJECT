@@ -7,3 +7,5 @@
 script = ExtResource("1_3spbl")
 skin = ExtResource("2_3spbl")
 current_health = 20
+attack_stat = 8
+defense = 4

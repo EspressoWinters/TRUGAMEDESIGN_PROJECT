@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://dtnmucglaqhy8"
+path="res://.godot/imported/Airship Serenity.mp3-b079cb2ccd98228cacbcac8de890db35.mp3str"
+
+[deps]
+
+source_file="res://Assets/Audio/Music(kevin_mcleod my goat)/Airship Serenity.mp3"
+dest_files=["res://.godot/imported/Airship Serenity.mp3-b079cb2ccd98228cacbcac8de890db35.mp3str"]
+
+[params]
+
+loop=true
+loop_offset=0.0
+bpm=0.0
+beat_count=0
+bar_beats=4

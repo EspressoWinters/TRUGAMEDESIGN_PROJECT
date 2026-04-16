@@ -44,19 +44,31 @@ text = "Thank you for playing our game!"
 horizontal_alignment = 1
 
 [node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/VBoxContainer" unique_id=1856677285]
-custom_minimum_size = Vector2(0, 25)
+custom_minimum_size = Vector2(0, 10)
 layout_mode = 2
 
 [node name="Label" type="Label" parent="CanvasLayer/VBoxContainer" unique_id=1979845043]
 layout_mode = 2
-text = "Programming: Dennis Andruson, Gabriel Cluderay, and Jaisung
+text = "Programming: Dennis Andruson, Gabriel Cluderay, and Jaisung Lidder
 
-Level Design: Linden Ransome
+Level Design: Linden Ransome and Gabriel Cluderay
 
-Art: Aiden Steel, Linden Ransome, and Gabriel Cluderay"
+Art: Aiden Steel, Linden Ransome, and Gabriel Cluderay
+
+Music: Kevin Macleod
+
+Special Thanks To The Following:
+
+GDQuest - Tactical RPG Tutorial
+Daniel Linssen(Itch.io) - Pixel Font(m5x7)
+Kronbits(Itch.io) - Gun/Shock Sound Effects
+FirahFabe(Itch.io) - Sword/Heal/FlameThrower Sound Effects
+Pixabay - Lose Sound Effects
+AD Sounds(Itch.io) - UI Sound Effects
+"
 
 [node name="MarginContainer2" type="MarginContainer" parent="CanvasLayer/VBoxContainer" unique_id=2121339497]
-custom_minimum_size = Vector2(0, 25)
+custom_minimum_size = Vector2(0, 10)
 layout_mode = 2
 
 [node name="Button" type="Button" parent="CanvasLayer/VBoxContainer" unique_id=1627163356]
