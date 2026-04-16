@@ -8,7 +8,7 @@
 
 [sub_resource type="Curve2D" id="Curve2D_mu52m"]
 
-[sub_resource type="Resource" id="Resource_dh8dq"]
+[sub_resource type="Resource" id="Resource_f07dn"]
 script = ExtResource("2_f07dn")
 skin = ExtResource("5_0b1up")
 current_health = 20
@@ -25,7 +25,7 @@ bg_color = Color(0, 0, 0, 1)
 [node name="TrainingDummy" type="Path2D" unique_id=393416970 groups=["enemy_units"]]
 curve = SubResource("Curve2D_mu52m")
 script = ExtResource("1_f07dn")
-unit_role = SubResource("Resource_dh8dq")
+unit_role = SubResource("Resource_f07dn")
 grid = ExtResource("3_jc5o3")
 max_health = 20
 
@@ -60,6 +60,7 @@ shape = SubResource("RectangleShape2D_jc5o3")
 
 [node name="Panel" type="Panel" parent="Area2D" unique_id=326800099 groups=["enemy_units"]]
 visible = false
+z_index = 2
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -72,6 +73,7 @@ grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_bsbci")
 
 [node name="HealthLabel" type="Label" parent="Area2D/Panel" unique_id=1751601037 groups=["enemy_units"]]
+z_index = 2
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
