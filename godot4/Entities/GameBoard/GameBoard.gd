@@ -124,6 +124,9 @@ func start_turn():
 		var temp_cell
 		var attack_range
 		var damage 
+		
+		var target_unit 
+		
 		attack_range = _active_unit.get_attack_range(_active_unit.cell)
 		
 		
@@ -142,9 +145,13 @@ func start_turn():
 				#skip itself
 				if attack_cell == _active_unit.cell:
 					continue 
+				#create the user here just because want to check
 				if _units.has(attack_cell):
-					damage = _active_unit.unit_role.attack_roll(_active_unit)
-					apply_damage(attack_cell, damage, _active_unit, false)
+					target_unit = _units[attack_cell]
+					#add the friendly check so it doesn't do friendly fire
+					if target_unit is not BasicEnemy and target_unit is not HunterEnemy and target_unit is not BigEnemy and target_unit is not BossMain and target_unit is not WalkingTrainingDummy and target_unit is not Tower: 
+						damage = _active_unit.unit_role.attack_roll(_active_unit)
+						apply_damage(attack_cell, damage, _active_unit, false)
 		#timer.start()
 		#await timer.timeout
 		end_turn()
