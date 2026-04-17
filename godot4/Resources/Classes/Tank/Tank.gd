@@ -80,9 +80,10 @@ func ability(unit: Unit):
 		taunt_charges -= 1
 		unit.is_taunting = true
 		has_ablilitied = true
-		print("%s TAUNTED! Charges remaining: %d" % [unit.name, taunt_charges])
+		unit.taunt_buff.visible = true
+		GameConsole.log_message("COMBAT","Tank is making some noise! Charges remaining: %d" % taunt_charges)
 	else:
-		print("No taunt charges left!")
+		GameConsole.log_message("ERROR","No taunt charges left!")
 
 func passive(unit: Unit):
 	var heal_amount = 5

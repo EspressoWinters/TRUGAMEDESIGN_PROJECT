@@ -93,10 +93,18 @@ func _on_fire_confirmed(index: int) -> void:
 	info_stats_label.text = ""
 
 func _on_expedition_button_pressed() -> void:
+	if PartyManager.active_party.is_empty():
+		print("Recruit a hero before entering training.", Color.YELLOW)
+		return
+		
 	for unit in PartyManager.active_party:
 		unit.current_health = unit.max_hp
 	SoundManager._play_battle_music()
 	get_tree().change_scene_to_file("res://Levels/Level_0_plains.tscn")
 
 func _on_training_button_pressed() -> void:
+	if PartyManager.active_party.is_empty():
+		print("Recruit a hero before entering training.", Color.YELLOW)
+		return
+		
 	get_tree().change_scene_to_file("res://Levels/Tutorialz.tscn")
