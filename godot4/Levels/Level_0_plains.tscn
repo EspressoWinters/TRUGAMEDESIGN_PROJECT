@@ -15,37 +15,65 @@
 [sub_resource type="Resource" id="Resource_u5kx0"]
 script = ExtResource("9_orxku")
 skin = ExtResource("10_0fgt4")
-current_health = 20
+max_hp = 25
+current_health = 25
+attack_stat = 9
+speed = 6
+defense = 4
 
 [sub_resource type="Resource" id="Resource_kejsv"]
 script = ExtResource("9_orxku")
 skin = ExtResource("10_0fgt4")
-current_health = 20
+max_hp = 25
+current_health = 25
+attack_stat = 9
+speed = 6
+defense = 4
 
 [sub_resource type="Resource" id="Resource_su3ud"]
 script = ExtResource("9_orxku")
 skin = ExtResource("10_0fgt4")
-current_health = 20
+max_hp = 25
+current_health = 25
+attack_stat = 9
+speed = 6
+defense = 4
 
 [sub_resource type="Resource" id="Resource_orxku"]
 script = ExtResource("9_orxku")
 skin = ExtResource("10_0fgt4")
-current_health = 20
+max_hp = 25
+current_health = 25
+attack_stat = 9
+speed = 6
+defense = 4
 
 [sub_resource type="Resource" id="Resource_0fgt4"]
 script = ExtResource("9_orxku")
 skin = ExtResource("10_0fgt4")
-current_health = 20
+max_hp = 25
+current_health = 25
+attack_stat = 9
+speed = 6
+defense = 4
 
 [sub_resource type="Resource" id="Resource_87w7x"]
 script = ExtResource("9_orxku")
 skin = ExtResource("10_0fgt4")
-current_health = 20
+max_hp = 25
+current_health = 25
+attack_stat = 9
+speed = 6
+defense = 4
 
 [sub_resource type="Resource" id="Resource_vy8cc"]
 script = ExtResource("9_orxku")
 skin = ExtResource("10_0fgt4")
-current_health = 20
+max_hp = 25
+current_health = 25
+attack_stat = 9
+speed = 6
+defense = 4
 
 [node name="Level_0_plains" type="Node2D" unique_id=482813882]
 script = ExtResource("1_0a67r")
@@ -74,37 +102,30 @@ unique_name_in_owner = true
 [node name="BasicEnemy" parent="." unique_id=393416970 instance=ExtResource("8_87w7x")]
 position = Vector2(444.9515, 266.94543)
 unit_role = SubResource("Resource_u5kx0")
-initiative_stat = null
 
 [node name="BasicEnemy2" parent="." unique_id=1184529808 instance=ExtResource("8_87w7x")]
 position = Vector2(507.5568, 241.28755)
 unit_role = SubResource("Resource_kejsv")
-initiative_stat = null
 
 [node name="BasicEnemy3" parent="." unique_id=267787392 instance=ExtResource("8_87w7x")]
 position = Vector2(442.3857, 219.73491)
 unit_role = SubResource("Resource_su3ud")
-initiative_stat = null
 
 [node name="BasicEnemy4" parent="." unique_id=191792681 instance=ExtResource("8_87w7x")]
 position = Vector2(507.0436, 173.55069)
 unit_role = SubResource("Resource_orxku")
-initiative_stat = null
 
 [node name="BasicEnemy5" parent="." unique_id=1062758203 instance=ExtResource("8_87w7x")]
 position = Vector2(439.81992, 144.30069)
 unit_role = SubResource("Resource_0fgt4")
-initiative_stat = null
 
 [node name="BasicEnemy6" parent="." unique_id=248907032 instance=ExtResource("8_87w7x")]
 position = Vector2(499.8594, 112.99805)
 unit_role = SubResource("Resource_87w7x")
-initiative_stat = null
 
 [node name="BasicEnemy7" parent="." unique_id=1415918019 instance=ExtResource("8_87w7x")]
 position = Vector2(439.81992, 52.958553)
 unit_role = SubResource("Resource_vy8cc")
-initiative_stat = null
 
 [connection signal="accept_pressed" from="Cursor" to="." method="_on_Cursor_accept_pressed"]
 [connection signal="moved" from="Cursor" to="." method="_on_Cursor_moved"]

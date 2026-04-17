@@ -16,39 +16,104 @@
 [ext_resource type="Texture2D" uid="uid://1rdl85pvi5kc" path="res://Assets/Units/enemy_units/Goblin in bush (hunter).png" id="14_tjuuw"]
 
 [sub_resource type="Resource" id="Resource_82n2j"]
+resource_local_to_scene = true
 script = ExtResource("9_ybw2w")
 skin = ExtResource("10_8wfs5")
-current_health = 20
+max_hp = 25
+current_health = 25
+attack_stat = 9
+speed = 6
+defense = 4
 
 [sub_resource type="Resource" id="Resource_m2fx8"]
-script = ExtResource("13_gimck")
-skin = ExtResource("14_tjuuw")
-current_health = 20
+resource_local_to_scene = true
+script = ExtResource("9_ybw2w")
+skin = ExtResource("10_8wfs5")
+max_hp = 25
+current_health = 25
+attack_stat = 9
+speed = 6
+defense = 4
 
 [sub_resource type="Resource" id="Resource_58vb4"]
-script = ExtResource("13_gimck")
-skin = ExtResource("14_tjuuw")
-current_health = 20
+resource_local_to_scene = true
+script = ExtResource("9_ybw2w")
+skin = ExtResource("10_8wfs5")
+max_hp = 25
+current_health = 25
+attack_stat = 9
+speed = 6
+defense = 4
 
 [sub_resource type="Resource" id="Resource_4nkke"]
+resource_local_to_scene = true
 script = ExtResource("9_ybw2w")
 skin = ExtResource("10_8wfs5")
-current_health = 20
+max_hp = 25
+current_health = 25
+attack_stat = 9
+speed = 6
+defense = 4
 
 [sub_resource type="Resource" id="Resource_gp6kc"]
+resource_local_to_scene = true
 script = ExtResource("9_ybw2w")
 skin = ExtResource("10_8wfs5")
-current_health = 20
+max_hp = 25
+current_health = 25
+attack_stat = 9
+speed = 6
+defense = 4
 
 [sub_resource type="Resource" id="Resource_npjth"]
+resource_local_to_scene = true
 script = ExtResource("9_ybw2w")
 skin = ExtResource("10_8wfs5")
-current_health = 20
+max_hp = 25
+current_health = 25
+attack_stat = 9
+speed = 6
+defense = 4
 
 [sub_resource type="Resource" id="Resource_hmvjg"]
+resource_local_to_scene = true
 script = ExtResource("9_ybw2w")
 skin = ExtResource("10_8wfs5")
-current_health = 20
+max_hp = 25
+current_health = 25
+attack_stat = 9
+speed = 6
+defense = 4
+
+[sub_resource type="Resource" id="Resource_ywdki"]
+script = ExtResource("13_gimck")
+skin = ExtResource("14_tjuuw")
+max_hp = 25
+current_health = 25
+attack_stat = 9
+speed = 10
+defense = 4
+luck = 7
+
+[sub_resource type="Resource" id="Resource_iu4lo"]
+script = ExtResource("13_gimck")
+skin = ExtResource("14_tjuuw")
+max_hp = 25
+current_health = 25
+attack_stat = 9
+speed = 10
+defense = 4
+luck = 7
+
+[sub_resource type="Resource" id="Resource_4lwei"]
+script = ExtResource("13_gimck")
+skin = ExtResource("14_tjuuw")
+max_hp = 25
+current_health = 25
+attack_stat = 9
+speed = 10
+defense = 4
+luck = 7
 
 [node name="Level_3_forest" type="Node2D" unique_id=482813882]
 script = ExtResource("1_6pde5")
@@ -75,32 +140,47 @@ unique_name_in_owner = true
 unique_name_in_owner = true
 
 [node name="BasicEnemy" parent="." unique_id=393416970 instance=ExtResource("8_anik6")]
-position = Vector2(222.82367, 34.71216)
+position = Vector2(274.89594, 263.40314)
 unit_role = SubResource("Resource_82n2j")
 
-[node name="HunterEnemy" parent="." unique_id=2053675038 instance=ExtResource("12_mm4jj")]
-position = Vector2(527.44763, 285.37808)
+[node name="BasicEnemy2" parent="." unique_id=1478344525 instance=ExtResource("8_anik6")]
+position = Vector2(150.7117, 149.37943)
 unit_role = SubResource("Resource_m2fx8")
 
-[node name="HunterEnemy2" parent="." unique_id=93633271 instance=ExtResource("12_mm4jj")]
-position = Vector2(103.97937, 10.1236725)
+[node name="BasicEnemy3" parent="." unique_id=599507809 instance=ExtResource("8_anik6")]
+position = Vector2(84.668274, 46.645187)
 unit_role = SubResource("Resource_58vb4")
 
-[node name="BasicEnemy4" parent="." unique_id=1397767165 instance=ExtResource("8_anik6")]
-position = Vector2(416.57892, 35.355713)
+[node name="BasicEnemy4" parent="." unique_id=1465884501 instance=ExtResource("8_anik6")]
+position = Vector2(391.74207, 183.81232)
 unit_role = SubResource("Resource_4nkke")
 
-[node name="BasicEnemy2" parent="." unique_id=171384507 instance=ExtResource("8_anik6")]
-position = Vector2(281.10516, 263.96762)
+[node name="BasicEnemy5" parent="." unique_id=1882145299 instance=ExtResource("8_anik6")]
+position = Vector2(379.88806, 295.57816)
 unit_role = SubResource("Resource_gp6kc")
 
-[node name="BasicEnemy3" parent="." unique_id=2113922477 instance=ExtResource("8_anik6")]
-position = Vector2(144.5025, 146.55705)
+[node name="BasicEnemy6" parent="." unique_id=1693243600 instance=ExtResource("8_anik6")]
+position = Vector2(422.22363, 87.851776)
 unit_role = SubResource("Resource_npjth")
 
-[node name="BasicEnemy5" parent="." unique_id=283852515 instance=ExtResource("8_anik6")]
-position = Vector2(576.88947, 30.275436)
+[node name="BasicEnemy7" parent="." unique_id=2123847829 instance=ExtResource("8_anik6")]
+position = Vector2(566.1645, 218.24524)
 unit_role = SubResource("Resource_hmvjg")
+
+[node name="HunterEnemy" parent="." unique_id=2053675038 instance=ExtResource("12_mm4jj")]
+position = Vector2(178.9354, 103.65704)
+unit_role = SubResource("Resource_ywdki")
+max_health = 25
+
+[node name="HunterEnemy2" parent="." unique_id=1484056562 instance=ExtResource("12_mm4jj")]
+position = Vector2(251.7525, 235.17944)
+unit_role = SubResource("Resource_iu4lo")
+max_health = 25
+
+[node name="HunterEnemy3" parent="." unique_id=82843295 instance=ExtResource("12_mm4jj")]
+position = Vector2(364.64728, 107.043884)
+unit_role = SubResource("Resource_4lwei")
+max_health = 25
 
 [connection signal="accept_pressed" from="Cursor" to="." method="_on_Cursor_accept_pressed"]
 [connection signal="moved" from="Cursor" to="." method="_on_Cursor_moved"]

@@ -4,10 +4,11 @@
 [ext_resource type="Texture2D" uid="uid://dacxy1l8tl066" path="res://Assets/Units/enemy_units/big_enemy.png" id="2_ygmb2"]
 
 [resource]
+resource_local_to_scene = true
 script = ExtResource("1_ygmb2")
 skin = ExtResource("2_ygmb2")
 max_hp = 35
 current_health = 35
-attack_stat = 10
+attack_stat = 11
 speed = 4
 defense = 6

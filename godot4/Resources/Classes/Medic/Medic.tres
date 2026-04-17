@@ -9,6 +9,7 @@ skin = ExtResource("2_tb5u4")
 role = "Medic"
 max_hp = 25
 current_health = 25
+attack_stat = 0
 defense = 3
 atk_explain = "Attack an adjacent unit to heal them."
 ability_explain = "Global heal that heals all player units."

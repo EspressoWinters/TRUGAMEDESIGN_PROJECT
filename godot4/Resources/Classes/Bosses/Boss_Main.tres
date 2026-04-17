@@ -4,9 +4,10 @@
 [ext_resource type="Texture2D" uid="uid://djihpsmsh81d5" path="res://Assets/Units/enemy_units/Big Evil Guy.png" id="2_nxmnh"]
 
 [resource]
+resource_local_to_scene = true
 script = ExtResource("1_nxmnh")
 skin = ExtResource("2_nxmnh")
-max_hp = 100
-current_health = 100
+max_hp = 500
+current_health = 250
 attack_stat = 9
 defense = 6

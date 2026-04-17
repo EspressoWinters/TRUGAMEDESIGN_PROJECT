@@ -10,6 +10,7 @@ role = "FlameThrower"
 max_hp = 35
 current_health = 35
 attack_stat = 6
+speed = 4
 defense = 7
 atk_explain = "Shoots fire in a cone."
 ability_explain = "Detonates units on fire during a burst of damage."

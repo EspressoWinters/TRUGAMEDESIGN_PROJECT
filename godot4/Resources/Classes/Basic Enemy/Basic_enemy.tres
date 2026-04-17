@@ -4,10 +4,11 @@
 [ext_resource type="Texture2D" uid="uid://cboitmrxhcus8" path="res://Assets/Units/enemy_units/Small Evil Guy.png" id="2_3spbl"]
 
 [resource]
+resource_local_to_scene = true
 script = ExtResource("1_3spbl")
 skin = ExtResource("2_3spbl")
 max_hp = 25
 current_health = 25
-attack_stat = 8
+attack_stat = 9
 speed = 8
 defense = 4

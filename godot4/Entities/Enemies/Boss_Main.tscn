@@ -3,11 +3,20 @@
 [ext_resource type="Script" uid="uid://dl3qi0ejvvwy3" path="res://Entities/Enemies/boss_main.gd" id="1_dhl72"]
 [ext_resource type="Texture2D" uid="uid://b5ghlcxjxmmgw" path="res://Entities/Units/unit_shadow.svg" id="2_a6763"]
 [ext_resource type="Resource" uid="uid://bj7vassh2i26e" path="res://Entities/GameBoard/Grid.tres" id="2_dtkqx"]
-[ext_resource type="Resource" uid="uid://mdwfvkgbgbll" path="res://Resources/Classes/Bosses/Boss_Main.tres" id="2_o0w5w"]
+[ext_resource type="Script" uid="uid://k2xu5hbt8vp5" path="res://Resources/Classes/Bosses/BossMain.gd" id="2_gu2e8"]
 [ext_resource type="Texture2D" uid="uid://2ufjgbg3frne" path="res://Assets/Sprites/Just fire Sheet.png" id="4_gu2e8"]
 [ext_resource type="Texture2D" uid="uid://djihpsmsh81d5" path="res://Assets/Units/enemy_units/Big Evil Guy.png" id="6_gu2e8"]
 
 [sub_resource type="Curve2D" id="Curve2D_mu52m"]
+
+[sub_resource type="Resource" id="Resource_3ky33"]
+resource_local_to_scene = true
+script = ExtResource("2_gu2e8")
+skin = ExtResource("6_gu2e8")
+max_hp = 100
+current_health = 100
+attack_stat = 9
+defense = 6
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ydal0"]
 atlas = ExtResource("4_gu2e8")
@@ -106,7 +115,7 @@ bg_color = Color(0, 0, 0, 1)
 [node name="Boss_main" type="Path2D" unique_id=393416970 groups=["enemy_units"]]
 curve = SubResource("Curve2D_mu52m")
 script = ExtResource("1_dhl72")
-unit_role = ExtResource("2_o0w5w")
+unit_role = SubResource("Resource_3ky33")
 grid = ExtResource("2_dtkqx")
 max_health = 100
 

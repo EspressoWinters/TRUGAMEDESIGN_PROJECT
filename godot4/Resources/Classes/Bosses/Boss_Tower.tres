@@ -4,6 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://eht4p864qijt" path="res://Assets/Sprites/Heal Coil.png" id="2_7bdr7"]
 
 [resource]
+resource_local_to_scene = true
 script = ExtResource("1_h4bnf")
 skin = ExtResource("2_7bdr7")
 max_hp = 40

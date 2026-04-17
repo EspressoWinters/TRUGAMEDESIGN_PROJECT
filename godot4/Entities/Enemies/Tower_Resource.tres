@@ -4,9 +4,11 @@
 [ext_resource type="Texture2D" uid="uid://duwxqnvnxe1fl" path="res://Assets/Units/enemy_units/Tesla Coil (tower enemy).png" id="2_xn5pq"]
 
 [resource]
+resource_local_to_scene = true
 script = ExtResource("1_l4cp4")
 skin = ExtResource("2_xn5pq")
 max_hp = 30
-attack_stat = 10
+attack_stat = 7
 speed = 0
 defense = 1
+luck = 0

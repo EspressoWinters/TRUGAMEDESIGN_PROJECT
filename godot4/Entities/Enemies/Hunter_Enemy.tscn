@@ -12,8 +12,12 @@
 [sub_resource type="Resource" id="Resource_24oov"]
 script = ExtResource("2_24oov")
 skin = ExtResource("3_dujoi")
-current_health = 20
+max_hp = 25
+current_health = 25
+attack_stat = 9
 speed = 10
+defense = 4
+luck = 7
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ydal0"]
 atlas = ExtResource("5_3kd4x")
