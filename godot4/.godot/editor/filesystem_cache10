@@ -1,17 +1,17 @@
 63f7b34db8d8cdea90c76aacccf841ec
-::res://::1776442052
+::res://::1776445065
 arrows.svg::CompressedTexture2D::4758664585829825197::1776295429::1776442054::1::::<><><>0<>0<>9481e35834ca6bac9e1f6d82d3412c29<>res://.godot/imported/arrows.svg-3b88e7a629b8cfce3558583111b7639a.ctex::
 default_bus_layout.tres::AudioBusLayout::4344012690611766971::1776441969::0::1::::<><><>0<>0<><>::
 icon.png::CompressedTexture2D::4800787463865256339::1776295429::1776442054::1::::<><><>0<>0<>82ee8a5321f43c16dd729bef6de1615b<>res://.godot/imported/icon.png-487276ed1e3a0c39cad0279d744ee560.ctex::
 Main.tscn::PackedScene::1627460163605592043::1776295429::0::1::::<><><>0<>0<><>::uid://bv1ul1qynrdwd::::res://Entities/GameBoard/Cursor/Cursor.tscn<>uid://d4mhjq651egt::::res://Entities/Units/Unit.tscn<>uid://dagxku00ifba6::::res://Entities/GameBoard/GameBoard.gd<>uid://bj7vassh2i26e::::res://Entities/GameBoard/Grid.tres<>uid://n825j345khoi::::res://Entities/UnitOverlay/UnitOverlay.tscn<>uid://dxyfefsgkgc4l::::res://Entities/GameBoard/UnitPath.tscn<>uid://dnttimsxfk83r::::res://Resources/Classes/Flamethrower/FlameThrower.tres<>uid://de53ukdqyusan::::res://Entities/Background/Map.tscn<>uid://bnhj47p63ostv::::res://Entities/UI/UI.tscn<>uid://b8amy4dvpx5oc::::res://Resources/Classes/Medic/Medic.tres<>uid://dhyalatumlvik::::res://Resources/Classes/Tank/Class_Tank.tres<>uid://pgb7b1sofgni::::res://Resources/Classes/Grenadier/Grenadier_Resource.tres<>uid://dw060kljl4vfj::::res://Resources/Classes/Basic Enemy/Basic_enemy.gd<>uid://cbid3yyxh2mey::::res://Entities/Attack_Overlay/Attack_Overlay.tscn<>uid://civ2clvctpumk::::res://Entities/Enemies/basic_enemy.tscn<>uid://cboitmrxhcus8::::res://Assets/Units/enemy_units/Small Evil Guy.png<>uid://bxlihyh6h2ggd::::res://Resources/Classes/Musketeer/Musketeer.tres<>uid://ttodv433y51f::::res://Resources/Classes/Hunter Enemy/Hunter_class.gd<>uid://cxdy8de6npsch::::res://Entities/Enemies/Hunter_Enemy.tscn<>uid://1rdl85pvi5kc::::res://Assets/Units/enemy_units/Goblin in bush (hunter).png<>uid://cnwqb4uvl3gd2::::res://Entities/Enemies/Tower.tscn<>uid://bhqbfoc8tp68t::::res://Resources/Classes/BigEnemy/BigEnemy.gd<>uid://3uqmxmcvncpi::::res://Entities/Enemies/big_enemy.tscn<>uid://djihpsmsh81d5::::res://Assets/Units/enemy_units/Big Evil Guy.png
-::res://Assets/::1776441968
+::res://Assets/::1776442054
 m5x7.ttf::FontFile::6684022128531920251::1776295429::1776442054::1::::<><><>0<>0<>4bfd89cbadd15bbfdc64529657c7ca7b<>res://.godot/imported/m5x7.ttf-6dfff7e649197dff7c4caa7190366067.fontdata::
 ::res://Assets/Audio/::1776441983
-::res://Assets/Audio/Music(kevin_mcleod my goat)/::1776441983
+::res://Assets/Audio/Music(kevin_mcleod my goat)/::1776442054
 Airship Serenity.mp3::AudioStreamMP3::8520451425611945293::1776441968::1776442054::1::::<><><>0<>0<>01bac48e7e993e376ab8d94708922522<>res://.godot/imported/Airship Serenity.mp3-b079cb2ccd98228cacbcac8de890db35.mp3str::
 Overworld.mp3::AudioStreamMP3::2113242714598143384::1776441968::1776442054::1::::<><><>0<>0<>3b27fdfa587c5c1dcb61f7f3c9402c90<>res://.godot/imported/Overworld.mp3-c7180d79fe602499eee17c765a5380e1.mp3str::
 Undaunted.mp3::AudioStreamMP3::5183485158951379538::1776441968::1776442054::1::::<><><>0<>0<>8e57fb8c6dc4c88ed0733ec8a886504a<>res://.godot/imported/Undaunted.mp3-679ce0307c7e33150ab08f514a9e4d8d.mp3str::
-::res://Assets/Audio/SFX/::1776441983
+::res://Assets/Audio/SFX/::1776442055
 Damage_3(flamethrower).wav::AudioStreamWAV::2532903078668055236::1776441968::1776442055::1::::<><><>0<>0<>bc98014a8d861d7090febd82466c248c<>res://.godot/imported/Damage_3(flamethrower).wav-c6f9e6e8e41e81ac6bfd7d0a548bbb77.sample::
 Heal_2(heal).wav::AudioStreamWAV::5992452610957002007::1776441968::1776442055::1::::<><><>0<>0<>62ba155b041c039d1e2dcef0058d47e5<>res://.godot/imported/Heal_2(heal).wav-1457da8120d355ce908e1fbd4728e4d6.sample::
 make_more_sound-8-bit-video-game-fail-version-3-145479(lose).mp3::AudioStreamMP3::5260677036288380813::1776441969::1776442054::1::::<><><>0<>0<>d021f796648b5e563609087699ce3504<>res://.godot/imported/make_more_sound-8-bit-video-game-fail-version-3-145479(lose).mp3-c8d1400bb27570c01052a16a45223280.mp3str::
@@ -21,12 +21,12 @@ Retro Weapon Gun LoFi 03(gunshot).wav::AudioStreamWAV::2164873108392743296::1776
 SFX_FastUiClick10(hover).wav::AudioStreamWAV::2829016158891825367::1776441968::1776442055::1::::<><><>0<>0<>106ef72d449ebd20ee81a46380617d79<>res://.godot/imported/SFX_FastUiClick10(hover).wav-f7d813fe4e754f3afe039e312c2b938f.sample::
 SFX_FastUiClick19(pressed).wav::AudioStreamWAV::7027325036354079166::1776441968::1776442055::1::::<><><>0<>0<>edaf0ab3a6a6e2647b9eddcdb72dca30<>res://.godot/imported/SFX_FastUiClick19(pressed).wav-464016e84ce8ef6af73c03dddcd9781b.sample::
 Slash_2(slash).wav::AudioStreamWAV::9013212038148802907::1776441969::1776442055::1::::<><><>0<>0<>02856f74c46116290f9df10607f2c464<>res://.godot/imported/Slash_2(slash).wav-5e7c5bdc7fe18390f903ed19c1edace6.sample::
-::res://Assets/Placeholders/::1776441958
+::res://Assets/Placeholders/::1776442055
 bear.png::CompressedTexture2D::8170655742763384520::1776295429::1776442055::1::::<><><>0<>0<>997e4d25e59a542a896cf16aacac2430<>res://.godot/imported/bear.png-eea725d97bc793fd75e479668a60e605.ctex::
 bugcat.png::CompressedTexture2D::1674859814782659197::1776295429::1776442055::1::::<><><>0<>0<>2e6394d136cd15b3ec30819d403563b7<>res://.godot/imported/bugcat.png-17f8209b23c9de530a85396c3f43ad45.ctex::
 grasslands.png::CompressedTexture2D::5760376019085434320::1776295429::1776442055::1::::<><><>0<>0<>6001beba68c692a2be470aa91949a453<>res://.godot/imported/grasslands.png-e2c1a836ae58584a80eb995c76223467.ctex::
 squirrel.png::CompressedTexture2D::5054411839027252686::1776295429::1776442055::1::::<><><>0<>0<>f990a028451b9b9732b046b057562cf1<>res://.godot/imported/squirrel.png-0b9abfdbfc6fbdd53c4d6d6028d529a1.ctex::
-::res://Assets/Sprites/::1776441969
+::res://Assets/Sprites/::1776442055
 ATK Symbol.png::CompressedTexture2D::4435467364396555834::1776295429::1776295429::1::::<><><>0<>0<>d0d4ba0719d8a101e30af76e8279ecf5<>res://.godot/imported/ATK Symbol.png-646ed0d9bfef5521bf01140bfc4e1ad4.ctex::
 Caught on fire Sheet.png::CompressedTexture2D::5647858208599028114::1776295429::1776295429::1::::<><><>0<>0<>c08aba1ccea5720826ed1eb79bcf96ee<>res://.godot/imported/Caught on fire Sheet.png-586dc274a1db8136776d15795da0476d.ctex::
 CON Symbol.png::CompressedTexture2D::4432953591735247744::1776295429::1776295429::1::::<><><>0<>0<>1c56d5a28696652ae6f5ee7d03310035<>res://.godot/imported/CON Symbol.png-216d640b2a2ea10236738b02f881eeb7.ctex::
@@ -51,13 +51,13 @@ Slash Sheet.png::CompressedTexture2D::7891746198273121765::1776295429::177629542
 SPD Symbol.png::CompressedTexture2D::4060046925405066557::1776295429::1776295429::1::::<><><>0<>0<>94937ee69505c60fa251cf343c35d9d3<>res://.godot/imported/SPD Symbol.png-49d29ba59a11e11d4cde38195c20ff7c.ctex::
 Taunt sprite sheet (behind tank).png::CompressedTexture2D::5169875745046160100::1776441969::1776442054::1::::<><><>0<>0<>e00b50f5d88bd25ced8bd3e00cd9c75b<>res://.godot/imported/Taunt sprite sheet (behind tank).png-94002b1057f055b1c77fea51efe4b913.ctex::
 Training Dummy.png::CompressedTexture2D::8606864148258132263::1776295429::1776295429::1::::<><><>0<>0<>d5c7eeb1656fc5e93d761a064814eb13<>res://.godot/imported/Training Dummy.png-db0813d9862ff4016417b4062684a4b0.ctex::
-::res://Assets/Tilemap/::1776441958
+::res://Assets/Tilemap/::1776442054
 Gabe's Tilemap.png::CompressedTexture2D::506331878144322666::1776295429::1776442054::1::::<><><>0<>0<>742e35cbdf07b2963c282d1770a741e5<>res://.godot/imported/Gabe's Tilemap.png-0aea09dfb0d3c9545cdbe6ebae5353aa.ctex::
 tilemap_part_2.png::CompressedTexture2D::6454392292857016941::1776295429::1776442054::1::::<><><>0<>0<>8467d8df246b4abd535d7c6fb1ab2059<>res://.godot/imported/tilemap_part_2.png-59490c92a835507d2dd0d8cedd800532.ctex::
-::res://Assets/Units/::1776441958
+::res://Assets/Units/::1776442054
 guywithknife.png::CompressedTexture2D::8833195021468460381::1776295429::1776442054::1::::<><><>0<>0<>deb4eb28b646368accbabcdc63b5e93e<>res://.godot/imported/guywithknife.png-891269a246f3402f9a3e4f3744d3900d.ctex::
 Tank.png::CompressedTexture2D::584771932662005401::1776295429::1776442054::1::::<><><>0<>0<>440d6c98a151dc3211681ef540362402<>res://.godot/imported/Tank.png-564f108bde14b546fe1851f074d003f7.ctex::
-::res://Assets/Units/enemy_units/::1776441969
+::res://Assets/Units/enemy_units/::1776442054
 Big Evil Guy.png::CompressedTexture2D::7807929436498486308::1776295429::1776295429::1::::<><><>0<>0<>51c2e8d77df4cb45c79596a2c8e476dd<>res://.godot/imported/Big Evil Guy.png-9884cd44b76b98debda991acc1ceaa96.ctex::
 big_enemy.png::CompressedTexture2D::7164831540599942921::1776441969::1776442054::1::::<><><>0<>0<>cfdf9d015d8800c92e3882049b58b2bb<>res://.godot/imported/big_enemy.png-02f6a2999d8143b37b01ab7a4f99b60e.ctex::
 Goblin in bush (hunter).png::CompressedTexture2D::1860207931443742526::1776295429::1776295429::1::::<><><>0<>0<>06f6e64d08713a2378a7efae75b4a8c4<>res://.godot/imported/Goblin in bush (hunter).png-3217792b8cb143216746dd9d76e349fa.ctex::
@@ -79,40 +79,40 @@ GunAttack.tscn::PackedScene::4971571198424558988::1776441969::0::1::::<><><>0<>0
 HealAttack.tscn::PackedScene::8939909565189064608::1776441969::0::1::::<><><>0<>0<><>::uid://duogo03byuihx::::res://Assets/Sprites/Heal Sheet.png
 SlashAttack.tscn::PackedScene::3672094828948813842::1776295429::0::1::::<><><>0<>0<><>::uid://dko253mj01i7f::::res://Assets/Sprites/Slash Sheet.png
 TauntBuff.tscn::PackedScene::6025453299889659229::1776441969::0::1::::<><><>0<>0<><>::uid://cfwldlrmk6bpk::::res://Assets/Sprites/Taunt sprite sheet (behind tank).png
-::res://Entities/Attack_Overlay/::1776441958
+::res://Entities/Attack_Overlay/::1776442054
 attack_overlay.gd::GDScript::1826715013319899728::1776295429::0::1::::AttackOverlay<>TileMap<><>0<>0<><>::
 Attack_Overlay.tscn::PackedScene::4859778684955502968::1776295429::0::1::::<><><>0<>0<><>::uid://bts4iqla5wvwd::::res://Entities/Attack_Overlay/Red.png<>uid://1a4y2fwy0cpc::::res://Entities/Attack_Overlay/attack_overlay.gd
 Red.png::CompressedTexture2D::3758943448937689619::1776295429::1776442054::1::::<><><>0<>0<>83482c205cea51f076daef6a98364cad<>res://.godot/imported/Red.png-796b574c03e0a2b886d0c5bbe3bb751c.ctex::
 ::res://Entities/Background/::1776295557
 Map.tscn::PackedScene::7503685080556545333::1776295429::0::1::::<><><>0<>0<><>::uid://cx7s5sfsm03sr::::res://Assets/Tilemap/tilemap_part_2.png
-::res://Entities/Enemies/::1776441969
+::res://Entities/Enemies/::1776444858
 BasicEnemy.gd::GDScript::5030898724631262503::1776441969::0::1::::BasicEnemy<>Unit<><>0<>1<><>::
-basic_enemy.tscn::PackedScene::5379347590032839450::1776296352::0::1::::<><><>0<>0<><>::uid://cdxafxavudtc6::::res://Entities/Enemies/BasicEnemy.gd<>uid://dw060kljl4vfj::::res://Resources/Classes/Basic Enemy/Basic_enemy.gd<>uid://b5ghlcxjxmmgw::::res://Entities/Units/unit_shadow.svg<>uid://bj7vassh2i26e::::res://Entities/GameBoard/Grid.tres<>uid://2ufjgbg3frne::::res://Assets/Sprites/Just fire Sheet.png<>uid://cboitmrxhcus8::::res://Assets/Units/enemy_units/Small Evil Guy.png
+basic_enemy.tscn::PackedScene::5379347590032839450::1776442421::0::1::::<><><>0<>0<><>::uid://cdxafxavudtc6::::res://Entities/Enemies/BasicEnemy.gd<>uid://dw060kljl4vfj::::res://Resources/Classes/Basic Enemy/Basic_enemy.gd<>uid://b5ghlcxjxmmgw::::res://Entities/Units/unit_shadow.svg<>uid://bj7vassh2i26e::::res://Entities/GameBoard/Grid.tres<>uid://2ufjgbg3frne::::res://Assets/Sprites/Just fire Sheet.png<>uid://cboitmrxhcus8::::res://Assets/Units/enemy_units/Small Evil Guy.png
 big_enemy.gd::GDScript::929796077864374802::1776295429::0::1::::BigEnemy<>Unit<><>0<>1<><>::
-big_enemy.tscn::PackedScene::2007569305051378438::1776441969::0::1::::<><><>0<>0<><>::uid://ninuua3kv1c5::::res://Entities/Enemies/big_enemy.gd<>uid://bhqbfoc8tp68t::::res://Resources/Classes/BigEnemy/BigEnemy.gd<>uid://b5ghlcxjxmmgw::::res://Entities/Units/unit_shadow.svg<>uid://bj7vassh2i26e::::res://Entities/GameBoard/Grid.tres<>uid://dacxy1l8tl066::::res://Assets/Units/enemy_units/big_enemy.png<>uid://2ufjgbg3frne::::res://Assets/Sprites/Just fire Sheet.png
-boss_main.gd::GDScript::7990128986147640508::1776295429::0::1::::BossMain<>Unit<><>0<>1<><>::
-Boss_Main.tscn::PackedScene::590777589469496605::1776441969::0::1::::<><><>0<>0<><>::uid://dl3qi0ejvvwy3::::res://Entities/Enemies/boss_main.gd<>uid://b5ghlcxjxmmgw::::res://Entities/Units/unit_shadow.svg<>uid://bj7vassh2i26e::::res://Entities/GameBoard/Grid.tres<>uid://mdwfvkgbgbll::::res://Resources/Classes/Bosses/Boss_Main.tres<>uid://2ufjgbg3frne::::res://Assets/Sprites/Just fire Sheet.png<>uid://djihpsmsh81d5::::res://Assets/Units/enemy_units/Big Evil Guy.png
-boss_tower.gd::GDScript::7674457676745123218::1776295429::0::1::::BossTower<>Unit<><>0<>1<><>::
-Boss_Tower.tscn::PackedScene::6724101892079259294::1776441969::0::1::::<><><>0<>0<><>::uid://dhltgxmpq8x3w::::res://Entities/Enemies/boss_tower.gd<>uid://da7e0nnskc0ja::::res://Resources/Classes/Bosses/Boss_Tower.tres<>uid://b5ghlcxjxmmgw::::res://Entities/Units/unit_shadow.svg<>uid://bj7vassh2i26e::::res://Entities/GameBoard/Grid.tres<>uid://2ufjgbg3frne::::res://Assets/Sprites/Just fire Sheet.png<>uid://eht4p864qijt::::res://Assets/Sprites/Heal Coil.png
+big_enemy.tscn::PackedScene::2007569305051378438::1776444858::0::1::::<><><>0<>0<><>::uid://ninuua3kv1c5::::res://Entities/Enemies/big_enemy.gd<>uid://bhqbfoc8tp68t::::res://Resources/Classes/BigEnemy/BigEnemy.gd<>uid://b5ghlcxjxmmgw::::res://Entities/Units/unit_shadow.svg<>uid://bj7vassh2i26e::::res://Entities/GameBoard/Grid.tres<>uid://dacxy1l8tl066::::res://Assets/Units/enemy_units/big_enemy.png<>uid://2ufjgbg3frne::::res://Assets/Sprites/Just fire Sheet.png
+boss_main.gd::GDScript::7990128986147640508::1776442900::0::1::::BossMain<>Unit<><>0<>1<><>::
+Boss_Main.tscn::PackedScene::590777589469496605::1776442750::0::1::::<><><>0<>0<><>::uid://dl3qi0ejvvwy3::::res://Entities/Enemies/boss_main.gd<>uid://b5ghlcxjxmmgw::::res://Entities/Units/unit_shadow.svg<>uid://bj7vassh2i26e::::res://Entities/GameBoard/Grid.tres<>uid://mdwfvkgbgbll::::res://Resources/Classes/Bosses/Boss_Main.tres<>uid://2ufjgbg3frne::::res://Assets/Sprites/Just fire Sheet.png<>uid://djihpsmsh81d5::::res://Assets/Units/enemy_units/Big Evil Guy.png
+boss_tower.gd::GDScript::7674457676745123218::1776442867::0::1::::BossTower<>Unit<><>0<>1<><>::
+Boss_Tower.tscn::PackedScene::6724101892079259294::1776442901::0::1::::<><><>0<>0<><>::uid://dhltgxmpq8x3w::::res://Entities/Enemies/boss_tower.gd<>uid://da7e0nnskc0ja::::res://Resources/Classes/Bosses/Boss_Tower.tres<>uid://b5ghlcxjxmmgw::::res://Entities/Units/unit_shadow.svg<>uid://bj7vassh2i26e::::res://Entities/GameBoard/Grid.tres<>uid://2ufjgbg3frne::::res://Assets/Sprites/Just fire Sheet.png<>uid://eht4p864qijt::::res://Assets/Sprites/Heal Coil.png
 hunter_enemy.gd::GDScript::5036384024102088506::1776295429::0::1::::HunterEnemy<>Unit<><>0<>1<><>::
-Hunter_Enemy.tscn::PackedScene::6394894208524132027::1776296300::0::1::::<><><>0<>0<><>::uid://cd0wrkp1ttumk::::res://Entities/Enemies/hunter_enemy.gd<>uid://ttodv433y51f::::res://Resources/Classes/Hunter Enemy/Hunter_class.gd<>uid://b5ghlcxjxmmgw::::res://Entities/Units/unit_shadow.svg<>uid://bj7vassh2i26e::::res://Entities/GameBoard/Grid.tres<>uid://1rdl85pvi5kc::::res://Assets/Units/enemy_units/Goblin in bush (hunter).png<>uid://2ufjgbg3frne::::res://Assets/Sprites/Just fire Sheet.png
+Hunter_Enemy.tscn::PackedScene::6394894208524132027::1776442676::0::1::::<><><>0<>0<><>::uid://cd0wrkp1ttumk::::res://Entities/Enemies/hunter_enemy.gd<>uid://ttodv433y51f::::res://Resources/Classes/Hunter Enemy/Hunter_class.gd<>uid://b5ghlcxjxmmgw::::res://Entities/Units/unit_shadow.svg<>uid://bj7vassh2i26e::::res://Entities/GameBoard/Grid.tres<>uid://1rdl85pvi5kc::::res://Assets/Units/enemy_units/Goblin in bush (hunter).png<>uid://2ufjgbg3frne::::res://Assets/Sprites/Just fire Sheet.png
 Tower.gd::GDScript::8249216117822692688::1776295429::0::1::::Tower<>Unit<><>0<>1<><>::
-Tower.tscn::PackedScene::5731687457991300169::1776441969::0::1::::<><><>0<>0<><>::uid://dpr8ncf8bkism::::res://Entities/Enemies/Tower.gd<>uid://bj7vassh2i26e::::res://Entities/GameBoard/Grid.tres<>uid://b5ghlcxjxmmgw::::res://Entities/Units/unit_shadow.svg<>uid://5kurp5dcq3sk::::res://Entities/Enemies/Tower_Resource.tres<>uid://2ufjgbg3frne::::res://Assets/Sprites/Just fire Sheet.png<>uid://duwxqnvnxe1fl::::res://Assets/Units/enemy_units/Tesla Coil (tower enemy).png
-Tower_res.gd::GDScript::8737923989949881601::1776441969::0::1::::Tower_Res<>Unit_Interaction<><>0<>0<><>::
-Tower_Resource.tres::Resource/Tower_Res::2127554619367307230::1776441969::0::1::::<><><>0<>0<><>::uid://dwqyljg2c4l8l::::res://Entities/Enemies/Tower_res.gd<>uid://duwxqnvnxe1fl::::res://Assets/Units/enemy_units/Tesla Coil (tower enemy).png
+Tower.tscn::PackedScene::5731687457991300169::1776443271::0::1::::<><><>0<>0<><>::uid://dpr8ncf8bkism::::res://Entities/Enemies/Tower.gd<>uid://bj7vassh2i26e::::res://Entities/GameBoard/Grid.tres<>uid://b5ghlcxjxmmgw::::res://Entities/Units/unit_shadow.svg<>uid://5kurp5dcq3sk::::res://Entities/Enemies/Tower_Resource.tres<>uid://2ufjgbg3frne::::res://Assets/Sprites/Just fire Sheet.png<>uid://duwxqnvnxe1fl::::res://Assets/Units/enemy_units/Tesla Coil (tower enemy).png
+Tower_res.gd::GDScript::8737923989949881601::1776443232::0::1::::Tower_Res<>Unit_Interaction<><>0<>0<><>::
+Tower_Resource.tres::Resource/Tower_Res::2127554619367307230::1776443232::0::1::::<><><>0<>0<><>::uid://dwqyljg2c4l8l::::res://Entities/Enemies/Tower_res.gd<>uid://duwxqnvnxe1fl::::res://Assets/Units/enemy_units/Tesla Coil (tower enemy).png
 TrainingDummy.gd::GDScript::1043656470960403796::1776295429::0::1::::TrainingDummy<>BasicEnemy<><>0<>1<><>::
-TrainingDummy.tscn::PackedScene::42847292808528261::1776441969::0::1::::<><><>0<>0<><>::uid://o4s4tivigrng::::res://Entities/Enemies/TrainingDummy.gd<>uid://cfmgynfcrblb3::::res://Resources/Classes/TrainingDummy/TrainingDummy.gd<>uid://b5ghlcxjxmmgw::::res://Entities/Units/unit_shadow.svg<>uid://bj7vassh2i26e::::res://Entities/GameBoard/Grid.tres<>uid://dx34ow1am5ih6::::res://Assets/Units/guywithknife.png<>uid://2ufjgbg3frne::::res://Assets/Sprites/Just fire Sheet.png
-WalkingTrainingDummy.tscn::PackedScene::1972423822195492405::1776441969::0::1::::<><><>0<>0<><>::uid://pvc3j5cfdfgc::::res://Entities/Enemies/walking_training_dummy.gd<>uid://cfmgynfcrblb3::::res://Resources/Classes/TrainingDummy/TrainingDummy.gd<>uid://bj7vassh2i26e::::res://Entities/GameBoard/Grid.tres<>uid://b5ghlcxjxmmgw::::res://Entities/Units/unit_shadow.svg<>uid://dx34ow1am5ih6::::res://Assets/Units/guywithknife.png<>uid://2ufjgbg3frne::::res://Assets/Sprites/Just fire Sheet.png
+TrainingDummy.tscn::PackedScene::42847292808528261::1776442472::0::1::::<><><>0<>0<><>::uid://o4s4tivigrng::::res://Entities/Enemies/TrainingDummy.gd<>uid://cfmgynfcrblb3::::res://Resources/Classes/TrainingDummy/TrainingDummy.gd<>uid://b5ghlcxjxmmgw::::res://Entities/Units/unit_shadow.svg<>uid://bj7vassh2i26e::::res://Entities/GameBoard/Grid.tres<>uid://dx34ow1am5ih6::::res://Assets/Units/guywithknife.png<>uid://2ufjgbg3frne::::res://Assets/Sprites/Just fire Sheet.png
+WalkingTrainingDummy.tscn::PackedScene::1972423822195492405::1776442462::0::1::::<><><>0<>0<><>::uid://pvc3j5cfdfgc::::res://Entities/Enemies/walking_training_dummy.gd<>uid://cfmgynfcrblb3::::res://Resources/Classes/TrainingDummy/TrainingDummy.gd<>uid://bj7vassh2i26e::::res://Entities/GameBoard/Grid.tres<>uid://b5ghlcxjxmmgw::::res://Entities/Units/unit_shadow.svg<>uid://dx34ow1am5ih6::::res://Assets/Units/guywithknife.png<>uid://2ufjgbg3frne::::res://Assets/Sprites/Just fire Sheet.png
 walking_training_dummy.gd::GDScript::1096356542772571274::1776295429::0::1::::WalkingTrainingDummy<>BasicEnemy<><>0<>1<><>::
-::res://Entities/GameBoard/::1776441969
-GameBoard.gd::GDScript::7173063756610226731::1776441969::0::1::::GameBoard<>Node2D<><>0<>0<><>::
+::res://Entities/GameBoard/::1776444834
+GameBoard.gd::GDScript::7173063756610226731::1776444834::0::1::::GameBoard<>Node2D<><>0<>0<><>::
 Grid.gd::GDScript::7060620540460228450::1776295429::0::1::::Grid<>Resource<><>0<>0<><>::
 Grid.tres::Resource/Grid::3085456394994658910::1776295429::0::1::::<><><>0<>0<><>::uid://c7uhnhmyktbe5::::res://Entities/GameBoard/Grid.gd
 Pathfinder.gd::GDScript::6797009315942668527::1776295429::0::1::::PathFinder<>Resource<><>0<>0<><>::
 UnitPath.gd::GDScript::8480235457114261391::1776295429::0::1::::UnitPath<>TileMap<><>0<>0<><>::
 UnitPath.tscn::PackedScene::8823461539700379773::1776295429::0::1::::<><><>0<>0<><>::uid://ds25iejxleodb::::res://Entities/GameBoard/UnitPath.gd<>uid://dqg14aj86so4a::::res://Entities/GameBoard/unit_path_tileset.tres<>uid://bj7vassh2i26e::::res://Entities/GameBoard/Grid.tres
-unit_path_tileset.tres::TileSet::8296300261092109810::1776310862::0::1::::<><><>0<>0<><>::uid://b82ermd4qywbt::::res://arrows.svg
-::res://Entities/GameBoard/Cursor/::1776441958
+unit_path_tileset.tres::TileSet::8296300261092109810::1776442391::0::1::::<><><>0<>0<><>::uid://b82ermd4qywbt::::res://arrows.svg
+::res://Entities/GameBoard/Cursor/::1776442054
 Cursor.gd::GDScript::4852161879150179370::1776295429::0::1::::Cursor<>Node2D<><>0<>1<><>::
 Cursor.tscn::PackedScene::3915295596718087763::1776295429::0::1::::<><><>0<>0<><>::uid://cbeonrhd7oh1k::::res://Entities/GameBoard/Cursor/Cursor.gd<>uid://dsmh2fn7kpkri::::res://Entities/GameBoard/Cursor/menu_selection_arrow.png<>uid://bj7vassh2i26e::::res://Entities/GameBoard/Grid.tres
 menu_selection_arrow.png::CompressedTexture2D::8447907289164507594::1776295429::1776442054::1::::<><><>0<>0<>52384dd9dabb9818657d08647555ac02<>res://.godot/imported/menu_selection_arrow.png-ee4efc639439d990d5d592fce88e9cf7.ctex::
@@ -120,14 +120,14 @@ menu_selection_arrow.png::CompressedTexture2D::8447907289164507594::1776295429::
 game_console.gd::GDScript::7777121999068235450::1776441969::0::1::::GameConsole<>RichTextLabel<><>0<>0<><>::
 ui.gd::GDScript::8864979170884827712::1776441969::0::1::::<>Control<><>0<>0<><>::
 UI.tscn::PackedScene::3313926241589838771::1776441969::0::1::::<><><>0<>0<><>::uid://dyki588u1icp1::::res://Entities/UI/ui.gd<>uid://di2kce6aunim1::::res://Entities/UI/game_console.gd<>uid://dauf5i8tiom0f::::res://Levels/main_menu/Settings.gd
-::res://Entities/UnitOverlay/::1776441958
+::res://Entities/UnitOverlay/::1776442391
 tileset_unit_overlay.svg::CompressedTexture2D::2430363315898339962::1776295429::1776442054::1::::<><><>0<>0<>ed5c6c7da7c2be0bbd06dbff82fccf8f<>res://.godot/imported/tileset_unit_overlay.svg-a1e6a374719549d7e4655ae69d909778.ctex::
 UnitOverlay.gd::GDScript::3597877913519642046::1776295429::0::1::::UnitOverlay<>TileMap<><>0<>0<><>::
 UnitOverlay.tscn::PackedScene::982272883123028944::1776295429::0::1::::<><><>0<>0<><>::uid://b0rmv12s3p35::::res://Entities/UnitOverlay/unit_overlay_tileset.tres<>uid://bri3r2i0vveeo::::res://Entities/UnitOverlay/UnitOverlay.gd
-unit_overlay_tileset.tres::TileSet::122853050300612594::1776310862::0::1::::<><><>0<>0<><>::uid://bavjy1odiaew5::::res://Entities/UnitOverlay/tileset_unit_overlay.svg
-::res://Entities/Units/::1776441969
+unit_overlay_tileset.tres::TileSet::122853050300612594::1776442391::0::1::::<><><>0<>0<><>::uid://bavjy1odiaew5::::res://Entities/UnitOverlay/tileset_unit_overlay.svg
+::res://Entities/Units/::1776442396
 Unit.gd::GDScript::3074741435938709037::1776441969::0::1::::Unit<>Path2D<><>0<>1<><>::
-Unit.tscn::PackedScene::271175089128999423::1776441969::0::1::::<><><>0<>0<><>::uid://bj2oso2ug885f::::res://Entities/Units/Unit.gd<>uid://bj7vassh2i26e::::res://Entities/GameBoard/Grid.tres<>uid://b5ghlcxjxmmgw::::res://Entities/Units/unit_shadow.svg<>uid://2ufjgbg3frne::::res://Assets/Sprites/Just fire Sheet.png<>uid://dbalijummpd14::::res://Entities/Animations/CritBuff.tscn<>uid://cr31ln4ix637f::::res://Entities/Animations/TauntBuff.tscn
+Unit.tscn::PackedScene::271175089128999423::1776442396::0::1::::<><><>0<>0<><>::uid://bj2oso2ug885f::::res://Entities/Units/Unit.gd<>uid://bj7vassh2i26e::::res://Entities/GameBoard/Grid.tres<>uid://b5ghlcxjxmmgw::::res://Entities/Units/unit_shadow.svg<>uid://2ufjgbg3frne::::res://Assets/Sprites/Just fire Sheet.png<>uid://dbalijummpd14::::res://Entities/Animations/CritBuff.tscn<>uid://cr31ln4ix637f::::res://Entities/Animations/TauntBuff.tscn
 unit_shadow.svg::CompressedTexture2D::4504917063058092482::1776295429::1776442054::1::::<><><>0<>0<>762f946d734f279b1763598a370678f5<>res://.godot/imported/unit_shadow.svg-3b17cc994f9b3b3b19a8239b247f5ad8.ctex::
 ::res://Levels/::1776441969
 Level_0_plains.tscn::PackedScene::5097493717741273166::1776441969::0::1::::<><><>0<>0<><>::uid://dagxku00ifba6::::res://Entities/GameBoard/GameBoard.gd<>uid://bj7vassh2i26e::::res://Entities/GameBoard/Grid.tres<>uid://de53ukdqyusan::::res://Entities/Background/Map.tscn<>uid://cbid3yyxh2mey::::res://Entities/Attack_Overlay/Attack_Overlay.tscn<>uid://n825j345khoi::::res://Entities/UnitOverlay/UnitOverlay.tscn<>uid://bv1ul1qynrdwd::::res://Entities/GameBoard/Cursor/Cursor.tscn<>uid://dxyfefsgkgc4l::::res://Entities/GameBoard/UnitPath.tscn<>uid://civ2clvctpumk::::res://Entities/Enemies/basic_enemy.tscn<>uid://dw060kljl4vfj::::res://Resources/Classes/Basic Enemy/Basic_enemy.gd<>uid://bnhj47p63ostv::::res://Entities/UI/UI.tscn<>uid://cboitmrxhcus8::::res://Assets/Units/enemy_units/Small Evil Guy.png
@@ -159,32 +159,32 @@ ruins.tscn::PackedScene::5577903787821140111::1776295429::0::1::::<><><>0<>0<><>
 ruin_ambush.tscn::PackedScene::4863874849828842262::1776295429::0::1::::<><><>0<>0<><>::uid://de53ukdqyusan::::res://Entities/Background/Map.tscn<>res://Entities/GameBoard/GameBoard.gd<>uid://bj7vassh2i26e::::res://Entities/GameBoard/Grid.tres<>uid://n825j345khoi::::res://Entities/UnitOverlay/UnitOverlay.tscn<>uid://dxyfefsgkgc4l::::res://Entities/GameBoard/UnitPath.tscn<>uid://bv1ul1qynrdwd::::res://Entities/GameBoard/Cursor/Cursor.tscn
 ::res://Resources/::1776295557
 ::res://Resources/Classes/::1776295557
-::res://Resources/Classes/Basic Enemy/::1776441969
+::res://Resources/Classes/Basic Enemy/::1776443350
 Basic_enemy.gd::GDScript::8756953469242025599::1776441969::0::1::::Basic_enemy<>Unit_Interaction<><>0<>0<><>::
-Basic_enemy.tres::Resource/Basic_enemy::4618304415178838644::1776441969::0::1::::<><><>0<>0<><>::uid://dw060kljl4vfj::::res://Resources/Classes/Basic Enemy/Basic_enemy.gd<>uid://cboitmrxhcus8::::res://Assets/Units/enemy_units/Small Evil Guy.png
-::res://Resources/Classes/BigEnemy/::1776441969
+Basic_enemy.tres::Resource/Basic_enemy::4618304415178838644::1776443350::0::1::::<><><>0<>0<><>::uid://dw060kljl4vfj::::res://Resources/Classes/Basic Enemy/Basic_enemy.gd<>uid://cboitmrxhcus8::::res://Assets/Units/enemy_units/Small Evil Guy.png
+::res://Resources/Classes/BigEnemy/::1776443342
 BigEnemy.gd::GDScript::2910843019128471865::1776441969::0::1::::Big_enemy<>Unit_Interaction<><>0<>0<><>::
-BigEnemy.tres::Resource/Big_enemy::6183988356230641713::1776441969::0::1::::<><><>0<>0<><>::uid://bhqbfoc8tp68t::::res://Resources/Classes/BigEnemy/BigEnemy.gd<>uid://dacxy1l8tl066::::res://Assets/Units/enemy_units/big_enemy.png
-::res://Resources/Classes/Bosses/::1776441969
+BigEnemy.tres::Resource/Big_enemy::6183988356230641713::1776443342::0::1::::<><><>0<>0<><>::uid://bhqbfoc8tp68t::::res://Resources/Classes/BigEnemy/BigEnemy.gd<>uid://dacxy1l8tl066::::res://Assets/Units/enemy_units/big_enemy.png
+::res://Resources/Classes/Bosses/::1776442391
 BossMain.gd::GDScript::759060429037947272::1776441969::0::1::::Boss_Main<>Unit_Interaction<><>0<>0<><>::
 BossTower.gd::GDScript::1030559928548277022::1776441969::0::1::::Boss_Tower<>Unit_Interaction<><>0<>0<><>::
-Boss_Main.tres::Resource/Boss_Main::849805078441538053::1776441969::0::1::::<><><>0<>0<><>::uid://k2xu5hbt8vp5::::res://Resources/Classes/Bosses/BossMain.gd<>uid://djihpsmsh81d5::::res://Assets/Units/enemy_units/Big Evil Guy.png
-Boss_Tower.tres::Resource/Boss_Tower::7225610355745222342::1776441969::0::1::::<><><>0<>0<><>::uid://oxhf3g6q1xpu::::res://Resources/Classes/Bosses/BossTower.gd<>uid://eht4p864qijt::::res://Assets/Sprites/Heal Coil.png
-::res://Resources/Classes/Flamethrower/::1776441969
+Boss_Main.tres::Resource/Boss_Main::849805078441538053::1776442391::0::1::::<><><>0<>0<><>::uid://k2xu5hbt8vp5::::res://Resources/Classes/Bosses/BossMain.gd<>uid://djihpsmsh81d5::::res://Assets/Units/enemy_units/Big Evil Guy.png
+Boss_Tower.tres::Resource/Boss_Tower::7225610355745222342::1776442391::0::1::::<><><>0<>0<><>::uid://oxhf3g6q1xpu::::res://Resources/Classes/Bosses/BossTower.gd<>uid://eht4p864qijt::::res://Assets/Sprites/Heal Coil.png
+::res://Resources/Classes/Flamethrower/::1776445055
 Flamethrower.gd::GDScript::3420269348757761769::1776295429::0::1::::Flamethrower<>Unit_Interaction<><>0<>0<><>::
-FlameThrower.tres::Resource/Flamethrower::8112108764053471693::1776441969::0::1::::<><><>0<>0<><>::uid://boy2lo7qhecj6::::res://Resources/Classes/Flamethrower/Flamethrower.gd<>uid://dfvv0pqt76r2y::::res://Assets/Units/player_units/the Fire Thrower.png
-::res://Resources/Classes/Grenadier/::1776441969
+FlameThrower.tres::Resource/Flamethrower::8112108764053471693::1776445055::0::1::::<><><>0<>0<><>::uid://boy2lo7qhecj6::::res://Resources/Classes/Flamethrower/Flamethrower.gd<>uid://dfvv0pqt76r2y::::res://Assets/Units/player_units/the Fire Thrower.png
+::res://Resources/Classes/Grenadier/::1776443398
 Grenadier.gd::GDScript::9181954518635487785::1776295429::0::1::::Grenadier<>Unit_Interaction<><>0<>0<><>::
-Grenadier_Resource.tres::Resource/Grenadier::1065336877017582754::1776441969::0::1::::<><><>0<>0<><>::uid://d322pjscifge8::::res://Resources/Classes/Grenadier/Grenadier.gd<>uid://dd50ykl80cctt::::res://Assets/Units/player_units/the Grenadier.png
+Grenadier_Resource.tres::Resource/Grenadier::1065336877017582754::1776443398::0::1::::<><><>0<>0<><>::uid://d322pjscifge8::::res://Resources/Classes/Grenadier/Grenadier.gd<>uid://dd50ykl80cctt::::res://Assets/Units/player_units/the Grenadier.png
 ::res://Resources/Classes/Hunter Enemy/::1776441969
 Hunter_class.gd::GDScript::1373667750830465457::1776441969::0::1::::Hunter_enemy<>Unit_Interaction<><>0<>0<><>::
 Hunter_Class.tres::Resource/Hunter_enemy::2981084214838229132::1776441969::0::1::::<><><>0<>0<><>::uid://ttodv433y51f::::res://Resources/Classes/Hunter Enemy/Hunter_class.gd<>uid://1rdl85pvi5kc::::res://Assets/Units/enemy_units/Goblin in bush (hunter).png
 ::res://Resources/Classes/Medic/::1776441969
 Medic.gd::GDScript::4931697085435066734::1776441969::0::1::::Medic<>Unit_Interaction<><>0<>0<><>::
 Medic.tres::Resource/Medic::4703425515501780318::1776441969::0::1::::<><><>0<>0<><>::uid://cci7liaxfi0a1::::res://Resources/Classes/Medic/Medic.gd<>uid://dr8otjekdtyhb::::res://Assets/Units/player_units/the Physician.png
-::res://Resources/Classes/Musketeer/::1776441969
-Musketeer.gd::GDScript::8314512724602559576::1776441969::0::1::::Musketeer<>Unit_Interaction<><>0<>0<><>::
-Musketeer.tres::Resource/Musketeer::4023971751954924623::1776441969::0::1::::<><><>0<>0<><>::uid://dqpu2seyrj8dw::::res://Resources/Classes/Musketeer/Musketeer.gd<>uid://chew502s54dp3::::res://Assets/Units/player_units/the Musketeer.png
+::res://Resources/Classes/Musketeer/::1776443269
+Musketeer.gd::GDScript::8314512724602559576::1776443253::0::1::::Musketeer<>Unit_Interaction<><>0<>0<><>::
+Musketeer.tres::Resource/Musketeer::4023971751954924623::1776443269::0::1::::<><><>0<>0<><>::uid://dqpu2seyrj8dw::::res://Resources/Classes/Musketeer/Musketeer.gd<>uid://chew502s54dp3::::res://Assets/Units/player_units/the Musketeer.png
 ::res://Resources/Classes/Tank/::1776441969
 Class_Tank.tres::Resource/Tank::7700148696652403654::1776441969::0::1::::<><><>0<>0<><>::uid://cbjujf0ehx6ue::::res://Resources/Classes/Tank/Tank.gd<>uid://deaetpu8dgtj5::::res://Assets/Units/player_units/the Landschnekt.png
 Tank.gd::GDScript::4862840324240143504::1776441969::0::1::::Tank<>Unit_Interaction<><>0<>0<><>::

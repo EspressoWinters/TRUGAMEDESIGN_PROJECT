@@ -111,6 +111,9 @@ func start_turn():
 	if _active_unit.unit_role.turns_left_on_fire > 0 and _active_unit.unit_role.on_fire == true:
 		apply_damage(_active_unit.cell,fire_dot_damage,null, false)
 		_active_unit.unit_role.turns_left_on_fire -= 1
+		if _active_unit.unit_role.turns_left_on_fire == 0:
+			_active_unit.unit_role.on_fire = false
+			_active_unit.update_fire_vfx()
 	elif _active_unit.unit_role.turns_left_on_fire == 0 and _active_unit.unit_role.on_fire == true:
 		_active_unit.unit_role.on_fire = false
 		_active_unit.update_fire_vfx()
@@ -743,7 +746,7 @@ func unit_ability():
 						u.unit_role.turns_left_on_fire = 0
 						u.update_fire_vfx()
 						SoundManager._play_explosionSFX()
-						apply_damage(unit, flame_explosion_damage, _active_unit, false)
+						apply_damage(unit, flame_explosion_damage, null, false)
 					else:
 						continue
 				_active_unit.unit_role.explodering = false
