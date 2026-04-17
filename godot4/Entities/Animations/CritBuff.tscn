@@ -1,0 +1,43 @@
+[gd_scene format=3 uid="uid://dbalijummpd14"]
+
+[ext_resource type="Texture2D" uid="uid://dnjaci3dtj6uv" path="res://Assets/Sprites/Crit sprite sheet (in front of musketeer).png" id="1_fr3qk"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8e2u4"]
+atlas = ExtResource("1_fr3qk")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2k7oi"]
+atlas = ExtResource("1_fr3qk")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7lb0i"]
+atlas = ExtResource("1_fr3qk")
+region = Rect2(32, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_101qu"]
+atlas = ExtResource("1_fr3qk")
+region = Rect2(48, 0, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_c31vo"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8e2u4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2k7oi")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7lb0i")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_101qu")
+}],
+"loop": true,
+"name": &"default",
+"speed": 8.0
+}]
+
+[node name="CritBuff" type="AnimatedSprite2D" unique_id=2073705111]
+sprite_frames = SubResource("SpriteFrames_c31vo")
+frame_progress = 0.44640124

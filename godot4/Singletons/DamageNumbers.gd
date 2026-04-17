@@ -11,18 +11,24 @@ func display_number(value: int, position: Vector2, is_critical: bool = false):
 	number.z_index = 5
 	
 	var settings = LabelSettings.new()
-	
+	var text_to_display = str(abs(value))
+	if is_critical:
+		text_to_display += "!!!"
+	number.text = text_to_display
 	#this handles the color of the damage
 	var color = Color.WHITE
 	if is_critical:
-		color = Color.DARK_RED
+		color = Color.RED
 	elif value == 0:
 		color = Color.BLACK
 	elif value < 0:
 		color = Color.GREEN    #negative numbers show as green for healing
 	
 	settings.font_color = color
-	settings.font_size = 12
+	if is_critical:
+		settings.font_size = 20
+	else:
+		settings.font_size = 12
 	settings.outline_color = Color.BLACK
 	settings.outline_size = 2
 	number.label_settings = settings

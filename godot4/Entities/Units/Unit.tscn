@@ -4,6 +4,8 @@
 [ext_resource type="Resource" uid="uid://bj7vassh2i26e" path="res://Entities/GameBoard/Grid.tres" id="2"]
 [ext_resource type="Texture2D" uid="uid://b5ghlcxjxmmgw" path="res://Entities/Units/unit_shadow.svg" id="3"]
 [ext_resource type="Texture2D" uid="uid://2ufjgbg3frne" path="res://Assets/Sprites/Just fire Sheet.png" id="4_nuw8c"]
+[ext_resource type="PackedScene" uid="uid://dbalijummpd14" path="res://Entities/Animations/CritBuff.tscn" id="4_sq8yg"]
+[ext_resource type="PackedScene" uid="uid://cr31ln4ix637f" path="res://Entities/Animations/TauntBuff.tscn" id="5_1f3w0"]
 
 [sub_resource type="Curve2D" id="Curve2D_ybgvn"]
 
@@ -147,7 +149,19 @@ visible = false
 scale = Vector2(1.2, 1.2)
 sprite_frames = SubResource("SpriteFrames_y12fs")
 autoplay = "default"
-frame_progress = 0.123882316
+frame_progress = 0.8516327
+
+[node name="CritBuff" parent="." unique_id=2073705111 instance=ExtResource("4_sq8yg")]
+visible = false
+autoplay = "default"
+frame_progress = 0.109227724
+
+[node name="TauntBuff" parent="." unique_id=245278283 instance=ExtResource("5_1f3w0")]
+visible = false
+scale = Vector2(1.2, 1.2)
+autoplay = "default"
+frame = 5
+frame_progress = 0.57605195
 
 [node name="PathFollow2D" type="PathFollow2D" parent="." unique_id=1992455458 groups=["player_units"]]
 rotates = false

@@ -12,6 +12,7 @@ var can_next_turn : bool = true
 @onready var battle_ui: Panel = $CanvasLayer/BattleUI
 @onready var combat_end_label_ui = $CanvasLayer/CombatEndUi/Label
 @onready var backtohub_ui = $BackToHubButton
+@onready var settings_ui = %SettingsPanel
 
 func _ready() -> void:
 	var current_level = get_tree().current_scene.name
@@ -55,3 +56,7 @@ func _on_base_button_pressed() -> void:
 func _on_back_to_hub_button_pressed() -> void:
 	get_tree().paused = false
 	get_tree().change_scene_to_file("res://Levels/Hub/Hub.tscn")
+
+
+func _on_settings_button_pressed() -> void:
+	settings_ui.visible = true

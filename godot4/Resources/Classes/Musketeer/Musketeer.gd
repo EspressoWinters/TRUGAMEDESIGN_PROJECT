@@ -45,23 +45,24 @@ func get_attackable_cells(origin_cell : Vector2, caller_name : String, direction
 	return attackable_cells
 
 func attack_roll(attacker : Unit) -> int:
+	self.crit = false
 	var die1 = randi_range(1, 6)
 	var die2 = randi_range(1, 6)
-	var crit = randf_range(0.0,100.0) #using float for percentage
+	var crit_roll = randf_range(0.0,100.0) #using float for percentage
 	
 	var marksmen_luck = luck + 5 + ability_luck
 	
 	var total_damage: int
 	#accesses the modifier from the attacker's unit_role
 	var modifier = attacker.unit_role.attack_stat
-	if crit <= marksmen_luck:
+	if crit_roll <= marksmen_luck:
 		var crit_multiplier = 3.0
 		print("CRITICAL HIT!")
 		total_damage = ((die1 + die2 + modifier) * crit_multiplier)
-		crit = true
+		self.crit = true
 	else:
 		total_damage = (die1 + die2 + modifier)
-		crit = false
+		self.crit = false
 	print(total_damage)
 	
 	return total_damage
@@ -74,10 +75,11 @@ func ability(unit: Unit):
 	if luck_charges > 0 and not has_ablilitied:
 		ability_luck = 100
 		luck_charges -= 1
-		print("Musket is lucky")
+		unit.crit_buff.visible = true
+		GameConsole.log_message("COMBAT","Musket is lucky. Has %d charges left" % luck_charges)
 		has_ablilitied = true
 	else:
-		print("No Musket charges left!")
+		GameConsole.log_message("ERROR","No Musket charges left!")
 
 func passive(unit: Unit):
 	pass

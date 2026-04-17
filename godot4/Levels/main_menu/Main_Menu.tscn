@@ -1,8 +1,12 @@
 [gd_scene format=3 uid="uid://cqp1aa03mgbaj"]
 
 [ext_resource type="Script" uid="uid://ck6347g4l1xuy" path="res://Levels/main_menu/main_menu.gd" id="1_ehjm0"]
+[ext_resource type="Script" uid="uid://dauf5i8tiom0f" path="res://Levels/main_menu/Settings.gd" id="2_5dum7"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_rg281"]
+bg_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ehjm0"]
 bg_color = Color(0, 0, 0, 1)
 
 [node name="MainMenu" type="Control" unique_id=2081424531]
@@ -70,11 +74,118 @@ custom_minimum_size = Vector2(50, 25)
 layout_mode = 2
 text = "RESET SAVE"
 
+[node name="SettingsButton" type="Button" parent="CanvasLayer/Panel/VBoxContainer/VBoxContainer2" unique_id=1357483398]
+layout_mode = 2
+text = "SETTINGS"
+
 [node name="QuitButton" type="Button" parent="CanvasLayer/Panel/VBoxContainer/VBoxContainer2" unique_id=1007707393]
 custom_minimum_size = Vector2(100, 25)
 layout_mode = 2
-text = "QUIT"
+text = "SUPERQUIT"
+
+[node name="SettingsPanel" type="Panel" parent="CanvasLayer/Panel" unique_id=1860750655]
+visible = false
+custom_minimum_size = Vector2(200, 250)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_ehjm0")
+script = ExtResource("2_5dum7")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/Panel/SettingsPanel" unique_id=360576613]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="CanvasLayer/Panel/SettingsPanel/VBoxContainer" unique_id=1377728890]
+layout_mode = 2
+text = "MASTER VOLUME"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="MasterVolume" type="HSlider" parent="CanvasLayer/Panel/SettingsPanel/VBoxContainer" unique_id=7587565]
+unique_name_in_owner = true
+layout_mode = 2
+max_value = 1.0
+step = 0.001
+value = 0.2
+
+[node name="MarginContainer4" type="MarginContainer" parent="CanvasLayer/Panel/SettingsPanel/VBoxContainer" unique_id=1875787784]
+custom_minimum_size = Vector2(0, 25)
+layout_mode = 2
+
+[node name="Label2" type="Label" parent="CanvasLayer/Panel/SettingsPanel/VBoxContainer" unique_id=1584548689]
+layout_mode = 2
+text = "SFX VOLUME"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="SFXVolume" type="HSlider" parent="CanvasLayer/Panel/SettingsPanel/VBoxContainer" unique_id=1667837081]
+unique_name_in_owner = true
+layout_mode = 2
+max_value = 1.0
+step = 0.001
+value = 0.5
+
+[node name="MarginContainer2" type="MarginContainer" parent="CanvasLayer/Panel/SettingsPanel/VBoxContainer" unique_id=1329187109]
+custom_minimum_size = Vector2(0, 25)
+layout_mode = 2
+
+[node name="Label3" type="Label" parent="CanvasLayer/Panel/SettingsPanel/VBoxContainer" unique_id=884274671]
+layout_mode = 2
+text = "MUSIC VOLUME"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="MusicVolume" type="HSlider" parent="CanvasLayer/Panel/SettingsPanel/VBoxContainer" unique_id=771505186]
+unique_name_in_owner = true
+layout_mode = 2
+max_value = 1.0
+step = 0.001
+value = 0.5
+
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/Panel/SettingsPanel/VBoxContainer" unique_id=1951106112]
+custom_minimum_size = Vector2(0, 25)
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/Panel/SettingsPanel/VBoxContainer" unique_id=2145055793]
+layout_mode = 2
+
+[node name="BackButton" type="Button" parent="CanvasLayer/Panel/SettingsPanel/VBoxContainer/HBoxContainer" unique_id=1946787940]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+text = "CLOSE"
+
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/Panel/SettingsPanel/VBoxContainer/HBoxContainer" unique_id=2026945321]
+custom_minimum_size = Vector2(90, 0)
+layout_mode = 2
+
+[node name="SuperQuitButton" type="Button" parent="CanvasLayer/Panel/SettingsPanel/VBoxContainer/HBoxContainer" unique_id=1384225403]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+text = "SUPERQUIT"
 
 [connection signal="pressed" from="CanvasLayer/Panel/VBoxContainer/VBoxContainer2/PlayButton" to="." method="_on_play_button_pressed"]
 [connection signal="pressed" from="CanvasLayer/Panel/VBoxContainer/VBoxContainer2/ResetSaveButton" to="." method="_on_reset_save_button_pressed"]
+[connection signal="pressed" from="CanvasLayer/Panel/VBoxContainer/VBoxContainer2/SettingsButton" to="." method="_on_settings_button_pressed"]
 [connection signal="pressed" from="CanvasLayer/Panel/VBoxContainer/VBoxContainer2/QuitButton" to="." method="_on_quit_button_pressed"]
+[connection signal="value_changed" from="CanvasLayer/Panel/SettingsPanel/VBoxContainer/MasterVolume" to="CanvasLayer/Panel/SettingsPanel" method="_on_master_volume_value_changed"]
+[connection signal="value_changed" from="CanvasLayer/Panel/SettingsPanel/VBoxContainer/SFXVolume" to="CanvasLayer/Panel/SettingsPanel" method="_on_sfx_volume_value_changed"]
+[connection signal="value_changed" from="CanvasLayer/Panel/SettingsPanel/VBoxContainer/MusicVolume" to="CanvasLayer/Panel/SettingsPanel" method="_on_music_volume_value_changed"]
+[connection signal="pressed" from="CanvasLayer/Panel/SettingsPanel/VBoxContainer/HBoxContainer/BackButton" to="CanvasLayer/Panel/SettingsPanel" method="_on_back_button_pressed"]
+[connection signal="pressed" from="CanvasLayer/Panel/SettingsPanel/VBoxContainer/HBoxContainer/SuperQuitButton" to="CanvasLayer/Panel/SettingsPanel" method="_on_super_quit_button_pressed"]

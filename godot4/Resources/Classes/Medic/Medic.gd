@@ -5,8 +5,6 @@ var Role = "Medic"
 
 var has_global_healed = false
 #because for some reason in Godot you can't just access parent variables, therefroe 
-func init():
-	attack_range = 3
 
 #think chess king for the attack pattern. I actually have no bloody clue what the attack range is even meant for
 #maybe here this could be for the overlay and another one handles the users choice 
@@ -90,11 +88,11 @@ func ability(unit: Unit):
 				VfxManager.play_vfx("heal_attack", target.global_position)
 				DamageNumbers.display_number(-20, target.global_position, false)
 				target.heal(20) #heal amount
-				print("Healed ally: ", target.name)
+				GameConsole.log_message("COMBAT", "Healed ally: %s" % target.name)
 			else:
 				print("Skipped healing: ", target.name, " (Enemy or invalid or has already global healed)")
 	else:
-		print("Has already global healed this battle")
+		GameConsole.log_message("ERROR","Has already global healed this battle")
 func passive(unit: Unit):
 	var healing_aoe_cells = get_attackable_cells(unit.cell, "passive", Vector2(0,0))
 	return healing_aoe_cells

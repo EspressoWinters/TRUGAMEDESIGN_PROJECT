@@ -6,7 +6,7 @@ var animations := {
 	"fire_attack": preload("res://Entities/Animations/FireAttack.tscn"),
 	"gun_attack": preload("res://Entities/Animations/GunAttack.tscn"),
 	"heal_attack": preload("res://Entities/Animations/HealAttack.tscn"),
-	"slash_attack": preload("res://Entities/Animations/SlashAttack.tscn")
+	"slash_attack": preload("res://Entities/Animations/SlashAttack.tscn"),
 }
 
 func play_vfx(type: String, world_position: Vector2) -> void:

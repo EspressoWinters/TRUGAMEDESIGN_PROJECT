@@ -1,6 +1,8 @@
 [gd_scene format=3 uid="uid://bnhj47p63ostv"]
 
 [ext_resource type="Script" uid="uid://dyki588u1icp1" path="res://Entities/UI/ui.gd" id="1_ibh87"]
+[ext_resource type="Script" uid="uid://di2kce6aunim1" path="res://Entities/UI/game_console.gd" id="2_edw6u"]
+[ext_resource type="Script" uid="uid://dauf5i8tiom0f" path="res://Levels/main_menu/Settings.gd" id="2_y2hlo"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_lt7ac"]
 bg_color = Color(0, 0, 0, 1)
@@ -24,6 +26,9 @@ func _on_attack_button_pressed() -> void:
 func _on_end_turn_button_pressed() -> void:
 	end_turn_requested.emit()
 "
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_edw6u"]
+bg_color = Color(0, 0, 0, 1)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ibh87"]
 bg_color = Color(0, 0, 0, 1)
@@ -79,6 +84,21 @@ layout_mode = 2
 theme_override_font_sizes/font_size = 16
 text = "ATTACK"
 
+[node name="GameConsole" type="RichTextLabel" parent="CanvasLayer/BattleUI" unique_id=577558172]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 150.0
+offset_top = 3.0
+offset_right = -131.0
+offset_bottom = -3.0
+grow_horizontal = 2
+grow_vertical = 2
+horizontal_alignment = 1
+vertical_alignment = 1
+script = ExtResource("2_edw6u")
+
 [node name="HBoxEndTurn" type="HBoxContainer" parent="CanvasLayer/BattleUI" unique_id=200428644]
 layout_mode = 1
 anchors_preset = 6
@@ -93,6 +113,10 @@ grow_horizontal = 0
 grow_vertical = 2
 alignment = 2
 
+[node name="SettingsButton" type="Button" parent="CanvasLayer/BattleUI/HBoxEndTurn" unique_id=1672734528]
+layout_mode = 2
+text = "SETTINGS"
+
 [node name="EndTurnButton" type="Button" parent="CanvasLayer/BattleUI/HBoxEndTurn" unique_id=746316526]
 layout_mode = 2
 text = "End Turn"
@@ -105,10 +129,10 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -20.0
-offset_top = -20.0
-offset_right = 20.0
-offset_bottom = 20.0
+offset_left = -75.0
+offset_top = -90.0
+offset_right = 75.0
+offset_bottom = 90.0
 grow_horizontal = 2
 grow_vertical = 2
 
@@ -150,6 +174,106 @@ offset_right = 50.0
 grow_vertical = 0
 text = "Home"
 
+[node name="SettingsPanel" type="Panel" parent="CanvasLayer" unique_id=517563236]
+unique_name_in_owner = true
+visible = false
+custom_minimum_size = Vector2(200, 0)
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -100.0
+offset_top = -125.0
+offset_right = 100.0
+offset_bottom = 100.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_edw6u")
+script = ExtResource("2_y2hlo")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/SettingsPanel" unique_id=330726702]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 11.0
+offset_top = 6.0
+offset_right = -11.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="CanvasLayer/SettingsPanel/VBoxContainer" unique_id=690468352]
+layout_mode = 2
+text = "MASTER VOLUME"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="MasterVolume" type="HSlider" parent="CanvasLayer/SettingsPanel/VBoxContainer" unique_id=11185674]
+unique_name_in_owner = true
+layout_mode = 2
+max_value = 1.0
+step = 0.001
+value = 0.2
+
+[node name="MarginContainer4" type="MarginContainer" parent="CanvasLayer/SettingsPanel/VBoxContainer" unique_id=1267331051]
+custom_minimum_size = Vector2(0, 25)
+layout_mode = 2
+
+[node name="Label2" type="Label" parent="CanvasLayer/SettingsPanel/VBoxContainer" unique_id=1639814703]
+layout_mode = 2
+text = "SFX VOLUME"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="SFXVolume" type="HSlider" parent="CanvasLayer/SettingsPanel/VBoxContainer" unique_id=1267352025]
+unique_name_in_owner = true
+layout_mode = 2
+max_value = 1.0
+step = 0.001
+value = 1.0
+
+[node name="MarginContainer2" type="MarginContainer" parent="CanvasLayer/SettingsPanel/VBoxContainer" unique_id=1404742941]
+custom_minimum_size = Vector2(0, 25)
+layout_mode = 2
+
+[node name="Label3" type="Label" parent="CanvasLayer/SettingsPanel/VBoxContainer" unique_id=1966515125]
+layout_mode = 2
+text = "MUSIC VOLUME"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="MusicVolume" type="HSlider" parent="CanvasLayer/SettingsPanel/VBoxContainer" unique_id=1205954875]
+unique_name_in_owner = true
+layout_mode = 2
+max_value = 1.0
+step = 0.001
+value = 1.0
+
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/SettingsPanel/VBoxContainer" unique_id=1132437694]
+custom_minimum_size = Vector2(0, 25)
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/SettingsPanel/VBoxContainer" unique_id=1523399923]
+layout_mode = 2
+
+[node name="BackButton" type="Button" parent="CanvasLayer/SettingsPanel/VBoxContainer/HBoxContainer" unique_id=252649386]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+text = "CLOSE"
+
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/SettingsPanel/VBoxContainer/HBoxContainer" unique_id=870836514]
+custom_minimum_size = Vector2(90, 0)
+layout_mode = 2
+
+[node name="SuperQuitButton" type="Button" parent="CanvasLayer/SettingsPanel/VBoxContainer/HBoxContainer" unique_id=1285234124]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+text = "SUPERQUIT"
+
 [node name="BackToHubButton" type="Button" parent="." unique_id=1155264339]
 custom_minimum_size = Vector2(70, 20)
 layout_mode = 1
@@ -162,7 +286,13 @@ text = "BACK TO HUB"
 [connection signal="pressed" from="CanvasLayer/BattleUI/HBoxCharacterMoves/MoveButton" to="." method="_on_move_button_pressed"]
 [connection signal="pressed" from="CanvasLayer/BattleUI/HBoxCharacterMoves/AbilityButton" to="." method="_on_ability_button_pressed"]
 [connection signal="pressed" from="CanvasLayer/BattleUI/HBoxCharacterMoves/AttackButton" to="." method="_on_attack_button_pressed"]
+[connection signal="pressed" from="CanvasLayer/BattleUI/HBoxEndTurn/SettingsButton" to="." method="_on_settings_button_pressed"]
 [connection signal="pressed" from="CanvasLayer/BattleUI/HBoxEndTurn/EndTurnButton" to="." method="_on_end_turn_button_pressed"]
 [connection signal="pressed" from="CanvasLayer/CombatEndUi/ContinueButton" to="." method="_on_continue_button_pressed"]
 [connection signal="pressed" from="CanvasLayer/CombatEndUi/BaseButton" to="." method="_on_base_button_pressed"]
+[connection signal="value_changed" from="CanvasLayer/SettingsPanel/VBoxContainer/MasterVolume" to="CanvasLayer/SettingsPanel" method="_on_master_volume_value_changed"]
+[connection signal="value_changed" from="CanvasLayer/SettingsPanel/VBoxContainer/SFXVolume" to="CanvasLayer/SettingsPanel" method="_on_sfx_volume_value_changed"]
+[connection signal="value_changed" from="CanvasLayer/SettingsPanel/VBoxContainer/MusicVolume" to="CanvasLayer/SettingsPanel" method="_on_music_volume_value_changed"]
+[connection signal="pressed" from="CanvasLayer/SettingsPanel/VBoxContainer/HBoxContainer/BackButton" to="CanvasLayer/SettingsPanel" method="_on_back_button_pressed"]
+[connection signal="pressed" from="CanvasLayer/SettingsPanel/VBoxContainer/HBoxContainer/SuperQuitButton" to="CanvasLayer/SettingsPanel" method="_on_super_quit_button_pressed"]
 [connection signal="pressed" from="BackToHubButton" to="." method="_on_back_to_hub_button_pressed"]

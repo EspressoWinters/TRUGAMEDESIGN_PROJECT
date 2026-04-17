@@ -4,6 +4,14 @@ extends Node
 #lose soundeffect was taken from: https://pixabay.com/sound-effects/film-special-effects-8-bit-video-game-fail-version-3-145479/
 #ui soundeffects(buttonhover/buttonpress): https://ad-sounds.itch.io/fast-ui-sounds-sound-effects
 
+var master_volume: float = 0.2
+var music_volume: float = 1.0
+var sfx_volume: float = 1.0
+
+@onready var master_bus = AudioServer.get_bus_index("Master")
+@onready var music_bus = AudioServer.get_bus_index("Music")
+@onready var sfx_bus = AudioServer.get_bus_index("SFX")
+
 func _ready():
 	get_tree().node_added.connect(_on_node_added);
 	_connect_buttons(get_tree().root)
@@ -61,3 +69,18 @@ func _on_pressed():
 
 func _on_hover():
 	$ButtonHoverSFX.play()
+
+func _on_master_slider_value_changed(value: float) -> void:
+	master_volume = value # Saves the value to the Singleton
+	AudioServer.set_bus_volume_db(master_bus, linear_to_db(value))
+	AudioServer.set_bus_mute(master_bus, value < 0.01)
+
+func _on_music_slider_value_changed(value: float) -> void:
+	music_volume = value # Saves the value to the Singleton
+	AudioServer.set_bus_volume_db(music_bus, linear_to_db(value))
+	AudioServer.set_bus_mute(music_bus, value < 0.01)
+
+func _on_sfx_slider_value_changed(value: float) -> void:
+	sfx_volume = value # Saves the value to the Singleton
+	AudioServer.set_bus_volume_db(sfx_bus, linear_to_db(value))
+	AudioServer.set_bus_mute(sfx_bus, value < 0.01)

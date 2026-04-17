@@ -151,6 +151,8 @@ func check_and_attack_adjacent():
 		if d <= 1:
 			VfxManager.play_vfx("slash_attack", unit.global_position)
 			gameboard.apply_damage(unit.cell, unit_role.attack_roll(self), self, unit_role.crit)
+			#added a break so it only hits one unit when the condition is met
+			break
 
 func _on_container_mouse_entered() -> void:
 	$Area2D/Panel/HealthLabel.text = "HP: %d" % [unit_role.current_health]

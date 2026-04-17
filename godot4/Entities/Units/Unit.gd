@@ -26,6 +26,8 @@ var is_taunting: bool = false
 var unit_resource: Unit_Interaction
 @onready var sprite: Sprite2D = $PathFollow2D/Sprite
 @onready var on_fire_vfx: AnimatedSprite2D = $OnFireAnimation
+@onready var crit_buff: AnimatedSprite2D = $CritBuff
+@onready var taunt_buff: AnimatedSprite2D = $TauntBuff
 
 @export var max_health: int
 var gameboard: GameBoard
@@ -189,3 +191,6 @@ func _on_container_mouse_entered() -> void:
 
 func _on_container_mouse_exited() -> void:
 	$Area2D/Panel.visible = false
+
+func update_fire_vfx():
+	on_fire_vfx.visible = unit_role.on_fire

@@ -11,3 +11,6 @@ func _on_quit_button_pressed() -> void:
 
 func _on_reset_save_button_pressed() -> void:
 	PartyManager.reset_save()
+
+func _on_settings_button_pressed() -> void:
+	$CanvasLayer/Panel/SettingsPanel.visible = true

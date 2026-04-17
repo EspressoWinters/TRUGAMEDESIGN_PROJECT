@@ -17,34 +17,22 @@
 [sub_resource type="Resource" id="Resource_pia1p"]
 script = ExtResource("12_ly788")
 skin = ExtResource("13_pia1p")
-max_hp = 55
-current_health = 55
-attack_stat = 6
-defense = 8
+current_health = 20
 
 [sub_resource type="Resource" id="Resource_l8gxr"]
 script = ExtResource("12_ly788")
 skin = ExtResource("13_pia1p")
-max_hp = 55
-current_health = 55
-attack_stat = 6
-defense = 8
+current_health = 20
 
 [sub_resource type="Resource" id="Resource_owndv"]
 script = ExtResource("12_ly788")
 skin = ExtResource("13_pia1p")
-max_hp = 55
-current_health = 55
-attack_stat = 6
-defense = 8
+current_health = 20
 
 [sub_resource type="Resource" id="Resource_ly788"]
 script = ExtResource("12_ly788")
 skin = ExtResource("13_pia1p")
-max_hp = 55
-current_health = 55
-attack_stat = 6
-defense = 8
+current_health = 20
 
 [node name="Level_9_boss" type="Node2D" unique_id=482813882]
 script = ExtResource("1_l8gxr")
@@ -70,45 +58,50 @@ unique_name_in_owner = true
 [node name="Ui" parent="." unique_id=1993505447 instance=ExtResource("11_iecqy")]
 unique_name_in_owner = true
 
-[node name="Boss_Tower" parent="." unique_id=646607302 instance=ExtResource("10_l8gxr")]
-position = Vector2(549.85803, 54.173584)
-max_health = 40
+[node name="Boss_Tower" parent="." unique_id=393416970 instance=ExtResource("10_l8gxr")]
+position = Vector2(73.88428, 279.81088)
+max_health = null
+initiative_stat = null
 
-[node name="Boss_Tower2" parent="." unique_id=1119030274 instance=ExtResource("10_l8gxr")]
-position = Vector2(53.121002, 55.30253)
-max_health = 40
+[node name="Boss_Tower2" parent="." unique_id=620023933 instance=ExtResource("10_l8gxr")]
+position = Vector2(537.266, 281.35034)
+max_health = null
+initiative_stat = null
 
-[node name="Boss_Tower3" parent="." unique_id=667375023 instance=ExtResource("10_l8gxr")]
-position = Vector2(53.121002, 280.52762)
-max_health = 40
+[node name="Boss_Tower3" parent="." unique_id=96344777 instance=ExtResource("10_l8gxr")]
+position = Vector2(535.7265, 55.047638)
+max_health = null
+initiative_stat = null
 
-[node name="Boss_Tower4" parent="." unique_id=595866033 instance=ExtResource("10_l8gxr")]
-position = Vector2(550.98694, 279.39865)
-max_health = 40
+[node name="Boss_Tower4" parent="." unique_id=1071218799 instance=ExtResource("10_l8gxr")]
+position = Vector2(71.831635, 52.995014)
+max_health = null
+initiative_stat = null
 
-[node name="Boss_main" parent="." unique_id=393416970 instance=ExtResource("9_pia1p")]
-position = Vector2(540.3964, 167.79448)
-max_health = 100
-
-[node name="BigEnemy" parent="." unique_id=1685886051 instance=ExtResource("11_owndv")]
-position = Vector2(87.123856, 265.44843)
+[node name="BigEnemy" parent="." unique_id=1793360330 instance=ExtResource("11_owndv")]
+position = Vector2(105.70007, 85.83713)
 unit_role = SubResource("Resource_pia1p")
-max_health = 55
+initiative_stat = null
 
-[node name="BigEnemy2" parent="." unique_id=1756211585 instance=ExtResource("11_owndv")]
-position = Vector2(518.3819, 261.49713)
+[node name="BigEnemy2" parent="." unique_id=923108916 instance=ExtResource("11_owndv")]
+position = Vector2(519.8186, 85.83713)
 unit_role = SubResource("Resource_l8gxr")
-max_health = 55
+initiative_stat = null
 
-[node name="BigEnemy3" parent="." unique_id=1400514126 instance=ExtResource("11_owndv")]
-position = Vector2(520.63983, 71.26944)
+[node name="BigEnemy3" parent="." unique_id=390011951 instance=ExtResource("11_owndv")]
+position = Vector2(100.56848, 261.3372)
 unit_role = SubResource("Resource_owndv")
-max_health = 55
+initiative_stat = null
 
-[node name="BigEnemy4" parent="." unique_id=308305809 instance=ExtResource("11_owndv")]
-position = Vector2(71.3186, 69.01154)
+[node name="BigEnemy4" parent="." unique_id=1947877777 instance=ExtResource("11_owndv")]
+position = Vector2(503.9107, 248.50821)
 unit_role = SubResource("Resource_ly788")
-max_health = 55
+initiative_stat = null
+
+[node name="Boss_main" parent="." unique_id=401687941 instance=ExtResource("9_pia1p")]
+position = Vector2(579.8581, 166.91609)
+max_health = null
+initiative_stat = null
 
 [connection signal="accept_pressed" from="Cursor" to="." method="_on_Cursor_accept_pressed"]
 [connection signal="moved" from="Cursor" to="." method="_on_Cursor_moved"]

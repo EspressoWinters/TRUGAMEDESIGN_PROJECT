@@ -108,7 +108,6 @@ curve = SubResource("Curve2D_mu52m")
 script = ExtResource("1_ytsc7")
 unit_role = ExtResource("2_qcre3")
 grid = ExtResource("2_arthw")
-max_health = 30
 
 [node name="OnFireAnimation" type="AnimatedSprite2D" parent="." unique_id=320370178]
 visible = false

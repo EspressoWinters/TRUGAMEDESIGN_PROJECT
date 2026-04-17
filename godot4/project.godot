@@ -19,6 +19,10 @@ run/main_scene="uid://cqp1aa03mgbaj"
 config/features=PackedStringArray("4.6")
 config/icon="res://icon.png"
 
+[audio]
+
+buses/default_bus_layout="uid://b25jiwa27qinb"
+
 [autoload]
 
 DamageNumbers="*uid://dpx4yq3ulp1kl"

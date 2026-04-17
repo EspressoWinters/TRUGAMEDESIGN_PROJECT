@@ -63,7 +63,7 @@ animations = [{
 }],
 "loop": false,
 "name": &"default",
-"speed": 10.0
+"speed": 8.0
 }]
 
 [node name="FireAttack" type="AnimatedSprite2D" unique_id=126772705]

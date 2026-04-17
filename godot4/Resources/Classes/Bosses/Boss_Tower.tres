@@ -1,7 +1,7 @@
 [gd_resource type="Resource" script_class="Boss_Tower" format=3 uid="uid://da7e0nnskc0ja"]
 
 [ext_resource type="Script" uid="uid://oxhf3g6q1xpu" path="res://Resources/Classes/Bosses/BossTower.gd" id="1_h4bnf"]
-[ext_resource type="Texture2D" uid="uid://duwxqnvnxe1fl" path="res://Assets/Units/enemy_units/Tesla Coil (tower enemy).png" id="2_7bdr7"]
+[ext_resource type="Texture2D" uid="uid://eht4p864qijt" path="res://Assets/Sprites/Heal Coil.png" id="2_7bdr7"]
 
 [resource]
 script = ExtResource("1_h4bnf")

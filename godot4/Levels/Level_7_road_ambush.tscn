@@ -20,6 +20,41 @@ script = ExtResource("13_rnh6h")
 skin = ExtResource("14_pfsma")
 current_health = 20
 
+[sub_resource type="Resource" id="Resource_n7ofg"]
+script = ExtResource("9_qatd1")
+skin = ExtResource("10_k4cgl")
+current_health = 20
+
+[sub_resource type="Resource" id="Resource_k4cgl"]
+script = ExtResource("9_qatd1")
+skin = ExtResource("10_k4cgl")
+current_health = 20
+
+[sub_resource type="Resource" id="Resource_rnh6h"]
+script = ExtResource("9_qatd1")
+skin = ExtResource("10_k4cgl")
+current_health = 20
+
+[sub_resource type="Resource" id="Resource_1dv04"]
+script = ExtResource("9_qatd1")
+skin = ExtResource("10_k4cgl")
+current_health = 20
+
+[sub_resource type="Resource" id="Resource_vojus"]
+script = ExtResource("9_qatd1")
+skin = ExtResource("10_k4cgl")
+current_health = 20
+
+[sub_resource type="Resource" id="Resource_a7jwu"]
+script = ExtResource("9_qatd1")
+skin = ExtResource("10_k4cgl")
+current_health = 20
+
+[sub_resource type="Resource" id="Resource_qatd1"]
+script = ExtResource("9_qatd1")
+skin = ExtResource("10_k4cgl")
+current_health = 20
+
 [sub_resource type="Resource" id="Resource_pnbns"]
 script = ExtResource("13_rnh6h")
 skin = ExtResource("14_pfsma")
@@ -36,33 +71,13 @@ skin = ExtResource("14_pfsma")
 current_health = 20
 
 [sub_resource type="Resource" id="Resource_6qxd6"]
-script = ExtResource("9_qatd1")
-skin = ExtResource("10_k4cgl")
-current_health = 20
-
-[sub_resource type="Resource" id="Resource_367gl"]
-script = ExtResource("9_qatd1")
-skin = ExtResource("10_k4cgl")
-current_health = 20
-
-[sub_resource type="Resource" id="Resource_n7ofg"]
-script = ExtResource("9_qatd1")
-skin = ExtResource("10_k4cgl")
-current_health = 20
-
-[sub_resource type="Resource" id="Resource_a7jwu"]
 script = ExtResource("13_rnh6h")
 skin = ExtResource("14_pfsma")
 current_health = 20
 
-[sub_resource type="Resource" id="Resource_k4cgl"]
-script = ExtResource("9_qatd1")
-skin = ExtResource("10_k4cgl")
-current_health = 20
-
-[sub_resource type="Resource" id="Resource_qatd1"]
-script = ExtResource("9_qatd1")
-skin = ExtResource("10_k4cgl")
+[sub_resource type="Resource" id="Resource_367gl"]
+script = ExtResource("13_rnh6h")
+skin = ExtResource("14_pfsma")
 current_health = 20
 
 [node name="Level_7_road_ambush" type="Node2D" unique_id=482813882]
@@ -90,44 +105,69 @@ unique_name_in_owner = true
 unique_name_in_owner = true
 
 [node name="HunterEnemy" parent="." unique_id=2053675038 instance=ExtResource("12_1dv04")]
-position = Vector2(72.986725, 288.10367)
+position = Vector2(271.1427, 255.46164)
 unit_role = SubResource("Resource_0vrpe")
-
-[node name="HunterEnemy2" parent="." unique_id=2097559216 instance=ExtResource("12_1dv04")]
-position = Vector2(194.06638, 42.21884)
-unit_role = SubResource("Resource_pnbns")
-
-[node name="HunterEnemy3" parent="." unique_id=1959636781 instance=ExtResource("12_1dv04")]
-position = Vector2(436.8466, 40.976997)
-unit_role = SubResource("Resource_0adkj")
-
-[node name="HunterEnemy4" parent="." unique_id=1236412594 instance=ExtResource("12_1dv04")]
-position = Vector2(405.1796, 235.94626)
-unit_role = SubResource("Resource_m2ebj")
+initiative_stat = null
 
 [node name="BasicEnemy" parent="." unique_id=393416970 instance=ExtResource("8_a7jwu")]
-position = Vector2(270.43967, 254.57391)
-unit_role = SubResource("Resource_6qxd6")
-
-[node name="BasicEnemy2" parent="." unique_id=725575224 instance=ExtResource("8_a7jwu")]
-position = Vector2(165.504, 81.33688)
-unit_role = SubResource("Resource_367gl")
-
-[node name="BasicEnemy3" parent="." unique_id=1863596348 instance=ExtResource("8_a7jwu")]
-position = Vector2(436.22568, 73.885826)
+position = Vector2(76.142624, 153.34319)
 unit_role = SubResource("Resource_n7ofg")
+initiative_stat = null
 
-[node name="HunterEnemy5" parent="." unique_id=1676973851 instance=ExtResource("12_1dv04")]
-position = Vector2(537.4716, 222.61954)
-unit_role = SubResource("Resource_a7jwu")
-
-[node name="BasicEnemy4" parent="." unique_id=1813907260 instance=ExtResource("8_a7jwu")]
-position = Vector2(478.97168, 74.316864)
+[node name="BasicEnemy2" parent="." unique_id=633835771 instance=ExtResource("8_a7jwu")]
+position = Vector2(216.23479, 92.27739)
 unit_role = SubResource("Resource_k4cgl")
+initiative_stat = null
 
-[node name="BasicEnemy5" parent="." unique_id=609157608 instance=ExtResource("8_a7jwu")]
-position = Vector2(199.30054, 80.47476)
+[node name="BasicEnemy3" parent="." unique_id=1474491562 instance=ExtResource("8_a7jwu")]
+position = Vector2(487.69537, 170.2774)
+unit_role = SubResource("Resource_rnh6h")
+initiative_stat = null
+
+[node name="BasicEnemy4" parent="." unique_id=1017825012 instance=ExtResource("8_a7jwu")]
+position = Vector2(475.37958, 109.21159)
+unit_role = SubResource("Resource_1dv04")
+initiative_stat = null
+
+[node name="BasicEnemy5" parent="." unique_id=876630427 instance=ExtResource("8_a7jwu")]
+position = Vector2(414.8269, 91.25107)
+unit_role = SubResource("Resource_vojus")
+initiative_stat = null
+
+[node name="BasicEnemy6" parent="." unique_id=1590997061 instance=ExtResource("8_a7jwu")]
+position = Vector2(80.24791, 197.98795)
+unit_role = SubResource("Resource_a7jwu")
+initiative_stat = null
+
+[node name="BasicEnemy7" parent="." unique_id=364398223 instance=ExtResource("8_a7jwu")]
+position = Vector2(175.18214, 79.96159)
 unit_role = SubResource("Resource_qatd1")
+initiative_stat = null
+
+[node name="HunterEnemy2" parent="." unique_id=559342789 instance=ExtResource("12_1dv04")]
+position = Vector2(196.73476, 49.172104)
+unit_role = SubResource("Resource_pnbns")
+initiative_stat = null
+
+[node name="HunterEnemy3" parent="." unique_id=304426158 instance=ExtResource("12_1dv04")]
+position = Vector2(443.56378, 46.60632)
+unit_role = SubResource("Resource_0adkj")
+initiative_stat = null
+
+[node name="HunterEnemy4" parent="." unique_id=1691361118 instance=ExtResource("12_1dv04")]
+position = Vector2(408.15588, 239.55374)
+unit_role = SubResource("Resource_m2ebj")
+initiative_stat = null
+
+[node name="HunterEnemy5" parent="." unique_id=326231179 instance=ExtResource("12_1dv04")]
+position = Vector2(87.43213, 248.79059)
+unit_role = SubResource("Resource_6qxd6")
+initiative_stat = null
+
+[node name="HunterEnemy6" parent="." unique_id=1221997210 instance=ExtResource("12_1dv04")]
+position = Vector2(68.44527, 107.672134)
+unit_role = SubResource("Resource_367gl")
+initiative_stat = null
 
 [connection signal="accept_pressed" from="Cursor" to="." method="_on_Cursor_accept_pressed"]
 [connection signal="moved" from="Cursor" to="." method="_on_Cursor_moved"]
