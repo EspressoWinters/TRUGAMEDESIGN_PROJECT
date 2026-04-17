@@ -9,7 +9,7 @@
 
 [sub_resource type="Curve2D" id="Curve2D_mu52m"]
 
-[sub_resource type="Resource" id="Resource_4bqjj"]
+[sub_resource type="Resource" id="Resource_ecsy4"]
 script = ExtResource("2_4bqjj")
 skin = ExtResource("5_4bqjj")
 max_hp = 1000
@@ -112,9 +112,9 @@ bg_color = Color(0, 0, 0, 1)
 [node name="TrainingDummy" type="Path2D" unique_id=393416970 groups=["enemy_units"]]
 curve = SubResource("Curve2D_mu52m")
 script = ExtResource("1_on5c7")
-unit_role = SubResource("Resource_4bqjj")
+unit_role = SubResource("Resource_ecsy4")
 grid = ExtResource("3_4bqjj")
-max_health = 20
+max_health = 1000
 
 [node name="OnFireAnimation" type="AnimatedSprite2D" parent="." unique_id=720144199]
 visible = false
@@ -135,6 +135,7 @@ texture = ExtResource("2_jxkbc")
 texture = ExtResource("5_4bqjj")
 
 [node name="Healthbar" type="ProgressBar" parent="." unique_id=1884163062 groups=["enemy_units"]]
+z_index = 1
 offset_left = -8.0
 offset_top = -12.0
 offset_right = 8.0

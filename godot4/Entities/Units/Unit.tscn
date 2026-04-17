@@ -180,6 +180,7 @@ libraries/ = SubResource("AnimationLibrary_5dan3")
 autoplay = &"idle"
 
 [node name="Healthbar" type="ProgressBar" parent="." unique_id=2019113874 groups=["player_units"]]
+z_index = 1
 offset_left = -8.0
 offset_top = -12.0
 offset_right = 8.0
@@ -198,6 +199,7 @@ shape = SubResource("RectangleShape2D_nuw8c")
 
 [node name="Panel" type="Panel" parent="Area2D" unique_id=1946542231 groups=["player_units"]]
 visible = false
+z_index = 2
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -210,6 +212,7 @@ grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_ydal0")
 
 [node name="HealthLabel" type="Label" parent="Area2D/Panel" unique_id=1063421964 groups=["player_units"]]
+z_index = 2
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
