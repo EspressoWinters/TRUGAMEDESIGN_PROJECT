@@ -6,7 +6,8 @@
 [resource]
 script = ExtResource("1_ygmb2")
 skin = ExtResource("2_ygmb2")
-max_hp = 30
-current_health = 30
-attack_stat = 9
+max_hp = 35
+current_health = 35
+attack_stat = 10
+speed = 4
 defense = 6

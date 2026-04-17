@@ -56,7 +56,7 @@ func attack_roll(attacker : Unit) -> int:
 	#accesses the modifier from the attacker's unit_role
 	var modifier = attacker.unit_role.attack_stat
 	if crit_roll <= marksmen_luck:
-		var crit_multiplier = 3.0
+		var crit_multiplier = 2.0
 		print("CRITICAL HIT!")
 		total_damage = ((die1 + die2 + modifier) * crit_multiplier)
 		self.crit = true

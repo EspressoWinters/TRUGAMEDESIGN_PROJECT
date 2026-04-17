@@ -458,14 +458,6 @@ func _move_active_unit(new_cell: Vector2) -> void:
 	_has_moved_this_turn = true
 
 
-
-
-
-#this block is going to be where we attack the cells
-#just basically see if any of the units get looked up in the unit dictionary and then any unit it can find they will then take damage from i 
-func attack_cell(attacked_cells : Array):
-	pass
-
 ## Selects the unit in the `cell` if there's one there.
 ## Sets it as the `_active_unit` and draws its walkable cells and interactive move path. 
 func _select_unit(cell: Vector2) -> void:

@@ -7,6 +7,6 @@
 script = ExtResource("1_l4cp4")
 skin = ExtResource("2_xn5pq")
 max_hp = 30
-attack_stat = 14
+attack_stat = 10
 speed = 0
 defense = 1
