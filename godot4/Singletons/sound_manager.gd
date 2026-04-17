@@ -71,16 +71,16 @@ func _on_hover():
 	$ButtonHoverSFX.play()
 
 func _on_master_slider_value_changed(value: float) -> void:
-	master_volume = value # Saves the value to the Singleton
+	master_volume = value
 	AudioServer.set_bus_volume_db(master_bus, linear_to_db(value))
 	AudioServer.set_bus_mute(master_bus, value < 0.01)
 
 func _on_music_slider_value_changed(value: float) -> void:
-	music_volume = value # Saves the value to the Singleton
+	music_volume = value
 	AudioServer.set_bus_volume_db(music_bus, linear_to_db(value))
 	AudioServer.set_bus_mute(music_bus, value < 0.01)
 
 func _on_sfx_slider_value_changed(value: float) -> void:
-	sfx_volume = value # Saves the value to the Singleton
+	sfx_volume = value
 	AudioServer.set_bus_volume_db(sfx_bus, linear_to_db(value))
 	AudioServer.set_bus_mute(sfx_bus, value < 0.01)

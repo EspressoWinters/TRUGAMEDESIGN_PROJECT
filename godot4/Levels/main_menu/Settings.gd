@@ -9,7 +9,7 @@ extends Panel
 
 func _ready():
 	var current_level = get_tree().current_scene.name
-	# Sync sliders to the values stored in the Singleton
+	#sync sliders to the values stored in the Singleton to make slider changes persist throughout scene changes
 	master_volume.value = SoundManager.master_volume
 	music_volume.value = SoundManager.music_volume
 	sfx_volume.value = SoundManager.sfx_volume
