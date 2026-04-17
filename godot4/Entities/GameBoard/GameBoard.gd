@@ -791,6 +791,9 @@ func _handle_unit_death(cell: Vector2) -> void:
 			PartyManager.fire_unit(party_index)
 			print("Unit removed from permanent party.")
 	
+	#it is now walkable!!!
+	_walkable_cells.append(cell)
+	
 	_units.erase(cell)
 	initiative_order.erase(unit_to_remove)
 	unit_to_remove.queue_free()
