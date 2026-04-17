@@ -46,14 +46,14 @@ var _attack_overlay_visable := false
 
 
 #firethrower passive variables 
-var fire_dot_damage: int = 1
+var fire_dot_damage: int = 2
 var fire_dot_turns: int = 5
 
 #signal enemy_done_moving
 #grenaider speed boost passive 
 var has_done_speed_boost_once := false 
 
-var flame_explosion_damage: int = 10
+var flame_explosion_damage: int = 15
 
 var boss_tower_healing : int = 5
 #when the gameboard is called into the scene it will clear its dicitonary of units then fill it up again with the units in tjhe active scenee
@@ -114,13 +114,14 @@ func start_turn():
 	elif _active_unit.unit_role.turns_left_on_fire == 0 and _active_unit.unit_role.on_fire == true:
 		_active_unit.unit_role.on_fire = false
 		_active_unit.update_fire_vfx()
-	
 	#activates passive at start of turn
 	_active_unit.unit_role.passive(_active_unit)
 	
 	GameConsole.log_message("GAMEMASTER","It is now " + _active_unit.name + "'s turn.")
 	print(_active_unit.cell)
-	
+		##catches if fire dot kills the enemy it doesnt lock
+	if !_active_unit:
+		end_turn()
 	if _active_unit.unit_role is Tower_Res:
 		
 		var temp_cell
