@@ -1,6 +1,7 @@
 extends Control
 
 func _ready():
+	DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_FULLSCREEN)
 	SoundManager._play_chill_music()
 
 func _on_play_button_pressed() -> void:

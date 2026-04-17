@@ -1,5 +1,7 @@
 [gd_scene format=3 uid="uid://banoj7tvg3usl"]
 
+[ext_resource type="Script" uid="uid://dkr61xkipy4k6" path="res://Levels/end_credits/end_credits.gd" id="1_3bgxy"]
+
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bah82"]
 bg_color = Color(0, 0, 0, 1)
 
@@ -10,6 +12,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_3bgxy")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=344173836]
 
@@ -77,3 +80,5 @@ layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 text = "QUIT"
+
+[connection signal="pressed" from="CanvasLayer/VBoxContainer/Button" to="." method="_on_button_pressed"]
