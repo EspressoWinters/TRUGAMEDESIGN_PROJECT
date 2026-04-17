@@ -314,10 +314,10 @@ func get_walkable_cells(unit: Unit) -> Array:
 func get_targetable_cells(unit: Unit) -> Array:
 	var relative_directions := []
 	for directions in DIRECTIONS:
-		if not is_wall(unit.cell + directions):
-			relative_directions.append(unit.cell + directions)
-		else:
-			continue
+		#if not is_wall(unit.cell + directions):
+		relative_directions.append(unit.cell + directions)
+		#else:
+			#continue
 
 	return relative_directions
 
