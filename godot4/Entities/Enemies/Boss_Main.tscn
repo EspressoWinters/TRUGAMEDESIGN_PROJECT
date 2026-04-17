@@ -129,6 +129,7 @@ texture = ExtResource("2_a6763")
 texture = ExtResource("6_gu2e8")
 
 [node name="Healthbar" type="ProgressBar" parent="." unique_id=1884163062 groups=["enemy_units"]]
+z_index = 1
 offset_left = -8.0
 offset_top = -12.0
 offset_right = 8.0

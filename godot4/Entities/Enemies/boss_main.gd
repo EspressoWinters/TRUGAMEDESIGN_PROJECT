@@ -22,6 +22,36 @@ var two_tower_boost : int = 20
 var one_tower_boost : int = 30
 var no_tower_boost : int = 40
 
+#I JUST ADDED THIS 
+#Credit to this lad for showing us how to make unique resources
+#https://simondalvai.org/blog/godot-duplicate-resources/
+func _ready() -> void:
+	#to make it unique copy it own?
+	unit_role = unit_role.duplicate()
+	
+	
+	sprite.texture = unit_role.skin
+	move_range = unit_role.speed
+	move_speed = unit_role.speed * 100
+	max_health = unit_role.max_hp
+	if unit_role is Boss_Main:
+		unit_role.current_health = max_health
+	
+	#makes sure the object doesn't start the _process function
+	set_process(false)
+	#locks it so it doesn't rotate along the path
+	#basically instead of looking statically at one side, it would "follow" the direction of the path and rotate itself
+	_path_follow.rotates = false 
+	#just getting the pixel and the grid values so that we can use them later
+	cell = grid.calculate_grid_coordinates(position)
+	position = grid.calculate_map_position(cell)
+
+	var _health_bar = get_node_or_null("Healthbar")
+	
+	_health_bar.max_value = max_health
+	_health_bar.value = unit_role.current_health
+	await get_tree().process_frame
+	gameboard._update_health_bar.connect(set_health_bar)
 
 #going to go for a hail mary here and just put this code here
 #current plan, may get rid of this later, just commenting for myself

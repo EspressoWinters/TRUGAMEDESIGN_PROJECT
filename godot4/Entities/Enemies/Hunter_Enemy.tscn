@@ -13,6 +13,7 @@
 script = ExtResource("2_24oov")
 skin = ExtResource("3_dujoi")
 current_health = 20
+speed = 10
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ydal0"]
 atlas = ExtResource("5_3kd4x")
