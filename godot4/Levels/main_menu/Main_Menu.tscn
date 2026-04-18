@@ -46,7 +46,7 @@ alignment = 1
 [node name="Label" type="Label" parent="CanvasLayer/Panel/VBoxContainer" unique_id=1343556310]
 layout_mode = 2
 theme_override_font_sizes/font_size = 32
-text = "GAME NAME"
+text = "SUPER BATTLE TACTICS"
 horizontal_alignment = 1
 
 [node name="Label2" type="Label" parent="CanvasLayer/Panel/VBoxContainer" unique_id=1165033969]
