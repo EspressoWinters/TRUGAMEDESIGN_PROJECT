@@ -1,6 +1,8 @@
-res://Levels/main_menu/Main_Menu.tscn
+res://Levels/Level_5_ruins.tscn
 res://Entities/UnitOverlay/unit_overlay_tileset.tres
 res://Entities/GameBoard/unit_path_tileset.tres
-res://Levels/main_menu/main_menu.gd
-res://Levels/end_credits/End_Credits.tscn
+res://Levels/Level_1_rivers.tscn
+res://Entities/Enemies/big_enemy.tscn
 res://Levels/end_credits/end_credits.gd
+res://Resources/Classes/Flamethrower/Flamethrower.gd
+res://Levels/Hub/Hub.gd

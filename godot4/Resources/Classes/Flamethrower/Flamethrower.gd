@@ -1,5 +1,5 @@
 #this class will be our only source of DOT 
-
+#frontliner 
 class_name Flamethrower 
 extends Unit_Interaction
 

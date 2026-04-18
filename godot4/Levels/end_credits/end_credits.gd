@@ -1,4 +1,4 @@
-#Ending the game if the end button is pressed 
+#Ending the game if game ends 
 extends Control
 
 
