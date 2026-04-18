@@ -69,6 +69,9 @@ var _is_walking := false:
 #I just copied it because I had to overwrite the parent thing 
 #from tutorial but modified 
 func _ready() -> void:
+	#everyone gets a unique resource file 
+	unit_role = unit_role.duplicate()
+	
 	sprite.texture = unit_role.skin
 	move_range = unit_role.speed
 	move_speed = unit_role.speed * 100
