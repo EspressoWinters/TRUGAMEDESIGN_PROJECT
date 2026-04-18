@@ -106,5 +106,7 @@ func _on_training_button_pressed() -> void:
 	if PartyManager.active_party.is_empty():
 		print("Recruit a hero before entering training.", Color.YELLOW)
 		return
+	for unit in PartyManager.active_party:
+		unit.current_health = unit.max_hp
 		
 	get_tree().change_scene_to_file("res://Levels/Tutorialz.tscn")
