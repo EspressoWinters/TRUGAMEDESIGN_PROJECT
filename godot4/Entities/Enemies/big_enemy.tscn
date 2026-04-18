@@ -15,7 +15,6 @@ skin = ExtResource("3_3x6ou")
 max_hp = 55
 current_health = 55
 attack_stat = 8
-speed = 4
 defense = 7
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ydal0"]
@@ -117,7 +116,7 @@ curve = SubResource("Curve2D_mu52m")
 script = ExtResource("1_omn74")
 unit_role = SubResource("Resource_3x6ou")
 grid = ExtResource("3_3e2lp")
-max_health = 20
+max_health = 55
 
 [node name="OnFireAnimation" type="AnimatedSprite2D" parent="." unique_id=331154935]
 visible = false

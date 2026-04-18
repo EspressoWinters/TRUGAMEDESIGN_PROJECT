@@ -126,7 +126,7 @@ position = Vector2(40.92041, 50.230316)
 unit_role = SubResource("Resource_w0re7")
 
 [node name="BigEnemy" parent="." unique_id=205718024 instance=ExtResource("12_0mo6p")]
-position = Vector2(528.62585, 55.310585)
+position = Vector2(200, 180)
 unit_role = SubResource("Resource_3mmna")
 max_health = 55
 
