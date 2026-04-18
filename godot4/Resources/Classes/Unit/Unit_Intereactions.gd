@@ -1,3 +1,5 @@
+#going to hold our stats and such of the units in this resource file
+
 #going to move the resource file to a parent file
 class_name Unit_Interaction
 extends Resource

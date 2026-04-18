@@ -1,3 +1,5 @@
+#Basic resource class for the enemy 
+
 class_name Basic_enemy 
 extends Unit_Interaction
 

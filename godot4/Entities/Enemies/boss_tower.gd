@@ -9,6 +9,8 @@ class_name BossTower
 #https://docs.godotengine.org/en/stable/tutorials/scripting/gdscript/gdscript_basics.html if you need a reference on inheritance 
 extends Unit 
 
+#these towers will heal the boss 
+
 #going to keep an array of all human players, so that we can keep track of those pesky humans 
 var human_units := []
 var tank_units := []

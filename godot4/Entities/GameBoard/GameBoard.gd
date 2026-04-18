@@ -4,8 +4,12 @@
 #Special thanks to this as well to help explain the code 
 #https://www.gdquest.com/tutorial/godot/2d/tactical-rpg-movement/lessons/01.grid/
 #----------------------------------------------------------------------------------
-#Special tanks to this creator of the font
+#Special thanks to this creator of the font
 #https://managore.itch.io/m5x7
+
+
+#this class is a mix of our functions and the tutorial functions
+
 ## Represents and manages the game board. Stores references to entities that are in each cell and
 ## tells whether cells are occupied or not.
 ## Units can only move around the grid one at a time.
@@ -57,6 +61,7 @@ var flame_explosion_damage: int = 15
 
 var boss_tower_healing : int = 5
 #when the gameboard is called into the scene it will clear its dicitonary of units then fill it up again with the units in tjhe active scenee
+#modified from the tutorial 
 func _ready() -> void:
 	_reinitialize()
 	#gatherin the UI attack and such
@@ -289,6 +294,7 @@ func swap(initiative_array: Array, i : int, j : int):
 	#	_clear_active_unit()
 
 
+#from the tutorial 
 func _get_configuration_warning() -> String:
 	var warning := ""
 	if not grid:
@@ -297,6 +303,7 @@ func _get_configuration_warning() -> String:
 
 
 ## Returns `true` if the cell is occupied by a unit.
+#from the tutorial but modified 
 func is_occupied(cell: Vector2) -> bool:
 	#has checks if a key matches the given cell in the dictionary
 	if _units.has(cell):
@@ -340,6 +347,7 @@ func get_targetable_cells(unit: Unit) -> Array:
 	return relative_directions
 
 ## Clears, and refills the `_units` dictionary with game objects that are on the board.
+#from tutorial but modified 
 func _reinitialize() -> void:
 	_units.clear()
 	var tank_list = []
@@ -384,6 +392,7 @@ func _reinitialize() -> void:
 
 
 ## Returns an array with all the coordinates of walkable cells based on the `max_distance`.
+#same as in the tutorial 
 func _flood_fill(cell: Vector2, max_distance: int) -> Array:
 	#creates an empty array that will get filled with the cells that are valid
 	var array := []
@@ -424,6 +433,7 @@ func _flood_fill(cell: Vector2, max_distance: int) -> Array:
 
 #this is the HUMAN/PLAYER Unit movement section
 ## Updates the _units dictionary with the target position for the unit and asks the _active_unit to walk to it.
+#from the tutorial but heavily modified 
 func _move_active_unit(new_cell: Vector2) -> void:
 
 	var ai_path
@@ -464,6 +474,7 @@ func _move_active_unit(new_cell: Vector2) -> void:
 
 ## Selects the unit in the `cell` if there's one there.
 ## Sets it as the `_active_unit` and draws its walkable cells and interactive move path. 
+#from the tutorial and unchanged 
 func _select_unit(cell: Vector2) -> void:
 	if not _units.has(cell):
 		return
@@ -477,6 +488,7 @@ func _select_unit(cell: Vector2) -> void:
 	_unit_path.initialize(_walkable_cells)
 
 #this is the bot/computer movement section 
+
 func closest_tile_to_human_unit(enemy_unit : Variant):
 	var closet_human_unit = enemy_unit.find_closet_human_character()
 	#print(closet_human_unit)
@@ -579,6 +591,7 @@ func clear_overlay() -> void:
 	_attack_overlay_visable = false
 
 ## Deselects the active unit, clearing the cells overlay and interactive path drawing.
+#from the tutorial 
 func _deselect_active_unit() -> void:
 	_active_unit.is_selected = false
 	_unit_overlay.clear()
@@ -586,12 +599,14 @@ func _deselect_active_unit() -> void:
 
 
 ## Clears the reference to the _active_unit and the corresponding walkable cells.
+#from the tutorial 
 func _clear_active_unit() -> void:
 	_active_unit = null
 	_walkable_cells.clear()
 
 
 ## Selects or moves a unit based on where the cursor is.
+#from the tutorial but modified 
 func _on_Cursor_accept_pressed(cell: Vector2) -> void:
 	_attackable_cells.clear()
 	var range_limit
@@ -664,6 +679,7 @@ func _on_Cursor_accept_pressed(cell: Vector2) -> void:
 		
 	
 ## Updates the interactive path's drawing if there's an active and selected unit.
+#from the tutorial but modified
 func _on_Cursor_moved(new_cell: Vector2) -> void:
 	## Only draw the path line if the move overlay is active
 	#if _active_unit and _active_unit.is_selected and _move_overlay_visable == true and _unit_overlay.get_used_cells(0).size() > 0 and _active_unit is not BasicEnemy:

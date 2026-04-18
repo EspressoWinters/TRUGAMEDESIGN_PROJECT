@@ -1,13 +1,13 @@
+#this medic class will not be able to attack and damage but rather be the only unit in the game able to heal itself and others 
+
 class_name Medic
 #now we are extending 
 extends Unit_Interaction
 var Role = "Medic"
 
 var has_global_healed = false
-#because for some reason in Godot you can't just access parent variables, therefroe 
 
-#think chess king for the attack pattern. I actually have no bloody clue what the attack range is even meant for
-#maybe here this could be for the overlay and another one handles the users choice 
+
 func get_attackable_cells(origin_cell : Vector2, caller_name : String, direction : Vector2):
 	#just clearing it so it didn't save from last time
 	attackable_cells.clear()

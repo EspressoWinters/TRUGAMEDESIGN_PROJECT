@@ -1,6 +1,4 @@
-#This is the basic enemy script, this will be the most basic enemy, the enemy will try to get to the closet player and then attack them
-#I will be retrofitting a lot of the unit's script
-#keeping the stat system for the enemy, we could then play around and have different enemies with the differing stats 
+#lobotomized enemy that moves 
 
 #this allows us to run it in the editor
 @tool

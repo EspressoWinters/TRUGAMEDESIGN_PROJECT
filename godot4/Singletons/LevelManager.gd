@@ -1,3 +1,4 @@
+#manages the levels within the maps 
 extends Node
 
 var current_level_index: int = 0

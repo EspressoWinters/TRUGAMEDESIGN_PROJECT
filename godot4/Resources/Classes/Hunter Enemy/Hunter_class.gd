@@ -1,3 +1,4 @@
+#basic resource for the hunter enemy 
 class_name Hunter_enemy 
 extends Unit_Interaction
 

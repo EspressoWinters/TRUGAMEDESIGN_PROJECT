@@ -1,3 +1,5 @@
+#Settings screen
+
 extends Panel
 @onready var back_button = %BackButton
 @onready var superquit_button = %SuperQuitButton

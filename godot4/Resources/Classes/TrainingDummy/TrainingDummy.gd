@@ -1,3 +1,5 @@
+#enemy should be lobootkomized 
+
 class_name TrainingDummy_class
 #now we are extending 
 extends Unit_Interaction

@@ -49,8 +49,6 @@ one_shot = true
 [node name="TrainingDummy" parent="." unique_id=393416970 instance=ExtResource("14_g2jqs")]
 position = Vector2(294, 155)
 unit_role = SubResource("Resource_0jl6i")
-max_health = 1000
-initiative_stat = 0
 
 [connection signal="accept_pressed" from="Cursor" to="." method="_on_Cursor_accept_pressed"]
 [connection signal="moved" from="Cursor" to="." method="_on_Cursor_moved"]

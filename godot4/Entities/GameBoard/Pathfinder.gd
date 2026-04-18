@@ -3,6 +3,9 @@
 #Special thanks to this as well to help explain the code 
 #https://www.gdquest.com/tutorial/godot/2d/tactical-rpg-movement/lessons/01.grid/
 
+
+#this is the exact same code from the tutorial 
+
 ## Finds the path between two points among walkable cells using the AStar pathfinding algorithm.
 class_name PathFinder
 extends Resource

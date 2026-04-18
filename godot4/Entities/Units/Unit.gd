@@ -3,6 +3,7 @@
 #Special thanks to this as well to help explain the code 
 #https://www.gdquest.com/tutorial/godot/2d/tactical-rpg-movement/lessons/01.grid/
 
+
 ## This unit script handles the unit moving along the path and sends a signal to the Gameboard when its finished
 
 #this allows us to run it in the editor
@@ -34,6 +35,7 @@ var gameboard: GameBoard
 @export var initiative_stat := 0
 
 ## Coordinates of the current cell the cursor moved to.
+#from the tutorial 
 var cell := Vector2.ZERO:
 	set(value):
 		# When the grid value changes, we want to clamp it to ensure it within the boundary
@@ -65,7 +67,7 @@ var _is_walking := false:
 #When it loads into the scene tree
 
 #I just copied it because I had to overwrite the parent thing 
-
+#from tutorial but modified 
 func _ready() -> void:
 	sprite.texture = unit_role.skin
 	move_range = unit_role.speed
@@ -90,7 +92,7 @@ func _ready() -> void:
 	await get_tree().process_frame
 	gameboard._update_health_bar.connect(set_health_bar)
 
-
+#from the tutorial 
 func _process(delta: float) -> void:
 	#moves the unit along the path by delta
 	_path_follow.progress += move_speed * delta
@@ -104,9 +106,9 @@ func _process(delta: float) -> void:
 		emit_signal("walk_finished")
 		
 
-##Recalculating the speed for some edge cases 
+##Recalculating the speed for some edge cases'
+#like the grendadier speed boost 
 func recalculate_speed():
-	
 	move_range = unit_role.speed
 	move_speed = unit_role.speed * 100 
 	
@@ -158,6 +160,7 @@ func is_surronded():
 
 ## Starts walking along the `path`.
 ## `path` is an array of grid coordinates that the function converts to map coordinates.
+#from the tutorial
 func walk_along(path: PackedVector2Array) -> void:
 	if path.is_empty():
 		return

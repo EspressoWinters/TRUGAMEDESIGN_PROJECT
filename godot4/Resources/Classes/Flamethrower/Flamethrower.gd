@@ -1,3 +1,5 @@
+#this class will be our only source of DOT 
+
 class_name Flamethrower 
 extends Unit_Interaction
 
@@ -8,7 +10,6 @@ func init():
 	attack_range = 3
 
 
-#think chess king for the attack pattern. I actually have no bloody clue what the attack range is even meant for 
 func get_attackable_cells(origin_cell : Vector2, caller_name : String, direction : Vector2):
 	attackable_cells.clear()
 	#I guess I'll have to do it by hand because I can't see any other way of doing this 

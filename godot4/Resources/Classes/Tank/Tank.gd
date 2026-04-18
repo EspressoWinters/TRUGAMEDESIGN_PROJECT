@@ -1,3 +1,6 @@
+#Should be well the tank, it shouldn't do much damage but it should be able to take a beating and protect weaker units 
+
+
 class_name Tank
 #now we are extending 
 extends Unit_Interaction
@@ -9,8 +12,7 @@ var taunt_charges : int = 0
 func init():
 	attack_range = 3
 
-#think chess king for the attack pattern. I actually have no bloody clue what the attack range is even meant for
-#maybe here this could be for the overlay and another one handles the users choice 
+#slashs in 3 spaces in each direciton 
 func get_attackable_cells(origin_cell : Vector2, caller_name : String, direction : Vector2):
 	#just clearing it so it didn't save from last time
 	attackable_cells.clear()

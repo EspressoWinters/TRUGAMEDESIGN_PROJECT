@@ -2,6 +2,7 @@
 #I will be retrofitting a lot of the unit's script
 #keeping the stat system for the enemy, we could then play around and have different enemies with the differing stats 
 
+
 #this allows us to run it in the editor
 @tool
 class_name BasicEnemy
@@ -27,6 +28,7 @@ var taunter_found := false
 #https://simondalvai.org/blog/godot-duplicate-resources/
 func _ready() -> void:
 	#to make it unique copy it own?
+	#this line was shown how to do it here:https://simondalvai.org/blog/godot-duplicate-resources/
 	unit_role = unit_role.duplicate()
 	
 	

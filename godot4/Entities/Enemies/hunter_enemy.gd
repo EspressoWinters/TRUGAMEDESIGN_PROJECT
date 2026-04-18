@@ -1,6 +1,4 @@
-#This is the basic enemy script, this will be the most basic enemy, the enemy will try to get to the closet player and then attack them
-#I will be retrofitting a lot of the unit's script
-#keeping the stat system for the enemy, we could then play around and have different enemies with the differing stats 
+#The is the hunter enemy, it will target weaker units and then kill them based on a calculation of how low the player is and there class 
 
 #this allows us to run it in the editor
 @tool
@@ -16,11 +14,6 @@ var tank_units := []
 var closest_unit : Unit
 var taunter_found := false
 
-#going to go for a hail mary here and just put this code here
-#current plan, may get rid of this later, just commenting for myself
-#keep _process because that is what is actually moving the character along the path 
-#keep _ready as that is just calculating the movement speed and making sure the process is not setting off instantly
-#keep walk_along as it is just keeping the curve that the path it will follow
 
 #I JUST ADDED THIS 
 #Credit to this lad for showing us how to make unique resources

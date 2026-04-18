@@ -1,6 +1,7 @@
 extends Node
 #credits to this youtube video: https://www.youtube.com/watch?v=F0DQLSiLkjg
 
+
 func display_number(value: int, position: Vector2, is_critical: bool = false):
 	var number = Label.new()
 	var offset = Vector2(-4, -10)

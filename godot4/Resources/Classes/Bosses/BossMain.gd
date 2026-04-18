@@ -1,3 +1,5 @@
+#main bosses resource file 
+
 class_name Boss_Main
 extends Unit_Interaction
 

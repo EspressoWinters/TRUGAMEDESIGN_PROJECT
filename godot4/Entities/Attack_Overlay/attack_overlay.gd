@@ -3,6 +3,9 @@
 #Special thanks to this as well to help explain the code 
 #https://www.gdquest.com/tutorial/godot/2d/tactical-rpg-movement/lessons/01.grid/
 
+#this class is the overlay for all the attacks
+#all of these methods are directly from the tutorial and unchanged
+
 ## Draws a selected unit's walkable tiles.
 class_name AttackOverlay
 extends TileMap

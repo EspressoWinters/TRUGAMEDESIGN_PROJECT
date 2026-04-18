@@ -3,6 +3,8 @@
 #Special thanks to this as well to help explain the code 
 #https://www.gdquest.com/tutorial/godot/2d/tactical-rpg-movement/lessons/01.grid/
 
+#This class is unchanged from the tutorial 
+
 ## Player-controlled cursor. Allows them to navigate the game grid, select units, and move them.
 ## Supports both keyboard and mouse (or touch) input.
 @tool

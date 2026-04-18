@@ -3,6 +3,9 @@
 #Special thanks to this as well to help explain the code 
 #https://www.gdquest.com/tutorial/godot/2d/tactical-rpg-movement/lessons/01.grid/
 
+#this is exactly from the tutorail 
+
+
 ## Draws the unit's movement path using an autotile.
 class_name UnitPath
 extends TileMap

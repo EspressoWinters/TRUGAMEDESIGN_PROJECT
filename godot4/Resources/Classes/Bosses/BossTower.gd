@@ -1,3 +1,5 @@
+#basic resoruce file for the boss's tower
+
 class_name Boss_Tower
 extends Unit_Interaction
 

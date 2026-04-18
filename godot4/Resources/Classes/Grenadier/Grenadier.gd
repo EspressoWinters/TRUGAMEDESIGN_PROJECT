@@ -1,3 +1,5 @@
+#this class 
+
 class_name Grenadier 
 extends Unit_Interaction
 
@@ -31,7 +33,8 @@ func get_attack_range(origin_cell: Vector2) -> Array:
 		
 		
 	#redoing the tank loop in the code doesn't work, so have to do this nested loop
-	
+	#the tank loop would keep the center pieces of the code as not fillied
+	#so instead this was it will calculate it all and fill it in 
 	for x in range(-5, 6):
 		for y in range(-5, 6):
 			cell = origin_cell + Vector2(x, y)

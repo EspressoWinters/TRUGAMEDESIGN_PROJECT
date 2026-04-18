@@ -7,6 +7,8 @@
 class_name Grid
 extends Resource
 
+#This whole class is untouched from the tutorial
+
 ## The grid's rows and columns
 ## This will decide how big the grid is
 @export var size := Vector2(80, 80)
