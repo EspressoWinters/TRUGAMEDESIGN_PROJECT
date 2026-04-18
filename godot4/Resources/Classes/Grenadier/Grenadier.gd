@@ -35,6 +35,11 @@ func get_attack_range(origin_cell: Vector2) -> Array:
 	#redoing the tank loop in the code doesn't work, so have to do this nested loop
 	#the tank loop would keep the center pieces of the code as not fillied
 	#so instead this was it will calculate it all and fill it in 
+	#https://forum.godotengine.org/t/fundamentals-of-grid-based-games/115931/2
+	#got the idea in that link where people wanted to make a square grid 
+	#https://forum.godotengine.org/t/a-question-about-for-and-range/20632 for the in range
+	#and though the forum isn't directly telling here, in range goes -1 at the second paramter number
+	#sorry for this big long text, someone wanted to know how to use this so they could do the tower so just putting it here for them
 	for x in range(-5, 6):
 		for y in range(-5, 6):
 			cell = origin_cell + Vector2(x, y)
