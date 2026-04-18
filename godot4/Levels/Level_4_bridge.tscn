@@ -18,17 +18,18 @@
 [ext_resource type="Texture2D" uid="uid://cboitmrxhcus8" path="res://Assets/Units/enemy_units/Small Evil Guy.png" id="15_b208b"]
 [ext_resource type="Texture2D" uid="uid://dacxy1l8tl066" path="res://Assets/Units/enemy_units/big_enemy.png" id="15_fkalq"]
 
-[sub_resource type="Resource" id="Resource_oy5e0"]
+[sub_resource type="Resource" id="Resource_b208b"]
 resource_local_to_scene = true
 script = ExtResource("10_b208b")
 skin = ExtResource("11_avwec")
 max_hp = 30
-attack_stat = 7
+current_health = 30
+attack_stat = 4
 speed = 0
 defense = 1
 luck = 0
 
-[sub_resource type="Resource" id="Resource_ul0dh"]
+[sub_resource type="Resource" id="Resource_avwec"]
 script = ExtResource("11_rf2s6")
 skin = ExtResource("15_fkalq")
 max_hp = 55
@@ -37,7 +38,7 @@ attack_stat = 8
 speed = 4
 defense = 7
 
-[sub_resource type="Resource" id="Resource_klmi1"]
+[sub_resource type="Resource" id="Resource_oy5e0"]
 script = ExtResource("11_rf2s6")
 skin = ExtResource("15_fkalq")
 max_hp = 55
@@ -45,6 +46,26 @@ current_health = 55
 attack_stat = 8
 speed = 4
 defense = 7
+
+[sub_resource type="Resource" id="Resource_ul0dh"]
+resource_local_to_scene = true
+script = ExtResource("14_u07xh")
+skin = ExtResource("15_b208b")
+max_hp = 25
+current_health = 25
+attack_stat = 9
+speed = 6
+defense = 4
+
+[sub_resource type="Resource" id="Resource_klmi1"]
+resource_local_to_scene = true
+script = ExtResource("14_u07xh")
+skin = ExtResource("15_b208b")
+max_hp = 25
+current_health = 25
+attack_stat = 9
+speed = 6
+defense = 4
 
 [sub_resource type="Resource" id="Resource_hle2e"]
 resource_local_to_scene = true
@@ -67,26 +88,6 @@ speed = 6
 defense = 4
 
 [sub_resource type="Resource" id="Resource_mrs4m"]
-resource_local_to_scene = true
-script = ExtResource("14_u07xh")
-skin = ExtResource("15_b208b")
-max_hp = 25
-current_health = 25
-attack_stat = 9
-speed = 6
-defense = 4
-
-[sub_resource type="Resource" id="Resource_opt5r"]
-resource_local_to_scene = true
-script = ExtResource("14_u07xh")
-skin = ExtResource("15_b208b")
-max_hp = 25
-current_health = 25
-attack_stat = 9
-speed = 6
-defense = 4
-
-[sub_resource type="Resource" id="Resource_xfjo7"]
 resource_local_to_scene = true
 script = ExtResource("14_u07xh")
 skin = ExtResource("15_b208b")
@@ -122,37 +123,40 @@ unique_name_in_owner = true
 
 [node name="Tower" parent="." unique_id=393416970 instance=ExtResource("9_eent3")]
 position = Vector2(381.19296, 143.77904)
-unit_role = SubResource("Resource_oy5e0")
+unit_role = SubResource("Resource_b208b")
 
 [node name="BigEnemy" parent="." unique_id=1435648347 instance=ExtResource("10_qgd5w")]
 position = Vector2(387.4022, 179.90536)
-unit_role = SubResource("Resource_ul0dh")
-max_health = 55
+unit_role = SubResource("Resource_avwec")
 
 [node name="BigEnemy2" parent="." unique_id=1729487980 instance=ExtResource("10_qgd5w")]
 position = Vector2(413.368, 201.35538)
-unit_role = SubResource("Resource_klmi1")
-max_health = 55
+unit_role = SubResource("Resource_oy5e0")
 
 [node name="BasicEnemy" parent="." unique_id=1899077024 instance=ExtResource("13_fkalq")]
 position = Vector2(347.32455, 178.21194)
-unit_role = SubResource("Resource_hle2e")
+unit_role = SubResource("Resource_ul0dh")
 
 [node name="BasicEnemy2" parent="." unique_id=2041166846 instance=ExtResource("13_fkalq")]
 position = Vector2(342.80875, 206.43564)
-unit_role = SubResource("Resource_301c4")
+unit_role = SubResource("Resource_klmi1")
 
 [node name="BasicEnemy3" parent="." unique_id=28107513 instance=ExtResource("13_fkalq")]
 position = Vector2(313.4561, 190.06589)
-unit_role = SubResource("Resource_mrs4m")
+unit_role = SubResource("Resource_hle2e")
 
 [node name="BasicEnemy4" parent="." unique_id=310524949 instance=ExtResource("13_fkalq")]
 position = Vector2(282.41006, 210.38695)
-unit_role = SubResource("Resource_opt5r")
+unit_role = SubResource("Resource_301c4")
 
 [node name="BasicEnemy5" parent="." unique_id=1056666742 instance=ExtResource("13_fkalq")]
 position = Vector2(279.58768, 172.00273)
-unit_role = SubResource("Resource_xfjo7")
+unit_role = SubResource("Resource_mrs4m")
+
+[node name="FallbackTimer" type="Timer" parent="." unique_id=673612878]
+wait_time = 5.0
+one_shot = true
 
 [connection signal="accept_pressed" from="Cursor" to="." method="_on_Cursor_accept_pressed"]
 [connection signal="moved" from="Cursor" to="." method="_on_Cursor_moved"]
+[connection signal="timeout" from="FallbackTimer" to="." method="_on_fallback_timer_timeout"]

@@ -75,6 +75,10 @@ func find_closet_human_character():
 	
 	#let's get all the units that are human in the array
 	for unit in gameboard._units.values():
+		
+		#if unit.is_surronded() == true:
+			#continue 
+			
 		if unit is not BasicEnemy and unit is not HunterEnemy and unit is not BigEnemy and unit is not Tower  and unit is not BossMain and unit is not BossTower:
 			human_units.append(unit)
 			if unit.unit_role and unit.unit_role is Tank and unit.is_taunting:
@@ -97,6 +101,11 @@ func find_closet_human_character():
 	
 	#gathering which human unit has the least amount of distance
 	for unit in human_units:
+		
+		#skip the unit that is surronded 
+		#if unit.is_surronded() == true:
+			#continue 
+		
 		#doing the manhattan distance calculation
 		temp_distance = abs(unit.cell.x - self.cell.x) + abs(unit.cell.y - self.cell.y)
 			#since it IS closer, update our record of the shortest distance.
@@ -105,6 +114,9 @@ func find_closet_human_character():
 			#least_distance_unit = unit
 			#by returning null here the gameboard's if near_tile check will faill and ai will stand still when next to a unit
 		
+		if temp_distance > 1 and unit.is_surronded() == true:
+			continue
+		 
 		#tank is taunting. 
 		#the enemy MUST ignore everyone who isn't a taunting tank.
 		if taunter_found:

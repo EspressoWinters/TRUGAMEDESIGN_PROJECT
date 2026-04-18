@@ -25,7 +25,7 @@ attack_stat = 9
 speed = 6
 defense = 4
 
-[sub_resource type="Resource" id="Resource_uocci"]
+[sub_resource type="Resource" id="Resource_bsete"]
 resource_local_to_scene = true
 script = ExtResource("10_mtn6s")
 skin = ExtResource("11_xcjw5")
@@ -35,7 +35,7 @@ attack_stat = 9
 speed = 6
 defense = 4
 
-[sub_resource type="Resource" id="Resource_bsete"]
+[sub_resource type="Resource" id="Resource_uocci"]
 resource_local_to_scene = true
 script = ExtResource("10_mtn6s")
 skin = ExtResource("11_xcjw5")
@@ -152,11 +152,11 @@ unit_role = SubResource("Resource_570ym")
 
 [node name="BasicEnemy2" parent="." unique_id=1653192160 instance=ExtResource("9_yp0b2")]
 position = Vector2(267.64856, 74.77126)
-unit_role = SubResource("Resource_uocci")
+unit_role = SubResource("Resource_bsete")
 
 [node name="BasicEnemy3" parent="." unique_id=762179898 instance=ExtResource("9_yp0b2")]
 position = Vector2(105.588104, 79.11771)
-unit_role = SubResource("Resource_bsete")
+unit_role = SubResource("Resource_uocci")
 
 [node name="BasicEnemy4" parent="." unique_id=1032441849 instance=ExtResource("9_yp0b2")]
 position = Vector2(406.114, 80.359566)
@@ -181,17 +181,19 @@ unit_role = SubResource("Resource_wbw4d")
 [node name="BigEnemy" parent="." unique_id=1522510439 instance=ExtResource("12_05liu")]
 position = Vector2(509.18695, 261.04767)
 unit_role = SubResource("Resource_n7vsk")
-max_health = 55
 
 [node name="BigEnemy2" parent="." unique_id=1239400055 instance=ExtResource("12_05liu")]
 position = Vector2(132.90863, 150.52365)
 unit_role = SubResource("Resource_05kep")
-max_health = 55
 
 [node name="BigEnemy3" parent="." unique_id=2096998551 instance=ExtResource("12_05liu")]
 position = Vector2(215.49115, 300.16568)
 unit_role = SubResource("Resource_cxv13")
-max_health = 55
+
+[node name="FallbackTimer" type="Timer" parent="." unique_id=500371589]
+wait_time = 5.0
+one_shot = true
 
 [connection signal="accept_pressed" from="Cursor" to="." method="_on_Cursor_accept_pressed"]
 [connection signal="moved" from="Cursor" to="." method="_on_Cursor_moved"]
+[connection signal="timeout" from="FallbackTimer" to="." method="_on_fallback_timer_timeout"]

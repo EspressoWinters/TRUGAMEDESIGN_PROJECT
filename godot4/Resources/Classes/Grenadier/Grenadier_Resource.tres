@@ -7,9 +7,8 @@
 script = ExtResource("1_w5fgi")
 skin = ExtResource("2_daykl")
 role = "Grenadier"
-max_hp = 15
-current_health = 15
-attack_stat = 6
+current_health = 20
+attack_stat = 9
 defense = 3
 atk_explain = "Throws bombs that attack in a 3x3 square."
 ability_explain = "Increases movement speed temporarily."

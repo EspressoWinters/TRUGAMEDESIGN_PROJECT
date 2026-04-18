@@ -35,7 +35,7 @@ var  attack_direction : Vector2
 @onready var _attack_overlay: AttackOverlay = %AttackOverlay
 @onready var _unit_path: UnitPath = %UnitPath
 @onready var ui = %Ui
-@onready var timer := $Timer
+@onready var fallback_timer := $FallbackTimer
 var initiative_order := []
 
 var turn_count := 0
@@ -126,6 +126,8 @@ func start_turn():
 	_active_unit.unit_role.passive(_active_unit)
 	
 	GameConsole.log_message("GAMEMASTER","It is now " + _active_unit.name + "'s turn.")
+	if _active_unit.is_in_group("enemy_units"):
+		fallback_timer.start(5.0)
 	print(_active_unit.cell)
 		##catches if fire dot kills the enemy it doesnt lock
 	if !_active_unit:
@@ -233,6 +235,8 @@ func start_turn():
 
 ##This will end the turn of the individual unit, it will also check at the end whether to start a new round or not
 func end_turn():
+	if not fallback_timer.is_stopped():
+		fallback_timer.stop()
 	if _active_unit == null:
 		ui.combat_end_label_ui.text = "LOSER"
 		get_tree().paused = true
@@ -782,8 +786,12 @@ func unit_passive():
 
 func apply_damage(target_cell: Vector2, amount: int, attacker: Unit, crit: bool) -> void:
 	var victim = _units[target_cell]
+	var total_damage: int
 	print(victim)
-	var total_damage = max(1, amount - victim.unit_role.defense)
+	if attacker.unit_role is Medic or attacker.unit_role is Boss_Tower:
+		total_damage = amount
+	else:
+		total_damage = max(1, amount - victim.unit_role.defense)
 	if attacker:
 		#Damage over time passive
 		if attacker.unit_role is Flamethrower:
@@ -1022,3 +1030,7 @@ func _trigger_attack_vfx(cell: Vector2) -> void:
 	var world_pos = grid.calculate_map_position(cell)
 	
 	VfxManager.play_vfx(vfx_type, world_pos)
+	
+func _on_fallback_timer_timeout() -> void:
+	GameConsole.log_message("ERROR", "AI has ran out of time!")
+	end_turn()

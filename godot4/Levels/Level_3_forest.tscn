@@ -182,5 +182,10 @@ position = Vector2(364.64728, 107.043884)
 unit_role = SubResource("Resource_4lwei")
 max_health = 25
 
+[node name="FallbackTimer" type="Timer" parent="." unique_id=450343544]
+wait_time = 5.0
+one_shot = true
+
 [connection signal="accept_pressed" from="Cursor" to="." method="_on_Cursor_accept_pressed"]
 [connection signal="moved" from="Cursor" to="." method="_on_Cursor_moved"]
+[connection signal="timeout" from="FallbackTimer" to="." method="_on_fallback_timer_timeout"]

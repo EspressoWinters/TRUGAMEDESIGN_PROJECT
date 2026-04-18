@@ -18,10 +18,10 @@ func attack_roll(attacker : Unit) -> int:
 	if crit_roll <= luck:
 		var crit_multiplier = 2.0
 		print("CRITICAL HIT!")
-		total_damage = ((die1 + die2 + modifier) * crit_multiplier)
+		total_damage = (((die1 + die2 + modifier) * crit_multiplier) * -1)
 		self.crit = true
 	else:
-		total_damage = (die1 + die2 + modifier)
+		total_damage = ((die1 + die2 + modifier) * -1)
 		self.crit = false
 	print(total_damage)
 	

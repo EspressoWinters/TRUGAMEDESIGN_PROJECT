@@ -85,16 +85,6 @@ attack_stat = 9
 speed = 6
 defense = 4
 
-[sub_resource type="Resource" id="Resource_a7jwu"]
-script = ExtResource("13_rnh6h")
-skin = ExtResource("14_pfsma")
-max_hp = 25
-current_health = 25
-attack_stat = 9
-speed = 10
-defense = 4
-luck = 7
-
 [sub_resource type="Resource" id="Resource_qatd1"]
 resource_local_to_scene = true
 script = ExtResource("9_qatd1")
@@ -114,16 +104,6 @@ current_health = 25
 attack_stat = 9
 speed = 6
 defense = 4
-
-[sub_resource type="Resource" id="Resource_vojus"]
-script = ExtResource("13_rnh6h")
-skin = ExtResource("14_pfsma")
-max_hp = 25
-current_health = 25
-attack_stat = 9
-speed = 10
-defense = 4
-luck = 7
 
 [sub_resource type="Resource" id="Resource_1dv04"]
 resource_local_to_scene = true
@@ -219,11 +199,6 @@ max_health = 25
 position = Vector2(64.853165, 199.52742)
 unit_role = SubResource("Resource_n7ofg")
 
-[node name="HunterEnemy5" parent="." unique_id=2141743388 instance=ExtResource("12_1dv04")]
-position = Vector2(85.892624, 268.2906)
-unit_role = SubResource("Resource_a7jwu")
-max_health = 25
-
 [node name="BasicEnemy6" parent="." unique_id=1409155966 instance=ExtResource("8_a7jwu")]
 position = Vector2(507.19537, 195.42215)
 unit_role = SubResource("Resource_qatd1")
@@ -231,11 +206,6 @@ unit_role = SubResource("Resource_qatd1")
 [node name="BasicEnemy7" parent="." unique_id=703617039 instance=ExtResource("8_a7jwu")]
 position = Vector2(521.0506, 146.67213)
 unit_role = SubResource("Resource_k4cgl")
-
-[node name="HunterEnemy6" parent="." unique_id=1156697418 instance=ExtResource("12_1dv04")]
-position = Vector2(541.57697, 210.8169)
-unit_role = SubResource("Resource_vojus")
-max_health = 25
 
 [node name="BasicEnemy8" parent="." unique_id=1934658913 instance=ExtResource("8_a7jwu")]
 position = Vector2(105.90582, 113.316864)
@@ -255,5 +225,10 @@ position = Vector2(565.1822, 174.89583)
 unit_role = SubResource("Resource_284md")
 max_health = 25
 
+[node name="FallbackTimer" type="Timer" parent="." unique_id=83842088]
+wait_time = 5.0
+one_shot = true
+
 [connection signal="accept_pressed" from="Cursor" to="." method="_on_Cursor_accept_pressed"]
 [connection signal="moved" from="Cursor" to="." method="_on_Cursor_moved"]
+[connection signal="timeout" from="FallbackTimer" to="." method="_on_fallback_timer_timeout"]
