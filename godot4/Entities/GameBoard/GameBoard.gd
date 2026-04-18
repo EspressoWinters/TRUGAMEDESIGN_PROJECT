@@ -396,7 +396,7 @@ func _reinitialize() -> void:
 
 
 ## Returns an array with all the coordinates of walkable cells based on the `max_distance`.
-#same as in the tutorial 
+#from tutorial but slightly modified for more if cases 
 func _flood_fill(cell: Vector2, max_distance: int) -> Array:
 	#creates an empty array that will get filled with the cells that are valid
 	var array := []
