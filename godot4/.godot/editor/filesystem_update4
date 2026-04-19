@@ -1,5 +1,4 @@
-res://Levels/Level_7_road_ambush.tscn
+res://Entities/UI/UI.tscn
 res://Entities/UnitOverlay/unit_overlay_tileset.tres
 res://Entities/GameBoard/unit_path_tileset.tres
-res://Entities/GameBoard/GameBoard.gd
-res://Resources/Classes/Grenadier/Grenadier.gd
+res://Entities/UI/ui.gd

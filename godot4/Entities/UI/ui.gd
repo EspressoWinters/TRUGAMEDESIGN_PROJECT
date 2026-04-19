@@ -140,7 +140,7 @@ func display_combat_results():
 		var lvl = role_data.level 
 		var cur_xp = role_data.xp
 		
-		var unit_line = "[b]%s[/b]\n" % role_name
+		var unit_line = "[color=red]%s[/color]\n" % role_name
 		unit_line += "  [color=gray]LVL:[/color] %d | [color=gray]XP:[/color] %d\n\n" % [lvl, cur_xp]
 		final_text += unit_line
 	
