@@ -229,7 +229,7 @@ func start_turn():
 				_unit_overlay.clear()
 				_unit_overlay.draw(_walkable_cells)
 			#need to reset that 
-			has_done_speed_boost_once = true 
+			has_done_speed_boost_once = true
 	
 	#doing AI Logic here
 	if _active_unit is BasicEnemy or _active_unit is HunterEnemy or _active_unit is BigEnemy or _active_unit is BossMain or _active_unit is WalkingTrainingDummy:

@@ -99,9 +99,10 @@ func ability(unit: Unit):
 	
 	if has_used_speed_boost == false:
 		self.speed *= 2 
-		has_used_speed_boost = true  
+		has_used_speed_boost = true
+		GameConsole.log_message("COMBAT", "Grenadier looks like he's really fast!")
 	else:
-		print("You have used your speed boost")
+		GameConsole.log_message("COMBAT","You have used your speed boost")
 	
 func passive(unit: Unit):
 	pass
