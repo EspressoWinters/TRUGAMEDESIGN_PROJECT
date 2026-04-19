@@ -97,3 +97,18 @@ func refresh_hiring_pool() -> void:
 	for i in range(3):
 		if temp_pool.size() > i:
 			available_to_hire.append(temp_pool[i])
+
+func update_and_save_party_from_nodes(live_units: Array) -> void:
+	#clears old data in the save
+	active_party.clear()
+	
+	#loops through and grabs the updated resources
+	for node in live_units:
+		if node is Unit and is_instance_valid(node):
+			#gets resource that was being updated in battle
+			var battle_resource = node.unit_role
+			active_party.append(battle_resource)
+	
+	#writes the new save
+	save_party()
+	print("PartyManager: Successfully updated from battle nodes and saved.")

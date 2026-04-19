@@ -29,7 +29,7 @@ func display_number(value: int, position: Vector2, is_critical: bool = false):
 	if is_critical:
 		settings.font_size = 20
 	else:
-		settings.font_size = 12
+		settings.font_size = 16
 	settings.outline_color = Color.BLACK
 	settings.outline_size = 2
 	number.label_settings = settings

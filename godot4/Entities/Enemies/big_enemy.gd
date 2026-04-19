@@ -151,4 +151,4 @@ func check_and_attack_adjacent():
 		if d <= 1:
 			VfxManager.play_vfx("slash_attack", unit.global_position)
 			gameboard.apply_damage(unit.cell, unit_role.attack_roll(self), self, unit_role.crit)
-			
+			break

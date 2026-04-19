@@ -175,6 +175,7 @@ func walk_along(path: PackedVector2Array) -> void:
 	_is_walking = true
 
 func set_health_bar() -> void:
+	$Healthbar.max_value = unit_role.max_hp 
 	$Healthbar.value = unit_role.current_health
 
 func heal(amount: int) -> void:
@@ -200,3 +201,10 @@ func _on_container_mouse_exited() -> void:
 
 func update_fire_vfx():
 	on_fire_vfx.visible = unit_role.on_fire
+
+#this is for the turn-order stuff so you can see who goes next
+func set_glow(active: bool):
+	if active:
+		sprite.modulate = Color(2, 2, 2) #makes them brighter
+	else:
+		sprite.modulate = Color(1, 1, 1) #sets them to normal

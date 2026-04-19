@@ -11,6 +11,7 @@ max_hp = 28
 attack_stat = 11
 speed = 6
 defense = 2
+xp = 0
 atk_explain = "Shoots line of sight with a range of 5"
 ability_explain = "Can get 100% crit chance for next attack per battle(charges of ability depend on amount of musketeers)."
 passive_explain = "Has increased crit damage and crit chance."

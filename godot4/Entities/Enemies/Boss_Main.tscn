@@ -5,11 +5,12 @@
 [ext_resource type="Resource" uid="uid://bj7vassh2i26e" path="res://Entities/GameBoard/Grid.tres" id="2_dtkqx"]
 [ext_resource type="Script" uid="uid://k2xu5hbt8vp5" path="res://Resources/Classes/Bosses/BossMain.gd" id="2_gu2e8"]
 [ext_resource type="Texture2D" uid="uid://2ufjgbg3frne" path="res://Assets/Sprites/Just fire Sheet.png" id="4_gu2e8"]
+[ext_resource type="PackedScene" uid="uid://dbalijummpd14" path="res://Entities/Animations/CritBuff.tscn" id="5_3ky33"]
 [ext_resource type="Texture2D" uid="uid://djihpsmsh81d5" path="res://Assets/Units/enemy_units/Big Evil Guy.png" id="6_gu2e8"]
 
 [sub_resource type="Curve2D" id="Curve2D_mu52m"]
 
-[sub_resource type="Resource" id="Resource_3ky33"]
+[sub_resource type="Resource" id="Resource_fjfx0"]
 resource_local_to_scene = true
 script = ExtResource("2_gu2e8")
 skin = ExtResource("6_gu2e8")
@@ -115,9 +116,14 @@ bg_color = Color(0, 0, 0, 1)
 [node name="Boss_main" type="Path2D" unique_id=393416970 groups=["enemy_units"]]
 curve = SubResource("Curve2D_mu52m")
 script = ExtResource("1_dhl72")
-unit_role = SubResource("Resource_3ky33")
+unit_role = SubResource("Resource_fjfx0")
 grid = ExtResource("2_dtkqx")
 max_health = 100
+
+[node name="CritBuff" parent="." unique_id=2073705111 instance=ExtResource("5_3ky33")]
+visible = false
+scale = Vector2(1.2, 1.2)
+autoplay = "default"
 
 [node name="OnFireAnimation" type="AnimatedSprite2D" parent="." unique_id=2001919743 groups=["enemy_units"]]
 visible = false

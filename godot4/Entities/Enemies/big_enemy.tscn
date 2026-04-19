@@ -8,6 +8,10 @@
 [ext_resource type="Texture2D" uid="uid://2ufjgbg3frne" path="res://Assets/Sprites/Just fire Sheet.png" id="5_c8eui"]
 
 [sub_resource type="Curve2D" id="Curve2D_mu52m"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, -1.6737366, 176.11024)
+}
+point_count = 1
 
 [sub_resource type="Resource" id="Resource_3x6ou"]
 script = ExtResource("2_3x6ou")

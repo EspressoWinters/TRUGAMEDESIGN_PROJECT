@@ -10,7 +10,7 @@
 class_name BossMain
 #we are extending the unit and now we have access to all the unit's functions and variables 
 #https://docs.godotengine.org/en/stable/tutorials/scripting/gdscript/gdscript_basics.html if you need a reference on inheritance 
-extends Unit 
+extends Unit
 
 #going to keep an array of all human players, so that we can keep track of those pesky humans 
 var human_units := []
@@ -21,8 +21,8 @@ var taunter_found := false
 
 var four_tower_boost : int = 0
 var three_tower_boost : int = 10
-var two_tower_boost : int = 20
-var one_tower_boost : int = 30
+var two_tower_boost : int = 15
+var one_tower_boost : int = 20
 var no_tower_boost : int = 40
 
 #I JUST ADDED THIS 
@@ -166,6 +166,7 @@ func check_and_attack_adjacent():
 		if d <= 1:
 			VfxManager.play_vfx("slash_attack", unit.global_position)
 			gameboard.apply_damage(unit.cell, unit_role.attack_roll(self)+enrage_modifier, self, unit_role.crit)
+			break
 
 func number_of_towers_left():
 	var num_of_towers: int = 0

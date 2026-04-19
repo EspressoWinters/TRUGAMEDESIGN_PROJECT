@@ -50,16 +50,15 @@ var _attack_overlay_visable := false
 
 
 #firethrower passive variables 
-var fire_dot_damage: int = 2
+var fire_dot_damage: int = 5
 var fire_dot_turns: int = 5
 
 #signal enemy_done_moving
 #grenaider speed boost passive 
 var has_done_speed_boost_once := false 
-
 var flame_explosion_damage: int = 15
 
-var boss_tower_healing : int = 5
+var boss_tower_healing : int = 15
 #when the gameboard is called into the scene it will clear its dicitonary of units then fill it up again with the units in tjhe active scenee
 #modified from the tutorial 
 func _ready() -> void:
@@ -79,6 +78,7 @@ func _ready() -> void:
 		push_error("GameBoard: UI node not found at path!")
 	await spawn_party_from_manager()
 	turn_manager()
+	ui.refresh_turn_bar(initiative_order, turn_count)
 
 func turn_manager():
 	roll_initiative()
@@ -99,6 +99,7 @@ func roll_initiative():
 
 ##This will start the turn of the individual unit
 func start_turn():
+	ui.refresh_turn_bar(initiative_order, turn_count)
 	#set the boolean value to false so it hasn't attacked
 	_has_attacked_this_turn = false
 	_move_overlay_visable = false
@@ -128,6 +129,26 @@ func start_turn():
 	GameConsole.log_message("GAMEMASTER","It is now " + _active_unit.name + "'s turn.")
 	if _active_unit.is_in_group("enemy_units"):
 		fallback_timer.start(5.0)
+	if _active_unit.unit_role is Boss_Main:
+		var tower_exists: bool = false
+		
+		for unit in _units.values():
+			if unit.unit_role is Boss_Tower:
+				tower_exists = true
+				break # Found one, no need to keep looking
+		
+		# 2. If no towers are left, enable the Crit Buff
+		if not tower_exists:
+			_active_unit.crit_buff.visible = true
+			# Optional: Play a sound or log a message
+			GameConsole.log_message("BOSS", "MY DEFENSES ARE GONE... BUT MY POWER GROWS!")
+		else:
+			_active_unit.crit_buff.visible = false
+			
+	if _active_unit.unit_role is Medic:
+		ui.attackbutton_ui.text = "HEAL"
+	else:
+		ui.attackbutton_ui.text = "ATTACK"
 	print(_active_unit.cell)
 		##catches if fire dot kills the enemy it doesnt lock
 	if !_active_unit:
@@ -152,6 +173,8 @@ func start_turn():
 		
 		if _active_unit.taunter_found:
 			damage = _active_unit.unit_role.attack_roll(_active_unit)
+			SoundManager._play_shockSFX()
+			VfxManager.play_vfx("electro_attack", target_unit.global_position)
 			apply_damage(temp_cell, damage, _active_unit, false)
 		else:
 			for attack_cell in attack_range:
@@ -162,9 +185,12 @@ func start_turn():
 				if _units.has(attack_cell):
 					target_unit = _units[attack_cell]
 					#add the friendly check so it doesn't do friendly fire
-					if target_unit is not BasicEnemy and target_unit is not HunterEnemy and target_unit is not BigEnemy and target_unit is not BossMain and target_unit is not WalkingTrainingDummy and target_unit is not Tower: 
+					if target_unit is not BasicEnemy and target_unit is not HunterEnemy and target_unit is not BigEnemy and target_unit is not BossMain and target_unit is not WalkingTrainingDummy and target_unit is not Tower:
 						damage = _active_unit.unit_role.attack_roll(_active_unit)
+						SoundManager._play_shockSFX()
+						VfxManager.play_vfx("electro_attack", target_unit.global_position)
 						apply_damage(attack_cell, damage, _active_unit, false)
+						break
 		#timer.start()
 		#await timer.timeout
 		end_turn()
@@ -766,6 +792,7 @@ func unit_ability():
 						u.unit_role.turns_left_on_fire = 0
 						u.update_fire_vfx()
 						SoundManager._play_explosionSFX()
+						VfxManager.play_vfx("explosion_attack",u.global_position)
 						apply_damage(unit, flame_explosion_damage, null, false)
 					else:
 						continue
@@ -785,61 +812,92 @@ func unit_passive():
 		push_warning("Attempted to passive, but _activecaller_name : String_unit is null!")
 
 func apply_damage(target_cell: Vector2, amount: int, attacker: Unit, crit: bool) -> void:
+	if not _units.has(target_cell):
+		return
+		
 	var victim = _units[target_cell]
-	var total_damage: int
-	print(victim)
-	if attacker.unit_role is Medic or attacker.unit_role is Boss_Tower and attacker != null:
+	var v_role = victim.unit_role
+	var total_damage: int = amount
+
+	#all the class specific logic
+	if attacker:
+		var a_role = attacker.unit_role
+		
+		#flamethwoer dot logic
+		if a_role is Flamethrower:
+			v_role.on_fire = true
+			v_role.turns_left_on_fire = fire_dot_turns
+			if v_role.current_health > 0:
+				victim.update_fire_vfx()
+		
+		if a_role is Grenadier and victim == attacker:
+			total_damage = ceil(amount * 0.25)
+
+	#final damage calulation
+	if attacker == null:
+		#burn damage ignores defense and is usually null
+		total_damage = amount 
+	elif attacker.unit_role is Medic or attacker.unit_role is Boss_Tower:
+		#healing logic ignores defense
 		total_damage = amount
 	else:
-		total_damage = max(1, amount - victim.unit_role.defense)
-	if attacker:
-		#Damage over time passive
-		if attacker.unit_role is Flamethrower:
-			victim.unit_role.on_fire = true
-			victim.unit_role.turns_left_on_fire = fire_dot_turns
-			if victim.unit_role.current_health > 0:
-				victim.update_fire_vfx()
-		#1/4 Grenade damage to self
-		if attacker.unit_role is  Grenadier:
-			if victim == attacker:
-				#quartering the damage to self
-				amount *= 0.25
-		if attacker.unit_role is Medic:
-			total_damage = amount
-	victim.unit_role.current_health -= total_damage
+		#for standard attacks applied the defense reduction to damage
+		total_damage = max(1, total_damage - v_role.defense)
+
+	#apply health damage
+	v_role.current_health -= total_damage
+	v_role.current_health = clamp(v_role.current_health, 0, victim.max_health)
+	
 	_update_health_bar.emit()
+
+	#calls function to show damage numbers and logs combat damage
+	_log_combat_interaction(victim, attacker, total_damage)
+
+	#death check
+	if v_role.current_health <= 0:
+		_handle_unit_death(target_cell)
+
+#this logs the combat interactions keeping it seperate makes the apply_damage script less complicated
+func _log_combat_interaction(victim: Unit, attacker: Unit, damage: int):
+	var is_crit = attacker.unit_role.crit if attacker else false
 	
 	if attacker == null:
-		GameConsole.log_message("COMBAT","%s burned! %d!" % [victim.name, abs(total_damage)])
-		DamageNumbers.display_number(total_damage, victim.global_position, false)
+		GameConsole.log_message("COMBAT", "%s burned! %d!" % [victim.name, abs(damage)])
+		DamageNumbers.display_number(damage, victim.global_position, false)
 	elif attacker.unit_role is Medic or attacker.unit_role is Boss_Tower:
-		GameConsole.log_message("COMBAT","%s healed! %d!" % [victim.name, abs(total_damage)])
-		DamageNumbers.display_number(total_damage, victim.global_position, attacker.unit_role.crit)
+		var type = "healed" if damage < 0 else "treated" #use negative damage for heals usually
+		GameConsole.log_message("COMBAT", "%s %s! %d!" % [victim.name, type, abs(damage)])
+		DamageNumbers.display_number(damage, victim.global_position, is_crit)
 	else:
-		GameConsole.log_message("COMBAT","%s took %d damage!" % [victim.name, total_damage])
-		DamageNumbers.display_number(total_damage, victim.global_position, attacker.unit_role.crit)
-		
-	if victim.unit_role.current_health >= victim.max_health:
-		victim.unit_role.current_health = victim.max_health
-	
-	if victim.unit_role.current_health <= 0:
-		_handle_unit_death(target_cell)
+		GameConsole.log_message("COMBAT", "%s took %d damage!" % [victim.name, damage])
+		DamageNumbers.display_number(damage, victim.global_position, is_crit)
 
 func _handle_unit_death(cell: Vector2) -> void:
 	var unit_to_remove = _units[cell]
 	
-	#this checks if unit has a resource and is in the active party
-	if unit_to_remove.unit_resource in PartyManager.active_party:
-		var party_index = PartyManager.active_party.find(unit_to_remove.unit_resource)
+	if unit_to_remove.unit_role is Boss_Main:
+		#pass the cell variable here so the next function can use it
+		_play_boss_death_sequence(unit_to_remove, cell) 
+		return
+	
+	#handle death for player units
+	if unit_to_remove.unit_role in PartyManager.active_party:
+		var party_index = PartyManager.active_party.find(unit_to_remove.unit_role)
 		if party_index != -1:
 			PartyManager.fire_unit(party_index)
-			GameConsole.log_message("GAMEMASTER","Unit has died and forever lost")
+			GameConsole.log_message("GAMEMASTER", "Unit has died and is forever lost.")
 	
-	#it is now walkable!!!
+	# it is now walkable!!!
 	_walkable_cells.append(cell)
 	
+	#erase from the units dictionary using the cell key
 	_units.erase(cell)
-	initiative_order.erase(unit_to_remove)
+	
+	#remove from the turn order list
+	if initiative_order.has(unit_to_remove):
+		initiative_order.erase(unit_to_remove)
+		
+	# removes unit from scene
 	unit_to_remove.queue_free()
 
 #corridnates of spawn for each level
@@ -943,7 +1001,7 @@ func spawn_party_from_manager() -> void:
 		new_unit.cell = spawn_points[i]
 		new_unit.position = new_unit.grid.calculate_map_position(new_unit.cell)
 	
-	# Refresh units dictionary for movement logic
+	#refresh units dictionary for movement logic
 	
 	_reinitialize()
 
@@ -952,7 +1010,7 @@ func _check_for_victory_or_defeat() -> void:
 	var player_alive := false
 	var enemies_alive := false
 	
-	# Scan the initiative list to see who is still standing
+	#scan the initiative list to see who is still standing
 	for unit in initiative_order:
 		if unit.is_in_group("player_units"):
 			player_alive = true
@@ -970,40 +1028,51 @@ func _check_for_victory_or_defeat() -> void:
 		
 		for unit in _units:
 			_units[unit].unit_role.current_health
-		grant_xp()
 		ui.combat_end_label_ui.text = "WINNER!"
-		get_tree().paused = true
+		await grant_xp()
+		ui.display_combat_results()
 		ui.combat_end_ui.visible = true
 		ui.battle_ui.visible = false
+		get_tree().paused = true
 	elif not player_alive:
 		ui.combat_end_label_ui.text = "LOSER"
-		get_tree().paused = true
+		ui.display_combat_results()
 		ui.combat_end_ui.visible = true
 		ui.continue_button_ui.visible = false
 		ui.battle_ui.visible = false
+		get_tree().paused = true
 
 func grant_xp() -> void:
 	print("Granting victory XP to survivors...")
-	for unit in initiative_order:
-		if unit.is_in_group("player_units") and is_instance_valid(unit):
-			unit.unit_role.xp += 25
-			print("%s gained 25 XP. Total: %d" % [unit.unit_role.role, unit.unit_role.xp])
+	#use the group directly to ensure we dont miss anyone not in the initiative array
+	var survivors = get_tree().get_nodes_in_group("player_units")
+	
+	for unit in survivors:
+		if is_instance_valid(unit) and unit is Unit:
+			unit.unit_role.xp += 50
+			print("%s gained 50 XP. Total: %d" % [unit.unit_role.role, unit.unit_role.xp])
+	
 	_check_for_level_ups()
+	#tells the UI to update after the math is done
+	ui.display_combat_results()
 
 func _check_for_level_ups() -> void:
-	for unit in initiative_order:
-		if unit.is_in_group("player_units") and is_instance_valid(unit):
-			
-			#checks if unit is ready to level up!
-			while unit.unit_role.xp >= 100:
-				unit.unit_role.level += 1
-				unit.unit_role.xp -= 100
-				unit.unit_role.defense += 1 # Add +1 Defense per level
-				unit.unit_role.attack_stat += 1
-				unit.unit_role.max_hp += 2
-				unit.unit_role.luck += 1
+	var survivors = get_tree().get_nodes_in_group("player_units")
+	for unit in survivors:
+		if is_instance_valid(unit) and unit is Unit:
+			var data = unit.unit_role
+			while data.xp >= 100:
+				data.level += 1
+				data.xp -= 100
+				data.defense += 1
+				data.attack_stat += 1
+				data.max_hp += 2
+				data.luck += 1
 				
-				GameConsole.log_message("LEVELUP","LEVEL UP! %s is now Level %d." % [unit.unit_role.role, unit.unit_role.level])
+				#syncs max health just in case
+				unit.max_health = data.max_hp
+				
+				GameConsole.log_message("LEVELUP", "LEVEL UP! %s is now Level %d." % [data.role, data.level])
 
 #determines what vfx to play based on the unit_role
 func _trigger_attack_vfx(cell: Vector2) -> void:
@@ -1034,3 +1103,67 @@ func _trigger_attack_vfx(cell: Vector2) -> void:
 func _on_fallback_timer_timeout() -> void:
 	GameConsole.log_message("ERROR", "AI has ran out of time!")
 	end_turn()
+
+func _play_boss_death_sequence(boss: Node2D, cell: Vector2) -> void:
+	ui.battle_ui.visible = false
+	ui.turnorder_ui.visible = false
+	boss.set_process(false)
+	boss.z_index = 100 
+	
+	if _units.has(cell):
+		_units.erase(cell)
+	
+	if initiative_order.has(boss):
+		initiative_order.erase(boss)
+	
+	boss.process_mode = PROCESS_MODE_DISABLED 
+	
+	SoundManager._stop_music()
+	
+	var tween = create_tween().set_parallel(false)
+	var screen_center = get_viewport_rect().size / 2
+	
+	#floats to the middle
+	tween.tween_property(boss, "global_position", screen_center, 3.0)\
+		.set_trans(Tween.TRANS_SINE)\
+		.set_ease(Tween.EASE_IN_OUT)
+	
+	#shakes boss
+	tween.tween_callback(func(): _shake_node(boss, 1.5))
+	tween.tween_interval(1.5)
+	
+	#play explode vfx and hides boss
+	tween.tween_callback(func(): 
+		VfxManager.play_vfx("explosion_attack", boss.global_position)
+		SoundManager._play_explosionSFX()
+		
+		var vfx_node = VfxManager.get_child(VfxManager.get_child_count() - 1)
+		if vfx_node:
+			vfx_node.scale = Vector2(8.0, 8.0)
+		
+		boss.visible = false 
+	)
+	
+	#start fade and chill music
+	tween.tween_interval(1.0) 
+	tween.tween_callback(func():
+		$FadeToBlack.play("fadetoblack")
+		SoundManager._play_chill_music()
+	)
+	
+	#waits for fade to finish, then change to credits
+	tween.tween_interval(3.0) 
+	tween.tween_callback(func():
+		var survivors = get_tree().get_nodes_in_group("player_units")
+		PartyManager.update_and_save_party_from_nodes(survivors)
+		get_tree().change_scene_to_file("res://Levels/end_credits/End_Credits.tscn")
+	)
+
+func _shake_node(node: Node2D, duration: float) -> void:
+	var shake_tween = create_tween().set_loops(20)
+	var original_pos = node.global_position
+	var intensity = 12.0 #adjust this for more violent shake
+	
+	#rapidly moves between a random offset and the original position to make a shaking animation
+	shake_tween.tween_property(node, "global_position", original_pos + Vector2(randf_range(-intensity, intensity), randf_range(-intensity, intensity)), 0.05)
+	shake_tween.tween_property(node, "global_position", original_pos, 0.05)

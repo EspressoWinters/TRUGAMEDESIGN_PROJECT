@@ -145,7 +145,8 @@ func find_closet_human_character():
 		
 func check_and_attack_adjacent():
 	for unit in gameboard._units.values():
-		if unit is BasicEnemy or unit is HunterEnemy or unit is BigEnemy or unit is BossMain or unit is BossTower or unit is Tower: continue
+		if unit is BasicEnemy or unit is HunterEnemy or unit is BigEnemy or unit is BossMain or unit is BossTower or unit is Tower: 
+			continue
 		
 		#calculate distance from our NEW position (self.cell)
 		var d = abs(unit.cell.x - self.cell.x) + abs(unit.cell.y - self.cell.y)

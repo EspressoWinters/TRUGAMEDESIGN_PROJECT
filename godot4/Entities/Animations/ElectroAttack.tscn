@@ -68,7 +68,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_yi80j")
 }],
-"loop": true,
+"loop": false,
 "name": &"new_animation",
 "speed": 10.0
 }]
@@ -76,4 +76,5 @@ animations = [{
 [node name="ElectroAttack" type="AnimatedSprite2D" unique_id=1681499882]
 sprite_frames = SubResource("SpriteFrames_qiisv")
 animation = &"new_animation"
+autoplay = "new_animation"
 frame_progress = 0.27701485

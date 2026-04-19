@@ -7,10 +7,11 @@
 script = ExtResource("1_eha2t")
 skin = ExtResource("2_411me")
 role = "Tank"
-max_hp = 40
-current_health = 40
+max_hp = 55
+current_health = 55
 speed = 4
 defense = 8
+xp = 0
 crit = true
 atk_explain = "Slashing attack that hits three squares."
 ability_explain = "Can taunt enemies for one turn per battle(more charges of this ability depending on how many tanks)."

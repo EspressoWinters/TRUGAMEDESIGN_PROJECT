@@ -84,3 +84,8 @@ func _on_sfx_slider_value_changed(value: float) -> void:
 	sfx_volume = value
 	AudioServer.set_bus_volume_db(sfx_bus, linear_to_db(value))
 	AudioServer.set_bus_mute(sfx_bus, value < 0.01)
+
+func _stop_music():
+	$BattleMusic.stop()
+	$BossMusic.stop()
+	$ChillMusic.stop()

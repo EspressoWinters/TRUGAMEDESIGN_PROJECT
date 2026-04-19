@@ -59,7 +59,7 @@ bus = &"SFX"
 
 [node name="ShockSFX" type="AudioStreamPlayer" parent="." unique_id=640269058]
 stream = ExtResource("4_odatp")
-volume_db = -5.0
+volume_db = -10.0
 bus = &"SFX"
 
 [node name="HealSFX" type="AudioStreamPlayer" parent="." unique_id=1284644147]

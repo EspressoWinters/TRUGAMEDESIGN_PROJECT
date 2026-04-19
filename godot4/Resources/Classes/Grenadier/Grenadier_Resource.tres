@@ -10,6 +10,7 @@ role = "Grenadier"
 current_health = 20
 attack_stat = 9
 defense = 3
+xp = 0
 atk_explain = "Throws bombs that attack in a 3x3 square."
 ability_explain = "Increases movement speed temporarily."
 passive_explain = "Takes 1/4 the damage from its own attacks."

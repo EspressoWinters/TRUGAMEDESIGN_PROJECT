@@ -13,8 +13,8 @@
 resource_local_to_scene = true
 script = ExtResource("2_4m3dk")
 skin = ExtResource("5_u3b1g")
-max_hp = 25
-current_health = 25
+max_hp = 22
+current_health = 22
 attack_stat = 9
 speed = 6
 defense = 4
@@ -118,7 +118,7 @@ curve = SubResource("Curve2D_u3b1g")
 script = ExtResource("1_ok2tl")
 unit_role = SubResource("Resource_4m3dk")
 grid = ExtResource("2_xpl8d")
-max_health = 25
+max_health = 22
 
 [node name="OnFireAnimation" type="AnimatedSprite2D" parent="." unique_id=822061127]
 visible = false
