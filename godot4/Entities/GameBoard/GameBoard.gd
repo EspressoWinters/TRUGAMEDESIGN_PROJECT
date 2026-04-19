@@ -788,7 +788,7 @@ func apply_damage(target_cell: Vector2, amount: int, attacker: Unit, crit: bool)
 	var victim = _units[target_cell]
 	var total_damage: int
 	print(victim)
-	if attacker.unit_role is Medic or attacker.unit_role is Boss_Tower:
+	if attacker.unit_role is Medic or attacker.unit_role is Boss_Tower and attacker != null:
 		total_damage = amount
 	else:
 		total_damage = max(1, amount - victim.unit_role.defense)
